@@ -2,8 +2,10 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Package imports:
 import 'package:http/http.dart';
 
+// Project imports:
 import 'mastodon_exception.dart';
 
 /// This exception is thrown to indicate that the specified access token was not

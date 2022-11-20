@@ -2,11 +2,12 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Project imports:
 import '../../core/client/client_context.dart';
 import '../base_service.dart';
 
 abstract class AccountsService {
-  /// Returns the new instance of [UsersService].
+  /// Returns the new instance of [AccountsService].
   factory AccountsService({
     required String instance,
     required ClientContext context,

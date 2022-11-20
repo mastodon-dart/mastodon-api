@@ -5,9 +5,12 @@
 import 'package:mastodon_api/mastodon_api.dart';
 
 Future<void> main() async {
-  // Coming soon...
-  MastodonApi(
+  //  Coming soon...
+  final mastodon = MastodonApi(
     instance: 'MASTODON_INSTANCE',
-    bearerToken: 'YOUR_BEARER_TOKEN',
+    bearerToken: 'BEARER_TOKEN',
   );
+
+  final response = await mastodon.timelines.lookupStatuses();
+  print(response);
 }

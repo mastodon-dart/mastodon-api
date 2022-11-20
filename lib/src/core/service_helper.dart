@@ -7,52 +7,58 @@ import 'dart:convert' as converter;
 
 // Package imports:
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 
 // Project imports:
 import 'client/client_context.dart';
 import 'client/stream_request.dart';
 import 'client/stream_response.dart';
+import 'client/user_context.dart';
 import 'serializable.dart';
 import 'util/json_utils.dart';
 
 abstract class Service {
   Future<http.Response> get(
+    UserContext userContext,
     String unencodedPath, {
-    Response Function(Response response)? validate,
+    http.Response Function(http.Response response)? validate,
   });
 
   Future<StreamResponse> getStream(
+    UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     Map<String, dynamic> Function(
-            StreamedResponse streamedResponse, String event)?
+            http.StreamedResponse streamedResponse, String event)?
         validate,
   });
 
   Future<http.Response> post(
+    UserContext userContext,
     String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     Map<String, String> body = const {},
-    Response Function(Response response)? validate,
+    http.Response Function(http.Response response)? validate,
   });
 
   Future<http.Response> postMultipart(
+    UserContext userContext,
     String unencodedPath, {
     List<http.MultipartFile> files = const [],
     Map<String, dynamic> queryParameters = const {},
-    Response Function(Response response)? validate,
+    http.Response Function(http.Response response)? validate,
   });
 
   Future<http.Response> delete(
+    UserContext userContext,
     String unencodedPath, {
-    Response Function(Response response)? validate,
+    http.Response Function(http.Response response)? validate,
   });
 
   Future<http.Response> put(
+    UserContext userContext,
     String unencodedPath, {
     Map<String, String> body = const {},
-    Response Function(Response response)? validate,
+    http.Response Function(http.Response response)? validate,
   });
 }
 
@@ -72,11 +78,13 @@ class ServiceHelper implements Service {
 
   @override
   Future<http.Response> get(
+    UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
-    Response Function(Response response)? validate,
+    http.Response Function(http.Response response)? validate,
   }) async {
     final response = await _context.get(
+      userContext,
       Uri.https(
         _authority,
         unencodedPath,
@@ -89,13 +97,15 @@ class ServiceHelper implements Service {
 
   @override
   Future<StreamResponse> getStream(
+    UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     Map<String, dynamic> Function(
-            StreamedResponse streamedResponse, String event)?
+            http.StreamedResponse streamedResponse, String event)?
         validate,
   }) async {
     final streamedResponse = await _context.getStream(
+      userContext,
       StreamRequest(
         Uri.https(
           _authority,
@@ -117,12 +127,14 @@ class ServiceHelper implements Service {
 
   @override
   Future<http.Response> post(
+    UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     dynamic body = const {},
-    Response Function(Response response)? validate,
+    http.Response Function(http.Response response)? validate,
   }) async {
     final response = await _context.post(
+      userContext,
       Uri.https(
         _authority,
         unencodedPath,
@@ -137,12 +149,14 @@ class ServiceHelper implements Service {
 
   @override
   Future<http.Response> postMultipart(
+    UserContext userContext,
     final String unencodedPath, {
     List<http.MultipartFile> files = const [],
     Map<String, dynamic> queryParameters = const {},
-    Response Function(Response response)? validate,
+    http.Response Function(http.Response response)? validate,
   }) async {
     final response = await _context.postMultipart(
+      userContext,
       Uri.https(
         _authority,
         unencodedPath,
@@ -156,10 +170,12 @@ class ServiceHelper implements Service {
 
   @override
   Future<http.Response> delete(
+    UserContext userContext,
     final String unencodedPath, {
-    Response Function(Response response)? validate,
+    http.Response Function(http.Response response)? validate,
   }) async {
     final response = await _context.delete(
+      userContext,
       Uri.https(_authority, unencodedPath),
     );
 
@@ -168,11 +184,13 @@ class ServiceHelper implements Service {
 
   @override
   Future<http.Response> put(
+    UserContext userContext,
     final String unencodedPath, {
     dynamic body = const {},
-    Response Function(Response response)? validate,
+    http.Response Function(http.Response response)? validate,
   }) async {
     final response = await _context.put(
+      userContext,
       Uri.https(_authority, unencodedPath),
       headers: {'Content-type': 'application/json'},
       body: converter.jsonEncode(_removeNullValues(body)),
