@@ -2,7 +2,7 @@
 name: Feature request.
 about: Suggest a new feature for mastodon_api.
 title: "Feature Request:"
-labels: "feat,untriaged"
+labels: "feat,help wanted,untriaged"
 assignees: "myConsciousness"
 ---
 
