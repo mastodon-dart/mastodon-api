@@ -31,4 +31,4 @@ test:
 - test/**/*.dart
 
 documentation:
-- *.md
+- README.md
