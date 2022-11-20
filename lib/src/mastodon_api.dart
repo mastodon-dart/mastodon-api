@@ -2,20 +2,23 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-import 'package:mastodon_api/src/service/mastodon_service.dart';
-
+// Project imports:
 import 'core/client/client_context.dart';
+import 'service/mastodon_service.dart';
+import 'service/timelines/timelines_service.dart';
 
 abstract class MastodonApi {
   /// Returns the new instance of [MastodonApi].
   factory MastodonApi({
     required String instance,
-    required String bearerToken,
+    String bearerToken = '',
   }) =>
       _MastodonApi(
         instance: instance,
         bearerToken: bearerToken,
       );
+
+  TimelinesService get timelines;
 }
 
 class _MastodonApi implements MastodonApi {
@@ -26,17 +29,14 @@ class _MastodonApi implements MastodonApi {
           instance: instance,
           context: ClientContext(
             bearerToken: bearerToken,
-            timeout: Duration(milliseconds: 10),
+            timeout: Duration(seconds: 10),
           ),
-        ) {
-    if (bearerToken.isEmpty) {
-      throw ArgumentError(
-        'An access token using OAuth 2.0 is required.',
-      );
-    }
-  }
+        );
 
   /// The mastodon service
   // ignore: unused_field
   final MastodonService _mastodonService;
+
+  @override
+  TimelinesService get timelines => _mastodonService.timelinesService;
 }

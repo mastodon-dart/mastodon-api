@@ -3,9 +3,9 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import 'package:mastodon_api/src/service/accounts/accounts_service.dart';
-
 import '../core/client/client_context.dart';
+import 'accounts/accounts_service.dart';
+import 'timelines/timelines_service.dart';
 
 /// The class represents the Mastodon services.
 abstract class MastodonService {
@@ -20,6 +20,9 @@ abstract class MastodonService {
 
   /// Returns the accounts service.
   AccountsService get accountsService;
+
+  /// Returns the timelines service.
+  TimelinesService get timelinesService;
 }
 
 class _MastodonService implements MastodonService {
@@ -27,8 +30,13 @@ class _MastodonService implements MastodonService {
   _MastodonService({
     required String instance,
     required ClientContext context,
-  }) : accountsService = AccountsService(instance: instance, context: context);
+  })  : accountsService = AccountsService(instance: instance, context: context),
+        timelinesService =
+            TimelinesService(instance: instance, context: context);
 
   @override
   final AccountsService accountsService;
+
+  @override
+  final TimelinesService timelinesService;
 }

@@ -6,38 +6,61 @@
 import 'dart:async';
 import 'dart:convert';
 
+// Package imports:
 import 'package:http/http.dart';
 
+// Project imports:
 import '../core/client/client_context.dart';
 import '../core/client/stream_response.dart';
+import '../core/client/user_context.dart';
 import '../core/exception/unauthorized_exception.dart';
 import '../core/service_helper.dart';
 import '../core/util/json_utils.dart';
+import 'entities/rate_limit.dart';
+import 'response/mastodon_response.dart';
+
+/// The callback function for building data object from response.
+typedef DataBuilder<D> = D Function(Map<String, Object?> json);
 
 abstract class _Service {
   Future<Response> get(
+    UserContext userContext,
     String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
   });
 
   Future<StreamResponse> getStream(
+    UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
   });
 
   Future<Response> post(
+    UserContext userContext,
     String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     Map<String, String> body = const {},
   });
 
   Future<Response> delete(
+    UserContext userContext,
     String unencodedPath,
   );
 
   Future<Response> put(
+    UserContext userContext,
     String unencodedPath, {
     Map<String, String> body = const {},
+  });
+
+  MastodonResponse<D> transformSingleDataResponse<D>(
+    Response response, {
+    required DataBuilder<D> dataBuilder,
+  });
+
+  MastodonResponse<List<D>> transformMultiDataResponse<D>(
+    Response response, {
+    required DataBuilder<D> dataBuilder,
   });
 }
 
@@ -47,21 +70,22 @@ abstract class BaseService implements _Service {
     required String instance,
     required ClientContext context,
   }) : _helper = ServiceHelper(
-          authority: '$instance/api',
+          authority: instance,
           context: context,
         );
 
   final ServiceHelper _helper;
 
-  final ResponseHeaderConverter headerConverter =
-      const ResponseHeaderConverter();
+  final RateLimitConverter rateLimitConverter = const RateLimitConverter();
 
   @override
   Future<Response> get(
+    UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
   }) async =>
       await _helper.get(
+        userContext,
         unencodedPath,
         queryParameters: queryParameters,
         validate: (response) {
@@ -73,6 +97,7 @@ abstract class BaseService implements _Service {
 
   @override
   Future<StreamResponse> getStream(
+    UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     Map<String, dynamic> Function(
@@ -80,6 +105,7 @@ abstract class BaseService implements _Service {
         validate,
   }) async =>
       await _helper.getStream(
+        userContext,
         unencodedPath,
         queryParameters: queryParameters,
         validate: (response, event) {
@@ -93,12 +119,14 @@ abstract class BaseService implements _Service {
 
   @override
   Future<Response> post(
+    UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     dynamic body = const {},
     Response Function(Response response)? validate,
   }) async =>
       await _helper.post(
+        userContext,
         unencodedPath,
         queryParameters: queryParameters,
         body: body,
@@ -107,24 +135,56 @@ abstract class BaseService implements _Service {
 
   @override
   Future<Response> delete(
+    UserContext userContext,
     final String unencodedPath, {
     Response Function(Response response)? validate,
   }) async =>
       await _helper.delete(
+        userContext,
         unencodedPath,
         validate: checkResponse,
       );
 
   @override
   Future<Response> put(
+    UserContext userContext,
     final String unencodedPath, {
     dynamic body = const {},
     Response Function(Response response)? validate,
   }) async =>
       await _helper.put(
+        userContext,
         unencodedPath,
         body: body,
         validate: checkResponse,
+      );
+
+  @override
+  MastodonResponse<D> transformSingleDataResponse<D>(
+    Response response, {
+    required DataBuilder<D> dataBuilder,
+  }) =>
+      MastodonResponse(
+        rateLimit: RateLimit.fromJson(
+          rateLimitConverter.convert(response.headers),
+        ),
+        data: dataBuilder(
+          jsonDecode(response.body),
+        ),
+      );
+
+  @override
+  MastodonResponse<List<D>> transformMultiDataResponse<D>(
+    Response response, {
+    required DataBuilder<D> dataBuilder,
+  }) =>
+      MastodonResponse(
+        rateLimit: RateLimit.fromJson(
+          rateLimitConverter.convert(response.headers),
+        ),
+        data: jsonDecode(response.body)
+            .map<D>((data) => dataBuilder(data))
+            .toList(),
       );
 
   Response checkResponse(
@@ -167,8 +227,8 @@ abstract class BaseService implements _Service {
   }
 }
 
-class ResponseHeaderConverter {
-  const ResponseHeaderConverter();
+class RateLimitConverter {
+  const RateLimitConverter();
 
   Map<String, dynamic> convert(final Map<String, String> input) => {
         //! Although it rarely occurs, there is a case where the header does not
