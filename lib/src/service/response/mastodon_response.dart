@@ -28,7 +28,7 @@ class MastodonResponse<D> {
   @override
   String toString() {
     final StringBuffer buffer = StringBuffer();
-    buffer.write('TwitterResponse(');
+    buffer.write('MastodonResponse(');
     buffer.write('rateLimit: $rateLimit, ');
     buffer.write('data: $data');
     buffer.write(')');

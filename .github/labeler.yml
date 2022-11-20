@@ -1,0 +1,38 @@
+v1:
+- lib/**/*
+
+client:
+- lib/src/core/client/*.dart
+
+service/accounts:
+- lib/src/service/accounts/*.dart
+service/admin:
+- lib/src/service/admin/*.dart
+service/announcements:
+- lib/src/service/announcements/*.dart
+service/apps:
+- lib/src/service/apps/*.dart
+service/instance:
+- lib/src/service/instance/*.dart
+service/notifications:
+- lib/src/service/notifications/*.dart
+service/oembed:
+- lib/src/service/oembed/*.dart
+service/proofs:
+- lib/src/service/proofs/*.dart
+service/search:
+- lib/src/service/search/*.dart
+service/statuses:
+- lib/src/service/statuses/*.dart
+service/timelines:
+- lib/src/service/timelines/*.dart
+
+test:
+- test/**/*.dart
+
+documentation:
+- README.md
+- CODE_OF_CONDUCT.md
+- CONTRIBUTING.md
+- SECURITY.md
+- STYLEGUIDE.md
