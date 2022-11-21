@@ -172,7 +172,22 @@ It means the parameters specified with a null value are safely removed and ignor
 For example, arguments specified with null are ignored in the following request.
 
 ```dart
+import 'package:mastodon_api/mastodon_api.dart';
 
+Future<void> main() async {
+  final mastodon = MastodonApi(
+    instance: 'MASTODON_INSTANCE',
+    bearerToken: 'YOUR_BEARER_TOKEN',
+  );
+
+  await mastodon.v1.statuses.createStatus(
+    text: 'Toot!',
+
+    //! These parameters are ignored at request because they are null.
+    mediaIds: null,
+    poll: null,
+  );
+}
 ```
 
 ### 1.4.3. OAuth 2.0 Authorization Code Flow
@@ -197,10 +212,11 @@ import 'package:mastodon_api/mastodon_api.dart';
 
 Future<void> main() {
  final mastodon = MastodonApi(
+    instance: 'MASTODON_INSTANCE',
     bearerToken: 'YOUR_TOKEN_HERE',
 
     //! The default timeout is 10 seconds.
-    timeout: Duration(seconds: 5),
+    timeout: Duration(seconds: 20),
   );
 }
 ```
@@ -354,9 +370,9 @@ Future<void> main() async {
   );
 
   try {
-    final statues = await mastodon.timelines.lookupStatuses();
+    final response = await mastodon.v1.statuses.createStatus(text: 'Toot!');
 
-    print(statuses);
+    print(response);
   } on UnauthorizedException catch (e) {
     print(e);
   } on RateLimitExceededException catch (e) {
