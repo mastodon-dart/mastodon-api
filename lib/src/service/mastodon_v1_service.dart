@@ -4,7 +4,6 @@
 
 // Project imports:
 import '../core/client/client_context.dart';
-import '../core/config/retry_config.dart';
 import 'statuses/statuses_v1_service.dart';
 
 /// The class represents the Mastodon v1 services.
