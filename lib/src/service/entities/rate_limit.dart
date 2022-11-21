@@ -17,13 +17,13 @@ class RateLimit with _$RateLimit {
 
   const factory RateLimit({
     /// The maximum number of calls allowed.
-    @JsonKey(name: 'x-rate-limit-limit') required int limitCount,
+    @JsonKey(name: 'x-ratelimit-limit') required int limitCount,
 
     /// The number of remaining calls allowed.
-    @JsonKey(name: 'x-rate-limit-remaining') required int remainingCount,
+    @JsonKey(name: 'x-ratelimit-remaining') required int remainingCount,
 
     /// The date time when the remaining number of calls will be reset.
-    @JsonKey(name: 'x-rate-limit-reset') required DateTime resetAt,
+    @JsonKey(name: 'x-ratelimit-reset') required DateTime resetAt,
   }) = _RateLimit;
 
   factory RateLimit.fromJson(Map<String, Object?> json) =>

@@ -21,15 +21,15 @@ RateLimit _$RateLimitFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$RateLimit {
   /// The maximum number of calls allowed.
-  @JsonKey(name: 'x-rate-limit-limit')
+  @JsonKey(name: 'x-ratelimit-limit')
   int get limitCount => throw _privateConstructorUsedError;
 
   /// The number of remaining calls allowed.
-  @JsonKey(name: 'x-rate-limit-remaining')
+  @JsonKey(name: 'x-ratelimit-remaining')
   int get remainingCount => throw _privateConstructorUsedError;
 
   /// The date time when the remaining number of calls will be reset.
-  @JsonKey(name: 'x-rate-limit-reset')
+  @JsonKey(name: 'x-ratelimit-reset')
   DateTime get resetAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,9 +44,9 @@ abstract class $RateLimitCopyWith<$Res> {
       _$RateLimitCopyWithImpl<$Res, RateLimit>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'x-rate-limit-limit') int limitCount,
-      @JsonKey(name: 'x-rate-limit-remaining') int remainingCount,
-      @JsonKey(name: 'x-rate-limit-reset') DateTime resetAt});
+      {@JsonKey(name: 'x-ratelimit-limit') int limitCount,
+      @JsonKey(name: 'x-ratelimit-remaining') int remainingCount,
+      @JsonKey(name: 'x-ratelimit-reset') DateTime resetAt});
 }
 
 /// @nodoc
@@ -91,9 +91,9 @@ abstract class _$$_RateLimitCopyWith<$Res> implements $RateLimitCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'x-rate-limit-limit') int limitCount,
-      @JsonKey(name: 'x-rate-limit-remaining') int remainingCount,
-      @JsonKey(name: 'x-rate-limit-reset') DateTime resetAt});
+      {@JsonKey(name: 'x-ratelimit-limit') int limitCount,
+      @JsonKey(name: 'x-ratelimit-remaining') int remainingCount,
+      @JsonKey(name: 'x-ratelimit-reset') DateTime resetAt});
 }
 
 /// @nodoc
@@ -132,9 +132,9 @@ class __$$_RateLimitCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_RateLimit extends _RateLimit {
   const _$_RateLimit(
-      {@JsonKey(name: 'x-rate-limit-limit') required this.limitCount,
-      @JsonKey(name: 'x-rate-limit-remaining') required this.remainingCount,
-      @JsonKey(name: 'x-rate-limit-reset') required this.resetAt})
+      {@JsonKey(name: 'x-ratelimit-limit') required this.limitCount,
+      @JsonKey(name: 'x-ratelimit-remaining') required this.remainingCount,
+      @JsonKey(name: 'x-ratelimit-reset') required this.resetAt})
       : super._();
 
   factory _$_RateLimit.fromJson(Map<String, dynamic> json) =>
@@ -142,17 +142,17 @@ class _$_RateLimit extends _RateLimit {
 
   /// The maximum number of calls allowed.
   @override
-  @JsonKey(name: 'x-rate-limit-limit')
+  @JsonKey(name: 'x-ratelimit-limit')
   final int limitCount;
 
   /// The number of remaining calls allowed.
   @override
-  @JsonKey(name: 'x-rate-limit-remaining')
+  @JsonKey(name: 'x-ratelimit-remaining')
   final int remainingCount;
 
   /// The date time when the remaining number of calls will be reset.
   @override
-  @JsonKey(name: 'x-rate-limit-reset')
+  @JsonKey(name: 'x-ratelimit-reset')
   final DateTime resetAt;
 
   @override
@@ -193,11 +193,11 @@ class _$_RateLimit extends _RateLimit {
 
 abstract class _RateLimit extends RateLimit {
   const factory _RateLimit(
-      {@JsonKey(name: 'x-rate-limit-limit')
+      {@JsonKey(name: 'x-ratelimit-limit')
           required final int limitCount,
-      @JsonKey(name: 'x-rate-limit-remaining')
+      @JsonKey(name: 'x-ratelimit-remaining')
           required final int remainingCount,
-      @JsonKey(name: 'x-rate-limit-reset')
+      @JsonKey(name: 'x-ratelimit-reset')
           required final DateTime resetAt}) = _$_RateLimit;
   const _RateLimit._() : super._();
 
@@ -207,17 +207,17 @@ abstract class _RateLimit extends RateLimit {
   @override
 
   /// The maximum number of calls allowed.
-  @JsonKey(name: 'x-rate-limit-limit')
+  @JsonKey(name: 'x-ratelimit-limit')
   int get limitCount;
   @override
 
   /// The number of remaining calls allowed.
-  @JsonKey(name: 'x-rate-limit-remaining')
+  @JsonKey(name: 'x-ratelimit-remaining')
   int get remainingCount;
   @override
 
   /// The date time when the remaining number of calls will be reset.
-  @JsonKey(name: 'x-rate-limit-reset')
+  @JsonKey(name: 'x-ratelimit-reset')
   DateTime get resetAt;
   @override
   @JsonKey(ignore: true)

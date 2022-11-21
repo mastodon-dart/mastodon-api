@@ -2,8 +2,11 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Project imports:
+import '../../core/serializable.dart';
+
 /// Represents the visibility of specific status.
-enum Visibility {
+enum Visibility implements Serializable {
   /// Visible to everyone, shown in public timelines.
   public,
 
@@ -14,5 +17,8 @@ enum Visibility {
   private,
 
   ///  Visible only to mentioned users.
-  direct,
+  direct;
+
+  @override
+  String get value => name;
 }
