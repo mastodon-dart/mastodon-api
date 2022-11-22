@@ -212,7 +212,7 @@ class _ClientContext implements ClientContext {
     return await _challengeWithRetryIfNecessary(
       client,
       challenge,
-      retryCount: ++retryCount,
+      retryCount: retryCount,
     );
   }
 }

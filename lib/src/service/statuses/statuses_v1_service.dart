@@ -6,9 +6,9 @@
 import '../../core/client/client_context.dart';
 import '../../core/client/user_context.dart';
 import '../../core/language.dart';
+import '../../core/visibility.dart';
 import '../base_service.dart';
 import '../entities/status.dart';
-import '../entities/visibility.dart';
 import '../response/mastodon_response.dart';
 import 'status_poll_param.dart';
 

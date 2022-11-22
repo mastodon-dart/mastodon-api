@@ -2,12 +2,12 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// Project imports:
 import 'package:mastodon_api/src/core/client/retry_policy.dart';
 import 'package:mastodon_api/src/core/config/retry_config.dart';
-import 'package:test/test.dart';
 
-// Project imports:
+// Package imports:
+import 'package:test/test.dart';
 
 void main() {
   group('.shouldRetry', () {
@@ -144,7 +144,7 @@ void main() {
       await policy.wait(3);
       final endAt = DateTime.now();
 
-      expect(endAt.difference(startAt).inSeconds, 8);
+      expect(endAt.difference(startAt).inSeconds, 4);
     });
 
     test('when retryCount is 3 with exponential back off and jitter', () async {
@@ -160,7 +160,7 @@ void main() {
 
       final int elapsedSeconds = endAt.difference(startAt).inSeconds;
 
-      expect(8 <= elapsedSeconds && elapsedSeconds <= 11, isTrue);
+      expect(4 <= elapsedSeconds && elapsedSeconds <= 7, isTrue);
     });
 
     test('with complex case without exponential back off', () async {
@@ -191,14 +191,14 @@ void main() {
 
       final expectedResults = <int>[1, 2, 4, 8];
 
-      for (int i = 0; i < 4; i++) {
+      for (int i = 1; i < 5; i++) {
         final startAt = DateTime.now();
         await policy.wait(i);
         final endAt = DateTime.now();
 
         expect(
           endAt.difference(startAt).inSeconds,
-          expectedResults[i],
+          expectedResults[i - 1],
         );
       }
     });
@@ -212,7 +212,7 @@ void main() {
 
       final expectedResults = <int>[1, 2, 4, 8];
 
-      for (int i = 0; i < 4; i++) {
+      for (int i = 1; i < 5; i++) {
         final startAt = DateTime.now();
         await policy.wait(i);
         final endAt = DateTime.now();
@@ -220,8 +220,8 @@ void main() {
         final int elapsedSeconds = endAt.difference(startAt).inSeconds;
 
         expect(
-          expectedResults[i] <= elapsedSeconds &&
-              elapsedSeconds <= expectedResults[i] + 3,
+          expectedResults[i - 1] <= elapsedSeconds &&
+              elapsedSeconds <= expectedResults[i - 1] + 3,
           isTrue,
         );
       }

@@ -9,9 +9,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import '../../core/language.dart';
+import '../../core/visibility.dart';
 import 'account.dart';
 import 'application.dart';
-import 'visibility.dart';
 
 part 'status.freezed.dart';
 part 'status.g.dart';

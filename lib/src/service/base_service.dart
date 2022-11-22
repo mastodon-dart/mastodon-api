@@ -13,6 +13,7 @@ import 'package:http/http.dart';
 import '../core/client/client_context.dart';
 import '../core/client/stream_response.dart';
 import '../core/client/user_context.dart';
+import '../core/exception/rate_limit_exceeded_exception.dart';
 import '../core/exception/unauthorized_exception.dart';
 import '../core/service_helper.dart';
 import '../core/util/json_utils.dart';
@@ -195,6 +196,10 @@ abstract class BaseService implements _Service {
         'The specified access token is invalid.',
         response,
       );
+    }
+
+    if (response.statusCode == 429) {
+      throw RateLimitExceededException('Rate limit exceeded.', response);
     }
 
     if (response.statusCode == 204) {
