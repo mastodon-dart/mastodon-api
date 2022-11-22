@@ -52,7 +52,7 @@ class _RetryPolicy implements RetryPolicy {
       return;
     }
 
-    final int intervalInSeconds = _computeWaitIntervals(retryCount);
+    final int intervalInSeconds = _computeWaitIntervals(retryCount - 1);
 
     await _retryConfig!.onExecute?.call(
       RetryEvent(

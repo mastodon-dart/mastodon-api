@@ -9,7 +9,7 @@ import 'dart:convert';
 import 'package:http/http.dart';
 
 // Project imports:
-import '../exception/data_not_found_exception.dart';
+import '../exception/mastodon_exception.dart';
 
 dynamic tryJsonDecode(
   final BaseResponse response,
@@ -18,7 +18,7 @@ dynamic tryJsonDecode(
   try {
     return jsonDecode(body);
   } on FormatException {
-    throw DataNotFoundException(
+    throw MastodonException(
       'No body exists in response.',
       response,
     );

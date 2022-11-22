@@ -429,9 +429,9 @@ class _$_Account implements _Account {
       required this.statusesCount,
       required final List<Emoji> emojis,
       required final List<Field> fields,
-      @JsonKey(name: 'discoverable') required this.isDiscoverable,
-      @JsonKey(name: 'locked') required this.isLocked,
-      @JsonKey(name: 'bot') required this.isBot,
+      @JsonKey(name: 'discoverable') this.isDiscoverable = false,
+      @JsonKey(name: 'locked') this.isLocked = false,
+      @JsonKey(name: 'bot') this.isBot = false,
       required this.lastStatusAt,
       required this.createdAt})
       : _emojis = emojis,
@@ -658,9 +658,9 @@ abstract class _Account implements Account {
       required final int statusesCount,
       required final List<Emoji> emojis,
       required final List<Field> fields,
-      @JsonKey(name: 'discoverable') required final bool isDiscoverable,
-      @JsonKey(name: 'locked') required final bool isLocked,
-      @JsonKey(name: 'bot') required final bool isBot,
+      @JsonKey(name: 'discoverable') final bool isDiscoverable,
+      @JsonKey(name: 'locked') final bool isLocked,
+      @JsonKey(name: 'bot') final bool isBot,
       required final DateTime lastStatusAt,
       required final DateTime createdAt}) = _$_Account;
 

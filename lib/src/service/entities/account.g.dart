@@ -40,9 +40,10 @@ _$_Account _$$_AccountFromJson(Map json) => $checkedCreate(
                   .map((e) =>
                       Field.fromJson(Map<String, Object?>.from(e as Map)))
                   .toList()),
-          isDiscoverable: $checkedConvert('discoverable', (v) => v as bool),
-          isLocked: $checkedConvert('locked', (v) => v as bool),
-          isBot: $checkedConvert('bot', (v) => v as bool),
+          isDiscoverable:
+              $checkedConvert('discoverable', (v) => v as bool? ?? false),
+          isLocked: $checkedConvert('locked', (v) => v as bool? ?? false),
+          isBot: $checkedConvert('bot', (v) => v as bool? ?? false),
           lastStatusAt: $checkedConvert(
               'last_status_at', (v) => DateTime.parse(v as String)),
           createdAt:

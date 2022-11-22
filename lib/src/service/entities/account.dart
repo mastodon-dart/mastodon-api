@@ -78,14 +78,14 @@ class Account with _$Account {
 
     /// Whether the account has opted into discovery features such as the
     /// profile directory.
-    @JsonKey(name: 'discoverable') required bool isDiscoverable,
+    @JsonKey(name: 'discoverable') @Default(false) bool isDiscoverable,
 
     /// Whether the account manually approves follow requests.
-    @JsonKey(name: 'locked') required bool isLocked,
+    @JsonKey(name: 'locked') @Default(false) bool isLocked,
 
     /// Indicates that the account may perform automated actions,
     /// may not be monitored, or identifies as a robot.
-    @JsonKey(name: 'bot') required bool isBot,
+    @JsonKey(name: 'bot') @Default(false) bool isBot,
 
     /// When the most recent status was posted.
     required DateTime lastStatusAt,

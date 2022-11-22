@@ -4,39 +4,44 @@
 
 // Project imports:
 import 'core/client/client_context.dart';
-import 'service/mastodon_service.dart';
-import 'service/timelines/timelines_service.dart';
+import 'core/config/retry_config.dart';
+import 'service/mastodon_v1_service.dart';
 
 abstract class MastodonApi {
   /// Returns the new instance of [MastodonApi].
   factory MastodonApi({
     required String instance,
     String bearerToken = '',
+    Duration timeout = const Duration(seconds: 10),
+    RetryConfig? retryConfig,
   }) =>
       _MastodonApi(
         instance: instance,
         bearerToken: bearerToken,
+        timeout: timeout,
+        retryConfig: retryConfig,
       );
 
-  TimelinesService get timelines;
+  /// Returns the v1 service.
+  MastodonV1Service get v1;
 }
 
 class _MastodonApi implements MastodonApi {
+  /// Returns the new instance of [_MastodonApi].
   _MastodonApi({
     required String instance,
     required String bearerToken,
-  }) : _mastodonService = MastodonService(
+    required Duration timeout,
+    RetryConfig? retryConfig,
+  }) : v1 = MastodonV1Service(
           instance: instance,
           context: ClientContext(
             bearerToken: bearerToken,
-            timeout: Duration(seconds: 10),
+            timeout: timeout,
+            retryConfig: retryConfig,
           ),
         );
 
-  /// The mastodon service
-  // ignore: unused_field
-  final MastodonService _mastodonService;
-
   @override
-  TimelinesService get timelines => _mastodonService.timelinesService;
+  final MastodonV1Service v1;
 }

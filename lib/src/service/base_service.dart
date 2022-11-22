@@ -13,6 +13,7 @@ import 'package:http/http.dart';
 import '../core/client/client_context.dart';
 import '../core/client/stream_response.dart';
 import '../core/client/user_context.dart';
+import '../core/exception/rate_limit_exceeded_exception.dart';
 import '../core/exception/unauthorized_exception.dart';
 import '../core/service_helper.dart';
 import '../core/util/json_utils.dart';
@@ -197,6 +198,10 @@ abstract class BaseService implements _Service {
       );
     }
 
+    if (response.statusCode == 429) {
+      throw RateLimitExceededException('Rate limit exceeded.', response);
+    }
+
     if (response.statusCode == 204) {
       //! 204: No Content.
       return response;
@@ -228,14 +233,15 @@ abstract class BaseService implements _Service {
 }
 
 class RateLimitConverter {
+  /// Returns the new instance of [RateLimitConverter].
   const RateLimitConverter();
 
   Map<String, dynamic> convert(final Map<String, String> input) => {
         //! Although it rarely occurs, there is a case where the header does not
         //! contain rate limiting information.
-        'x-rate-limit-limit': _getInt(input, 'x-rate-limit-limit'),
-        'x-rate-limit-remaining': _getInt(input, 'x-rate-limit-remaining'),
-        'x-rate-limit-reset': _getDateTimeString(input, 'x-rate-limit-reset'),
+        'x-ratelimit-limit': _getInt(input, 'x-ratelimit-limit'),
+        'x-ratelimit-remaining': _getInt(input, 'x-ratelimit-remaining'),
+        'x-ratelimit-reset': _getDateTimeString(input, 'x-ratelimit-reset'),
       };
 
   int _getInt(final Map<String, String> input, final String key) =>
@@ -243,11 +249,9 @@ class RateLimitConverter {
 
   String _getDateTimeString(final Map<String, String> input, final String key) {
     if (!input.containsKey(key)) {
-      return DateTime.fromMillisecondsSinceEpoch(0).toString();
+      return DateTime.fromMillisecondsSinceEpoch(0).toUtc().toIso8601String();
     }
 
-    return DateTime.fromMillisecondsSinceEpoch(
-      int.parse(input[key]!) * 1000,
-    ).toString();
+    return DateTime.parse(input[key]!).toUtc().toIso8601String();
   }
 }

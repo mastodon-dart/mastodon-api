@@ -5,8 +5,11 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+// Project imports:
+import 'serializable.dart';
+
 /// Represents ISO 639 Part 1 two-letter language code.
-enum Language {
+enum Language implements Serializable {
   /// `aa`
   @JsonValue('aa')
   afar('aa', 'Afaraf'),
@@ -742,6 +745,9 @@ enum Language {
   final String localizedName;
 
   const Language(this.code, this.localizedName);
+
+  @override
+  String get value => code;
 
   /// Returns the [Language] associated with [code].
   static Language valueOf(final String code) {

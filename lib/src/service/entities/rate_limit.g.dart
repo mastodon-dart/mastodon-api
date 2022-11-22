@@ -13,24 +13,24 @@ _$_RateLimit _$$_RateLimitFromJson(Map json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = _$_RateLimit(
-          limitCount: $checkedConvert('x-rate-limit-limit', (v) => v as int),
+          limitCount: $checkedConvert('x-ratelimit-limit', (v) => v as int),
           remainingCount:
-              $checkedConvert('x-rate-limit-remaining', (v) => v as int),
+              $checkedConvert('x-ratelimit-remaining', (v) => v as int),
           resetAt: $checkedConvert(
-              'x-rate-limit-reset', (v) => DateTime.parse(v as String)),
+              'x-ratelimit-reset', (v) => DateTime.parse(v as String)),
         );
         return val;
       },
       fieldKeyMap: const {
-        'limitCount': 'x-rate-limit-limit',
-        'remainingCount': 'x-rate-limit-remaining',
-        'resetAt': 'x-rate-limit-reset'
+        'limitCount': 'x-ratelimit-limit',
+        'remainingCount': 'x-ratelimit-remaining',
+        'resetAt': 'x-ratelimit-reset'
       },
     );
 
 Map<String, dynamic> _$$_RateLimitToJson(_$_RateLimit instance) =>
     <String, dynamic>{
-      'x-rate-limit-limit': instance.limitCount,
-      'x-rate-limit-remaining': instance.remainingCount,
-      'x-rate-limit-reset': instance.resetAt.toIso8601String(),
+      'x-ratelimit-limit': instance.limitCount,
+      'x-ratelimit-remaining': instance.remainingCount,
+      'x-ratelimit-reset': instance.resetAt.toIso8601String(),
     };

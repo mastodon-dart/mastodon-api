@@ -61,6 +61,8 @@
 
 This library provides the easiest way to use [Mastodon API](https://docs.joinmastodon.org/client/intro/) in **Dart** and **Flutter** apps.
 
+This library was designed and developed by **_Kato Shinya_** ([@myConsciousness](https://github.com/myConsciousness)), the author of [twitter_api_v2](https://pub.dev/packages/twitter_api_v2), and many parts are adapted from [twitter_api_v2](https://pub.dev/packages/twitter_api_v2).
+
 **Show some ❤️ and star the repo to support the project.**
 
 We also provide [mastodon_oauth2](https://pub.dev/packages/mastodon_oauth2) for easy [OAuth 2.0](https://docs.joinmastodon.org/spec/oauth/) when using the Mastodon API!
@@ -98,30 +100,47 @@ import 'package:mastodon_api/mastodon_api';
 ### 1.2.3. Implementation
 
 ```dart
-import 'dart:io';
-
 import 'package:mastodon_api/mastodon_api.dart';
 
 Future<void> main() async {
+  //! You need to specify mastodon instance (domain) you want to access.
+  //! Also you need to get bearer token from your developer page, or OAuth 2.0.
   final mastodon = MastodonApi(
     instance: 'MASTODON_INSTANCE',
-    bearerToken: 'BEARER_TOKEN',
+    bearerToken: 'YOUR_BEARER_TOKEN',
+
+    //! Automatic retry is available when server error or network error occurs
+    //! when communicating with the API.
+    retryConfig: RetryConfig.ofExponentialBackOffAndJitter(
+      maxAttempts: 5,
+      onExecute: (event) => print(
+        'Retry after ${event.intervalInSeconds} seconds... '
+        '[${event.retryCount} times]',
+      ),
+    ),
+
+    //! The default timeout is 10 seconds.
+    timeout: Duration(seconds: 20),
   );
 
   try {
-    final response = await mastodon.timelines.lookupStatuses();
-    print(response);
-  } on TimeoutException catch (e) {
-    print(e);
+    //! Let's Toot from v1 endpoint!
+    final response = await mastodon.v1.statuses.createStatus(
+      text: 'Toot!',
+    );
+
+    print(response.rateLimit);
+    print(response.data);
   } on UnauthorizedException catch (e) {
     print(e);
   } on RateLimitExceededException catch (e) {
     print(e);
   } on MastodonException catch (e) {
-    print(e.response.headers);
+    print(e.response);
     print(e.body);
     print(e);
-  }}
+  }
+}
 ```
 
 ## 1.3. Supported Endpoints 👀
@@ -153,7 +172,22 @@ It means the parameters specified with a null value are safely removed and ignor
 For example, arguments specified with null are ignored in the following request.
 
 ```dart
+import 'package:mastodon_api/mastodon_api.dart';
 
+Future<void> main() async {
+  final mastodon = MastodonApi(
+    instance: 'MASTODON_INSTANCE',
+    bearerToken: 'YOUR_BEARER_TOKEN',
+  );
+
+  await mastodon.v1.statuses.createStatus(
+    text: 'Toot!',
+
+    //! These parameters are ignored at request because they are null.
+    mediaIds: null,
+    poll: null,
+  );
+}
 ```
 
 ### 1.4.3. OAuth 2.0 Authorization Code Flow
@@ -178,10 +212,11 @@ import 'package:mastodon_api/mastodon_api.dart';
 
 Future<void> main() {
  final mastodon = MastodonApi(
+    instance: 'MASTODON_INSTANCE',
     bearerToken: 'YOUR_TOKEN_HERE',
 
     //! The default timeout is 10 seconds.
-    timeout: Duration(seconds: 5),
+    timeout: Duration(seconds: 20),
   );
 }
 ```
@@ -335,9 +370,9 @@ Future<void> main() async {
   );
 
   try {
-    final statues = await mastodon.timelines.lookupStatuses();
+    final response = await mastodon.v1.statuses.createStatus(text: 'Toot!');
 
-    print(statuses);
+    print(response);
   } on UnauthorizedException catch (e) {
     print(e);
   } on RateLimitExceededException catch (e) {
