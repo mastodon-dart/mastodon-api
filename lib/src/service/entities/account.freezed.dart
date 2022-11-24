@@ -66,7 +66,7 @@ mixin _$Account {
   int get followingCount => throw _privateConstructorUsedError;
 
   /// The reported subscriptions of this profile.
-  int get subscribingCount => throw _privateConstructorUsedError;
+  int? get subscribingCount => throw _privateConstructorUsedError;
 
   /// How many statuses are attached to this account.
   int get statusesCount => throw _privateConstructorUsedError;
@@ -82,19 +82,19 @@ mixin _$Account {
   /// Whether the account has opted into discovery features such as the
   /// profile directory.
   @JsonKey(name: 'discoverable')
-  bool get isDiscoverable => throw _privateConstructorUsedError;
+  bool? get isDiscoverable => throw _privateConstructorUsedError;
 
   /// Whether the account manually approves follow requests.
   @JsonKey(name: 'locked')
-  bool get isLocked => throw _privateConstructorUsedError;
+  bool? get isLocked => throw _privateConstructorUsedError;
 
   /// Indicates that the account may perform automated actions,
   /// may not be monitored, or identifies as a robot.
   @JsonKey(name: 'bot')
-  bool get isBot => throw _privateConstructorUsedError;
+  bool? get isBot => throw _privateConstructorUsedError;
 
   /// When the most recent status was posted.
-  DateTime get lastStatusAt => throw _privateConstructorUsedError;
+  DateTime? get lastStatusAt => throw _privateConstructorUsedError;
 
   /// When the account was created.
   DateTime get createdAt => throw _privateConstructorUsedError;
@@ -122,14 +122,14 @@ abstract class $AccountCopyWith<$Res> {
       String headerStatic,
       int followersCount,
       int followingCount,
-      int subscribingCount,
+      int? subscribingCount,
       int statusesCount,
       List<Emoji> emojis,
       List<Field> fields,
-      @JsonKey(name: 'discoverable') bool isDiscoverable,
-      @JsonKey(name: 'locked') bool isLocked,
-      @JsonKey(name: 'bot') bool isBot,
-      DateTime lastStatusAt,
+      @JsonKey(name: 'discoverable') bool? isDiscoverable,
+      @JsonKey(name: 'locked') bool? isLocked,
+      @JsonKey(name: 'bot') bool? isBot,
+      DateTime? lastStatusAt,
       DateTime createdAt});
 }
 
@@ -158,14 +158,14 @@ class _$AccountCopyWithImpl<$Res, $Val extends Account>
     Object? headerStatic = null,
     Object? followersCount = null,
     Object? followingCount = null,
-    Object? subscribingCount = null,
+    Object? subscribingCount = freezed,
     Object? statusesCount = null,
     Object? emojis = null,
     Object? fields = null,
-    Object? isDiscoverable = null,
-    Object? isLocked = null,
-    Object? isBot = null,
-    Object? lastStatusAt = null,
+    Object? isDiscoverable = freezed,
+    Object? isLocked = freezed,
+    Object? isBot = freezed,
+    Object? lastStatusAt = freezed,
     Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
@@ -217,10 +217,10 @@ class _$AccountCopyWithImpl<$Res, $Val extends Account>
           ? _value.followingCount
           : followingCount // ignore: cast_nullable_to_non_nullable
               as int,
-      subscribingCount: null == subscribingCount
+      subscribingCount: freezed == subscribingCount
           ? _value.subscribingCount
           : subscribingCount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       statusesCount: null == statusesCount
           ? _value.statusesCount
           : statusesCount // ignore: cast_nullable_to_non_nullable
@@ -233,22 +233,22 @@ class _$AccountCopyWithImpl<$Res, $Val extends Account>
           ? _value.fields
           : fields // ignore: cast_nullable_to_non_nullable
               as List<Field>,
-      isDiscoverable: null == isDiscoverable
+      isDiscoverable: freezed == isDiscoverable
           ? _value.isDiscoverable
           : isDiscoverable // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isLocked: null == isLocked
+              as bool?,
+      isLocked: freezed == isLocked
           ? _value.isLocked
           : isLocked // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isBot: null == isBot
+              as bool?,
+      isBot: freezed == isBot
           ? _value.isBot
           : isBot // ignore: cast_nullable_to_non_nullable
-              as bool,
-      lastStatusAt: null == lastStatusAt
+              as bool?,
+      lastStatusAt: freezed == lastStatusAt
           ? _value.lastStatusAt
           : lastStatusAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -277,14 +277,14 @@ abstract class _$$_AccountCopyWith<$Res> implements $AccountCopyWith<$Res> {
       String headerStatic,
       int followersCount,
       int followingCount,
-      int subscribingCount,
+      int? subscribingCount,
       int statusesCount,
       List<Emoji> emojis,
       List<Field> fields,
-      @JsonKey(name: 'discoverable') bool isDiscoverable,
-      @JsonKey(name: 'locked') bool isLocked,
-      @JsonKey(name: 'bot') bool isBot,
-      DateTime lastStatusAt,
+      @JsonKey(name: 'discoverable') bool? isDiscoverable,
+      @JsonKey(name: 'locked') bool? isLocked,
+      @JsonKey(name: 'bot') bool? isBot,
+      DateTime? lastStatusAt,
       DateTime createdAt});
 }
 
@@ -310,14 +310,14 @@ class __$$_AccountCopyWithImpl<$Res>
     Object? headerStatic = null,
     Object? followersCount = null,
     Object? followingCount = null,
-    Object? subscribingCount = null,
+    Object? subscribingCount = freezed,
     Object? statusesCount = null,
     Object? emojis = null,
     Object? fields = null,
-    Object? isDiscoverable = null,
-    Object? isLocked = null,
-    Object? isBot = null,
-    Object? lastStatusAt = null,
+    Object? isDiscoverable = freezed,
+    Object? isLocked = freezed,
+    Object? isBot = freezed,
+    Object? lastStatusAt = freezed,
     Object? createdAt = null,
   }) {
     return _then(_$_Account(
@@ -369,10 +369,10 @@ class __$$_AccountCopyWithImpl<$Res>
           ? _value.followingCount
           : followingCount // ignore: cast_nullable_to_non_nullable
               as int,
-      subscribingCount: null == subscribingCount
+      subscribingCount: freezed == subscribingCount
           ? _value.subscribingCount
           : subscribingCount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       statusesCount: null == statusesCount
           ? _value.statusesCount
           : statusesCount // ignore: cast_nullable_to_non_nullable
@@ -385,22 +385,22 @@ class __$$_AccountCopyWithImpl<$Res>
           ? _value._fields
           : fields // ignore: cast_nullable_to_non_nullable
               as List<Field>,
-      isDiscoverable: null == isDiscoverable
+      isDiscoverable: freezed == isDiscoverable
           ? _value.isDiscoverable
           : isDiscoverable // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isLocked: null == isLocked
+              as bool?,
+      isLocked: freezed == isLocked
           ? _value.isLocked
           : isLocked // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isBot: null == isBot
+              as bool?,
+      isBot: freezed == isBot
           ? _value.isBot
           : isBot // ignore: cast_nullable_to_non_nullable
-              as bool,
-      lastStatusAt: null == lastStatusAt
+              as bool?,
+      lastStatusAt: freezed == lastStatusAt
           ? _value.lastStatusAt
           : lastStatusAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -410,7 +410,8 @@ class __$$_AccountCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_Account implements _Account {
   const _$_Account(
       {required this.id,
@@ -425,14 +426,14 @@ class _$_Account implements _Account {
       required this.headerStatic,
       required this.followersCount,
       required this.followingCount,
-      required this.subscribingCount,
+      this.subscribingCount,
       required this.statusesCount,
       required final List<Emoji> emojis,
       required final List<Field> fields,
-      @JsonKey(name: 'discoverable') this.isDiscoverable = false,
-      @JsonKey(name: 'locked') this.isLocked = false,
-      @JsonKey(name: 'bot') this.isBot = false,
-      required this.lastStatusAt,
+      @JsonKey(name: 'discoverable') this.isDiscoverable,
+      @JsonKey(name: 'locked') this.isLocked,
+      @JsonKey(name: 'bot') this.isBot,
+      this.lastStatusAt,
       required this.createdAt})
       : _emojis = emojis,
         _fields = fields;
@@ -499,7 +500,7 @@ class _$_Account implements _Account {
 
   /// The reported subscriptions of this profile.
   @override
-  final int subscribingCount;
+  final int? subscribingCount;
 
   /// How many statuses are attached to this account.
   @override
@@ -533,22 +534,22 @@ class _$_Account implements _Account {
   /// profile directory.
   @override
   @JsonKey(name: 'discoverable')
-  final bool isDiscoverable;
+  final bool? isDiscoverable;
 
   /// Whether the account manually approves follow requests.
   @override
   @JsonKey(name: 'locked')
-  final bool isLocked;
+  final bool? isLocked;
 
   /// Indicates that the account may perform automated actions,
   /// may not be monitored, or identifies as a robot.
   @override
   @JsonKey(name: 'bot')
-  final bool isBot;
+  final bool? isBot;
 
   /// When the most recent status was posted.
   @override
-  final DateTime lastStatusAt;
+  final DateTime? lastStatusAt;
 
   /// When the account was created.
   @override
@@ -654,14 +655,14 @@ abstract class _Account implements Account {
       required final String headerStatic,
       required final int followersCount,
       required final int followingCount,
-      required final int subscribingCount,
+      final int? subscribingCount,
       required final int statusesCount,
       required final List<Emoji> emojis,
       required final List<Field> fields,
-      @JsonKey(name: 'discoverable') final bool isDiscoverable,
-      @JsonKey(name: 'locked') final bool isLocked,
-      @JsonKey(name: 'bot') final bool isBot,
-      required final DateTime lastStatusAt,
+      @JsonKey(name: 'discoverable') final bool? isDiscoverable,
+      @JsonKey(name: 'locked') final bool? isLocked,
+      @JsonKey(name: 'bot') final bool? isBot,
+      final DateTime? lastStatusAt,
       required final DateTime createdAt}) = _$_Account;
 
   factory _Account.fromJson(Map<String, dynamic> json) = _$_Account.fromJson;
@@ -726,7 +727,7 @@ abstract class _Account implements Account {
   @override
 
   /// The reported subscriptions of this profile.
-  int get subscribingCount;
+  int? get subscribingCount;
   @override
 
   /// How many statuses are attached to this account.
@@ -746,22 +747,22 @@ abstract class _Account implements Account {
   /// Whether the account has opted into discovery features such as the
   /// profile directory.
   @JsonKey(name: 'discoverable')
-  bool get isDiscoverable;
+  bool? get isDiscoverable;
   @override
 
   /// Whether the account manually approves follow requests.
   @JsonKey(name: 'locked')
-  bool get isLocked;
+  bool? get isLocked;
   @override
 
   /// Indicates that the account may perform automated actions,
   /// may not be monitored, or identifies as a robot.
   @JsonKey(name: 'bot')
-  bool get isBot;
+  bool? get isBot;
   @override
 
   /// When the most recent status was posted.
-  DateTime get lastStatusAt;
+  DateTime? get lastStatusAt;
   @override
 
   /// When the account was created.

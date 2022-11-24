@@ -17,6 +17,7 @@ part 'instance.g.dart';
 
 @freezed
 class Instance with _$Instance {
+  @JsonSerializable(includeIfNull: false)
   const factory Instance({
     /// The domain name of the instance.
     required String uri,

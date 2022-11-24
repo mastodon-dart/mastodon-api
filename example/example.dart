@@ -16,7 +16,7 @@ Future<void> main() async {
     retryConfig: RetryConfig.ofExponentialBackOffAndJitter(
       maxAttempts: 5,
       onExecute: (event) => print(
-        'Retry after ${event.intervalInSeconds} seconds... '
+        'Retry after ${event.intervalInSeconds} seconds...'
         '[${event.retryCount} times]',
       ),
     ),
@@ -27,12 +27,22 @@ Future<void> main() async {
 
   try {
     //! Let's Toot from v1 endpoint!
-    final response = await mastodon.v1.statuses.createStatus(
+    final status = await mastodon.v1.statuses.createStatus(
       text: 'Toot!',
     );
 
-    print(response.rateLimit);
-    print(response.data);
+    print(status.rateLimit);
+    print(status.data);
+
+    //! Search contents includes accounts, statuses, hashtags.
+    final contents = await mastodon.v2.search.searchContents(
+      query: 'test',
+      excludeUnreviewedTags: true,
+      limit: 10,
+      offset: 2,
+    );
+
+    print(contents);
   } on UnauthorizedException catch (e) {
     print(e);
   } on RateLimitExceededException catch (e) {

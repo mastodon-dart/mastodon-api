@@ -10,6 +10,7 @@ part 'field.g.dart';
 
 @freezed
 class Field with _$Field {
+  @JsonSerializable(includeIfNull: false)
   const factory Field({
     /// The key of a given field's key-value pair.
     required String name,

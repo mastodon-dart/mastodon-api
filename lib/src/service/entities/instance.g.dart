@@ -54,23 +54,31 @@ _$_Instance _$$_InstanceFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_InstanceToJson(_$_Instance instance) =>
-    <String, dynamic>{
-      'uri': instance.uri,
-      'title': instance.title,
-      'description': instance.description,
-      'short_description': instance.shortDescription,
-      'email': instance.email,
-      'version': instance.version,
-      'languages':
-          instance.languages.map((e) => _$LanguageEnumMap[e]!).toList(),
-      'stats': instance.statistics.toJson(),
-      'thumbnail': instance.thumbnail,
-      'registrations': instance.isRegistrationsEnabled,
-      'approval_required ': instance.isApprovalRequired,
-      'invites_enabled': instance.isInvitesEnabled,
-      'contact_account': instance.contactAccount?.toJson(),
-    };
+Map<String, dynamic> _$$_InstanceToJson(_$_Instance instance) {
+  final val = <String, dynamic>{
+    'uri': instance.uri,
+    'title': instance.title,
+    'description': instance.description,
+    'short_description': instance.shortDescription,
+    'email': instance.email,
+    'version': instance.version,
+    'languages': instance.languages.map((e) => _$LanguageEnumMap[e]!).toList(),
+    'stats': instance.statistics.toJson(),
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('thumbnail', instance.thumbnail);
+  val['registrations'] = instance.isRegistrationsEnabled;
+  val['approval_required '] = instance.isApprovalRequired;
+  val['invites_enabled'] = instance.isInvitesEnabled;
+  writeNotNull('contact_account', instance.contactAccount?.toJson());
+  return val;
+}
 
 const _$LanguageEnumMap = {
   Language.afar: 'aa',

@@ -154,7 +154,8 @@ class __$$_EmojiCopyWithImpl<$Res> extends _$EmojiCopyWithImpl<$Res, _$_Emoji>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_Emoji implements _Emoji {
   const _$_Emoji(
       {@JsonKey(name: 'shortcode') required this.code,

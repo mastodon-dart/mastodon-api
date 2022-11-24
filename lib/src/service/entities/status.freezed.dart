@@ -59,27 +59,27 @@ mixin _$Status {
 
   /// Have you favourited this status?
   @JsonKey(name: 'favourited')
-  bool get isFavourited => throw _privateConstructorUsedError;
+  bool? get isFavourited => throw _privateConstructorUsedError;
 
   /// Have you boosted this status?
   @JsonKey(name: 'reblogged')
-  bool get isReblogged => throw _privateConstructorUsedError;
+  bool? get isReblogged => throw _privateConstructorUsedError;
 
   /// Have you muted notifications for this status's conversation?
   @JsonKey(name: 'muted')
-  bool get isMuted => throw _privateConstructorUsedError;
+  bool? get isMuted => throw _privateConstructorUsedError;
 
   /// Have you bookmarked this status?
   @JsonKey(name: 'bookmarked')
-  bool get isBookmarked => throw _privateConstructorUsedError;
+  bool? get isBookmarked => throw _privateConstructorUsedError;
 
   /// Is this status marked as sensitive content?
   @JsonKey(name: 'sensitive')
-  bool get isSensitive => throw _privateConstructorUsedError;
+  bool? get isSensitive => throw _privateConstructorUsedError;
 
   /// Have you pinned this status?
   @JsonKey(name: 'pinned')
-  bool get isPinned => throw _privateConstructorUsedError;
+  bool? get isPinned => throw _privateConstructorUsedError;
 
   /// The time and date the last status was posted at.
   DateTime? get lastStatusAt => throw _privateConstructorUsedError;
@@ -116,12 +116,12 @@ abstract class $StatusCopyWith<$Res> {
       Language language,
       String? inReplyToTweetId,
       String? inReplyToAccountId,
-      @JsonKey(name: 'favourited') bool isFavourited,
-      @JsonKey(name: 'reblogged') bool isReblogged,
-      @JsonKey(name: 'muted') bool isMuted,
-      @JsonKey(name: 'bookmarked') bool isBookmarked,
-      @JsonKey(name: 'sensitive') bool isSensitive,
-      @JsonKey(name: 'pinned') bool isPinned,
+      @JsonKey(name: 'favourited') bool? isFavourited,
+      @JsonKey(name: 'reblogged') bool? isReblogged,
+      @JsonKey(name: 'muted') bool? isMuted,
+      @JsonKey(name: 'bookmarked') bool? isBookmarked,
+      @JsonKey(name: 'sensitive') bool? isSensitive,
+      @JsonKey(name: 'pinned') bool? isPinned,
       DateTime? lastStatusAt,
       Account account,
       Application? application,
@@ -156,12 +156,12 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
     Object? language = null,
     Object? inReplyToTweetId = freezed,
     Object? inReplyToAccountId = freezed,
-    Object? isFavourited = null,
-    Object? isReblogged = null,
-    Object? isMuted = null,
-    Object? isBookmarked = null,
-    Object? isSensitive = null,
-    Object? isPinned = null,
+    Object? isFavourited = freezed,
+    Object? isReblogged = freezed,
+    Object? isMuted = freezed,
+    Object? isBookmarked = freezed,
+    Object? isSensitive = freezed,
+    Object? isPinned = freezed,
     Object? lastStatusAt = freezed,
     Object? account = null,
     Object? application = freezed,
@@ -216,30 +216,30 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
           ? _value.inReplyToAccountId
           : inReplyToAccountId // ignore: cast_nullable_to_non_nullable
               as String?,
-      isFavourited: null == isFavourited
+      isFavourited: freezed == isFavourited
           ? _value.isFavourited
           : isFavourited // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isReblogged: null == isReblogged
+              as bool?,
+      isReblogged: freezed == isReblogged
           ? _value.isReblogged
           : isReblogged // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isMuted: null == isMuted
+              as bool?,
+      isMuted: freezed == isMuted
           ? _value.isMuted
           : isMuted // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isBookmarked: null == isBookmarked
+              as bool?,
+      isBookmarked: freezed == isBookmarked
           ? _value.isBookmarked
           : isBookmarked // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSensitive: null == isSensitive
+              as bool?,
+      isSensitive: freezed == isSensitive
           ? _value.isSensitive
           : isSensitive // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isPinned: null == isPinned
+              as bool?,
+      isPinned: freezed == isPinned
           ? _value.isPinned
           : isPinned // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       lastStatusAt: freezed == lastStatusAt
           ? _value.lastStatusAt
           : lastStatusAt // ignore: cast_nullable_to_non_nullable
@@ -299,12 +299,12 @@ abstract class _$$_StatusCopyWith<$Res> implements $StatusCopyWith<$Res> {
       Language language,
       String? inReplyToTweetId,
       String? inReplyToAccountId,
-      @JsonKey(name: 'favourited') bool isFavourited,
-      @JsonKey(name: 'reblogged') bool isReblogged,
-      @JsonKey(name: 'muted') bool isMuted,
-      @JsonKey(name: 'bookmarked') bool isBookmarked,
-      @JsonKey(name: 'sensitive') bool isSensitive,
-      @JsonKey(name: 'pinned') bool isPinned,
+      @JsonKey(name: 'favourited') bool? isFavourited,
+      @JsonKey(name: 'reblogged') bool? isReblogged,
+      @JsonKey(name: 'muted') bool? isMuted,
+      @JsonKey(name: 'bookmarked') bool? isBookmarked,
+      @JsonKey(name: 'sensitive') bool? isSensitive,
+      @JsonKey(name: 'pinned') bool? isPinned,
       DateTime? lastStatusAt,
       Account account,
       Application? application,
@@ -338,12 +338,12 @@ class __$$_StatusCopyWithImpl<$Res>
     Object? language = null,
     Object? inReplyToTweetId = freezed,
     Object? inReplyToAccountId = freezed,
-    Object? isFavourited = null,
-    Object? isReblogged = null,
-    Object? isMuted = null,
-    Object? isBookmarked = null,
-    Object? isSensitive = null,
-    Object? isPinned = null,
+    Object? isFavourited = freezed,
+    Object? isReblogged = freezed,
+    Object? isMuted = freezed,
+    Object? isBookmarked = freezed,
+    Object? isSensitive = freezed,
+    Object? isPinned = freezed,
     Object? lastStatusAt = freezed,
     Object? account = null,
     Object? application = freezed,
@@ -398,30 +398,30 @@ class __$$_StatusCopyWithImpl<$Res>
           ? _value.inReplyToAccountId
           : inReplyToAccountId // ignore: cast_nullable_to_non_nullable
               as String?,
-      isFavourited: null == isFavourited
+      isFavourited: freezed == isFavourited
           ? _value.isFavourited
           : isFavourited // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isReblogged: null == isReblogged
+              as bool?,
+      isReblogged: freezed == isReblogged
           ? _value.isReblogged
           : isReblogged // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isMuted: null == isMuted
+              as bool?,
+      isMuted: freezed == isMuted
           ? _value.isMuted
           : isMuted // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isBookmarked: null == isBookmarked
+              as bool?,
+      isBookmarked: freezed == isBookmarked
           ? _value.isBookmarked
           : isBookmarked // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSensitive: null == isSensitive
+              as bool?,
+      isSensitive: freezed == isSensitive
           ? _value.isSensitive
           : isSensitive // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isPinned: null == isPinned
+              as bool?,
+      isPinned: freezed == isPinned
           ? _value.isPinned
           : isPinned // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       lastStatusAt: freezed == lastStatusAt
           ? _value.lastStatusAt
           : lastStatusAt // ignore: cast_nullable_to_non_nullable
@@ -443,7 +443,8 @@ class __$$_StatusCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_Status implements _Status {
   const _$_Status(
       {required this.id,
@@ -458,12 +459,12 @@ class _$_Status implements _Status {
       required this.language,
       this.inReplyToTweetId,
       this.inReplyToAccountId,
-      @JsonKey(name: 'favourited') this.isFavourited = false,
-      @JsonKey(name: 'reblogged') this.isReblogged = false,
-      @JsonKey(name: 'muted') this.isMuted = false,
-      @JsonKey(name: 'bookmarked') this.isBookmarked = false,
-      @JsonKey(name: 'sensitive') this.isSensitive = false,
-      @JsonKey(name: 'pinned') this.isPinned = false,
+      @JsonKey(name: 'favourited') this.isFavourited,
+      @JsonKey(name: 'reblogged') this.isReblogged,
+      @JsonKey(name: 'muted') this.isMuted,
+      @JsonKey(name: 'bookmarked') this.isBookmarked,
+      @JsonKey(name: 'sensitive') this.isSensitive,
+      @JsonKey(name: 'pinned') this.isPinned,
       this.lastStatusAt,
       required this.account,
       this.application,
@@ -524,32 +525,32 @@ class _$_Status implements _Status {
   /// Have you favourited this status?
   @override
   @JsonKey(name: 'favourited')
-  final bool isFavourited;
+  final bool? isFavourited;
 
   /// Have you boosted this status?
   @override
   @JsonKey(name: 'reblogged')
-  final bool isReblogged;
+  final bool? isReblogged;
 
   /// Have you muted notifications for this status's conversation?
   @override
   @JsonKey(name: 'muted')
-  final bool isMuted;
+  final bool? isMuted;
 
   /// Have you bookmarked this status?
   @override
   @JsonKey(name: 'bookmarked')
-  final bool isBookmarked;
+  final bool? isBookmarked;
 
   /// Is this status marked as sensitive content?
   @override
   @JsonKey(name: 'sensitive')
-  final bool isSensitive;
+  final bool? isSensitive;
 
   /// Have you pinned this status?
   @override
   @JsonKey(name: 'pinned')
-  final bool isPinned;
+  final bool? isPinned;
 
   /// The time and date the last status was posted at.
   @override
@@ -673,12 +674,12 @@ abstract class _Status implements Status {
       required final Language language,
       final String? inReplyToTweetId,
       final String? inReplyToAccountId,
-      @JsonKey(name: 'favourited') final bool isFavourited,
-      @JsonKey(name: 'reblogged') final bool isReblogged,
-      @JsonKey(name: 'muted') final bool isMuted,
-      @JsonKey(name: 'bookmarked') final bool isBookmarked,
-      @JsonKey(name: 'sensitive') final bool isSensitive,
-      @JsonKey(name: 'pinned') final bool isPinned,
+      @JsonKey(name: 'favourited') final bool? isFavourited,
+      @JsonKey(name: 'reblogged') final bool? isReblogged,
+      @JsonKey(name: 'muted') final bool? isMuted,
+      @JsonKey(name: 'bookmarked') final bool? isBookmarked,
+      @JsonKey(name: 'sensitive') final bool? isSensitive,
+      @JsonKey(name: 'pinned') final bool? isPinned,
       final DateTime? lastStatusAt,
       required final Account account,
       final Application? application,
@@ -739,32 +740,32 @@ abstract class _Status implements Status {
 
   /// Have you favourited this status?
   @JsonKey(name: 'favourited')
-  bool get isFavourited;
+  bool? get isFavourited;
   @override
 
   /// Have you boosted this status?
   @JsonKey(name: 'reblogged')
-  bool get isReblogged;
+  bool? get isReblogged;
   @override
 
   /// Have you muted notifications for this status's conversation?
   @JsonKey(name: 'muted')
-  bool get isMuted;
+  bool? get isMuted;
   @override
 
   /// Have you bookmarked this status?
   @JsonKey(name: 'bookmarked')
-  bool get isBookmarked;
+  bool? get isBookmarked;
   @override
 
   /// Is this status marked as sensitive content?
   @JsonKey(name: 'sensitive')
-  bool get isSensitive;
+  bool? get isSensitive;
   @override
 
   /// Have you pinned this status?
   @JsonKey(name: 'pinned')
-  bool get isPinned;
+  bool? get isPinned;
   @override
 
   /// The time and date the last status was posted at.

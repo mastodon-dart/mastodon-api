@@ -16,6 +16,7 @@ part 'account.g.dart';
 
 @freezed
 class Account with _$Account {
+  @JsonSerializable(includeIfNull: false)
   const factory Account({
     /// The account id.
     required String id,
@@ -63,7 +64,7 @@ class Account with _$Account {
     required int followingCount,
 
     /// The reported subscriptions of this profile.
-    required int subscribingCount,
+    int? subscribingCount,
 
     /// How many statuses are attached to this account.
     required int statusesCount,
@@ -78,17 +79,17 @@ class Account with _$Account {
 
     /// Whether the account has opted into discovery features such as the
     /// profile directory.
-    @JsonKey(name: 'discoverable') @Default(false) bool isDiscoverable,
+    @JsonKey(name: 'discoverable') bool? isDiscoverable,
 
     /// Whether the account manually approves follow requests.
-    @JsonKey(name: 'locked') @Default(false) bool isLocked,
+    @JsonKey(name: 'locked') bool? isLocked,
 
     /// Indicates that the account may perform automated actions,
     /// may not be monitored, or identifies as a robot.
-    @JsonKey(name: 'bot') @Default(false) bool isBot,
+    @JsonKey(name: 'bot') bool? isBot,
 
     /// When the most recent status was posted.
-    required DateTime lastStatusAt,
+    DateTime? lastStatusAt,
 
     /// When the account was created.
     required DateTime createdAt,

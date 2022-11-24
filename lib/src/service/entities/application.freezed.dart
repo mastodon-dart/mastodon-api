@@ -161,7 +161,8 @@ class __$$_ApplicationCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_Application implements _Application {
   const _$_Application(
       {required this.name,

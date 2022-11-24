@@ -20,8 +20,9 @@ MockClientContext buildGetStub(
   final UserContext userContext,
   final String unencodedPath,
   final String resourcePath,
-  final Map<String, String> queryParameters,
-) {
+  final Map<String, String> queryParameters, {
+  int statusCode = 200,
+}) {
   final mockClientContext = MockClientContext();
 
   when(mockClientContext.get(
@@ -30,7 +31,7 @@ MockClientContext buildGetStub(
   )).thenAnswer(
     (_) async => Response(
       await File(resourcePath).readAsString(),
-      200,
+      statusCode,
       headers: {'content-type': 'application/json; charset=utf-8'},
     ),
   );
@@ -42,8 +43,9 @@ MockClientContext buildPostStub(
   final String instance,
   final UserContext userContext,
   final String unencodedPath,
-  final String resourcePath,
-) {
+  final String resourcePath, {
+  int statusCode = 200,
+}) {
   final mockClientContext = MockClientContext();
 
   when(mockClientContext.post(
@@ -54,7 +56,7 @@ MockClientContext buildPostStub(
   )).thenAnswer(
     (_) async => Response(
       await File(resourcePath).readAsString(),
-      200,
+      statusCode,
       headers: {
         'content-type': 'application/json; charset=utf-8',
       },
@@ -70,6 +72,7 @@ MockClientContext buildPostMultipartStub(
   final String unencodedPath,
   final String resourcePath, {
   Map<String, String> queryParameters = const {},
+  int statusCode = 200,
 }) {
   final mockClientContext = MockClientContext();
 
@@ -80,7 +83,7 @@ MockClientContext buildPostMultipartStub(
   )).thenAnswer(
     (_) async => Response(
       await File(resourcePath).readAsString(),
-      200,
+      statusCode,
       headers: {
         'content-type': 'application/json; charset=utf-8',
       },
@@ -93,8 +96,9 @@ MockClientContext buildPostMultipartStub(
 MockClientContext buildDeleteStub(
   final String instance,
   final String unencodedPath,
-  final String resourcePath,
-) {
+  final String resourcePath, {
+  int statusCode = 200,
+}) {
   final mockClientContext = MockClientContext();
 
   when(mockClientContext.delete(
@@ -103,7 +107,7 @@ MockClientContext buildDeleteStub(
   )).thenAnswer(
     (_) async => Response(
       await File(resourcePath).readAsString(),
-      200,
+      statusCode,
       headers: {'content-type': 'application/json; charset=utf-8'},
     ),
   );
@@ -114,8 +118,9 @@ MockClientContext buildDeleteStub(
 MockClientContext buildPutStub(
   final String instance,
   final String unencodedPath,
-  final String resourcePath,
-) {
+  final String resourcePath, {
+  int statusCode = 200,
+}) {
   final mockClientContext = MockClientContext();
 
   when(mockClientContext.put(
@@ -126,7 +131,7 @@ MockClientContext buildPutStub(
   )).thenAnswer(
     (_) async => Response(
       await File(resourcePath).readAsString(),
-      200,
+      statusCode,
       headers: {'content-type': 'application/json; charset=utf-8'},
     ),
   );
@@ -138,6 +143,7 @@ MockClientContext buildSendStub(
   final UserContext userContext,
   final String resourcePath, [
   final Map<String, String>? queryParameters,
+  int statusCode = 200,
 ]) {
   final mockClientContext = MockClientContext();
 
@@ -158,7 +164,7 @@ MockClientContext buildSendStub(
     (_) async {
       return StreamedResponse(
         responseStream(),
-        200,
+        statusCode,
         headers: {'content-type': 'application/json; charset=utf-8'},
       );
     },

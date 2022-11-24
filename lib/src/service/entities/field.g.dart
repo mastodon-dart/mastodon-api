@@ -23,8 +23,18 @@ _$_Field _$$_FieldFromJson(Map json) => $checkedCreate(
       fieldKeyMap: const {'verifiedAt': 'verified_at'},
     );
 
-Map<String, dynamic> _$$_FieldToJson(_$_Field instance) => <String, dynamic>{
-      'name': instance.name,
-      'value': instance.value,
-      'verified_at': instance.verifiedAt?.toIso8601String(),
-    };
+Map<String, dynamic> _$$_FieldToJson(_$_Field instance) {
+  final val = <String, dynamic>{
+    'name': instance.name,
+    'value': instance.value,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('verified_at', instance.verifiedAt?.toIso8601String());
+  return val;
+}

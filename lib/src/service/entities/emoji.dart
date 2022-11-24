@@ -12,6 +12,7 @@ part 'emoji.g.dart';
 
 @freezed
 class Emoji with _$Emoji {
+  @JsonSerializable(includeIfNull: false)
   const factory Emoji({
     /// The name of the custom emoji.
     @JsonKey(name: 'shortcode') required String code,
