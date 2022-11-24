@@ -18,6 +18,7 @@ part 'status.g.dart';
 
 @freezed
 class Status with _$Status {
+  @JsonSerializable(includeIfNull: false)
   const factory Status({
     /// ID of the status in the database.
     required String id,
@@ -57,22 +58,22 @@ class Status with _$Status {
     String? inReplyToAccountId,
 
     /// Have you favourited this status?
-    @JsonKey(name: 'favourited') @Default(false) bool isFavourited,
+    @JsonKey(name: 'favourited') bool? isFavourited,
 
     /// Have you boosted this status?
-    @JsonKey(name: 'reblogged') @Default(false) bool isReblogged,
+    @JsonKey(name: 'reblogged') bool? isReblogged,
 
     /// Have you muted notifications for this status's conversation?
-    @JsonKey(name: 'muted') @Default(false) bool isMuted,
+    @JsonKey(name: 'muted') bool? isMuted,
 
     /// Have you bookmarked this status?
-    @JsonKey(name: 'bookmarked') @Default(false) bool isBookmarked,
+    @JsonKey(name: 'bookmarked') bool? isBookmarked,
 
     /// Is this status marked as sensitive content?
-    @JsonKey(name: 'sensitive') @Default(false) bool isSensitive,
+    @JsonKey(name: 'sensitive') bool? isSensitive,
 
     /// Have you pinned this status?
-    @JsonKey(name: 'pinned') @Default(false) bool isPinned,
+    @JsonKey(name: 'pinned') bool? isPinned,
 
     /// The time and date the last status was posted at.
     DateTime? lastStatusAt,

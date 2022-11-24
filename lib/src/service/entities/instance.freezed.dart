@@ -308,7 +308,8 @@ class __$$_InstanceCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_Instance implements _Instance {
   const _$_Instance(
       {required this.uri,

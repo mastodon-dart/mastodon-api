@@ -28,11 +28,20 @@ _$_Application _$$_ApplicationFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_ApplicationToJson(_$_Application instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'website': instance.website,
-      'vapid_key': instance.vapidKey,
-      'client_id': instance.clientId,
-      'client_secret': instance.clientSecret,
-    };
+Map<String, dynamic> _$$_ApplicationToJson(_$_Application instance) {
+  final val = <String, dynamic>{
+    'name': instance.name,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('website', instance.website);
+  writeNotNull('vapid_key', instance.vapidKey);
+  writeNotNull('client_id', instance.clientId);
+  writeNotNull('client_secret', instance.clientSecret);
+  return val;
+}

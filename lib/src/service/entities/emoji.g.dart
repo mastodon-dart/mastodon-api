@@ -29,10 +29,20 @@ _$_Emoji _$$_EmojiFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_EmojiToJson(_$_Emoji instance) => <String, dynamic>{
-      'shortcode': instance.code,
-      'url': instance.url,
-      'status_url': instance.statusUrl,
-      'visible_in_picker': instance.isVisibleInPicker,
-      'category': instance.category,
-    };
+Map<String, dynamic> _$$_EmojiToJson(_$_Emoji instance) {
+  final val = <String, dynamic>{
+    'shortcode': instance.code,
+    'url': instance.url,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('status_url', instance.statusUrl);
+  val['visible_in_picker'] = instance.isVisibleInPicker;
+  writeNotNull('category', instance.category);
+  return val;
+}

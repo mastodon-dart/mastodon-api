@@ -29,14 +29,12 @@ _$_Status _$$_StatusFromJson(Map json) => $checkedCreate(
               $checkedConvert('in_reply_to_tweet_id', (v) => v as String?),
           inReplyToAccountId:
               $checkedConvert('in_reply_to_account_id', (v) => v as String?),
-          isFavourited:
-              $checkedConvert('favourited', (v) => v as bool? ?? false),
-          isReblogged: $checkedConvert('reblogged', (v) => v as bool? ?? false),
-          isMuted: $checkedConvert('muted', (v) => v as bool? ?? false),
-          isBookmarked:
-              $checkedConvert('bookmarked', (v) => v as bool? ?? false),
-          isSensitive: $checkedConvert('sensitive', (v) => v as bool? ?? false),
-          isPinned: $checkedConvert('pinned', (v) => v as bool? ?? false),
+          isFavourited: $checkedConvert('favourited', (v) => v as bool?),
+          isReblogged: $checkedConvert('reblogged', (v) => v as bool?),
+          isMuted: $checkedConvert('muted', (v) => v as bool?),
+          isBookmarked: $checkedConvert('bookmarked', (v) => v as bool?),
+          isSensitive: $checkedConvert('sensitive', (v) => v as bool?),
+          isPinned: $checkedConvert('pinned', (v) => v as bool?),
           lastStatusAt: $checkedConvert('last_status_at',
               (v) => v == null ? null : DateTime.parse(v as String)),
           account: $checkedConvert('account',
@@ -69,30 +67,40 @@ _$_Status _$$_StatusFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_StatusToJson(_$_Status instance) => <String, dynamic>{
-      'id': instance.id,
-      'url': instance.url,
-      'uri': instance.uri,
-      'content': instance.content,
-      'spoiler_text': instance.spoilerText,
-      'visibility': _$VisibilityEnumMap[instance.visibility]!,
-      'favourites_count': instance.favouritesCount,
-      'replies_count': instance.repliesCount,
-      'reblogs_count': instance.reblogsCount,
-      'language': _$LanguageEnumMap[instance.language]!,
-      'in_reply_to_tweet_id': instance.inReplyToTweetId,
-      'in_reply_to_account_id': instance.inReplyToAccountId,
-      'favourited': instance.isFavourited,
-      'reblogged': instance.isReblogged,
-      'muted': instance.isMuted,
-      'bookmarked': instance.isBookmarked,
-      'sensitive': instance.isSensitive,
-      'pinned': instance.isPinned,
-      'last_status_at': instance.lastStatusAt?.toIso8601String(),
-      'account': instance.account.toJson(),
-      'application': instance.application?.toJson(),
-      'created_at': instance.createdAt.toIso8601String(),
-    };
+Map<String, dynamic> _$$_StatusToJson(_$_Status instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'url': instance.url,
+    'uri': instance.uri,
+    'content': instance.content,
+    'spoiler_text': instance.spoilerText,
+    'visibility': _$VisibilityEnumMap[instance.visibility]!,
+    'favourites_count': instance.favouritesCount,
+    'replies_count': instance.repliesCount,
+    'reblogs_count': instance.reblogsCount,
+    'language': _$LanguageEnumMap[instance.language]!,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('in_reply_to_tweet_id', instance.inReplyToTweetId);
+  writeNotNull('in_reply_to_account_id', instance.inReplyToAccountId);
+  writeNotNull('favourited', instance.isFavourited);
+  writeNotNull('reblogged', instance.isReblogged);
+  writeNotNull('muted', instance.isMuted);
+  writeNotNull('bookmarked', instance.isBookmarked);
+  writeNotNull('sensitive', instance.isSensitive);
+  writeNotNull('pinned', instance.isPinned);
+  writeNotNull('last_status_at', instance.lastStatusAt?.toIso8601String());
+  val['account'] = instance.account.toJson();
+  writeNotNull('application', instance.application?.toJson());
+  val['created_at'] = instance.createdAt.toIso8601String();
+  return val;
+}
 
 const _$VisibilityEnumMap = {
   Visibility.public: 'public',

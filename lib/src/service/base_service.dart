@@ -228,6 +228,10 @@ abstract class BaseService implements _Service {
       );
     }
 
+    if (response.statusCode == 429) {
+      throw RateLimitExceededException('Rate limit exceeded.', response);
+    }
+
     tryJsonDecode(response, event);
   }
 }

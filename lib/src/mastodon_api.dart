@@ -6,6 +6,7 @@
 import 'core/client/client_context.dart';
 import 'core/config/retry_config.dart';
 import 'service/mastodon_v1_service.dart';
+import 'service/mastodon_v2_service.dart';
 
 abstract class MastodonApi {
   /// Returns the new instance of [MastodonApi].
@@ -24,6 +25,9 @@ abstract class MastodonApi {
 
   /// Returns the v1 service.
   MastodonV1Service get v1;
+
+  /// Returns the v2 service.
+  MastodonV2Service get v2;
 }
 
 class _MastodonApi implements MastodonApi {
@@ -33,7 +37,15 @@ class _MastodonApi implements MastodonApi {
     required String bearerToken,
     required Duration timeout,
     RetryConfig? retryConfig,
-  }) : v1 = MastodonV1Service(
+  })  : v1 = MastodonV1Service(
+          instance: instance,
+          context: ClientContext(
+            bearerToken: bearerToken,
+            timeout: timeout,
+            retryConfig: retryConfig,
+          ),
+        ),
+        v2 = MastodonV2Service(
           instance: instance,
           context: ClientContext(
             bearerToken: bearerToken,
@@ -44,4 +56,7 @@ class _MastodonApi implements MastodonApi {
 
   @override
   final MastodonV1Service v1;
+
+  @override
+  final MastodonV2Service v2;
 }

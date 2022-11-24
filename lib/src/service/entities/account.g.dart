@@ -26,7 +26,7 @@ _$_Account _$$_AccountFromJson(Map json) => $checkedCreate(
           followersCount: $checkedConvert('followers_count', (v) => v as int),
           followingCount: $checkedConvert('following_count', (v) => v as int),
           subscribingCount:
-              $checkedConvert('subscribing_count', (v) => v as int),
+              $checkedConvert('subscribing_count', (v) => v as int?),
           statusesCount: $checkedConvert('statuses_count', (v) => v as int),
           emojis: $checkedConvert(
               'emojis',
@@ -40,12 +40,11 @@ _$_Account _$$_AccountFromJson(Map json) => $checkedCreate(
                   .map((e) =>
                       Field.fromJson(Map<String, Object?>.from(e as Map)))
                   .toList()),
-          isDiscoverable:
-              $checkedConvert('discoverable', (v) => v as bool? ?? false),
-          isLocked: $checkedConvert('locked', (v) => v as bool? ?? false),
-          isBot: $checkedConvert('bot', (v) => v as bool? ?? false),
-          lastStatusAt: $checkedConvert(
-              'last_status_at', (v) => DateTime.parse(v as String)),
+          isDiscoverable: $checkedConvert('discoverable', (v) => v as bool?),
+          isLocked: $checkedConvert('locked', (v) => v as bool?),
+          isBot: $checkedConvert('bot', (v) => v as bool?),
+          lastStatusAt: $checkedConvert('last_status_at',
+              (v) => v == null ? null : DateTime.parse(v as String)),
           createdAt:
               $checkedConvert('created_at', (v) => DateTime.parse(v as String)),
         );
@@ -67,27 +66,36 @@ _$_Account _$$_AccountFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_AccountToJson(_$_Account instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'username': instance.username,
-      'display_name': instance.displayName,
-      'acct': instance.acct,
-      'note': instance.note,
-      'url': instance.url,
-      'avatar': instance.avatar,
-      'avatar_static': instance.avatarStatic,
-      'header': instance.header,
-      'header_static': instance.headerStatic,
-      'followers_count': instance.followersCount,
-      'following_count': instance.followingCount,
-      'subscribing_count': instance.subscribingCount,
-      'statuses_count': instance.statusesCount,
-      'emojis': instance.emojis.map((e) => e.toJson()).toList(),
-      'fields': instance.fields.map((e) => e.toJson()).toList(),
-      'discoverable': instance.isDiscoverable,
-      'locked': instance.isLocked,
-      'bot': instance.isBot,
-      'last_status_at': instance.lastStatusAt.toIso8601String(),
-      'created_at': instance.createdAt.toIso8601String(),
-    };
+Map<String, dynamic> _$$_AccountToJson(_$_Account instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'username': instance.username,
+    'display_name': instance.displayName,
+    'acct': instance.acct,
+    'note': instance.note,
+    'url': instance.url,
+    'avatar': instance.avatar,
+    'avatar_static': instance.avatarStatic,
+    'header': instance.header,
+    'header_static': instance.headerStatic,
+    'followers_count': instance.followersCount,
+    'following_count': instance.followingCount,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('subscribing_count', instance.subscribingCount);
+  val['statuses_count'] = instance.statusesCount;
+  val['emojis'] = instance.emojis.map((e) => e.toJson()).toList();
+  val['fields'] = instance.fields.map((e) => e.toJson()).toList();
+  writeNotNull('discoverable', instance.isDiscoverable);
+  writeNotNull('locked', instance.isLocked);
+  writeNotNull('bot', instance.isBot);
+  writeNotNull('last_status_at', instance.lastStatusAt?.toIso8601String());
+  val['created_at'] = instance.createdAt.toIso8601String();
+  return val;
+}

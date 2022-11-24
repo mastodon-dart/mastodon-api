@@ -116,7 +116,8 @@ class __$$_FieldCopyWithImpl<$Res> extends _$FieldCopyWithImpl<$Res, _$_Field>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_Field implements _Field {
   const _$_Field({required this.name, required this.value, this.verifiedAt});
 
