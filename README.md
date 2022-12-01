@@ -350,7 +350,7 @@ The [RetryEvent](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/
 
 | Exception                                                                                                                          | Description                                                                                                            |
 | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| [MastodonException](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/MastodonException-class.html)                   | The most basic exception object. For example, it can be used to search for tweets that have already been deleted, etc. |
+| [MastodonException](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/MastodonException-class.html)                   | The most basic exception object. For example, it can be used to search for posts that have already been deleted, etc. |
 | [UnauthorizedException](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/UnauthorizedException-class.html)           | Thrown when authentication fails with the specified access token.                                                      |
 | [RateLimitExceededException](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/RateLimitExceededException-class.html) | Thrown when the request rate limit is exceeded.                                                                        |
 
