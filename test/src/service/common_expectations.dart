@@ -3,6 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
+import 'package:mastodon_api/src/core/exception/data_not_found_exception.dart';
 import 'package:mastodon_api/src/core/exception/mastodon_exception.dart';
 import 'package:mastodon_api/src/core/exception/rate_limit_exceeded_exception.dart';
 import 'package:mastodon_api/src/core/exception/unauthorized_exception.dart';
@@ -45,6 +46,21 @@ void expectDataNotFoundExceptionDueToNoJson(Function fn) {
         isA<MastodonException>(),
         predicate(
           (MastodonException e) => e.message == 'No body exists in response.',
+        ),
+      ),
+    ),
+  );
+}
+
+void expectDataNotFoundExceptionDueToNoData(Function fn) {
+  expect(
+    () async => await fn.call(),
+    throwsA(
+      allOf(
+        isA<DataNotFoundException>(),
+        predicate(
+          (DataNotFoundException e) =>
+              e.message == 'No data exists in response.',
         ),
       ),
     ),
