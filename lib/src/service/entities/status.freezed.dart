@@ -24,7 +24,7 @@ mixin _$Status {
   String get id => throw _privateConstructorUsedError;
 
   /// A link to the status's HTML representation.
-  String get url => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
 
   /// URI of the status used for federation.
   String get uri => throw _privateConstructorUsedError;
@@ -49,7 +49,7 @@ mixin _$Status {
   int get reblogsCount => throw _privateConstructorUsedError;
 
   /// Primary language of this status.
-  Language get language => throw _privateConstructorUsedError;
+  Language? get language => throw _privateConstructorUsedError;
 
   /// ID of the status being replied.
   String? get inReplyToTweetId => throw _privateConstructorUsedError;
@@ -105,7 +105,7 @@ abstract class $StatusCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String url,
+      String? url,
       String uri,
       String content,
       String spoilerText,
@@ -113,7 +113,7 @@ abstract class $StatusCopyWith<$Res> {
       int favouritesCount,
       int repliesCount,
       int reblogsCount,
-      Language language,
+      Language? language,
       String? inReplyToTweetId,
       String? inReplyToAccountId,
       @JsonKey(name: 'favourited') bool? isFavourited,
@@ -145,7 +145,7 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
   @override
   $Res call({
     Object? id = null,
-    Object? url = null,
+    Object? url = freezed,
     Object? uri = null,
     Object? content = null,
     Object? spoilerText = null,
@@ -153,7 +153,7 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
     Object? favouritesCount = null,
     Object? repliesCount = null,
     Object? reblogsCount = null,
-    Object? language = null,
+    Object? language = freezed,
     Object? inReplyToTweetId = freezed,
     Object? inReplyToAccountId = freezed,
     Object? isFavourited = freezed,
@@ -172,10 +172,10 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      url: null == url
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       uri: null == uri
           ? _value.uri
           : uri // ignore: cast_nullable_to_non_nullable
@@ -204,10 +204,10 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
           ? _value.reblogsCount
           : reblogsCount // ignore: cast_nullable_to_non_nullable
               as int,
-      language: null == language
+      language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as Language,
+              as Language?,
       inReplyToTweetId: freezed == inReplyToTweetId
           ? _value.inReplyToTweetId
           : inReplyToTweetId // ignore: cast_nullable_to_non_nullable
@@ -288,7 +288,7 @@ abstract class _$$_StatusCopyWith<$Res> implements $StatusCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String url,
+      String? url,
       String uri,
       String content,
       String spoilerText,
@@ -296,7 +296,7 @@ abstract class _$$_StatusCopyWith<$Res> implements $StatusCopyWith<$Res> {
       int favouritesCount,
       int repliesCount,
       int reblogsCount,
-      Language language,
+      Language? language,
       String? inReplyToTweetId,
       String? inReplyToAccountId,
       @JsonKey(name: 'favourited') bool? isFavourited,
@@ -327,7 +327,7 @@ class __$$_StatusCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? url = null,
+    Object? url = freezed,
     Object? uri = null,
     Object? content = null,
     Object? spoilerText = null,
@@ -335,7 +335,7 @@ class __$$_StatusCopyWithImpl<$Res>
     Object? favouritesCount = null,
     Object? repliesCount = null,
     Object? reblogsCount = null,
-    Object? language = null,
+    Object? language = freezed,
     Object? inReplyToTweetId = freezed,
     Object? inReplyToAccountId = freezed,
     Object? isFavourited = freezed,
@@ -354,10 +354,10 @@ class __$$_StatusCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      url: null == url
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       uri: null == uri
           ? _value.uri
           : uri // ignore: cast_nullable_to_non_nullable
@@ -386,10 +386,10 @@ class __$$_StatusCopyWithImpl<$Res>
           ? _value.reblogsCount
           : reblogsCount // ignore: cast_nullable_to_non_nullable
               as int,
-      language: null == language
+      language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as Language,
+              as Language?,
       inReplyToTweetId: freezed == inReplyToTweetId
           ? _value.inReplyToTweetId
           : inReplyToTweetId // ignore: cast_nullable_to_non_nullable
@@ -448,7 +448,7 @@ class __$$_StatusCopyWithImpl<$Res>
 class _$_Status implements _Status {
   const _$_Status(
       {required this.id,
-      required this.url,
+      this.url,
       required this.uri,
       required this.content,
       required this.spoilerText,
@@ -456,7 +456,7 @@ class _$_Status implements _Status {
       required this.favouritesCount,
       required this.repliesCount,
       required this.reblogsCount,
-      required this.language,
+      this.language,
       this.inReplyToTweetId,
       this.inReplyToAccountId,
       @JsonKey(name: 'favourited') this.isFavourited,
@@ -479,7 +479,7 @@ class _$_Status implements _Status {
 
   /// A link to the status's HTML representation.
   @override
-  final String url;
+  final String? url;
 
   /// URI of the status used for federation.
   @override
@@ -512,7 +512,7 @@ class _$_Status implements _Status {
 
   /// Primary language of this status.
   @override
-  final Language language;
+  final Language? language;
 
   /// ID of the status being replied.
   @override
@@ -663,7 +663,7 @@ class _$_Status implements _Status {
 abstract class _Status implements Status {
   const factory _Status(
       {required final String id,
-      required final String url,
+      final String? url,
       required final String uri,
       required final String content,
       required final String spoilerText,
@@ -671,7 +671,7 @@ abstract class _Status implements Status {
       required final int favouritesCount,
       required final int repliesCount,
       required final int reblogsCount,
-      required final Language language,
+      final Language? language,
       final String? inReplyToTweetId,
       final String? inReplyToAccountId,
       @JsonKey(name: 'favourited') final bool? isFavourited,
@@ -694,7 +694,7 @@ abstract class _Status implements Status {
   @override
 
   /// A link to the status's HTML representation.
-  String get url;
+  String? get url;
   @override
 
   /// URI of the status used for federation.
@@ -727,7 +727,7 @@ abstract class _Status implements Status {
   @override
 
   /// Primary language of this status.
-  Language get language;
+  Language? get language;
   @override
 
   /// ID of the status being replied.

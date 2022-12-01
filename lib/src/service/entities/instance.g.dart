@@ -119,6 +119,7 @@ const _$LanguageEnumMap = {
   Language.ewe: 'ee',
   Language.greek: 'el',
   Language.english: 'en',
+  Language.americanEnglish: 'en-us',
   Language.esperanto: 'eo',
   Language.spanish: 'es',
   Language.estonian: 'et',

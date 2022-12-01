@@ -162,6 +162,10 @@ enum Language implements Serializable {
   @JsonValue('en')
   english('en', 'English'),
 
+  /// `en-us`
+  @JsonValue('en-us')
+  americanEnglish('en-us', 'English'),
+
   /// `eo`
   @JsonValue('eo')
   esperanto('eo', 'Esperanto'),

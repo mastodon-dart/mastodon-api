@@ -14,7 +14,7 @@ _$_Status _$$_StatusFromJson(Map json) => $checkedCreate(
       ($checkedConvert) {
         final val = _$_Status(
           id: $checkedConvert('id', (v) => v as String),
-          url: $checkedConvert('url', (v) => v as String),
+          url: $checkedConvert('url', (v) => v as String?),
           uri: $checkedConvert('uri', (v) => v as String),
           content: $checkedConvert('content', (v) => v as String),
           spoilerText: $checkedConvert('spoiler_text', (v) => v as String),
@@ -24,7 +24,7 @@ _$_Status _$$_StatusFromJson(Map json) => $checkedCreate(
           repliesCount: $checkedConvert('replies_count', (v) => v as int),
           reblogsCount: $checkedConvert('reblogs_count', (v) => v as int),
           language: $checkedConvert(
-              'language', (v) => $enumDecode(_$LanguageEnumMap, v)),
+              'language', (v) => $enumDecodeNullable(_$LanguageEnumMap, v)),
           inReplyToTweetId:
               $checkedConvert('in_reply_to_tweet_id', (v) => v as String?),
           inReplyToAccountId:
@@ -70,15 +70,6 @@ _$_Status _$$_StatusFromJson(Map json) => $checkedCreate(
 Map<String, dynamic> _$$_StatusToJson(_$_Status instance) {
   final val = <String, dynamic>{
     'id': instance.id,
-    'url': instance.url,
-    'uri': instance.uri,
-    'content': instance.content,
-    'spoiler_text': instance.spoilerText,
-    'visibility': _$VisibilityEnumMap[instance.visibility]!,
-    'favourites_count': instance.favouritesCount,
-    'replies_count': instance.repliesCount,
-    'reblogs_count': instance.reblogsCount,
-    'language': _$LanguageEnumMap[instance.language]!,
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -87,6 +78,15 @@ Map<String, dynamic> _$$_StatusToJson(_$_Status instance) {
     }
   }
 
+  writeNotNull('url', instance.url);
+  val['uri'] = instance.uri;
+  val['content'] = instance.content;
+  val['spoiler_text'] = instance.spoilerText;
+  val['visibility'] = _$VisibilityEnumMap[instance.visibility]!;
+  val['favourites_count'] = instance.favouritesCount;
+  val['replies_count'] = instance.repliesCount;
+  val['reblogs_count'] = instance.reblogsCount;
+  writeNotNull('language', _$LanguageEnumMap[instance.language]);
   writeNotNull('in_reply_to_tweet_id', instance.inReplyToTweetId);
   writeNotNull('in_reply_to_account_id', instance.inReplyToAccountId);
   writeNotNull('favourited', instance.isFavourited);
@@ -148,6 +148,7 @@ const _$LanguageEnumMap = {
   Language.ewe: 'ee',
   Language.greek: 'el',
   Language.english: 'en',
+  Language.americanEnglish: 'en-us',
   Language.esperanto: 'eo',
   Language.spanish: 'es',
   Language.estonian: 'et',

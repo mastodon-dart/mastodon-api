@@ -5,6 +5,7 @@
 // Project imports:
 import '../core/client/client_context.dart';
 import 'statuses/statuses_v1_service.dart';
+import 'timelines/timelines_v1_service.dart';
 
 /// The class represents the Mastodon v1 services.
 abstract class MastodonV1Service {
@@ -20,6 +21,9 @@ abstract class MastodonV1Service {
 
   /// Returns the statuses service.
   StatusesV1Service get statuses;
+
+  /// Returns the timelines service.
+  TimelinesV1Service get timelines;
 }
 
 class _MastodonV1Service implements MastodonV1Service {
@@ -27,8 +31,12 @@ class _MastodonV1Service implements MastodonV1Service {
   _MastodonV1Service({
     required String instance,
     required ClientContext context,
-  }) : statuses = StatusesV1Service(instance: instance, context: context);
+  })  : statuses = StatusesV1Service(instance: instance, context: context),
+        timelines = TimelinesV1Service(instance: instance, context: context);
 
   @override
   final StatusesV1Service statuses;
+
+  @override
+  final TimelinesV1Service timelines;
 }
