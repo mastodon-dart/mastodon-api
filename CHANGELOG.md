@@ -4,6 +4,11 @@
 
 - Supported `search API methods`. ([#34](https://github.com/mastodon-dart/mastodon-api/issues/34))
   - `GET /api/v2/search`
+- Supported `timelines API methods`. ([#27](https://github.com/mastodon-dart/mastodon-api/issues/27))
+  - `GET /api/v1/timelines/public`
+  - `GET /api/v1/timelines/tag/:hashtag`
+  - `GET /api/v1/timelines/home`
+  - `GET /api/v1/timelines/list/:list_id`
 
 ## v0.0.1
 

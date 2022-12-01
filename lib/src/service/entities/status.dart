@@ -24,7 +24,7 @@ class Status with _$Status {
     required String id,
 
     /// A link to the status's HTML representation.
-    required String url,
+    String? url,
 
     /// URI of the status used for federation.
     required String uri,
@@ -49,7 +49,7 @@ class Status with _$Status {
     required int reblogsCount,
 
     /// Primary language of this status.
-    required Language language,
+    Language? language,
 
     /// ID of the status being replied.
     String? inReplyToTweetId,

@@ -13,6 +13,7 @@ import 'package:http/http.dart';
 import '../core/client/client_context.dart';
 import '../core/client/stream_response.dart';
 import '../core/client/user_context.dart';
+import '../core/exception/data_not_found_exception.dart';
 import '../core/exception/rate_limit_exceeded_exception.dart';
 import '../core/exception/unauthorized_exception.dart';
 import '../core/service_helper.dart';
@@ -184,7 +185,7 @@ abstract class BaseService implements _Service {
           rateLimitConverter.convert(response.headers),
         ),
         data: jsonDecode(response.body)
-            .map<D>((data) => dataBuilder(data))
+            .map<D>((json) => dataBuilder(json))
             .toList(),
       );
 
@@ -232,7 +233,13 @@ abstract class BaseService implements _Service {
       throw RateLimitExceededException('Rate limit exceeded.', response);
     }
 
-    tryJsonDecode(response, event);
+    final json = tryJsonDecode(response, event);
+
+    if (json is List) {
+      if (json.isEmpty) {
+        throw DataNotFoundException('No data exists in response.', response);
+      }
+    }
   }
 }
 

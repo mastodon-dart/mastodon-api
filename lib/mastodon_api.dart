@@ -4,6 +4,7 @@
 
 export 'package:mastodon_api/src/core/client/retry_event.dart';
 export 'package:mastodon_api/src/core/config/retry_config.dart';
+export 'package:mastodon_api/src/core/exception/data_not_found_exception.dart';
 export 'package:mastodon_api/src/core/exception/mastodon_exception.dart';
 export 'package:mastodon_api/src/core/exception/rate_limit_exceeded_exception.dart';
 export 'package:mastodon_api/src/core/exception/unauthorized_exception.dart';
@@ -27,3 +28,4 @@ export 'package:mastodon_api/src/service/search/search_content_type.dart';
 export 'package:mastodon_api/src/service/search/search_v2_service.dart';
 export 'package:mastodon_api/src/service/statuses/status_poll_param.dart';
 export 'package:mastodon_api/src/service/statuses/statuses_v1_service.dart';
+export 'package:mastodon_api/src/service/timelines/timelines_v1_service.dart';
