@@ -54,8 +54,9 @@ class MockClientContext extends _i1.Mock implements _i3.ClientContext {
   @override
   _i4.Future<_i2.Response> get(
     _i5.UserContext? userContext,
-    Uri? uri,
-  ) =>
+    Uri? uri, {
+    Map<String, String>? headers = const {},
+  }) =>
       (super.noSuchMethod(
         Invocation.method(
           #get,
@@ -63,6 +64,7 @@ class MockClientContext extends _i1.Mock implements _i3.ClientContext {
             userContext,
             uri,
           ],
+          {#headers: headers},
         ),
         returnValue: _i4.Future<_i2.Response>.value(_FakeResponse_0(
           this,
@@ -72,6 +74,7 @@ class MockClientContext extends _i1.Mock implements _i3.ClientContext {
               userContext,
               uri,
             ],
+            {#headers: headers},
           ),
         )),
       ) as _i4.Future<_i2.Response>);

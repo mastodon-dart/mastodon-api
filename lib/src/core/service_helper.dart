@@ -80,6 +80,7 @@ class ServiceHelper implements Service {
   Future<http.Response> get(
     UserContext userContext,
     final String unencodedPath, {
+    Map<String, String> headers = const {},
     Map<String, dynamic> queryParameters = const {},
     http.Response Function(http.Response response)? validate,
   }) async {
@@ -90,6 +91,7 @@ class ServiceHelper implements Service {
         unencodedPath,
         _convertQueryParameters(queryParameters),
       ),
+      headers: headers,
     );
 
     return validate != null ? validate(response) : response;

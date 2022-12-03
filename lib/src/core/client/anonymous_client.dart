@@ -19,8 +19,9 @@ class AnonymousClient extends Client {
   Future<http.Response> get(
     Uri uri, {
     required Duration timeout,
+    Map<String, String> headers = const {},
   }) async =>
-      await http.get(uri).timeout(timeout);
+      await http.get(uri, headers: headers).timeout(timeout);
 
   @override
   Future<http.StreamedResponse> getStream(

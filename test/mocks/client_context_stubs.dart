@@ -21,6 +21,7 @@ MockClientContext buildGetStub(
   final String unencodedPath,
   final String resourcePath,
   final Map<String, String> queryParameters, {
+  Map<String, String> headers = const {},
   int statusCode = 200,
 }) {
   final mockClientContext = MockClientContext();
@@ -28,6 +29,7 @@ MockClientContext buildGetStub(
   when(mockClientContext.get(
     userContext,
     Uri.https(instance, unencodedPath, queryParameters),
+    headers: headers,
   )).thenAnswer(
     (_) async => Response(
       await File(resourcePath).readAsString(),

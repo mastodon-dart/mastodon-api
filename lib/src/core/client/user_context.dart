@@ -9,4 +9,7 @@ enum UserContext {
 
   /// User must be authenticated for access.
   oauth2Only,
+
+  /// User must be anonymous.
+  anonymousOnly,
 }

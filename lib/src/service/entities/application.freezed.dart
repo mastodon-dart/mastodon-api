@@ -23,20 +23,11 @@ mixin _$Application {
   /// The name of your application.
   String get name => throw _privateConstructorUsedError;
 
-  /// The website associated with your application.
-  String? get website => throw _privateConstructorUsedError;
-
   /// Used for Push Streaming API.
-  ///
-  /// Returned with `POST /api/v1/apps`.
-  /// Equivalent to `PushSubscription#server_key`.
   String? get vapidKey => throw _privateConstructorUsedError;
 
-  /// Client ID key, to be used for obtaining OAuth tokens.
-  String? get clientId => throw _privateConstructorUsedError;
-
-  /// Client secret key, to be used for obtaining OAuth tokens.
-  String? get clientSecret => throw _privateConstructorUsedError;
+  /// The website associated with your application.
+  String? get website => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,12 +41,7 @@ abstract class $ApplicationCopyWith<$Res> {
           Application value, $Res Function(Application) then) =
       _$ApplicationCopyWithImpl<$Res, Application>;
   @useResult
-  $Res call(
-      {String name,
-      String? website,
-      String? vapidKey,
-      String? clientId,
-      String? clientSecret});
+  $Res call({String name, String? vapidKey, String? website});
 }
 
 /// @nodoc
@@ -72,31 +58,21 @@ class _$ApplicationCopyWithImpl<$Res, $Val extends Application>
   @override
   $Res call({
     Object? name = null,
-    Object? website = freezed,
     Object? vapidKey = freezed,
-    Object? clientId = freezed,
-    Object? clientSecret = freezed,
+    Object? website = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      website: freezed == website
-          ? _value.website
-          : website // ignore: cast_nullable_to_non_nullable
-              as String?,
       vapidKey: freezed == vapidKey
           ? _value.vapidKey
           : vapidKey // ignore: cast_nullable_to_non_nullable
               as String?,
-      clientId: freezed == clientId
-          ? _value.clientId
-          : clientId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      clientSecret: freezed == clientSecret
-          ? _value.clientSecret
-          : clientSecret // ignore: cast_nullable_to_non_nullable
+      website: freezed == website
+          ? _value.website
+          : website // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -110,12 +86,7 @@ abstract class _$$_ApplicationCopyWith<$Res>
       __$$_ApplicationCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String name,
-      String? website,
-      String? vapidKey,
-      String? clientId,
-      String? clientSecret});
+  $Res call({String name, String? vapidKey, String? website});
 }
 
 /// @nodoc
@@ -130,31 +101,21 @@ class __$$_ApplicationCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? website = freezed,
     Object? vapidKey = freezed,
-    Object? clientId = freezed,
-    Object? clientSecret = freezed,
+    Object? website = freezed,
   }) {
     return _then(_$_Application(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      website: freezed == website
-          ? _value.website
-          : website // ignore: cast_nullable_to_non_nullable
-              as String?,
       vapidKey: freezed == vapidKey
           ? _value.vapidKey
           : vapidKey // ignore: cast_nullable_to_non_nullable
               as String?,
-      clientId: freezed == clientId
-          ? _value.clientId
-          : clientId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      clientSecret: freezed == clientSecret
-          ? _value.clientSecret
-          : clientSecret // ignore: cast_nullable_to_non_nullable
+      website: freezed == website
+          ? _value.website
+          : website // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -164,12 +125,7 @@ class __$$_ApplicationCopyWithImpl<$Res>
 
 @JsonSerializable(includeIfNull: false)
 class _$_Application implements _Application {
-  const _$_Application(
-      {required this.name,
-      this.website,
-      this.vapidKey,
-      this.clientId,
-      this.clientSecret});
+  const _$_Application({required this.name, this.vapidKey, this.website});
 
   factory _$_Application.fromJson(Map<String, dynamic> json) =>
       _$$_ApplicationFromJson(json);
@@ -178,28 +134,17 @@ class _$_Application implements _Application {
   @override
   final String name;
 
+  /// Used for Push Streaming API.
+  @override
+  final String? vapidKey;
+
   /// The website associated with your application.
   @override
   final String? website;
 
-  /// Used for Push Streaming API.
-  ///
-  /// Returned with `POST /api/v1/apps`.
-  /// Equivalent to `PushSubscription#server_key`.
-  @override
-  final String? vapidKey;
-
-  /// Client ID key, to be used for obtaining OAuth tokens.
-  @override
-  final String? clientId;
-
-  /// Client secret key, to be used for obtaining OAuth tokens.
-  @override
-  final String? clientSecret;
-
   @override
   String toString() {
-    return 'Application(name: $name, website: $website, vapidKey: $vapidKey, clientId: $clientId, clientSecret: $clientSecret)';
+    return 'Application(name: $name, vapidKey: $vapidKey, website: $website)';
   }
 
   @override
@@ -208,19 +153,14 @@ class _$_Application implements _Application {
         (other.runtimeType == runtimeType &&
             other is _$_Application &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.website, website) || other.website == website) &&
             (identical(other.vapidKey, vapidKey) ||
                 other.vapidKey == vapidKey) &&
-            (identical(other.clientId, clientId) ||
-                other.clientId == clientId) &&
-            (identical(other.clientSecret, clientSecret) ||
-                other.clientSecret == clientSecret));
+            (identical(other.website, website) || other.website == website));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, website, vapidKey, clientId, clientSecret);
+  int get hashCode => Object.hash(runtimeType, name, vapidKey, website);
 
   @JsonKey(ignore: true)
   @override
@@ -239,10 +179,8 @@ class _$_Application implements _Application {
 abstract class _Application implements Application {
   const factory _Application(
       {required final String name,
-      final String? website,
       final String? vapidKey,
-      final String? clientId,
-      final String? clientSecret}) = _$_Application;
+      final String? website}) = _$_Application;
 
   factory _Application.fromJson(Map<String, dynamic> json) =
       _$_Application.fromJson;
@@ -253,23 +191,12 @@ abstract class _Application implements Application {
   String get name;
   @override
 
-  /// The website associated with your application.
-  String? get website;
-  @override
-
   /// Used for Push Streaming API.
-  ///
-  /// Returned with `POST /api/v1/apps`.
-  /// Equivalent to `PushSubscription#server_key`.
   String? get vapidKey;
   @override
 
-  /// Client ID key, to be used for obtaining OAuth tokens.
-  String? get clientId;
-  @override
-
-  /// Client secret key, to be used for obtaining OAuth tokens.
-  String? get clientSecret;
+  /// The website associated with your application.
+  String? get website;
   @override
   @JsonKey(ignore: true)
   _$$_ApplicationCopyWith<_$_Application> get copyWith =>

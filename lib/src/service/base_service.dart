@@ -14,6 +14,7 @@ import '../core/client/client_context.dart';
 import '../core/client/stream_response.dart';
 import '../core/client/user_context.dart';
 import '../core/exception/data_not_found_exception.dart';
+import '../core/exception/mastodon_exception.dart';
 import '../core/exception/rate_limit_exceeded_exception.dart';
 import '../core/exception/unauthorized_exception.dart';
 import '../core/service_helper.dart';
@@ -84,6 +85,7 @@ abstract class BaseService implements _Service {
   Future<Response> get(
     UserContext userContext,
     final String unencodedPath, {
+    Map<String, String> headers = const {},
     Map<String, dynamic> queryParameters = const {},
   }) async =>
       await _helper.get(
@@ -95,6 +97,7 @@ abstract class BaseService implements _Service {
 
           return response;
         },
+        headers: headers,
       );
 
   @override
@@ -201,6 +204,13 @@ abstract class BaseService implements _Service {
 
     if (response.statusCode == 429) {
       throw RateLimitExceededException('Rate limit exceeded.', response);
+    }
+
+    if (response.statusCode == 422) {
+      throw MastodonException(
+        'Required parameter is missing or improperly formatted.',
+        response,
+      );
     }
 
     if (response.statusCode == 204) {
