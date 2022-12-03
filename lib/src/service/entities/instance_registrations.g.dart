@@ -17,7 +17,7 @@ _$_InstanceRegistrations _$$_InstanceRegistrationsFromJson(Map json) =>
           isEnabled: $checkedConvert('enabled', (v) => v as bool),
           isApprovalRequired:
               $checkedConvert('approval_required', (v) => v as bool),
-          closedMessage: $checkedConvert('message', (v) => v as String),
+          closedMessage: $checkedConvert('message', (v) => v as String?),
         );
         return val;
       },
@@ -29,9 +29,18 @@ _$_InstanceRegistrations _$$_InstanceRegistrationsFromJson(Map json) =>
     );
 
 Map<String, dynamic> _$$_InstanceRegistrationsToJson(
-        _$_InstanceRegistrations instance) =>
-    <String, dynamic>{
-      'enabled': instance.isEnabled,
-      'approval_required': instance.isApprovalRequired,
-      'message': instance.closedMessage,
-    };
+    _$_InstanceRegistrations instance) {
+  final val = <String, dynamic>{
+    'enabled': instance.isEnabled,
+    'approval_required': instance.isApprovalRequired,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('message', instance.closedMessage);
+  return val;
+}

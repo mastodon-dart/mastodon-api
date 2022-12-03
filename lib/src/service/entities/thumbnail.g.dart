@@ -15,21 +15,19 @@ _$_Thumbnail _$$_ThumbnailFromJson(Map json) => $checkedCreate(
         final val = _$_Thumbnail(
           url: $checkedConvert('url', (v) => v as String),
           blurHash: $checkedConvert('blurhash', (v) => v as String),
-          versions: $checkedConvert(
+          version: $checkedConvert(
               'versions',
-              (v) => (v as List<dynamic>)
-                  .map((e) => ThumbnailVersion.fromJson(
-                      Map<String, Object?>.from(e as Map)))
-                  .toList()),
+              (v) => ThumbnailVersion.fromJson(
+                  Map<String, Object?>.from(v as Map))),
         );
         return val;
       },
-      fieldKeyMap: const {'blurHash': 'blurhash'},
+      fieldKeyMap: const {'blurHash': 'blurhash', 'version': 'versions'},
     );
 
 Map<String, dynamic> _$$_ThumbnailToJson(_$_Thumbnail instance) =>
     <String, dynamic>{
       'url': instance.url,
       'blurhash': instance.blurHash,
-      'versions': instance.versions.map((e) => e.toJson()).toList(),
+      'versions': instance.version.toJson(),
     };

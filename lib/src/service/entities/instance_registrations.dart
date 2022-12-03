@@ -21,7 +21,7 @@ class InstanceRegistrations with _$InstanceRegistrations {
     @JsonKey(name: 'approval_required') required bool isApprovalRequired,
 
     /// A custom message to be shown when registrations are closed.
-    @JsonKey(name: 'message') required String closedMessage,
+    @JsonKey(name: 'message') String? closedMessage,
   }) = _InstanceRegistrations;
 
   factory InstanceRegistrations.fromJson(Map<String, Object?> json) =>

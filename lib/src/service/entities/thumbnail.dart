@@ -26,7 +26,7 @@ class Thumbnail with _$Thumbnail {
     @JsonKey(name: 'blurhash') required String blurHash,
 
     /// Links to scaled resolution images, for high DPI screens.
-    required List<ThumbnailVersion> versions,
+    @JsonKey(name: 'versions') required ThumbnailVersion version,
   }) = _Thumbnail;
 
   factory Thumbnail.fromJson(Map<String, Object?> json) =>

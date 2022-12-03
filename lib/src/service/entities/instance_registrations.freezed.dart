@@ -31,7 +31,7 @@ mixin _$InstanceRegistrations {
 
   /// A custom message to be shown when registrations are closed.
   @JsonKey(name: 'message')
-  String get closedMessage => throw _privateConstructorUsedError;
+  String? get closedMessage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,7 +48,7 @@ abstract class $InstanceRegistrationsCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'enabled') bool isEnabled,
       @JsonKey(name: 'approval_required') bool isApprovalRequired,
-      @JsonKey(name: 'message') String closedMessage});
+      @JsonKey(name: 'message') String? closedMessage});
 }
 
 /// @nodoc
@@ -67,7 +67,7 @@ class _$InstanceRegistrationsCopyWithImpl<$Res,
   $Res call({
     Object? isEnabled = null,
     Object? isApprovalRequired = null,
-    Object? closedMessage = null,
+    Object? closedMessage = freezed,
   }) {
     return _then(_value.copyWith(
       isEnabled: null == isEnabled
@@ -78,10 +78,10 @@ class _$InstanceRegistrationsCopyWithImpl<$Res,
           ? _value.isApprovalRequired
           : isApprovalRequired // ignore: cast_nullable_to_non_nullable
               as bool,
-      closedMessage: null == closedMessage
+      closedMessage: freezed == closedMessage
           ? _value.closedMessage
           : closedMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -97,7 +97,7 @@ abstract class _$$_InstanceRegistrationsCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'enabled') bool isEnabled,
       @JsonKey(name: 'approval_required') bool isApprovalRequired,
-      @JsonKey(name: 'message') String closedMessage});
+      @JsonKey(name: 'message') String? closedMessage});
 }
 
 /// @nodoc
@@ -113,7 +113,7 @@ class __$$_InstanceRegistrationsCopyWithImpl<$Res>
   $Res call({
     Object? isEnabled = null,
     Object? isApprovalRequired = null,
-    Object? closedMessage = null,
+    Object? closedMessage = freezed,
   }) {
     return _then(_$_InstanceRegistrations(
       isEnabled: null == isEnabled
@@ -124,10 +124,10 @@ class __$$_InstanceRegistrationsCopyWithImpl<$Res>
           ? _value.isApprovalRequired
           : isApprovalRequired // ignore: cast_nullable_to_non_nullable
               as bool,
-      closedMessage: null == closedMessage
+      closedMessage: freezed == closedMessage
           ? _value.closedMessage
           : closedMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -139,7 +139,7 @@ class _$_InstanceRegistrations implements _InstanceRegistrations {
   const _$_InstanceRegistrations(
       {@JsonKey(name: 'enabled') required this.isEnabled,
       @JsonKey(name: 'approval_required') required this.isApprovalRequired,
-      @JsonKey(name: 'message') required this.closedMessage});
+      @JsonKey(name: 'message') this.closedMessage});
 
   factory _$_InstanceRegistrations.fromJson(Map<String, dynamic> json) =>
       _$$_InstanceRegistrationsFromJson(json);
@@ -157,7 +157,7 @@ class _$_InstanceRegistrations implements _InstanceRegistrations {
   /// A custom message to be shown when registrations are closed.
   @override
   @JsonKey(name: 'message')
-  final String closedMessage;
+  final String? closedMessage;
 
   @override
   String toString() {
@@ -204,7 +204,7 @@ abstract class _InstanceRegistrations implements InstanceRegistrations {
       @JsonKey(name: 'approval_required')
           required final bool isApprovalRequired,
       @JsonKey(name: 'message')
-          required final String closedMessage}) = _$_InstanceRegistrations;
+          final String? closedMessage}) = _$_InstanceRegistrations;
 
   factory _InstanceRegistrations.fromJson(Map<String, dynamic> json) =
       _$_InstanceRegistrations.fromJson;
@@ -223,7 +223,7 @@ abstract class _InstanceRegistrations implements InstanceRegistrations {
 
   /// A custom message to be shown when registrations are closed.
   @JsonKey(name: 'message')
-  String get closedMessage;
+  String? get closedMessage;
   @override
   @JsonKey(ignore: true)
   _$$_InstanceRegistrationsCopyWith<_$_InstanceRegistrations> get copyWith =>
