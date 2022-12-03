@@ -8,10 +8,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'account.dart';
-import 'instance_accounts_configuration.dart';
-import 'instance_media_configuration.dart';
-import 'instance_polls_configuration.dart';
-import 'instance_statuses_configuration.dart';
 
 part 'instance_contact.freezed.dart';
 part 'instance_contact.g.dart';

@@ -6,11 +6,11 @@
 
 import '../../../core/client/client_context.dart';
 import '../../../core/client/user_context.dart';
+import '../../../core/scope.dart';
 import '../../base_service.dart';
 import '../../entities/application.dart';
 import '../../entities/registered_application.dart';
 import '../../response/mastodon_response.dart';
-import '../../../core/scope.dart';
 
 abstract class AppsV1Service {
   /// Returns the new instance of [AppsV1Service].
