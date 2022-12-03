@@ -52,6 +52,21 @@ void expectDataNotFoundExceptionDueToNoJson(Function fn) {
   );
 }
 
+void expectDataNotFoundExceptionDueToNotFound(Function fn) {
+  expect(
+    () async => await fn.call(),
+    throwsA(
+      allOf(
+        isA<DataNotFoundException>(),
+        predicate(
+          (DataNotFoundException e) =>
+              e.message == 'There is no data associated with request.',
+        ),
+      ),
+    ),
+  );
+}
+
 void expectDataNotFoundExceptionDueToNoData(Function fn) {
   expect(
     () async => await fn.call(),

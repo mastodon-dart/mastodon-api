@@ -10,7 +10,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 // Project imports:
 import '../../core/language.dart';
 import 'account.dart';
+import 'instance_configuration.dart';
 import 'instance_statistics.dart';
+import 'rule.dart';
 
 part 'instance.freezed.dart';
 part 'instance.g.dart';
@@ -24,9 +26,6 @@ class Instance with _$Instance {
 
     /// The title of the website.
     required String title,
-
-    /// Admin-defined description of the Mastodon site.
-    required String description,
 
     /// A shorter description defined by the admin.
     required String shortDescription,
@@ -50,13 +49,19 @@ class Instance with _$Instance {
     @JsonKey(name: 'registrations') required bool isRegistrationsEnabled,
 
     /// Whether registrations require moderator approval.
-    @JsonKey(name: 'approval_required ') required bool isApprovalRequired,
+    @JsonKey(name: 'approval_required') required bool isApprovalRequired,
 
     /// Whether invites are enabled.
     @JsonKey(name: 'invites_enabled') required bool isInvitesEnabled,
 
+    /// Configured values and limits for this website.
+    InstanceConfiguration? configuration,
+
     /// A user that can be contacted, as an alternative to email.
     Account? contactAccount,
+
+    /// An itemized list of rules for this website.
+    List<Rule>? rules,
   }) = _Instance;
 
   factory Instance.fromJson(Map<String, Object?> json) =>

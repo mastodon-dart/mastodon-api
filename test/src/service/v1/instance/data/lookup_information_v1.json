@@ -1,0 +1,130 @@
+{
+  "uri": "fluttercommunity.social",
+  "title": "Flutter Community",
+  "short_description": "Flutter Community Social Network",
+  "description": "",
+  "email": "mastodon@fluttercommunity.dev",
+  "version": "4.0.2",
+  "urls": { "streaming_api": "wss://fluttercommunity.social" },
+  "stats": { "user_count": 70, "status_count": 566, "domain_count": 3302 },
+  "thumbnail": "https://storage.googleapis.com/media-fluttercommunity-social/site_uploads/files/000/000/002/@1x/7351cb7b2fc5a26d.png",
+  "languages": ["en"],
+  "registrations": false,
+  "approval_required": false,
+  "invites_enabled": true,
+  "configuration": {
+    "accounts": { "max_featured_tags": 10 },
+    "statuses": {
+      "max_characters": 500,
+      "max_media_attachments": 4,
+      "characters_reserved_per_url": 23
+    },
+    "media_attachments": {
+      "supported_mime_types": [
+        "image/jpeg",
+        "image/png",
+        "image/gif",
+        "image/heic",
+        "image/heif",
+        "image/webp",
+        "image/avif",
+        "video/webm",
+        "video/mp4",
+        "video/quicktime",
+        "video/ogg",
+        "audio/wave",
+        "audio/wav",
+        "audio/x-wav",
+        "audio/x-pn-wave",
+        "audio/vnd.wave",
+        "audio/ogg",
+        "audio/vorbis",
+        "audio/mpeg",
+        "audio/mp3",
+        "audio/webm",
+        "audio/flac",
+        "audio/aac",
+        "audio/m4a",
+        "audio/x-m4a",
+        "audio/mp4",
+        "audio/3gpp",
+        "video/x-ms-asf"
+      ],
+      "image_size_limit": 10485760,
+      "image_matrix_limit": 16777216,
+      "video_size_limit": 41943040,
+      "video_frame_rate_limit": 60,
+      "video_matrix_limit": 2304000
+    },
+    "polls": {
+      "max_options": 4,
+      "max_characters_per_option": 50,
+      "min_expiration": 300,
+      "max_expiration": 2629746
+    }
+  },
+  "contact_account": {
+    "id": "109327234287882218",
+    "username": "simon",
+    "acct": "simon",
+    "display_name": "Simon Lightfoot 🥇💙:va:",
+    "locked": false,
+    "bot": false,
+    "discoverable": true,
+    "group": false,
+    "created_at": "2022-11-11T00:00:00.000Z",
+    "note": "\u003cp\u003e💙 Flutter Community Lead •💙 Flutter Study Group •👨‍💻 Coding for 20+ years •🏢 CTO DevAngels, London •👍🏻 \u003ca href=\"https://fluttercommunity.social/tags/Flutter\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eFlutter\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://fluttercommunity.social/tags/Android\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eAndroid\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://fluttercommunity.social/tags/GoLang\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eGoLang\u003c/span\u003e\u003c/a\u003e • he/him • 🏳️‍🌈 🇬🇧\u003c/p\u003e\u003cp\u003eWhat is Mastodon? \u003ca href=\"https://tilvids.com/w/hRzMpJwSkqEK3ZTNPbSuqu\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"ellipsis\"\u003etilvids.com/w/hRzMpJwSkqEK3ZTN\u003c/span\u003e\u003cspan class=\"invisible\"\u003ePbSuqu\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e\u003cp\u003eTips: \u003ca href=\"https://fedi.tips/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003efedi.tips/\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e\u003cp\u003eLocation: London, UK\u003c/p\u003e",
+    "url": "https://fluttercommunity.social/@simon",
+    "avatar": "https://storage.googleapis.com/media-fluttercommunity-social/accounts/avatars/109/327/234/287/882/218/original/2ebb4f2e53172a82.jpg",
+    "avatar_static": "https://storage.googleapis.com/media-fluttercommunity-social/accounts/avatars/109/327/234/287/882/218/original/2ebb4f2e53172a82.jpg",
+    "header": "https://storage.googleapis.com/media-fluttercommunity-social/accounts/headers/109/327/234/287/882/218/original/143313be5300d010.jpg",
+    "header_static": "https://storage.googleapis.com/media-fluttercommunity-social/accounts/headers/109/327/234/287/882/218/original/143313be5300d010.jpg",
+    "followers_count": 235,
+    "following_count": 80,
+    "statuses_count": 46,
+    "last_status_at": "2022-12-01",
+    "noindex": false,
+    "emojis": [
+      {
+        "shortcode": "va",
+        "url": "https://storage.googleapis.com/media-fluttercommunity-social/custom_emojis/images/000/000/046/original/3a31997bc9c55a31.png",
+        "static_url": "https://storage.googleapis.com/media-fluttercommunity-social/custom_emojis/images/000/000/046/static/3a31997bc9c55a31.png",
+        "visible_in_picker": true
+      }
+    ],
+    "fields": [
+      {
+        "name": "GitHub",
+        "value": "\u003ca href=\"https://slightfoot.github.io\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003eslightfoot.github.io\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+        "verified_at": "2022-11-17T12:20:02.429+00:00"
+      },
+      {
+        "name": "Twitter",
+        "value": "\u003ca href=\"https://twitter.com/devangelslondon\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etwitter.com/devangelslondon\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+        "verified_at": null
+      },
+      {
+        "name": "LinkedIn",
+        "value": "\u003ca href=\"https://www.linkedin.com/in/simonlightfoot\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\"\u003e\u003cspan class=\"invisible\"\u003ehttps://www.\u003c/span\u003e\u003cspan class=\"\"\u003elinkedin.com/in/simonlightfoot\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+        "verified_at": null
+      },
+      {
+        "name": "YouTube",
+        "value": "\u003ca href=\"https://www.youtube.com/@FlutterCommunity\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\"\u003e\u003cspan class=\"invisible\"\u003ehttps://www.\u003c/span\u003e\u003cspan class=\"\"\u003eyoutube.com/@FlutterCommunity\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+        "verified_at": null
+      }
+    ]
+  },
+  "rules": [
+    {
+      "id": "1",
+      "text": "Be nice, respectful and constructive while interactive with others."
+    },
+    {
+      "id": "2",
+      "text": "Do not post anything if they are adult content, rude or offensive statements."
+    },
+    { "id": "3", "text": "Spammers will be banned." },
+    { "id": "4", "text": "Harassment of any kind is not tolerated." }
+  ]
+}

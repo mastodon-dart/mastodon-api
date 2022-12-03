@@ -4,7 +4,7 @@
 
 // Project imports:
 import '../core/client/client_context.dart';
-import 'search/search_v2_service.dart';
+import 'v2/search/search_v2_service.dart';
 
 /// The class represents the Mastodon v2 services.
 abstract class MastodonV2Service {

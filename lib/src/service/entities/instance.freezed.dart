@@ -26,9 +26,6 @@ mixin _$Instance {
   /// The title of the website.
   String get title => throw _privateConstructorUsedError;
 
-  /// Admin-defined description of the Mastodon site.
-  String get description => throw _privateConstructorUsedError;
-
   /// A shorter description defined by the admin.
   String get shortDescription => throw _privateConstructorUsedError;
 
@@ -53,15 +50,22 @@ mixin _$Instance {
   bool get isRegistrationsEnabled => throw _privateConstructorUsedError;
 
   /// Whether registrations require moderator approval.
-  @JsonKey(name: 'approval_required ')
+  @JsonKey(name: 'approval_required')
   bool get isApprovalRequired => throw _privateConstructorUsedError;
 
   /// Whether invites are enabled.
   @JsonKey(name: 'invites_enabled')
   bool get isInvitesEnabled => throw _privateConstructorUsedError;
 
+  /// Configured values and limits for this website.
+  InstanceConfiguration? get configuration =>
+      throw _privateConstructorUsedError;
+
   /// A user that can be contacted, as an alternative to email.
   Account? get contactAccount => throw _privateConstructorUsedError;
+
+  /// An itemized list of rules for this website.
+  List<Rule>? get rules => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -77,7 +81,6 @@ abstract class $InstanceCopyWith<$Res> {
   $Res call(
       {String uri,
       String title,
-      String description,
       String shortDescription,
       String email,
       String version,
@@ -85,11 +88,14 @@ abstract class $InstanceCopyWith<$Res> {
       @JsonKey(name: 'stats') InstanceStatistics statistics,
       String? thumbnail,
       @JsonKey(name: 'registrations') bool isRegistrationsEnabled,
-      @JsonKey(name: 'approval_required ') bool isApprovalRequired,
+      @JsonKey(name: 'approval_required') bool isApprovalRequired,
       @JsonKey(name: 'invites_enabled') bool isInvitesEnabled,
-      Account? contactAccount});
+      InstanceConfiguration? configuration,
+      Account? contactAccount,
+      List<Rule>? rules});
 
   $InstanceStatisticsCopyWith<$Res> get statistics;
+  $InstanceConfigurationCopyWith<$Res>? get configuration;
   $AccountCopyWith<$Res>? get contactAccount;
 }
 
@@ -108,7 +114,6 @@ class _$InstanceCopyWithImpl<$Res, $Val extends Instance>
   $Res call({
     Object? uri = null,
     Object? title = null,
-    Object? description = null,
     Object? shortDescription = null,
     Object? email = null,
     Object? version = null,
@@ -118,7 +123,9 @@ class _$InstanceCopyWithImpl<$Res, $Val extends Instance>
     Object? isRegistrationsEnabled = null,
     Object? isApprovalRequired = null,
     Object? isInvitesEnabled = null,
+    Object? configuration = freezed,
     Object? contactAccount = freezed,
+    Object? rules = freezed,
   }) {
     return _then(_value.copyWith(
       uri: null == uri
@@ -128,10 +135,6 @@ class _$InstanceCopyWithImpl<$Res, $Val extends Instance>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
               as String,
       shortDescription: null == shortDescription
           ? _value.shortDescription
@@ -169,10 +172,18 @@ class _$InstanceCopyWithImpl<$Res, $Val extends Instance>
           ? _value.isInvitesEnabled
           : isInvitesEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
+      configuration: freezed == configuration
+          ? _value.configuration
+          : configuration // ignore: cast_nullable_to_non_nullable
+              as InstanceConfiguration?,
       contactAccount: freezed == contactAccount
           ? _value.contactAccount
           : contactAccount // ignore: cast_nullable_to_non_nullable
               as Account?,
+      rules: freezed == rules
+          ? _value.rules
+          : rules // ignore: cast_nullable_to_non_nullable
+              as List<Rule>?,
     ) as $Val);
   }
 
@@ -181,6 +192,18 @@ class _$InstanceCopyWithImpl<$Res, $Val extends Instance>
   $InstanceStatisticsCopyWith<$Res> get statistics {
     return $InstanceStatisticsCopyWith<$Res>(_value.statistics, (value) {
       return _then(_value.copyWith(statistics: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $InstanceConfigurationCopyWith<$Res>? get configuration {
+    if (_value.configuration == null) {
+      return null;
+    }
+
+    return $InstanceConfigurationCopyWith<$Res>(_value.configuration!, (value) {
+      return _then(_value.copyWith(configuration: value) as $Val);
     });
   }
 
@@ -207,7 +230,6 @@ abstract class _$$_InstanceCopyWith<$Res> implements $InstanceCopyWith<$Res> {
   $Res call(
       {String uri,
       String title,
-      String description,
       String shortDescription,
       String email,
       String version,
@@ -215,12 +237,16 @@ abstract class _$$_InstanceCopyWith<$Res> implements $InstanceCopyWith<$Res> {
       @JsonKey(name: 'stats') InstanceStatistics statistics,
       String? thumbnail,
       @JsonKey(name: 'registrations') bool isRegistrationsEnabled,
-      @JsonKey(name: 'approval_required ') bool isApprovalRequired,
+      @JsonKey(name: 'approval_required') bool isApprovalRequired,
       @JsonKey(name: 'invites_enabled') bool isInvitesEnabled,
-      Account? contactAccount});
+      InstanceConfiguration? configuration,
+      Account? contactAccount,
+      List<Rule>? rules});
 
   @override
   $InstanceStatisticsCopyWith<$Res> get statistics;
+  @override
+  $InstanceConfigurationCopyWith<$Res>? get configuration;
   @override
   $AccountCopyWith<$Res>? get contactAccount;
 }
@@ -238,7 +264,6 @@ class __$$_InstanceCopyWithImpl<$Res>
   $Res call({
     Object? uri = null,
     Object? title = null,
-    Object? description = null,
     Object? shortDescription = null,
     Object? email = null,
     Object? version = null,
@@ -248,7 +273,9 @@ class __$$_InstanceCopyWithImpl<$Res>
     Object? isRegistrationsEnabled = null,
     Object? isApprovalRequired = null,
     Object? isInvitesEnabled = null,
+    Object? configuration = freezed,
     Object? contactAccount = freezed,
+    Object? rules = freezed,
   }) {
     return _then(_$_Instance(
       uri: null == uri
@@ -258,10 +285,6 @@ class __$$_InstanceCopyWithImpl<$Res>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
               as String,
       shortDescription: null == shortDescription
           ? _value.shortDescription
@@ -299,10 +322,18 @@ class __$$_InstanceCopyWithImpl<$Res>
           ? _value.isInvitesEnabled
           : isInvitesEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
+      configuration: freezed == configuration
+          ? _value.configuration
+          : configuration // ignore: cast_nullable_to_non_nullable
+              as InstanceConfiguration?,
       contactAccount: freezed == contactAccount
           ? _value.contactAccount
           : contactAccount // ignore: cast_nullable_to_non_nullable
               as Account?,
+      rules: freezed == rules
+          ? _value._rules
+          : rules // ignore: cast_nullable_to_non_nullable
+              as List<Rule>?,
     ));
   }
 }
@@ -314,7 +345,6 @@ class _$_Instance implements _Instance {
   const _$_Instance(
       {required this.uri,
       required this.title,
-      required this.description,
       required this.shortDescription,
       required this.email,
       required this.version,
@@ -322,10 +352,13 @@ class _$_Instance implements _Instance {
       @JsonKey(name: 'stats') required this.statistics,
       this.thumbnail,
       @JsonKey(name: 'registrations') required this.isRegistrationsEnabled,
-      @JsonKey(name: 'approval_required ') required this.isApprovalRequired,
+      @JsonKey(name: 'approval_required') required this.isApprovalRequired,
       @JsonKey(name: 'invites_enabled') required this.isInvitesEnabled,
-      this.contactAccount})
-      : _languages = languages;
+      this.configuration,
+      this.contactAccount,
+      final List<Rule>? rules})
+      : _languages = languages,
+        _rules = rules;
 
   factory _$_Instance.fromJson(Map<String, dynamic> json) =>
       _$$_InstanceFromJson(json);
@@ -337,10 +370,6 @@ class _$_Instance implements _Instance {
   /// The title of the website.
   @override
   final String title;
-
-  /// Admin-defined description of the Mastodon site.
-  @override
-  final String description;
 
   /// A shorter description defined by the admin.
   @override
@@ -380,7 +409,7 @@ class _$_Instance implements _Instance {
 
   /// Whether registrations require moderator approval.
   @override
-  @JsonKey(name: 'approval_required ')
+  @JsonKey(name: 'approval_required')
   final bool isApprovalRequired;
 
   /// Whether invites are enabled.
@@ -388,13 +417,29 @@ class _$_Instance implements _Instance {
   @JsonKey(name: 'invites_enabled')
   final bool isInvitesEnabled;
 
+  /// Configured values and limits for this website.
+  @override
+  final InstanceConfiguration? configuration;
+
   /// A user that can be contacted, as an alternative to email.
   @override
   final Account? contactAccount;
 
+  /// An itemized list of rules for this website.
+  final List<Rule>? _rules;
+
+  /// An itemized list of rules for this website.
+  @override
+  List<Rule>? get rules {
+    final value = _rules;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   String toString() {
-    return 'Instance(uri: $uri, title: $title, description: $description, shortDescription: $shortDescription, email: $email, version: $version, languages: $languages, statistics: $statistics, thumbnail: $thumbnail, isRegistrationsEnabled: $isRegistrationsEnabled, isApprovalRequired: $isApprovalRequired, isInvitesEnabled: $isInvitesEnabled, contactAccount: $contactAccount)';
+    return 'Instance(uri: $uri, title: $title, shortDescription: $shortDescription, email: $email, version: $version, languages: $languages, statistics: $statistics, thumbnail: $thumbnail, isRegistrationsEnabled: $isRegistrationsEnabled, isApprovalRequired: $isApprovalRequired, isInvitesEnabled: $isInvitesEnabled, configuration: $configuration, contactAccount: $contactAccount, rules: $rules)';
   }
 
   @override
@@ -404,8 +449,6 @@ class _$_Instance implements _Instance {
             other is _$_Instance &&
             (identical(other.uri, uri) || other.uri == uri) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
             (identical(other.shortDescription, shortDescription) ||
                 other.shortDescription == shortDescription) &&
             (identical(other.email, email) || other.email == email) &&
@@ -422,8 +465,11 @@ class _$_Instance implements _Instance {
                 other.isApprovalRequired == isApprovalRequired) &&
             (identical(other.isInvitesEnabled, isInvitesEnabled) ||
                 other.isInvitesEnabled == isInvitesEnabled) &&
+            (identical(other.configuration, configuration) ||
+                other.configuration == configuration) &&
             (identical(other.contactAccount, contactAccount) ||
-                other.contactAccount == contactAccount));
+                other.contactAccount == contactAccount) &&
+            const DeepCollectionEquality().equals(other._rules, _rules));
   }
 
   @JsonKey(ignore: true)
@@ -432,7 +478,6 @@ class _$_Instance implements _Instance {
       runtimeType,
       uri,
       title,
-      description,
       shortDescription,
       email,
       version,
@@ -442,7 +487,9 @@ class _$_Instance implements _Instance {
       isRegistrationsEnabled,
       isApprovalRequired,
       isInvitesEnabled,
-      contactAccount);
+      configuration,
+      contactAccount,
+      const DeepCollectionEquality().hash(_rules));
 
   @JsonKey(ignore: true)
   @override
@@ -462,7 +509,6 @@ abstract class _Instance implements Instance {
   const factory _Instance(
       {required final String uri,
       required final String title,
-      required final String description,
       required final String shortDescription,
       required final String email,
       required final String version,
@@ -472,11 +518,13 @@ abstract class _Instance implements Instance {
       final String? thumbnail,
       @JsonKey(name: 'registrations')
           required final bool isRegistrationsEnabled,
-      @JsonKey(name: 'approval_required ')
+      @JsonKey(name: 'approval_required')
           required final bool isApprovalRequired,
       @JsonKey(name: 'invites_enabled')
           required final bool isInvitesEnabled,
-      final Account? contactAccount}) = _$_Instance;
+      final InstanceConfiguration? configuration,
+      final Account? contactAccount,
+      final List<Rule>? rules}) = _$_Instance;
 
   factory _Instance.fromJson(Map<String, dynamic> json) = _$_Instance.fromJson;
 
@@ -488,10 +536,6 @@ abstract class _Instance implements Instance {
 
   /// The title of the website.
   String get title;
-  @override
-
-  /// Admin-defined description of the Mastodon site.
-  String get description;
   @override
 
   /// A shorter description defined by the admin.
@@ -525,7 +569,7 @@ abstract class _Instance implements Instance {
   @override
 
   /// Whether registrations require moderator approval.
-  @JsonKey(name: 'approval_required ')
+  @JsonKey(name: 'approval_required')
   bool get isApprovalRequired;
   @override
 
@@ -534,8 +578,16 @@ abstract class _Instance implements Instance {
   bool get isInvitesEnabled;
   @override
 
+  /// Configured values and limits for this website.
+  InstanceConfiguration? get configuration;
+  @override
+
   /// A user that can be contacted, as an alternative to email.
   Account? get contactAccount;
+  @override
+
+  /// An itemized list of rules for this website.
+  List<Rule>? get rules;
   @override
   @JsonKey(ignore: true)
   _$$_InstanceCopyWith<_$_Instance> get copyWith =>

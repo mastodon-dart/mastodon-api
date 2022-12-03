@@ -1,0 +1,54 @@
+[
+  {
+    "id": "16",
+    "text": "No illegal content, e.g. child pornography, solicitation of illegal services, etc…"
+  },
+  {
+    "id": "17",
+    "text": "No posts or links to content supporting, featuring, or promoting hate groups, terrorism, mass violence or calls to violence."
+  },
+  {
+    "id": "18",
+    "text": "No posts or comments supporting or promoting QAnon related content or similarly disproven conspiracy theories. Moderators have sole discretion to decide if a post violates this rule. Birds are real. The Earth is round. Get over it."
+  },
+  {
+    "id": "19",
+    "text": "No posts or links featuring sexualized depictions of minors, whether photographic, written, drawn, anthropomorphic or animated."
+  },
+  {
+    "id": "20",
+    "text": "No pornography featuring depictions of rape or non-consensual violence."
+  },
+  {
+    "id": "21",
+    "text": "All other pornographic, erotic or NSFW content, whether photographic, written, drawn or animated, must be marked with a Content Warning."
+  },
+  { "id": "22", "text": "No racism." },
+  {
+    "id": "23",
+    "text": "No visual content depicting executions, murder, suicide, dismemberment, visible innards, excessive gore, or charred bodies. All other violent imagery requires a Content Warning."
+  },
+  {
+    "id": "24",
+    "text": "No visual content depicting animal abuse. All other posts related to animal abuse require a Content Warning."
+  },
+  { "id": "25", "text": "No posting of malicious links." },
+  { "id": "26", "text": "No Spam (see General Guidance below)." },
+  {
+    "id": "27",
+    "text": "No threats, bullying or attacks on an individual or group."
+  },
+  { "id": "28", "text": "No encouragement or promotion of self-harm." },
+  {
+    "id": "29",
+    "text": "No accounts that impersonate anyone else unless clearly marked as such for the purpose of parody."
+  },
+  {
+    "id": "30",
+    "text": "No Hate Speech. Hate speech is defined as derogatory posts or links targeting any individual or group based on race, mental or physical disability, religion, gender identity, sex, nationality, age, class or sexual orientation."
+  },
+  {
+    "id": "31",
+    "text": "No “shitposting” - while humorous posts are allowed, and actually encouraged, there is no place for “shitposting” here."
+  }
+]
