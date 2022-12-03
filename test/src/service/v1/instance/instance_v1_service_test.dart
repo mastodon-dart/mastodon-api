@@ -2,6 +2,8 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// ignore_for_file: deprecated_member_use_from_same_package
+
 // Project imports:
 import 'package:mastodon_api/src/core/client/user_context.dart';
 import 'package:mastodon_api/src/service/entities/blocked_domain.dart';
