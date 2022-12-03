@@ -9,6 +9,9 @@
   - `GET /api/v1/timelines/tag/:hashtag`
   - `GET /api/v1/timelines/home`
   - `GET /api/v1/timelines/list/:list_id`
+- Supported `apps API methods`. ([#4](https://github.com/mastodon-dart/mastodon-api/issues/4))
+  - `POST /api/v1/apps`
+  - `GET /api/v1/apps/verify_credentials`
 
 ## v0.0.1
 

@@ -23,11 +23,14 @@ class OAuth2Client extends Client {
   Future<http.Response> get(
     Uri uri, {
     required Duration timeout,
+    Map<String, String> headers = const {},
   }) async =>
-      await http.get(
-        uri,
-        headers: {'Authorization': 'Bearer $_bearerToken'},
-      ).timeout(timeout);
+      await http
+          .get(
+            uri,
+            headers: {'Authorization': 'Bearer $_bearerToken'}..addAll(headers),
+          )
+          .timeout(timeout);
 
   @override
   Future<http.StreamedResponse> getStream(

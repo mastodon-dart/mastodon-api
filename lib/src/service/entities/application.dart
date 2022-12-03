@@ -17,20 +17,11 @@ class Application with _$Application {
     /// The name of your application.
     required String name,
 
-    /// The website associated with your application.
-    String? website,
-
     /// Used for Push Streaming API.
-    ///
-    /// Returned with `POST /api/v1/apps`.
-    /// Equivalent to `PushSubscription#server_key`.
     String? vapidKey,
 
-    /// Client ID key, to be used for obtaining OAuth tokens.
-    String? clientId,
-
-    /// Client secret key, to be used for obtaining OAuth tokens.
-    String? clientSecret,
+    /// The website associated with your application.
+    String? website,
   }) = _Application;
 
   factory Application.fromJson(Map<String, Object?> json) =>

@@ -11,6 +11,8 @@ export 'package:mastodon_api/src/core/exception/unauthorized_exception.dart';
 export 'package:mastodon_api/src/core/language.dart';
 export 'package:mastodon_api/src/core/visibility.dart';
 export 'package:mastodon_api/src/mastodon_api.dart';
+export 'package:mastodon_api/src/service/apps/apps_v1_service.dart';
+export 'package:mastodon_api/src/service/apps/registered_application.dart';
 export 'package:mastodon_api/src/service/entities/account.dart';
 export 'package:mastodon_api/src/service/entities/application.dart';
 export 'package:mastodon_api/src/service/entities/emoji.dart';

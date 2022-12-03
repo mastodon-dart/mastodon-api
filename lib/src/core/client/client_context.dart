@@ -32,7 +32,11 @@ abstract class ClientContext {
         retryConfig: retryConfig,
       );
 
-  Future<http.Response> get(UserContext userContext, Uri uri);
+  Future<http.Response> get(
+    UserContext userContext,
+    Uri uri, {
+    Map<String, String> headers = const {},
+  });
 
   Future<http.Response> post(
     UserContext userContext,
@@ -72,7 +76,9 @@ class _ClientContext implements ClientContext {
     RetryConfig? retryConfig,
   })  : _clientResolver = ClientResolver(
           AnonymousClient(),
-          OAuth2Client(bearerToken: bearerToken),
+          bearerToken.isNotEmpty
+              ? OAuth2Client(bearerToken: bearerToken)
+              : null,
         ),
         _retryPolicy = RetryPolicy(retryConfig);
 
@@ -88,11 +94,16 @@ class _ClientContext implements ClientContext {
   @override
   Future<http.Response> get(
     UserContext userContext,
-    Uri uri,
-  ) async =>
+    Uri uri, {
+    Map<String, String> headers = const {},
+  }) async =>
       await _challengeWithRetryIfNecessary(
         _clientResolver.execute(userContext),
-        (client) async => await client.get(uri, timeout: timeout),
+        (client) async => await client.get(
+          uri,
+          timeout: timeout,
+          headers: headers,
+        ),
       );
 
   @override

@@ -15,6 +15,7 @@ abstract class Client {
   Future<http.Response> get(
     Uri uri, {
     required Duration timeout,
+    Map<String, String> headers,
   });
 
   Future<http.StreamedResponse> getStream(
