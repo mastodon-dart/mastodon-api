@@ -1,31 +1,45 @@
 v1:
-- lib/**/*
+- lib/src/service/v1/**/*
+
+v2:
+- lib/src/service/v2/**/*
 
 client:
 - lib/src/core/client/*.dart
 
 service/accounts:
-- lib/src/service/accounts/*.dart
+- lib/src/service/v1/accounts/*.dart
+- lib/src/service/v2/accounts/*.dart
 service/admin:
-- lib/src/service/admin/*.dart
+- lib/src/service/v1/admin/*.dart
+- lib/src/service/v2/admin/*.dart
 service/announcements:
-- lib/src/service/announcements/*.dart
+- lib/src/service/v1/announcements/*.dart
+- lib/src/service/v2/announcements/*.dart
 service/apps:
-- lib/src/service/apps/*.dart
+- lib/src/service/v1/apps/*.dart
+- lib/src/service/v2/apps/*.dart
 service/instance:
-- lib/src/service/instance/*.dart
+- lib/src/service/v1/instance/*.dart
+- lib/src/service/v2/instance/*.dart
 service/notifications:
-- lib/src/service/notifications/*.dart
+- lib/src/service/v1/notifications/*.dart
+- lib/src/service/v2/notifications/*.dart
 service/oembed:
-- lib/src/service/oembed/*.dart
+- lib/src/service/v1/oembed/*.dart
+- lib/src/service/v2/oembed/*.dart
 service/proofs:
-- lib/src/service/proofs/*.dart
+- lib/src/service/v1/proofs/*.dart
+- lib/src/service/v2/proofs/*.dart
 service/search:
-- lib/src/service/search/*.dart
+- lib/src/service/v1/search/*.dart
+- lib/src/service/v2/search/*.dart
 service/statuses:
-- lib/src/service/statuses/*.dart
+- lib/src/service/v1/statuses/*.dart
+- lib/src/service/v2/statuses/*.dart
 service/timelines:
-- lib/src/service/timelines/*.dart
+- lib/src/service/v1/timelines/*.dart
+- lib/src/service/v2/timelines/*.dart
 
 test:
 - test/**/*.dart
