@@ -65,6 +65,10 @@ abstract class _Service {
     Response response, {
     required DataBuilder<D> dataBuilder,
   });
+
+  MastodonResponse<List<D>> transformMultiRawDataResponse<D>(
+    Response response,
+  );
 }
 
 abstract class BaseService implements _Service {
@@ -192,6 +196,17 @@ abstract class BaseService implements _Service {
             .toList(),
       );
 
+  @override
+  MastodonResponse<List<D>> transformMultiRawDataResponse<D>(
+    Response response,
+  ) =>
+      MastodonResponse(
+        rateLimit: RateLimit.fromJson(
+          rateLimitConverter.convert(response.headers),
+        ),
+        data: (jsonDecode(response.body) as List).map<D>((e) => e).toList(),
+      );
+
   Response checkResponse(
     final Response response,
   ) {
@@ -239,6 +254,13 @@ abstract class BaseService implements _Service {
       );
     }
 
+    if (response.statusCode == 404) {
+      throw DataNotFoundException(
+        'There is no data associated with request.',
+        response,
+      );
+    }
+
     if (response.statusCode == 429) {
       throw RateLimitExceededException('Rate limit exceeded.', response);
     }
@@ -270,9 +292,9 @@ class RateLimitConverter {
 
   String _getDateTimeString(final Map<String, String> input, final String key) {
     if (!input.containsKey(key)) {
-      return DateTime.fromMillisecondsSinceEpoch(0).toUtc().toIso8601String();
+      return DateTime.fromMillisecondsSinceEpoch(0).toIso8601String();
     }
 
-    return DateTime.parse(input[key]!).toUtc().toIso8601String();
+    return DateTime.parse(input[key]!).toIso8601String();
   }
 }
