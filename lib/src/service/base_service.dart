@@ -69,6 +69,8 @@ abstract class _Service {
   MastodonResponse<List<D>> transformMultiRawDataResponse<D>(
     Response response,
   );
+
+  MastodonResponse<bool> evaluateResponse(final Response response);
 }
 
 abstract class BaseService implements _Service {
@@ -206,6 +208,29 @@ abstract class BaseService implements _Service {
         ),
         data: (jsonDecode(response.body) as List).map<D>((e) => e).toList(),
       );
+
+  @override
+  MastodonResponse<bool> evaluateResponse(final Response response) =>
+      MastodonResponse(
+        rateLimit: RateLimit.fromJson(
+          rateLimitConverter.convert(response.headers),
+        ),
+        data: _evaluateResponse(response),
+      );
+
+  bool _evaluateResponse(final Response response) {
+    if (response.statusCode == 204) {
+      //! 204: No Content.
+      return true;
+    }
+
+    if (response.statusCode == 200) {
+      //! Okay, it's succeeded.
+      return true;
+    }
+
+    return false;
+  }
 
   Response checkResponse(
     final Response response,

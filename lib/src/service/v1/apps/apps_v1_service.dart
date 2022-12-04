@@ -74,6 +74,28 @@ abstract class AppsV1Service {
   Future<MastodonResponse<Application>> verifyOAuthCredentials({
     required String bearerToken,
   });
+
+  /// Request a new confirmation email, potentially to a new email address.
+  ///
+  /// ## Parameters
+  ///
+  /// - [email]: If provided, updates the unconfirmed user’s email before
+  ///            resending the confirmation email.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/emails/confirmation HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/emails/#confirmation
+  Future<MastodonResponse<bool>> createNewConfirmationEmail({
+    required String email,
+  });
 }
 
 class _AppsV1Service extends BaseService implements AppsV1Service {
@@ -117,5 +139,19 @@ class _AppsV1Service extends BaseService implements AppsV1Service {
           },
         ),
         dataBuilder: Application.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<bool>> createNewConfirmationEmail({
+    required String email,
+  }) async =>
+      super.evaluateResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/emails/confirmation',
+          body: {
+            'email': email,
+          },
+        ),
       );
 }

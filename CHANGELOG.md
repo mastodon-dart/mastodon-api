@@ -20,6 +20,8 @@
   - `GET /api/v1/instance/rules`
   - `GET /api/v1/instance/domain_block`
   - `GET /api/v1/example`
+- Supported `emails API methods`. ([#6](https://github.com/mastodon-dart/mastodon-api/issues/6))
+  - `POST /api/v1/emails/confirmation`
 
 ## v0.0.1
 
