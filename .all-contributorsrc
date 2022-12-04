@@ -4,7 +4,35 @@
   ],
   "imageSize": 100,
   "commit": false,
-  "contributors": [],
+  "contributors": [
+    {
+      "login": "myConsciousness",
+      "name": "KATO, Shinya / 加藤 真也",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13072231?v=4",
+      "profile": "https://github.com/myConsciousness",
+      "contributions": [
+        "code",
+        "content",
+        "data",
+        "doc",
+        "design",
+        "example",
+        "fundingFinding",
+        "ideas",
+        "infra",
+        "maintenance",
+        "mentoring",
+        "projectManagement",
+        "question",
+        "research",
+        "review",
+        "security",
+        "translation",
+        "test",
+        "tutorial"
+      ]
+    }
+  ],
   "contributorsPerLine": 5,
   "projectName": "mastodon-api",
   "projectOwner": "mastodon-dart",
