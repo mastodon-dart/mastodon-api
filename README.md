@@ -38,6 +38,18 @@
     - [1.2.2. Import](#122-import)
     - [1.2.3. Implementation](#123-implementation)
   - [1.3. Supported Endpoints 👀](#13-supported-endpoints-)
+    - [1.3.1. Instance Service](#131-instance-service)
+      - [1.3.1.1. v1](#1311-v1)
+      - [1.3.1.2. v2](#1312-v2)
+    - [1.3.2. Apps Service](#132-apps-service)
+      - [1.3.2.1. v1](#1321-v1)
+      - [1.3.2.2. v2](#1322-v2)
+    - [1.3.3. Search Service](#133-search-service)
+      - [1.3.3.1. v1](#1331-v1)
+      - [1.3.3.2. v2](#1332-v2)
+    - [1.3.4. Timelines Service](#134-timelines-service)
+      - [1.3.4.1. v1](#1341-v1)
+      - [1.3.4.2. v2](#1342-v2)
   - [1.4. Tips 🏄](#14-tips-)
     - [1.4.1. Method Names](#141-method-names)
     - [1.4.2. Null Parameter at Request](#142-null-parameter-at-request)
@@ -145,6 +157,60 @@ Future<void> main() async {
 
 ## 1.3. Supported Endpoints 👀
 
+### 1.3.1. Instance Service
+
+#### 1.3.1.1. v1
+
+| **Endpoint**                                                                                       | **Method Name**                                                                                                                              |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| [GET /api/v1/instance (deprecated)](https://docs.joinmastodon.org/methods/instance/#v1)            | [lookupInformation](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/InstanceV1Service/lookupInformation.html)                 |
+| [GET /api/v1/instance/peers](https://docs.joinmastodon.org/methods/instance/#peers)                | [lookupConnectedDomains](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/InstanceV1Service/lookupConnectedDomains.html)       |
+| [GET /api/v1/instance/activity](https://docs.joinmastodon.org/methods/instance/#activity)          | [lookupWeeklyActivities](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/InstanceV1Service/lookupWeeklyActivities.html)       |
+| [GET /api/v1/instance/rules](https://docs.joinmastodon.org/methods/instance/#rules)                | [lookupRules](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/InstanceV1Service/lookupRules.html)                             |
+| [GET /api/v1/instance/domain_block](https://docs.joinmastodon.org/methods/instance/#domain_blocks) | [lookupBlockedDomains](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/InstanceV1Service/lookupBlockedDomains.html)           |
+| [GET /api/v1/example](https://docs.joinmastodon.org/methods/instance/#extended_description)        | [lookupExtendedDescription](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/InstanceV1Service/lookupExtendedDescription.html) |
+
+#### 1.3.1.2. v2
+
+| **Endpoint**                                                               | **Method Name**                                                                                                              |
+| -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| [GET /api/v2/instance](https://docs.joinmastodon.org/methods/instance/#v2) | [lookupInformation](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/InstanceV1Service/lookupInformation.html) |
+
+### 1.3.2. Apps Service
+
+#### 1.3.2.1. v1
+
+| **Endpoint**                                                                                          | **Method Name**                                                                                                                            |
+| ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| [POST /api/v1/apps](https://docs.joinmastodon.org/methods/apps/#create)                               | [createApplication](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AppsV1Service/createApplication.html)                   |
+| [GET /api/v1/apps/verify_credentials](https://docs.joinmastodon.org/methods/apps/#verify_credentials) | [verifyOAuthCredentials](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AppsV1Service/verifyOAuthCredentials.html)         |
+| [POST /api/v1/emails/confirmation](https://docs.joinmastodon.org/methods/emails/#confirmation)        | [createNewConfirmationEmail](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AppsV1Service/createNewConfirmationEmail.html) |
+
+#### 1.3.2.2. v2
+
+### 1.3.3. Search Service
+
+#### 1.3.3.1. v1
+
+#### 1.3.3.2. v2
+
+| **Endpoint**                                                           | **Method Name**                                                                                                     |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| [GET /api/v2/search](https://docs.joinmastodon.org/methods/search/#v2) | [searchContents](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/SarchV2Service/searchContents.html) |
+
+### 1.3.4. Timelines Service
+
+#### 1.3.4.1. v1
+
+| **Endpoint**                                                                                 | **Method Name**                                                                                                                           |
+| -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| [GET /api/v1/timelines/public](https://docs.joinmastodon.org/methods/timelines/#public)      | [lookupPublicTimeline](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/TimelinesV1Service/lookupPublicTimeline.html)       |
+| [GET /api/v1/timelines/tag/:hashtag](https://docs.joinmastodon.org/methods/timelines/#tag)   | [lookupTimelineByHashtag](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/TimelinesV1Service/lookupTimelineByHashtag.html) |
+| [GET /api/v1/timelines/home](https://docs.joinmastodon.org/methods/timelines/#home)          | [lookupHomeTimeline](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/TimelinesV1Service/lookupHomeTimeline.html)           |
+| [GET /api/v1/timelines/list/:list_id](https://docs.joinmastodon.org/methods/timelines/#list) | [lookupListTimeline](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/TimelinesV1Service/lookupListTimeline.html)           |
+
+#### 1.3.4.2. v2
+
 ## 1.4. Tips 🏄
 
 ### 1.4.1. Method Names
@@ -156,11 +222,11 @@ Future<void> main() async {
 | **lookup**  | This prefix is attached to endpoints that reference toots, accounts, etc.                         |
 | **search**  | This prefix is attached to endpoints that perform extensive searches.                             |
 | **connect** | This prefix is attached to endpoints with high-performance streaming.                             |
-| **count**   | This prefix is attached to the endpoint that counts a particular item.                            |
 | **create**  | This prefix is attached to the endpoint performing the create state such as `Toot` and `Follow`.  |
 | **destroy** | This prefix is attached to the endpoint performing the destroy state such as `Toot` and `Follow`. |
 | **update**  | This prefix is attached to the endpoint performing the update state.                              |
 | **upload**  | This prefix is attached to the endpoint performing the media uploading.                           |
+| **verify**  | This prefix is attached to the endpoint performing the verify specific states or values.          |
 
 ### 1.4.2. Null Parameter at Request
 
@@ -184,8 +250,8 @@ Future<void> main() async {
     text: 'Toot!',
 
     //! These parameters are ignored at request because they are null.
-    mediaIds: null,
     poll: null,
+    sensitive: null,
   );
 }
 ```
@@ -348,11 +414,12 @@ The [RetryEvent](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/
 
 **mastodon_api** provides a convenient exception object for easy handling of exceptional responses and errors returned from Mastodon API.
 
-| Exception                                                                                                                          | Description                                                                                                            |
-| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Exception                                                                                                                          | Description                                                                                                           |
+| ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | [MastodonException](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/MastodonException-class.html)                   | The most basic exception object. For example, it can be used to search for posts that have already been deleted, etc. |
-| [UnauthorizedException](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/UnauthorizedException-class.html)           | Thrown when authentication fails with the specified access token.                                                      |
-| [RateLimitExceededException](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/RateLimitExceededException-class.html) | Thrown when the request rate limit is exceeded.                                                                        |
+| [UnauthorizedException](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/UnauthorizedException-class.html)           | Thrown when authentication fails with the specified access token.                                                     |
+| [RateLimitExceededException](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/RateLimitExceededException-class.html) | Thrown when the request rate limit is exceeded.                                                                       |
+| [DataNotFoundException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/DataNotFoundException-class.html)   | Thrown when response has no body or data field in body string, or when 404 status is returned.                        |
 
 Also, all of the above exceptions thrown from the **mastodon_api** process extend [MastodonException](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/MastodonException-class.html). This means that you can take all exceptions as [MastodonException](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/MastodonException-class.html) or handle them as certain exception types, depending on the situation.
 
