@@ -174,4 +174,87 @@ void main() {
       );
     });
   });
+
+  group('.createNewConfirmationEmail', () {
+    test('normal case', () async {
+      final appsService = AppsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/emails/confirmation',
+          'test/src/service/v1/apps/data/create_new_confirmation_email.json',
+        ),
+      );
+
+      final response = await appsService.createNewConfirmationEmail(
+        email: 'test',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<bool>());
+      expect(response.data, isTrue);
+    });
+
+    test('when access is forbidden', () async {
+      final appsService = AppsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/emails/confirmation',
+          'test/src/service/v1/apps/data/create_new_confirmation_email.json',
+          statusCode: 403,
+        ),
+      );
+
+      final response = await appsService.createNewConfirmationEmail(
+        email: 'test',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<bool>());
+      expect(response.data, isFalse);
+    });
+
+    test('when unauthorized', () async {
+      final appsService = AppsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/emails/confirmation',
+          'test/src/service/v1/apps/data/create_new_confirmation_email.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await appsService.createNewConfirmationEmail(
+          email: 'test',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final appsService = AppsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/emails/confirmation',
+          'test/src/service/v1/apps/data/create_new_confirmation_email.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await appsService.createNewConfirmationEmail(
+          email: 'test',
+        ),
+      );
+    });
+  });
 }
