@@ -1,6 +1,6 @@
 name: mastodon_api
 description: The easiest and powerful Dart/Flutter library for Mastodon API.
-version: 0.0.1
+version: 0.1.0
 repository: https://github.com/mastodon-dart/mastodon-api
 issue_tracker: https://github.com/mastodon-dart/mastodon-api/issues
 
