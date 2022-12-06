@@ -1,5 +1,11 @@
 # Release Note
 
+## v0.2.0
+
+- Supported `polls API methods`. ([#25](https://github.com/mastodon-dart/mastodon-api/issues/25))
+  - `GET /api/v1/polls/:id`
+  - `POST /api/v1/polls/:id/votes`
+
 ## v0.1.0
 
 - Supported `search API methods`. ([#34](https://github.com/mastodon-dart/mastodon-api/issues/34))

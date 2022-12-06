@@ -8,6 +8,7 @@ import '../../../core/client/user_context.dart';
 import '../../../core/language.dart';
 import '../../../core/visibility.dart';
 import '../../base_service.dart';
+import '../../entities/poll.dart';
 import '../../entities/status.dart';
 import '../../response/mastodon_response.dart';
 import 'status_poll_param.dart';
@@ -76,6 +77,86 @@ abstract class StatusesV1Service {
     List<String>? mediaIds,
     StatusPollParam? poll,
   });
+
+  /// Returns a specific poll.
+  ///
+  /// ## Parameters
+  ///
+  /// - [pollId]: The ID of the Poll in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET https://mastodon.example/api/v1/polls/:id HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - Anonymous
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/polls/#get
+  Future<MastodonResponse<Poll>> lookupPollById({required String pollId});
+
+  /// Post a vote to specific choice.
+  ///
+  /// ## Parameters
+  ///
+  /// - [pollId]: The ID of the Poll in the database.
+  ///
+  /// - [choice]: Index of options to vote on.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/polls/:id/votes HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/polls/#vote
+  Future<MastodonResponse<Poll>> createVote({
+    required String pollId,
+    required int choice,
+  });
+
+  /// Post votes to specific choices.
+  ///
+  /// ## Parameters
+  ///
+  /// - [pollId]: The ID of the Poll in the database.
+  ///
+  /// - [choice]: Indexes of options to vote on.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/polls/:id/votes HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/polls/#vote
+  Future<MastodonResponse<Poll>> createVotes({
+    required String pollId,
+    required List<int> choices,
+  });
 }
 
 class _StatusesV1Service extends BaseService implements StatusesV1Service {
@@ -117,5 +198,52 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
           },
         ),
         dataBuilder: Status.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Poll>> lookupPollById({
+    required String pollId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.get(
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/polls/$pollId',
+        ),
+        dataBuilder: Poll.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Poll>> createVote({
+    required String pollId,
+    required int choice,
+  }) async =>
+      await _createVote(
+        pollId: pollId,
+        choices: [choice],
+      );
+
+  @override
+  Future<MastodonResponse<Poll>> createVotes({
+    required String pollId,
+    required List<int> choices,
+  }) async =>
+      await _createVote(
+        pollId: pollId,
+        choices: choices,
+      );
+
+  Future<MastodonResponse<Poll>> _createVote({
+    required String pollId,
+    required List<int> choices,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/polls/$pollId/votes',
+          body: {
+            'choices': choices,
+          },
+        ),
+        dataBuilder: Poll.fromJson,
       );
 }

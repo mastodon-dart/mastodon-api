@@ -1,0 +1,16 @@
+{
+  "id": "26618",
+  "votes_count": 0,
+  "voters_count": 0,
+  "multiple": false,
+  "voted": true,
+  "expired": false,
+  "options": [
+    { "title": "test1", "votes_count": 0 },
+    { "title": "test2", "votes_count": 0 },
+    { "title": "test3", "votes_count": 0 }
+  ],
+  "own_votes": [],
+  "emojis": [],
+  "expires_at": "2022-12-13T05:33:32.903Z"
+}

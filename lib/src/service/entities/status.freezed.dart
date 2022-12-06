@@ -90,6 +90,9 @@ mixin _$Status {
   /// The application used to post this status.
   Application? get application => throw _privateConstructorUsedError;
 
+  /// The poll attached to the status.
+  Poll? get poll => throw _privateConstructorUsedError;
+
   /// The date when this status was created.
   DateTime get createdAt => throw _privateConstructorUsedError;
 
@@ -125,10 +128,12 @@ abstract class $StatusCopyWith<$Res> {
       DateTime? lastStatusAt,
       Account account,
       Application? application,
+      Poll? poll,
       DateTime createdAt});
 
   $AccountCopyWith<$Res> get account;
   $ApplicationCopyWith<$Res>? get application;
+  $PollCopyWith<$Res>? get poll;
 }
 
 /// @nodoc
@@ -165,6 +170,7 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
     Object? lastStatusAt = freezed,
     Object? account = null,
     Object? application = freezed,
+    Object? poll = freezed,
     Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
@@ -252,6 +258,10 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
           ? _value.application
           : application // ignore: cast_nullable_to_non_nullable
               as Application?,
+      poll: freezed == poll
+          ? _value.poll
+          : poll // ignore: cast_nullable_to_non_nullable
+              as Poll?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -276,6 +286,18 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
 
     return $ApplicationCopyWith<$Res>(_value.application!, (value) {
       return _then(_value.copyWith(application: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PollCopyWith<$Res>? get poll {
+    if (_value.poll == null) {
+      return null;
+    }
+
+    return $PollCopyWith<$Res>(_value.poll!, (value) {
+      return _then(_value.copyWith(poll: value) as $Val);
     });
   }
 }
@@ -308,12 +330,15 @@ abstract class _$$_StatusCopyWith<$Res> implements $StatusCopyWith<$Res> {
       DateTime? lastStatusAt,
       Account account,
       Application? application,
+      Poll? poll,
       DateTime createdAt});
 
   @override
   $AccountCopyWith<$Res> get account;
   @override
   $ApplicationCopyWith<$Res>? get application;
+  @override
+  $PollCopyWith<$Res>? get poll;
 }
 
 /// @nodoc
@@ -347,6 +372,7 @@ class __$$_StatusCopyWithImpl<$Res>
     Object? lastStatusAt = freezed,
     Object? account = null,
     Object? application = freezed,
+    Object? poll = freezed,
     Object? createdAt = null,
   }) {
     return _then(_$_Status(
@@ -434,6 +460,10 @@ class __$$_StatusCopyWithImpl<$Res>
           ? _value.application
           : application // ignore: cast_nullable_to_non_nullable
               as Application?,
+      poll: freezed == poll
+          ? _value.poll
+          : poll // ignore: cast_nullable_to_non_nullable
+              as Poll?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -468,6 +498,7 @@ class _$_Status implements _Status {
       this.lastStatusAt,
       required this.account,
       this.application,
+      this.poll,
       required this.createdAt});
 
   factory _$_Status.fromJson(Map<String, dynamic> json) =>
@@ -564,13 +595,17 @@ class _$_Status implements _Status {
   @override
   final Application? application;
 
+  /// The poll attached to the status.
+  @override
+  final Poll? poll;
+
   /// The date when this status was created.
   @override
   final DateTime createdAt;
 
   @override
   String toString() {
-    return 'Status(id: $id, url: $url, uri: $uri, content: $content, spoilerText: $spoilerText, visibility: $visibility, favouritesCount: $favouritesCount, repliesCount: $repliesCount, reblogsCount: $reblogsCount, language: $language, inReplyToTweetId: $inReplyToTweetId, inReplyToAccountId: $inReplyToAccountId, isFavourited: $isFavourited, isReblogged: $isReblogged, isMuted: $isMuted, isBookmarked: $isBookmarked, isSensitive: $isSensitive, isPinned: $isPinned, lastStatusAt: $lastStatusAt, account: $account, application: $application, createdAt: $createdAt)';
+    return 'Status(id: $id, url: $url, uri: $uri, content: $content, spoilerText: $spoilerText, visibility: $visibility, favouritesCount: $favouritesCount, repliesCount: $repliesCount, reblogsCount: $reblogsCount, language: $language, inReplyToTweetId: $inReplyToTweetId, inReplyToAccountId: $inReplyToAccountId, isFavourited: $isFavourited, isReblogged: $isReblogged, isMuted: $isMuted, isBookmarked: $isBookmarked, isSensitive: $isSensitive, isPinned: $isPinned, lastStatusAt: $lastStatusAt, account: $account, application: $application, poll: $poll, createdAt: $createdAt)';
   }
 
   @override
@@ -614,6 +649,7 @@ class _$_Status implements _Status {
             (identical(other.account, account) || other.account == account) &&
             (identical(other.application, application) ||
                 other.application == application) &&
+            (identical(other.poll, poll) || other.poll == poll) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
@@ -643,6 +679,7 @@ class _$_Status implements _Status {
         lastStatusAt,
         account,
         application,
+        poll,
         createdAt
       ]);
 
@@ -683,6 +720,7 @@ abstract class _Status implements Status {
       final DateTime? lastStatusAt,
       required final Account account,
       final Application? application,
+      final Poll? poll,
       required final DateTime createdAt}) = _$_Status;
 
   factory _Status.fromJson(Map<String, dynamic> json) = _$_Status.fromJson;
@@ -778,6 +816,10 @@ abstract class _Status implements Status {
 
   /// The application used to post this status.
   Application? get application;
+  @override
+
+  /// The poll attached to the status.
+  Poll? get poll;
   @override
 
   /// The date when this status was created.
