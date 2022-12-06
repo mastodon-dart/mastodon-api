@@ -10,8 +10,11 @@ import 'package:mastodon_api/src/service/entities/blocked_domain.dart';
 import 'package:mastodon_api/src/service/entities/extended_description.dart';
 import 'package:mastodon_api/src/service/entities/instance.dart';
 import 'package:mastodon_api/src/service/entities/instance_activity.dart';
+import 'package:mastodon_api/src/service/entities/preview_card.dart';
 import 'package:mastodon_api/src/service/entities/rate_limit.dart';
 import 'package:mastodon_api/src/service/entities/rule.dart';
+import 'package:mastodon_api/src/service/entities/status.dart';
+import 'package:mastodon_api/src/service/entities/tag.dart';
 import 'package:mastodon_api/src/service/response/mastodon_response.dart';
 import 'package:mastodon_api/src/service/v1/instance/instance_v1_service.dart';
 import 'package:test/test.dart';
@@ -358,6 +361,240 @@ void main() {
 
       expectRateLimitExceededException(
         () async => await instanceService.lookupExtendedDescription(),
+      );
+    });
+  });
+
+  group('.lookupBlockedDomains', () {
+    test('normal case', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/instance/domain_block',
+          'test/src/service/v1/instance/data/lookup_blocked_domains.json',
+          {},
+        ),
+      );
+
+      final response = await instanceService.lookupBlockedDomains();
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<List<BlockedDomain>>());
+    });
+
+    test('when unauthorized', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/instance/domain_block',
+          'test/src/service/v1/instance/data/lookup_blocked_domains.json',
+          {},
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await instanceService.lookupBlockedDomains(),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/instance/domain_block',
+          'test/src/service/v1/instance/data/lookup_blocked_domains.json',
+          {},
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await instanceService.lookupBlockedDomains(),
+      );
+    });
+  });
+
+  group('.lookupTrendingTags', () {
+    test('normal case', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.anonymousOnly,
+          '/api/v1/trends/tags',
+          'test/src/service/v1/instance/data/lookup_trending_tags.json',
+          {
+            'limit': '10',
+          },
+        ),
+      );
+
+      final response = await instanceService.lookupTrendingTags(limit: 10);
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<List<Tag>>());
+    });
+
+    test('when unauthorized', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.anonymousOnly,
+          '/api/v1/trends/tags',
+          'test/src/service/v1/instance/data/lookup_trending_tags.json',
+          {},
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await instanceService.lookupTrendingTags(),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.anonymousOnly,
+          '/api/v1/trends/tags',
+          'test/src/service/v1/instance/data/lookup_trending_tags.json',
+          {},
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await instanceService.lookupTrendingTags(),
+      );
+    });
+  });
+
+  group('.lookupTrendingStatuses', () {
+    test('normal case', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.anonymousOnly,
+          '/api/v1/trends/statuses',
+          'test/src/service/v1/instance/data/lookup_trending_statuses.json',
+          {
+            'limit': '10',
+          },
+        ),
+      );
+
+      final response = await instanceService.lookupTrendingStatuses(limit: 10);
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<List<Status>>());
+    });
+
+    test('when unauthorized', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.anonymousOnly,
+          '/api/v1/trends/statuses',
+          'test/src/service/v1/instance/data/lookup_trending_statuses.json',
+          {},
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await instanceService.lookupTrendingStatuses(),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.anonymousOnly,
+          '/api/v1/trends/statuses',
+          'test/src/service/v1/instance/data/lookup_trending_statuses.json',
+          {},
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await instanceService.lookupTrendingStatuses(),
+      );
+    });
+  });
+
+  group('.lookupTrendingLinks', () {
+    test('normal case', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.anonymousOnly,
+          '/api/v1/trends/links',
+          'test/src/service/v1/instance/data/lookup_trending_links.json',
+          {
+            'limit': '10',
+          },
+        ),
+      );
+
+      final response = await instanceService.lookupTrendingLinks(limit: 10);
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<List<PreviewCard>>());
+    });
+
+    test('when unauthorized', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.anonymousOnly,
+          '/api/v1/trends/links',
+          'test/src/service/v1/instance/data/lookup_trending_links.json',
+          {},
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await instanceService.lookupTrendingLinks(),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.anonymousOnly,
+          '/api/v1/trends/links',
+          'test/src/service/v1/instance/data/lookup_trending_links.json',
+          {},
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await instanceService.lookupTrendingLinks(),
       );
     });
   });

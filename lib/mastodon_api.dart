@@ -40,6 +40,7 @@ export 'package:mastodon_api/src/service/entities/preview_card_type.dart';
 export 'package:mastodon_api/src/service/entities/rate_limit.dart';
 export 'package:mastodon_api/src/service/entities/registered_application.dart';
 export 'package:mastodon_api/src/service/entities/status.dart';
+export 'package:mastodon_api/src/service/entities/tag.dart';
 export 'package:mastodon_api/src/service/entities/thumbnail.dart';
 export 'package:mastodon_api/src/service/entities/thumbnail_version.dart';
 export 'package:mastodon_api/src/service/entities/usage_statistics.dart';
