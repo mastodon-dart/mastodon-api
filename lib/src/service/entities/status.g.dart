@@ -44,6 +44,11 @@ _$_Status _$$_StatusFromJson(Map json) => $checkedCreate(
               (v) => v == null
                   ? null
                   : Application.fromJson(Map<String, Object?>.from(v as Map))),
+          poll: $checkedConvert(
+              'poll',
+              (v) => v == null
+                  ? null
+                  : Poll.fromJson(Map<String, Object?>.from(v as Map))),
           createdAt:
               $checkedConvert('created_at', (v) => DateTime.parse(v as String)),
         );
@@ -98,6 +103,7 @@ Map<String, dynamic> _$$_StatusToJson(_$_Status instance) {
   writeNotNull('last_status_at', instance.lastStatusAt?.toIso8601String());
   val['account'] = instance.account.toJson();
   writeNotNull('application', instance.application?.toJson());
+  writeNotNull('poll', instance.poll?.toJson());
   val['created_at'] = instance.createdAt.toIso8601String();
   return val;
 }

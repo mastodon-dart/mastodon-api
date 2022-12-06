@@ -49,7 +49,9 @@
       - [1.3.3.2. v2](#1332-v2)
     - [1.3.4. Timelines Service](#134-timelines-service)
       - [1.3.4.1. v1](#1341-v1)
-      - [1.3.4.2. v2](#1342-v2)
+    - [1.3.5. Statuses Service](#135-statuses-service)
+      - [1.3.5.1. v1](#1351-v1)
+      - [1.3.5.2. v2](#1352-v2)
   - [1.4. Tips 🏄](#14-tips-)
     - [1.4.1. Method Names](#141-method-names)
     - [1.4.2. Null Parameter at Request](#142-null-parameter-at-request)
@@ -209,7 +211,17 @@ Future<void> main() async {
 | [GET /api/v1/timelines/home](https://docs.joinmastodon.org/methods/timelines/#home)          | [lookupHomeTimeline](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/TimelinesV1Service/lookupHomeTimeline.html)           |
 | [GET /api/v1/timelines/list/:list_id](https://docs.joinmastodon.org/methods/timelines/#list) | [lookupListTimeline](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/TimelinesV1Service/lookupListTimeline.html)           |
 
-#### 1.3.4.2. v2
+### 1.3.5. Statuses Service
+
+#### 1.3.5.1. v1
+
+| **Endpoint**                                                                     | **Method Name**                                                                                                                                                                                                                     |
+| -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [POST /api/v1/statuses](https://docs.joinmastodon.org/methods/statuses/#create)  | [createStatus](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/createStatus.html)                                                                                                                  |
+| [GET /api/v1/polls/:id](https://docs.joinmastodon.org/methods/polls/#get)        | [lookupPollById](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/lookupPollById.html)                                                                                                              |
+| [POST /api/v1/polls/:id/votes](https://docs.joinmastodon.org/methods/polls/#get) | [createVote](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/createVote.html)</br>[createVotes](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/createVotes.html) |
+
+#### 1.3.5.2. v2
 
 ## 1.4. Tips 🏄
 
@@ -419,7 +431,7 @@ The [RetryEvent](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/
 | [MastodonException](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/MastodonException-class.html)                   | The most basic exception object. For example, it can be used to search for posts that have already been deleted, etc. |
 | [UnauthorizedException](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/UnauthorizedException-class.html)           | Thrown when authentication fails with the specified access token.                                                     |
 | [RateLimitExceededException](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/RateLimitExceededException-class.html) | Thrown when the request rate limit is exceeded.                                                                       |
-| [DataNotFoundException](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/DataNotFoundException-class.html)   | Thrown when response has no body or data field in body string, or when 404 status is returned.                        |
+| [DataNotFoundException](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/DataNotFoundException-class.html)           | Thrown when response has no body or data field in body string, or when 404 status is returned.                        |
 
 Also, all of the above exceptions thrown from the **mastodon_api** process extend [MastodonException](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/MastodonException-class.html). This means that you can take all exceptions as [MastodonException](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/MastodonException-class.html) or handle them as certain exception types, depending on the situation.
 

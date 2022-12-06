@@ -12,6 +12,7 @@ import '../../core/language.dart';
 import '../../core/visibility.dart';
 import 'account.dart';
 import 'application.dart';
+import 'poll.dart';
 
 part 'status.freezed.dart';
 part 'status.g.dart';
@@ -83,6 +84,9 @@ class Status with _$Status {
 
     /// The application used to post this status.
     Application? application,
+
+    /// The poll attached to the status.
+    Poll? poll,
 
     /// The date when this status was created.
     required DateTime createdAt,
