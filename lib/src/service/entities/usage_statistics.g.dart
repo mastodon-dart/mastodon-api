@@ -2,17 +2,17 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-part of 'tag_statistics.dart';
+part of 'usage_statistics.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TagStatistics _$$_TagStatisticsFromJson(Map json) => $checkedCreate(
-      r'_$_TagStatistics',
+_$_UsageStatistics _$$_UsageStatisticsFromJson(Map json) => $checkedCreate(
+      r'_$_UsageStatistics',
       json,
       ($checkedConvert) {
-        final val = _$_TagStatistics(
+        final val = _$_UsageStatistics(
           recordedAt: $checkedConvert('day',
               (v) => const UnixTimestampConverter().fromJson(v as String)),
           usedCount: $checkedConvert(
@@ -29,7 +29,7 @@ _$_TagStatistics _$$_TagStatisticsFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_TagStatisticsToJson(_$_TagStatistics instance) =>
+Map<String, dynamic> _$$_UsageStatisticsToJson(_$_UsageStatistics instance) =>
     <String, dynamic>{
       'day': const UnixTimestampConverter().toJson(instance.recordedAt),
       'uses': const IntConverter().toJson(instance.usedCount),

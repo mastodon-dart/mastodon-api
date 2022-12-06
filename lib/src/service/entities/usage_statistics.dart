@@ -11,12 +11,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../core/convert/int_converter.dart';
 import '../../core/convert/unix_timestamp_converter.dart';
 
-part 'tag_statistics.freezed.dart';
-part 'tag_statistics.g.dart';
+part 'usage_statistics.freezed.dart';
+part 'usage_statistics.g.dart';
 
 @freezed
-class TagStatistics with _$TagStatistics {
-  const factory TagStatistics({
+class UsageStatistics with _$UsageStatistics {
+  const factory UsageStatistics({
     /// The recorded date time of this history.
     @JsonKey(name: 'day')
     @UnixTimestampConverter()
@@ -27,8 +27,8 @@ class TagStatistics with _$TagStatistics {
 
     /// The total of accounts using the tag within that day.
     @JsonKey(name: 'accounts') @IntConverter() required int accountCount,
-  }) = _TagStatistics;
+  }) = _UsageStatistics;
 
-  factory TagStatistics.fromJson(Map<String, Object?> json) =>
-      _$TagStatisticsFromJson(json);
+  factory UsageStatistics.fromJson(Map<String, Object?> json) =>
+      _$UsageStatisticsFromJson(json);
 }

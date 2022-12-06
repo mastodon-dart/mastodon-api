@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'tag_statistics.dart';
+part of 'usage_statistics.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-TagStatistics _$TagStatisticsFromJson(Map<String, dynamic> json) {
-  return _TagStatistics.fromJson(json);
+UsageStatistics _$UsageStatisticsFromJson(Map<String, dynamic> json) {
+  return _UsageStatistics.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TagStatistics {
+mixin _$UsageStatistics {
   /// The recorded date time of this history.
   @JsonKey(name: 'day')
   @UnixTimestampConverter()
@@ -37,15 +37,15 @@ mixin _$TagStatistics {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TagStatisticsCopyWith<TagStatistics> get copyWith =>
+  $UsageStatisticsCopyWith<UsageStatistics> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TagStatisticsCopyWith<$Res> {
-  factory $TagStatisticsCopyWith(
-          TagStatistics value, $Res Function(TagStatistics) then) =
-      _$TagStatisticsCopyWithImpl<$Res, TagStatistics>;
+abstract class $UsageStatisticsCopyWith<$Res> {
+  factory $UsageStatisticsCopyWith(
+          UsageStatistics value, $Res Function(UsageStatistics) then) =
+      _$UsageStatisticsCopyWithImpl<$Res, UsageStatistics>;
   @useResult
   $Res call(
       {@JsonKey(name: 'day') @UnixTimestampConverter() DateTime recordedAt,
@@ -54,9 +54,9 @@ abstract class $TagStatisticsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TagStatisticsCopyWithImpl<$Res, $Val extends TagStatistics>
-    implements $TagStatisticsCopyWith<$Res> {
-  _$TagStatisticsCopyWithImpl(this._value, this._then);
+class _$UsageStatisticsCopyWithImpl<$Res, $Val extends UsageStatistics>
+    implements $UsageStatisticsCopyWith<$Res> {
+  _$UsageStatisticsCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -88,11 +88,11 @@ class _$TagStatisticsCopyWithImpl<$Res, $Val extends TagStatistics>
 }
 
 /// @nodoc
-abstract class _$$_TagStatisticsCopyWith<$Res>
-    implements $TagStatisticsCopyWith<$Res> {
-  factory _$$_TagStatisticsCopyWith(
-          _$_TagStatistics value, $Res Function(_$_TagStatistics) then) =
-      __$$_TagStatisticsCopyWithImpl<$Res>;
+abstract class _$$_UsageStatisticsCopyWith<$Res>
+    implements $UsageStatisticsCopyWith<$Res> {
+  factory _$$_UsageStatisticsCopyWith(
+          _$_UsageStatistics value, $Res Function(_$_UsageStatistics) then) =
+      __$$_UsageStatisticsCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -102,11 +102,11 @@ abstract class _$$_TagStatisticsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TagStatisticsCopyWithImpl<$Res>
-    extends _$TagStatisticsCopyWithImpl<$Res, _$_TagStatistics>
-    implements _$$_TagStatisticsCopyWith<$Res> {
-  __$$_TagStatisticsCopyWithImpl(
-      _$_TagStatistics _value, $Res Function(_$_TagStatistics) _then)
+class __$$_UsageStatisticsCopyWithImpl<$Res>
+    extends _$UsageStatisticsCopyWithImpl<$Res, _$_UsageStatistics>
+    implements _$$_UsageStatisticsCopyWith<$Res> {
+  __$$_UsageStatisticsCopyWithImpl(
+      _$_UsageStatistics _value, $Res Function(_$_UsageStatistics) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -116,7 +116,7 @@ class __$$_TagStatisticsCopyWithImpl<$Res>
     Object? usedCount = null,
     Object? accountCount = null,
   }) {
-    return _then(_$_TagStatistics(
+    return _then(_$_UsageStatistics(
       recordedAt: null == recordedAt
           ? _value.recordedAt
           : recordedAt // ignore: cast_nullable_to_non_nullable
@@ -135,14 +135,14 @@ class __$$_TagStatisticsCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TagStatistics implements _TagStatistics {
-  const _$_TagStatistics(
+class _$_UsageStatistics implements _UsageStatistics {
+  const _$_UsageStatistics(
       {@JsonKey(name: 'day') @UnixTimestampConverter() required this.recordedAt,
       @JsonKey(name: 'uses') @IntConverter() required this.usedCount,
       @JsonKey(name: 'accounts') @IntConverter() required this.accountCount});
 
-  factory _$_TagStatistics.fromJson(Map<String, dynamic> json) =>
-      _$$_TagStatisticsFromJson(json);
+  factory _$_UsageStatistics.fromJson(Map<String, dynamic> json) =>
+      _$$_UsageStatisticsFromJson(json);
 
   /// The recorded date time of this history.
   @override
@@ -164,14 +164,14 @@ class _$_TagStatistics implements _TagStatistics {
 
   @override
   String toString() {
-    return 'TagStatistics(recordedAt: $recordedAt, usedCount: $usedCount, accountCount: $accountCount)';
+    return 'UsageStatistics(recordedAt: $recordedAt, usedCount: $usedCount, accountCount: $accountCount)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TagStatistics &&
+            other is _$_UsageStatistics &&
             (identical(other.recordedAt, recordedAt) ||
                 other.recordedAt == recordedAt) &&
             (identical(other.usedCount, usedCount) ||
@@ -188,19 +188,19 @@ class _$_TagStatistics implements _TagStatistics {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TagStatisticsCopyWith<_$_TagStatistics> get copyWith =>
-      __$$_TagStatisticsCopyWithImpl<_$_TagStatistics>(this, _$identity);
+  _$$_UsageStatisticsCopyWith<_$_UsageStatistics> get copyWith =>
+      __$$_UsageStatisticsCopyWithImpl<_$_UsageStatistics>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TagStatisticsToJson(
+    return _$$_UsageStatisticsToJson(
       this,
     );
   }
 }
 
-abstract class _TagStatistics implements TagStatistics {
-  const factory _TagStatistics(
+abstract class _UsageStatistics implements UsageStatistics {
+  const factory _UsageStatistics(
       {@JsonKey(name: 'day')
       @UnixTimestampConverter()
           required final DateTime recordedAt,
@@ -209,10 +209,10 @@ abstract class _TagStatistics implements TagStatistics {
           required final int usedCount,
       @JsonKey(name: 'accounts')
       @IntConverter()
-          required final int accountCount}) = _$_TagStatistics;
+          required final int accountCount}) = _$_UsageStatistics;
 
-  factory _TagStatistics.fromJson(Map<String, dynamic> json) =
-      _$_TagStatistics.fromJson;
+  factory _UsageStatistics.fromJson(Map<String, dynamic> json) =
+      _$_UsageStatistics.fromJson;
 
   @override
 
@@ -234,6 +234,6 @@ abstract class _TagStatistics implements TagStatistics {
   int get accountCount;
   @override
   @JsonKey(ignore: true)
-  _$$_TagStatisticsCopyWith<_$_TagStatistics> get copyWith =>
+  _$$_UsageStatisticsCopyWith<_$_UsageStatistics> get copyWith =>
       throw _privateConstructorUsedError;
 }
