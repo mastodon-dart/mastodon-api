@@ -1,0 +1,1673 @@
+[
+  {
+    "id": "109465504737057970",
+    "created_at": "2022-12-06T07:17:26.404Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.world/users/auschwitzmuseum/statuses/109465504737057970",
+    "url": "https://mastodon.world/@auschwitzmuseum/109465504737057970",
+    "replies_count": 2,
+    "reblogs_count": 96,
+    "favourites_count": 140,
+    "edited_at": null,
+    "content": "\u003cp\u003e6 December 1893 | A Lithuanian Jew, Isak Leimann, was born in Vilnius. He emigrated to Norway. \u003c/p\u003e\u003cp\u003eHe arrived at Auschwitz with his two children, Bernhard \u0026amp; Dina, on 1 December 1942. \u003c/p\u003e\u003cp\u003eIsak \u0026amp; Dina were murdered in a gas chamber. Bernhard perished in the camp in January 1943.\u003c/p\u003e\u003cp\u003e\u003ca href=\"https://mastodon.world/tags/Auschwitz\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eAuschwitz\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/Birkenau\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eBirkenau\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/Holocaust\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eHolocaust\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/Shoah\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eShoah\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/history\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003ehistory\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/Jews\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eJews\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/histodons\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003ehistodons\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/Nazis\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eNazis\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/Germany\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eGermany\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/Norway\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eNorway\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/Lithuania\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eLithuania\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/NeverForget\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eNeverForget\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/ww2\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eww2\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/WorldWar2\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eWorldWar2\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/Memorial\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eMemorial\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/Remember\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eRemember\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e",
+    "reblog": null,
+    "application": null,
+    "account": {
+      "id": "109362825494156334",
+      "username": "auschwitzmuseum",
+      "acct": "auschwitzmuseum",
+      "display_name": "Auschwitz Memorial",
+      "locked": false,
+      "bot": false,
+      "discoverable": true,
+      "group": false,
+      "created_at": "2022-11-18T00:00:00.000Z",
+      "note": "\u003cp\u003eFormer German Nazi concentration \u0026amp; extermination camp Auschwitz. Official account at Mastodon. You can also find us on:\u003c/p\u003e\u003cp\u003eFB: \u003ca href=\"http://facebook.com/auschwitzmemorial\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"\u003e\u003cspan class=\"invisible\"\u003ehttp://\u003c/span\u003e\u003cspan class=\"\"\u003efacebook.com/auschwitzmemorial\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e \u003cbr /\u003eIN: \u003ca href=\"http://instagram.com/auschwitzmemorial\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"\u003e\u003cspan class=\"invisible\"\u003ehttp://\u003c/span\u003e\u003cspan class=\"ellipsis\"\u003einstagram.com/auschwitzmemoria\u003c/span\u003e\u003cspan class=\"invisible\"\u003el\u003c/span\u003e\u003c/a\u003e\u003cbr /\u003eTT: \u003ca href=\"http://twitter.com/AuschwitzMuseum\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"\u003e\u003cspan class=\"invisible\"\u003ehttp://\u003c/span\u003e\u003cspan class=\"\"\u003etwitter.com/AuschwitzMuseum\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e\u003cp\u003e\u003ca href=\"https://mastodon.world/tags/museum\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003emuseum\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/memorial\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003ememorial\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/NeverForget\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eNeverForget\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/NeverAgainIsNow\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eNeverAgainIsNow\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/histodons\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003ehistodons\u003c/span\u003e\u003c/a\u003e \u003c/p\u003e\u003cp\u003eThemes: \u003ca href=\"https://mastodon.world/tags/Auschwitz\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eAuschwitz\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/Holocaust\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eHolocaust\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/WorldWar2\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eWorldWar2\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/memory\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003ememory\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/history\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003ehistory\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e",
+      "url": "https://mastodon.world/@auschwitzmuseum",
+      "avatar": "https://s3.eu-central-2.wasabisys.com/mastodonworld/accounts/avatars/109/362/825/494/156/334/original/03ae37dcfbf94e56.jpg",
+      "avatar_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/accounts/avatars/109/362/825/494/156/334/original/03ae37dcfbf94e56.jpg",
+      "header": "https://s3.eu-central-2.wasabisys.com/mastodonworld/accounts/headers/109/362/825/494/156/334/original/33d5dac764fddd09.jpeg",
+      "header_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/accounts/headers/109/362/825/494/156/334/original/33d5dac764fddd09.jpeg",
+      "followers_count": 44659,
+      "following_count": 16,
+      "statuses_count": 179,
+      "last_status_at": "2022-12-06",
+      "noindex": false,
+      "emojis": [],
+      "fields": [
+        {
+          "name": "Website",
+          "value": "\u003ca href=\"https://www.auschwitz.org\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\"\u003e\u003cspan class=\"invisible\"\u003ehttps://www.\u003c/span\u003e\u003cspan class=\"\"\u003eauschwitz.org\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": "2022-12-05T13:44:13.375+00:00"
+        },
+        {
+          "name": "Facebook",
+          "value": "\u003ca href=\"http://facebook.com/auschwitzmemorial\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\"\u003e\u003cspan class=\"invisible\"\u003ehttp://\u003c/span\u003e\u003cspan class=\"\"\u003efacebook.com/auschwitzmemorial\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        },
+        {
+          "name": "E-lessons",
+          "value": "\u003ca href=\"http://lesson.auschwitz.org\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\"\u003e\u003cspan class=\"invisible\"\u003ehttp://\u003c/span\u003e\u003cspan class=\"\"\u003elesson.auschwitz.org\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        },
+        {
+          "name": "Podcast",
+          "value": "\u003ca href=\"http://podcast.auschwitz.org\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\"\u003e\u003cspan class=\"invisible\"\u003ehttp://\u003c/span\u003e\u003cspan class=\"\"\u003epodcast.auschwitz.org\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [
+      {
+        "id": "109465493828449553",
+        "type": "image",
+        "url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/media_attachments/files/109/465/493/828/449/553/original/1f67c41a76437008.jpeg",
+        "preview_url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/media_attachments/files/109/465/493/828/449/553/small/1f67c41a76437008.jpeg",
+        "remote_url": null,
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "original": {
+            "width": 313,
+            "height": 422,
+            "size": "313x422",
+            "aspect": 0.7417061611374408
+          },
+          "small": {
+            "width": 313,
+            "height": 422,
+            "size": "313x422",
+            "aspect": 0.7417061611374408
+          },
+          "focus": { "x": 0.0, "y": 0.0 }
+        },
+        "description": "Portrait of Isak Leimann, an older man with a mustache.",
+        "blurhash": "UTK-qPM{~q%M_3%MfQof-;M{RjWBt7xut7M{"
+      },
+      {
+        "id": "109465494534262994",
+        "type": "image",
+        "url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/media_attachments/files/109/465/494/534/262/994/original/e2596987df1ad588.jpeg",
+        "preview_url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/media_attachments/files/109/465/494/534/262/994/small/e2596987df1ad588.jpeg",
+        "remote_url": null,
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "original": {
+            "width": 318,
+            "height": 421,
+            "size": "318x421",
+            "aspect": 0.7553444180522565
+          },
+          "small": {
+            "width": 318,
+            "height": 421,
+            "size": "318x421",
+            "aspect": 0.7553444180522565
+          },
+          "focus": { "x": 0.0, "y": 0.0 }
+        },
+        "description": "A portrait of Dina Leimann, a smiling woman with curly hair.",
+        "blurhash": "UZKd}K-;-;WB-;WB%MRj~qM{-;t7ayIUD%of"
+      },
+      {
+        "id": "109465494836323163",
+        "type": "image",
+        "url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/media_attachments/files/109/465/494/836/323/163/original/70212a92141ac4f3.jpeg",
+        "preview_url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/media_attachments/files/109/465/494/836/323/163/small/70212a92141ac4f3.jpeg",
+        "remote_url": null,
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "original": {
+            "width": 317,
+            "height": 424,
+            "size": "317x424",
+            "aspect": 0.7476415094339622
+          },
+          "small": {
+            "width": 317,
+            "height": 424,
+            "size": "317x424",
+            "aspect": 0.7476415094339622
+          },
+          "focus": { "x": 0.0, "y": 0.0 }
+        },
+        "description": "A portrait photo of Bernhard Leimann wearing round-framed glasses.",
+        "blurhash": "UOKUZk9F~q%Mof-;ofWBxuM{RjRj-;t7%MM{"
+      }
+    ],
+    "mentions": [],
+    "tags": [
+      { "name": "auschwitz", "url": "https://mastodon.world/tags/auschwitz" },
+      { "name": "birkenau", "url": "https://mastodon.world/tags/birkenau" },
+      { "name": "holocaust", "url": "https://mastodon.world/tags/holocaust" },
+      { "name": "shoah", "url": "https://mastodon.world/tags/shoah" },
+      { "name": "history", "url": "https://mastodon.world/tags/history" },
+      { "name": "jews", "url": "https://mastodon.world/tags/jews" },
+      { "name": "histodons", "url": "https://mastodon.world/tags/histodons" },
+      { "name": "nazis", "url": "https://mastodon.world/tags/nazis" },
+      { "name": "germany", "url": "https://mastodon.world/tags/germany" },
+      { "name": "norway", "url": "https://mastodon.world/tags/norway" },
+      { "name": "lithuania", "url": "https://mastodon.world/tags/lithuania" },
+      {
+        "name": "neverforget",
+        "url": "https://mastodon.world/tags/neverforget"
+      },
+      { "name": "WW2", "url": "https://mastodon.world/tags/WW2" },
+      { "name": "worldwar2", "url": "https://mastodon.world/tags/worldwar2" },
+      { "name": "memorial", "url": "https://mastodon.world/tags/memorial" },
+      { "name": "remember", "url": "https://mastodon.world/tags/remember" }
+    ],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "109466010653746695",
+    "created_at": "2022-12-06T09:26:06.083Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.world/users/DarthPutinKGB/statuses/109466010653746695",
+    "url": "https://mastodon.world/@DarthPutinKGB/109466010653746695",
+    "replies_count": 2,
+    "reblogs_count": 42,
+    "favourites_count": 93,
+    "edited_at": null,
+    "content": "\u003cp\u003eDay 286 of my 3 day war. My head of air defense very sadly had an accident tomorrow.\u003c/p\u003e\u003cp\u003eI remain a master strategist.\u003c/p\u003e",
+    "reblog": null,
+    "application": {
+      "name": "Mastodon for Android",
+      "website": "https://app.joinmastodon.org/android"
+    },
+    "account": {
+      "id": "109326577022449850",
+      "username": "DarthPutinKGB",
+      "acct": "DarthPutinKGB",
+      "display_name": "Darth Putin",
+      "locked": false,
+      "bot": false,
+      "discoverable": true,
+      "group": false,
+      "created_at": "2022-11-11T00:00:00.000Z",
+      "note": "\u003cp\u003eCzar for life of all Russia. Maker of exotic tea, underwear \u0026amp; sushi. Author. Master Strategist. Parody, apparently.\u003cbr /\u003eMy book: \u003ca href=\"https://a.co/d/hXK3beo\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003ea.co/d/hXK3beo\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e",
+      "url": "https://mastodon.world/@DarthPutinKGB",
+      "avatar": "https://s3.eu-central-2.wasabisys.com/mastodonworld/accounts/avatars/109/326/577/022/449/850/original/70368becbb9e359c.png",
+      "avatar_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/accounts/avatars/109/326/577/022/449/850/original/70368becbb9e359c.png",
+      "header": "https://s3.eu-central-2.wasabisys.com/mastodonworld/accounts/headers/109/326/577/022/449/850/original/032ae0a106f90106.jpg",
+      "header_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/accounts/headers/109/326/577/022/449/850/original/032ae0a106f90106.jpg",
+      "followers_count": 14999,
+      "following_count": 10,
+      "statuses_count": 57,
+      "last_status_at": "2022-12-06",
+      "noindex": false,
+      "emojis": [],
+      "fields": []
+    },
+    "media_attachments": [],
+    "mentions": [],
+    "tags": [],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "109466460609464046",
+    "created_at": "2022-12-06T11:20:26.000Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.social/users/Sheril/statuses/109466460231965655",
+    "url": "https://mastodon.social/@Sheril/109466460231965655",
+    "replies_count": 6,
+    "reblogs_count": 85,
+    "favourites_count": 8,
+    "edited_at": null,
+    "content": "\u003cp\u003eDid you know Monopoly was invented by a woman named Elizabeth Magie in 1903?\u003c/p\u003e\u003cp\u003eOriginally ‘The Landlord’s Game,’ it was designed as a protest against the big monopolists of her time like Carnegie \u0026amp; Rockefeller.\u003c/p\u003e\u003cp\u003eBut it was Charles Darrow, an unemployed salesman, who eventually sold it to Parker Brothers after playing a version.\u003cbr\u003e \u003cbr\u003eParker Brothers credited Monopoly with saving their company. Magie died in 1948 without recognition. Darrow became very wealthy \u0026amp; his legend lives on. \u003ca href=\"https://mastodon.social/tags/history\" class=\"mention hashtag\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e#\u003cspan\u003ehistory\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.social/tags/women\" class=\"mention hashtag\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e#\u003cspan\u003ewomen\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e",
+    "reblog": null,
+    "account": {
+      "id": "109256499660484359",
+      "username": "Sheril",
+      "acct": "Sheril@mastodon.social",
+      "display_name": "Sheril Kirshenbaum",
+      "locked": false,
+      "bot": false,
+      "discoverable": true,
+      "group": false,
+      "created_at": "2022-10-29T00:00:00.000Z",
+      "note": "\u003cp\u003eAuthor. Scientist. Host of PBS Serving Up Science. Sustainability, Climate, Politics \u0026amp; Science Communication at Michigan State.\u003c/p\u003e",
+      "url": "https://mastodon.social/@Sheril",
+      "avatar": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/256/499/660/484/359/original/df1def0890513bf7.jpeg",
+      "avatar_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/256/499/660/484/359/original/df1def0890513bf7.jpeg",
+      "header": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/256/499/660/484/359/original/71e96ddb50357df6.jpeg",
+      "header_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/256/499/660/484/359/original/71e96ddb50357df6.jpeg",
+      "followers_count": 17525,
+      "following_count": 128,
+      "statuses_count": 218,
+      "last_status_at": "2022-12-06",
+      "emojis": [],
+      "fields": [
+        {
+          "name": "Website",
+          "value": "\u003ca href=\"http://www.sherilkirshenbaum.com\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttp://www.\u003c/span\u003e\u003cspan class=\"\"\u003esherilkirshenbaum.com\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        },
+        {
+          "name": "Serving Up Science",
+          "value": "\u003ca href=\"https://www.pbs.org/show/serving-science/\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://www.\u003c/span\u003e\u003cspan class=\"\"\u003epbs.org/show/serving-science/\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [
+      {
+        "id": "109466460454144654",
+        "type": "image",
+        "url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/media_attachments/files/109/466/460/454/144/654/original/e75a7fd81db04281.jpeg",
+        "preview_url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/media_attachments/files/109/466/460/454/144/654/small/e75a7fd81db04281.jpeg",
+        "remote_url": "https://files.mastodon.social/media_attachments/files/109/466/443/749/710/272/original/7f8bd2c78f3b753e.jpeg",
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "focus": { "x": -0.0064794816414686825, "y": 0.3187772925764192 },
+          "original": {
+            "width": 748,
+            "height": 1015,
+            "size": "748x1015",
+            "aspect": 0.7369458128078817
+          },
+          "small": {
+            "width": 412,
+            "height": 559,
+            "size": "412x559",
+            "aspect": 0.7370304114490162
+          }
+        },
+        "description": "Lizzie Magie (1892). Photo is in the public domain. Photographer unknown.",
+        "blurhash": "UAHoE]xu~qD%00t7?bM{?bWBoet7_2M|IU%L"
+      }
+    ],
+    "mentions": [],
+    "tags": [
+      { "name": "history", "url": "https://mastodon.world/tags/history" },
+      { "name": "women", "url": "https://mastodon.world/tags/women" }
+    ],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "109464721915638897",
+    "created_at": "2022-12-06T03:58:14.000Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mstdn.social/users/feditips/statuses/109464721476704686",
+    "url": "https://mstdn.social/@feditips/109464721476704686",
+    "replies_count": 38,
+    "reblogs_count": 269,
+    "favourites_count": 24,
+    "edited_at": null,
+    "content": "\u003cp\u003eSomeone has taken my FediFollows logo and combined it with the FediTips name to create a reddit group that is posting transphobic material.\u003c/p\u003e\u003cp\u003eThis is nothing to do with me. I don't use reddit and never have done.\u003c/p\u003e\u003cp\u003eI'm part of the LGBTQIA+ community and totally condemn transphobia.\u003c/p\u003e\u003cp\u003e(Not going to link to the group obviously.)\u003c/p\u003e",
+    "reblog": null,
+    "account": {
+      "id": "106761096067466920",
+      "username": "feditips",
+      "acct": "feditips@mstdn.social",
+      "display_name": "Fedi.Tips 🎄",
+      "locked": false,
+      "bot": false,
+      "discoverable": true,
+      "group": false,
+      "created_at": "2020-11-16T00:00:00.000Z",
+      "note": "\u003cp\u003ePosting hints and tips about Mastodon and the Fediverse 🌍 \u003c/p\u003e\u003cp\u003eThere are lots of answers to common questions about Mastodon and the Fediverse at \u003ca href=\"https://fedi.tips\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003efedi.tips\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e\u003cp\u003eIf you can't find the answer on the website, @ or DM me and I will try to help! 📨 There's no such thing as a silly question!\u003c/p\u003e\u003cp\u003eI am a volunteer, you can buy me a coffee at \u003ca href=\"https://ko-fi.com/fedithing\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003eko-fi.com/fedithing\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e or become a patron at \u003ca href=\"https://liberapay.com/FediThing\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003eliberapay.com/FediThing\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e\u003cp\u003eMaintained by \u003cspan class=\"h-card\"\u003e\u003ca href=\"https://tech.lgbt/@FediThing\" class=\"u-url mention\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e@\u003cspan\u003eFediThing\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, banner artwork is by \u003cspan class=\"h-card\"\u003e\u003ca href=\"https://mastodon.art/@posiputt\" class=\"u-url mention\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e@\u003cspan\u003eposiputt\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e",
+      "url": "https://mstdn.social/@feditips",
+      "avatar": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/106/761/096/067/466/920/original/4f80a7182c4bd742.png",
+      "avatar_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/106/761/096/067/466/920/original/4f80a7182c4bd742.png",
+      "header": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/106/761/096/067/466/920/original/6126f047c4f2197e.png",
+      "header_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/106/761/096/067/466/920/original/6126f047c4f2197e.png",
+      "followers_count": 138969,
+      "following_count": 571,
+      "statuses_count": 3011,
+      "last_status_at": "2022-12-06",
+      "emojis": [],
+      "fields": [
+        {
+          "name": "Website",
+          "value": "\u003ca href=\"https://fedi.tips\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003efedi.tips\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": "2022-12-06T07:55:35.521+00:00"
+        },
+        {
+          "name": "See also",
+          "value": "\u003cspan class=\"h-card\"\u003e\u003ca href=\"https://social.growyourown.services/@FediFollows\" class=\"u-url mention\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e@\u003cspan\u003eFediFollows@social.growyourown.services\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, \u003cspan class=\"h-card\"\u003e\u003ca href=\"https://social.growyourown.services/@FediVideo\" class=\"u-url mention\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e@\u003cspan\u003eFediVideo@social.growyourown.services\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e \u0026amp; \u003cspan class=\"h-card\"\u003e\u003ca href=\"https://social.growyourown.services/@homegrown\" class=\"u-url mention\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e@\u003cspan\u003ehomegrown@social.growyourown.services\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e",
+          "verified_at": null
+        },
+        {
+          "name": "Buy me a coffee ☕",
+          "value": "\u003ca href=\"https://ko-fi.com/fedithing\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003eko-fi.com/fedithing\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        },
+        {
+          "name": "Become a Patron 🔁",
+          "value": "\u003ca href=\"https://liberapay.com/FediThing\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003eliberapay.com/FediThing\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [],
+    "mentions": [],
+    "tags": [],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "109465820685142835",
+    "created_at": "2022-12-06T08:37:44.000Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.scot/users/petewalkden/statuses/109465820479545733",
+    "url": "https://mastodon.scot/@petewalkden/109465820479545733",
+    "replies_count": 7,
+    "reblogs_count": 108,
+    "favourites_count": 19,
+    "edited_at": null,
+    "content": "\u003cp\u003eRim-Lit Red.\u003c/p\u003e\u003cp\u003eDuring the winter months in Scotland, when the sun remains low in the sky, it can cast shards of light through a woodland, lighting parts up, leaving the rest in shade.\u003c/p\u003e\u003cp\u003eHere I used such light, and exposed for it (not the overall scene as my eyes were seeing it) to get this effect, showing just the illuminated rim of the squirrel's fur, and nothing much else.\u003c/p\u003e\u003cp\u003eThanks for all the fantastic comments, likes and boosts on my images. Very humbling. 😊\u003c/p\u003e\u003cp\u003e\u003ca href=\"https://mastodon.scot/tags/RedSquirrel\" class=\"mention hashtag\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e#\u003cspan\u003eRedSquirrel\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.scot/tags/ScottishWildlife\" class=\"mention hashtag\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e#\u003cspan\u003eScottishWildlife\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e",
+    "reblog": null,
+    "account": {
+      "id": "109330284289227944",
+      "username": "petewalkden",
+      "acct": "petewalkden@mastodon.scot",
+      "display_name": "Pete Walkden",
+      "locked": false,
+      "bot": false,
+      "discoverable": true,
+      "group": false,
+      "created_at": "2022-11-12T00:00:00.000Z",
+      "note": "\u003cp\u003eProfessional wildlife photographer and guide, based on the Isle Of Mull, Scotland.\u003c/p\u003e",
+      "url": "https://mastodon.scot/@petewalkden",
+      "avatar": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/330/284/289/227/944/original/360fd6ca7c7779a3.jpg",
+      "avatar_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/330/284/289/227/944/original/360fd6ca7c7779a3.jpg",
+      "header": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/330/284/289/227/944/original/a037abe5dc648ab4.jpg",
+      "header_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/330/284/289/227/944/original/a037abe5dc648ab4.jpg",
+      "followers_count": 9205,
+      "following_count": 63,
+      "statuses_count": 159,
+      "last_status_at": "2022-12-06",
+      "emojis": [],
+      "fields": [
+        {
+          "name": "Website",
+          "value": "\u003ca href=\"https://www.petewalkden.co.uk\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://www.\u003c/span\u003e\u003cspan class=\"\"\u003epetewalkden.co.uk\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [
+      {
+        "id": "109465820618905041",
+        "type": "image",
+        "url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/media_attachments/files/109/465/820/618/905/041/original/cdae78745cd48490.jpg",
+        "preview_url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/media_attachments/files/109/465/820/618/905/041/small/cdae78745cd48490.jpg",
+        "remote_url": "https://media.mastodon.scot/mastodon-scot-public/media_attachments/files/109/465/799/708/248/151/original/eff9bb24a995fc9e.jpg",
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "focus": { "x": 0.0, "y": 0.0 },
+          "original": {
+            "width": 977,
+            "height": 1020,
+            "size": "977x1020",
+            "aspect": 0.957843137254902
+          },
+          "small": {
+            "width": 469,
+            "height": 490,
+            "size": "469x490",
+            "aspect": 0.9571428571428572
+          }
+        },
+        "description": "A photograph of a red squirrel nibbling on a nut in a woodland, in the Scottish Highlands late winter, with just the rim of the subject illuminated by the light, leaving the rest in shadow.",
+        "blurhash": "U57nE[Nc?w%0xZkCNIt6?wxaxZR-Neof%1R+"
+      }
+    ],
+    "mentions": [],
+    "tags": [
+      {
+        "name": "scottishwildlife",
+        "url": "https://mastodon.world/tags/scottishwildlife"
+      },
+      {
+        "name": "redsquirrel",
+        "url": "https://mastodon.world/tags/redsquirrel"
+      }
+    ],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "109462995277056518",
+    "created_at": "2022-12-05T20:39:15.092Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.world/users/davidho/statuses/109462995277056518",
+    "url": "https://mastodon.world/@davidho/109462995277056518",
+    "replies_count": 23,
+    "reblogs_count": 409,
+    "favourites_count": 497,
+    "edited_at": null,
+    "content": "\u003cp\u003eTo be honest, this seems worse than having the road blocked by \u003ca href=\"https://mastodon.world/tags/climate\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eclimate\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/activists\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eactivists\u003c/span\u003e\u003c/a\u003e for a few minutes.\u003c/p\u003e",
+    "reblog": null,
+    "application": null,
+    "account": {
+      "id": "109381119519926084",
+      "username": "davidho",
+      "acct": "davidho",
+      "display_name": "David Ho",
+      "locked": false,
+      "bot": false,
+      "discoverable": true,
+      "group": false,
+      "created_at": "2022-11-21T00:00:00.000Z",
+      "note": "\u003cp\u003e\u003ca href=\"https://mastodon.world/tags/Climate\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eClimate\u003c/span\u003e\u003c/a\u003e scientist working on the \u003ca href=\"https://mastodon.world/tags/ocean\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eocean\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://mastodon.world/tags/carbon\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003ecarbon\u003c/span\u003e\u003c/a\u003e cycle and climate solutions. Founder, Bamboo \u003ca href=\"https://mastodon.world/tags/Bike\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eBike\u003c/span\u003e\u003c/a\u003e Project. Professor at University of Hawaiʻi at Mānoa; also at Columbia University and École normale supérieure.\u003c/p\u003e\u003cp\u003ePosts usually about the ocean, climate change, carbon dioxide removal, transit, mobility, and cycling.\u003c/p\u003e",
+      "url": "https://mastodon.world/@davidho",
+      "avatar": "https://s3.eu-central-2.wasabisys.com/mastodonworld/accounts/avatars/109/381/119/519/926/084/original/e688dca3ba3dbc2b.jpeg",
+      "avatar_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/accounts/avatars/109/381/119/519/926/084/original/e688dca3ba3dbc2b.jpeg",
+      "header": "https://s3.eu-central-2.wasabisys.com/mastodonworld/accounts/headers/109/381/119/519/926/084/original/67e2e1bb046b8c97.jpeg",
+      "header_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/accounts/headers/109/381/119/519/926/084/original/67e2e1bb046b8c97.jpeg",
+      "followers_count": 1453,
+      "following_count": 341,
+      "statuses_count": 78,
+      "last_status_at": "2022-12-06",
+      "noindex": false,
+      "emojis": [],
+      "fields": [
+        {
+          "name": "Website",
+          "value": "\u003ca href=\"http://columbia.edu/~dth2\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\"\u003e\u003cspan class=\"invisible\"\u003ehttp://\u003c/span\u003e\u003cspan class=\"\"\u003ecolumbia.edu/~dth2\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        },
+        {
+          "name": "Twitter",
+          "value": "\u003ca href=\"https://twitter.com/_david_ho_\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etwitter.com/_david_ho_\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [
+      {
+        "id": "109462983229346814",
+        "type": "video",
+        "url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/media_attachments/files/109/462/983/229/346/814/original/75254226c01ef628.mp4",
+        "preview_url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/media_attachments/files/109/462/983/229/346/814/small/75254226c01ef628.png",
+        "remote_url": null,
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "original": {
+            "width": 480,
+            "height": 854,
+            "frame_rate": "30/1",
+            "duration": 19.69,
+            "bitrate": 633598
+          },
+          "small": {
+            "width": 225,
+            "height": 400,
+            "size": "225x400",
+            "aspect": 0.5625
+          }
+        },
+        "description": null,
+        "blurhash": "UYGl0BV?RPj[*0RjWBfk%hadWAkC-;V@WWjs"
+      }
+    ],
+    "mentions": [],
+    "tags": [
+      { "name": "climate", "url": "https://mastodon.world/tags/climate" },
+      { "name": "activists", "url": "https://mastodon.world/tags/activists" }
+    ],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "109462237467989192",
+    "created_at": "2022-12-05T17:26:26.000Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://social.chaosmagick.com/users/mrvapor/statuses/109462237097218644",
+    "url": "https://social.chaosmagick.com/@mrvapor/109462237097218644",
+    "replies_count": 227,
+    "reblogs_count": 1222,
+    "favourites_count": 139,
+    "edited_at": null,
+    "content": "\u003cp\u003eDear reporters, news people, etc.,\u003c/p\u003e\u003cp\u003eThe reason you're not getting any reach on Masto is because you rarely interact. You just come here, post your news article, and don't engage with the community.\u003c/p\u003e\u003cp\u003eYou will never get reach if you don't interact with people. This is not Twitter. This is not Facebook. If you want this platform to work for you, you have to become a part of the community, not just shout at us and leave. Forget everything you learned in the walled corporate digital gardens.\u003c/p\u003e",
+    "reblog": null,
+    "account": {
+      "id": "109312882869051953",
+      "username": "mrvapor",
+      "acct": "mrvapor@social.chaosmagick.com",
+      "display_name": "🅼🆁. 🆅  ∞",
+      "locked": false,
+      "bot": false,
+      "discoverable": true,
+      "group": false,
+      "created_at": "2022-11-08T00:00:00.000Z",
+      "note": "\u003cp\u003eI am Mr. V. Like Tom from MySpace, but I do magick. I also write, make zines and other cool stuff, and I ate paste as a kid. Currently the HMFIC at CMC. Doctor of Divinity, Metaphysics. Minister of Chaos. \u003c/p\u003e\u003cp\u003eHobbies: thoughtform \u0026amp; hypersigil creation, tek magick, , community building, independent DIY creation techniques, writing, graphic design, web admin, dancing with no rhythm while punching the air to 80s power ballads, coffee.\u003c/p\u003e\u003cp\u003ePolitics: Punk Liberal\u003c/p\u003e\u003cp\u003eNB (He/Him/They/Them)\u003c/p\u003e",
+      "url": "https://social.chaosmagick.com/@mrvapor",
+      "avatar": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/312/882/869/051/953/original/6bcb910d8bd80b59.jpg",
+      "avatar_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/312/882/869/051/953/original/6bcb910d8bd80b59.jpg",
+      "header": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/312/882/869/051/953/original/5041d832549ee521.png",
+      "header_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/312/882/869/051/953/original/5041d832549ee521.png",
+      "followers_count": 479,
+      "following_count": 417,
+      "statuses_count": 2255,
+      "last_status_at": "2022-12-06",
+      "emojis": [],
+      "fields": [
+        {
+          "name": "CMC",
+          "value": "\u003ca href=\"https://chaosmagick.com/cmc-info-index/\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"ellipsis\"\u003echaosmagick.com/cmc-info-index\u003c/span\u003e\u003cspan class=\"invisible\"\u003e/\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": "2022-12-05T21:13:22.501+00:00"
+        },
+        {
+          "name": "Donate",
+          "value": "\u003ca href=\"https://liberapay.com/Mr_V/\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003eliberapay.com/Mr_V/\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": "2022-12-05T21:13:22.838+00:00"
+        },
+        {
+          "name": "Links",
+          "value": "\u003ca href=\"https://mistah-v.com/\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003emistah-v.com/\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        },
+        {
+          "name": "Chaote.Tube",
+          "value": "\u003ca href=\"https://chaote.tube/\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echaote.tube/\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [],
+    "mentions": [],
+    "tags": [],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "109463582675292592",
+    "created_at": "2022-12-05T23:08:33.000Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://masto.ai/users/rbreich/statuses/109463582389159971",
+    "url": "https://masto.ai/@rbreich/109463582389159971",
+    "replies_count": 50,
+    "reblogs_count": 371,
+    "favourites_count": 128,
+    "edited_at": null,
+    "content": "\u003cp\u003eOnly in America do we call working people ‘essential’ but deny them paid sick leave.\u003c/p\u003e\u003cp\u003eWe don’t need to treat essential workers like heroes. We need to treat them like human beings with dignity.\u003c/p\u003e\u003cp\u003eRaise their wages. Give them hazard pay. Guarantee health care and paid sick leave.\u003c/p\u003e",
+    "reblog": null,
+    "account": {
+      "id": "109338500312845437",
+      "username": "rbreich",
+      "acct": "rbreich@masto.ai",
+      "display_name": "Robert Reich",
+      "locked": false,
+      "bot": false,
+      "discoverable": true,
+      "group": false,
+      "created_at": "2022-11-13T00:00:00.000Z",
+      "note": "\u003cp\u003eBerkeley professor, former Secretary of Labor. Co-founder of Inequality Media. Sign up for updates, analysis and drawings: \u003ca href=\"http://robertreich.substack.com\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttp://\u003c/span\u003e\u003cspan class=\"\"\u003erobertreich.substack.com\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e",
+      "url": "https://masto.ai/@rbreich",
+      "avatar": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/338/500/312/845/437/original/9d3d9c6d5bc56839.jpg",
+      "avatar_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/338/500/312/845/437/original/9d3d9c6d5bc56839.jpg",
+      "header": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/338/500/312/845/437/original/01267f49d7d8bb55.jpeg",
+      "header_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/338/500/312/845/437/original/01267f49d7d8bb55.jpeg",
+      "followers_count": 133910,
+      "following_count": 27,
+      "statuses_count": 229,
+      "last_status_at": "2022-12-06",
+      "emojis": [],
+      "fields": [
+        {
+          "name": "Substack",
+          "value": "robertreich.substack.com",
+          "verified_at": null
+        },
+        {
+          "name": "LinkTree",
+          "value": "linktr.ee/rbreich",
+          "verified_at": null
+        },
+        { "name": "Website", "value": "robertreich.org", "verified_at": null },
+        {
+          "name": "TikTok",
+          "value": "tiktok.com/@rbreich",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [],
+    "mentions": [],
+    "tags": [],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "109461959504922344",
+    "created_at": "2022-12-05T16:15:50.453Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.world/users/StillIRise1963/statuses/109461959504922344",
+    "url": "https://mastodon.world/@StillIRise1963/109461959504922344",
+    "replies_count": 102,
+    "reblogs_count": 540,
+    "favourites_count": 930,
+    "edited_at": null,
+    "content": "\u003cp\u003eMy 87 year old parents just called me extremely distressed. They told me to remain calm and proceeded to tell me that my son called crying saying he was in jail. He said he\u0026#39;d hit a pregnant woman with his car and needed bail money. An attorney then called with details saying he would need $7,500.00 to be released. It was a SCAM. I\u0026#39;d just talked to my son. They would have paid except for the fact that I have their bank cards. Please be careful out there.\u003c/p\u003e",
+    "reblog": null,
+    "application": null,
+    "account": {
+      "id": "109326426305399861",
+      "username": "StillIRise1963",
+      "acct": "StillIRise1963",
+      "display_name": "StillIRise1963",
+      "locked": false,
+      "bot": false,
+      "discoverable": true,
+      "group": false,
+      "created_at": "2022-11-11T00:00:00.000Z",
+      "note": "\u003cp\u003eInterested in politics, race, culture, class and language. Mother of twins. Former Entrepreneur, Editor, Translator, Proofreader, College Advisor for NYC educational nonprofit.  Caretaker of elderly parents. Work in College Admissions. Atheist. Cannabis user. Traveler. Lived in Spain for years, miss it. Occasional foul mouth.  Avatar is a pic of my great grandmother, background is a blue and an antique white Arabic mosaic roof tile from Andalusia.\u003c/p\u003e",
+      "url": "https://mastodon.world/@StillIRise1963",
+      "avatar": "https://s3.eu-central-2.wasabisys.com/mastodonworld/accounts/avatars/109/326/426/305/399/861/original/0a997fd494e8bd44.jpg",
+      "avatar_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/accounts/avatars/109/326/426/305/399/861/original/0a997fd494e8bd44.jpg",
+      "header": "https://s3.eu-central-2.wasabisys.com/mastodonworld/accounts/headers/109/326/426/305/399/861/original/8e22f324ea50ebbd.jpg",
+      "header_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/accounts/headers/109/326/426/305/399/861/original/8e22f324ea50ebbd.jpg",
+      "followers_count": 1339,
+      "following_count": 1502,
+      "statuses_count": 1294,
+      "last_status_at": "2022-12-06",
+      "noindex": false,
+      "emojis": [],
+      "fields": []
+    },
+    "media_attachments": [],
+    "mentions": [],
+    "tags": [],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "109465410691285537",
+    "created_at": "2022-12-06T06:53:21.000Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://fediscience.org/users/ct_bergstrom/statuses/109465410043497711",
+    "url": "https://fediscience.org/@ct_bergstrom/109465410043497711",
+    "replies_count": 21,
+    "reblogs_count": 101,
+    "favourites_count": 1,
+    "edited_at": null,
+    "content": "\u003cp\u003eAt this point it will surprise no one, but I asked \u003ca href=\"https://fediscience.org/tags/ChatGPT\" class=\"mention hashtag\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e#\u003cspan\u003eChatGPT\u003c/span\u003e\u003c/a\u003e to define bullshit and to cite its sources.\u003c/p\u003e\u003cp\u003eIt provided definitions from the Cambridge English Dictionary and the Merriam-Webster Dictionary.\u003c/p\u003e\u003cp\u003eThe definitions it provided were entirely reasonable, but they were decidedly not from the sources it claimed.\u003c/p\u003e\u003cp\u003eThis highlights the fact that ChatGPT and other LLMs are not knowledge models, they are themselves engines trained to produce convincing bullshit.   \u003c/p\u003e\u003cp\u003eBelow: ChatGPT, CED, MW.\u003c/p\u003e",
+    "reblog": null,
+    "account": {
+      "id": "109288776848609939",
+      "username": "ct_bergstrom",
+      "acct": "ct_bergstrom@fediscience.org",
+      "display_name": "Carl T. Bergstrom",
+      "locked": false,
+      "bot": false,
+      "discoverable": true,
+      "group": false,
+      "created_at": "2022-11-05T00:00:00.000Z",
+      "note": "\u003cp\u003eI am a biology professor at the University of Washington. I study how information flows in biology, science, and society.\u003c/p\u003e\u003cp\u003eI wrote a book: *Calling Bullshit*: \u003ca href=\"http://tinyurl.com/fdcuvd7b\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttp://\u003c/span\u003e\u003cspan class=\"\"\u003etinyurl.com/fdcuvd7b\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e\u003cp\u003eI love ravens and crows.\u003c/p\u003e\u003cp\u003ehe/him\u003c/p\u003e",
+      "url": "https://fediscience.org/@ct_bergstrom",
+      "avatar": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/288/776/848/609/939/original/6eef502e623ecc84.jpg",
+      "avatar_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/288/776/848/609/939/original/6eef502e623ecc84.jpg",
+      "header": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/288/776/848/609/939/original/af747cb2de5548f6.jpeg",
+      "header_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/288/776/848/609/939/original/af747cb2de5548f6.jpeg",
+      "followers_count": 21289,
+      "following_count": 206,
+      "statuses_count": 457,
+      "last_status_at": "2022-12-06",
+      "emojis": [],
+      "fields": [
+        {
+          "name": "Website",
+          "value": "\u003ca href=\"http://carlbergstrom.com\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttp://\u003c/span\u003e\u003cspan class=\"\"\u003ecarlbergstrom.com\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        },
+        {
+          "name": "OpenCheck",
+          "value": "\u003ca href=\"https://opencheck.is/person/Carl_T_Bergstrom\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"ellipsis\"\u003eopencheck.is/person/Carl_T_Ber\u003c/span\u003e\u003cspan class=\"invisible\"\u003egstrom\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": "2022-12-05T15:59:16.703+00:00"
+        },
+        {
+          "name": "Birds (IG)",
+          "value": "\u003ca href=\"https://www.instagram.com/ctb_birds/\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://www.\u003c/span\u003e\u003cspan class=\"\"\u003einstagram.com/ctb_birds/\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        },
+        {
+          "name": "Calling Bullshit",
+          "value": "\u003ca href=\"http://callingbullshit.org\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttp://\u003c/span\u003e\u003cspan class=\"\"\u003ecallingbullshit.org\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [
+      {
+        "id": "109465410504368186",
+        "type": "image",
+        "url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/media_attachments/files/109/465/410/504/368/186/original/63dfbba47fa6853a.png",
+        "preview_url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/media_attachments/files/109/465/410/504/368/186/small/63dfbba47fa6853a.png",
+        "remote_url": "https://fediscience.org/system/media_attachments/files/109/465/402/944/071/193/original/0be59ee32dc99540.png",
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "focus": { "x": 0.0, "y": 0.0 },
+          "original": {
+            "width": 1666,
+            "height": 554,
+            "size": "1666x554",
+            "aspect": 3.0072202166064983
+          },
+          "small": {
+            "width": 832,
+            "height": 277,
+            "size": "832x277",
+            "aspect": 3.003610108303249
+          }
+        },
+        "description": "ChatGPT tries to define bullshit",
+        "blurhash": "UBR:HGM_-:WA%LawWAWA~poJRPo0IUe.xuoJ"
+      },
+      {
+        "id": "109465410570209511",
+        "type": "image",
+        "url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/media_attachments/files/109/465/410/570/209/511/original/4076eea80e634f0b.png",
+        "preview_url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/media_attachments/files/109/465/410/570/209/511/small/4076eea80e634f0b.png",
+        "remote_url": "https://fediscience.org/system/media_attachments/files/109/465/403/631/524/947/original/2fcd09e720700528.png",
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "focus": { "x": 0.0, "y": 0.0 },
+          "original": {
+            "width": 1122,
+            "height": 622,
+            "size": "1122x622",
+            "aspect": 1.8038585209003215
+          },
+          "small": {
+            "width": 644,
+            "height": 357,
+            "size": "644x357",
+            "aspect": 1.803921568627451
+          }
+        },
+        "description": "Cambridge English Dictionary definition of bullshit",
+        "blurhash": "U5Ss5001%Lt7~qM{D%ofNLt6WBRj%Mofofay"
+      },
+      {
+        "id": "109465410622473707",
+        "type": "image",
+        "url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/media_attachments/files/109/465/410/622/473/707/original/7ac825e05c82f0e4.png",
+        "preview_url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/media_attachments/files/109/465/410/622/473/707/small/7ac825e05c82f0e4.png",
+        "remote_url": "https://fediscience.org/system/media_attachments/files/109/465/404/277/305/386/original/d672adf733b2cdd2.png",
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "focus": { "x": 0.0, "y": 0.0 },
+          "original": {
+            "width": 1278,
+            "height": 970,
+            "size": "1278x970",
+            "aspect": 1.3175257731958763
+          },
+          "small": {
+            "width": 551,
+            "height": 418,
+            "size": "551x418",
+            "aspect": 1.3181818181818181
+          }
+        },
+        "description": "Merriam-Webster definition of bullshit",
+        "blurhash": "UASigQ00M{xbt7IVM{ayWBt7ofaxIVM{f6of"
+      }
+    ],
+    "mentions": [],
+    "tags": [
+      { "name": "chatgpt", "url": "https://mastodon.world/tags/chatgpt" }
+    ],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "109466092544797068",
+    "created_at": "2022-12-06T09:46:53.000Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mstdn.social/users/vs/statuses/109466092412421486",
+    "url": "https://mstdn.social/@vs/109466092412421486",
+    "replies_count": 13,
+    "reblogs_count": 61,
+    "favourites_count": 4,
+    "edited_at": "2022-12-06T11:23:32.000Z",
+    "content": "\u003cp\u003eWant to privatise the NHS? Think again!\u003c/p\u003e",
+    "reblog": null,
+    "account": {
+      "id": "109319571036162954",
+      "username": "vs",
+      "acct": "vs@mstdn.social",
+      "display_name": "🤖 VS 🤖 :verified:",
+      "locked": false,
+      "bot": false,
+      "discoverable": true,
+      "group": false,
+      "created_at": "2022-11-10T00:00:00.000Z",
+      "note": "\u003cp\u003eResearch, insight, and social media enthusiast and expert, looking to connect, share and learn together with others.\u003c/p\u003e",
+      "url": "https://mstdn.social/@vs",
+      "avatar": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/319/571/036/162/954/original/6616729c49cca0fc.png",
+      "avatar_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/319/571/036/162/954/original/6616729c49cca0fc.png",
+      "header": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/319/571/036/162/954/original/ca294304c1bdc596.png",
+      "header_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/319/571/036/162/954/original/ca294304c1bdc596.png",
+      "followers_count": 1410,
+      "following_count": 782,
+      "statuses_count": 322,
+      "last_status_at": "2022-12-06",
+      "emojis": [],
+      "fields": []
+    },
+    "media_attachments": [
+      {
+        "id": "109466472513044836",
+        "type": "image",
+        "url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/media_attachments/files/109/466/472/513/044/836/original/b7c005b6d7175590.jpg",
+        "preview_url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/media_attachments/files/109/466/472/513/044/836/small/b7c005b6d7175590.jpg",
+        "remote_url": "https://media.mstdn.social/media_attachments/files/109/466/470/339/353/958/original/499e459be78e9e38.jpg",
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "focus": { "x": 0.0, "y": 0.0 },
+          "original": {
+            "width": 467,
+            "height": 542,
+            "size": "467x542",
+            "aspect": 0.8616236162361623
+          },
+          "small": {
+            "width": 445,
+            "height": 517,
+            "size": "445x517",
+            "aspect": 0.8607350096711799
+          }
+        },
+        "description": "Screenshot of social media post by binkybrain:\n\nMy wife has cancer, it took 5 months to wipe out 20 years of life savings and that was with insurance. The experience has turned me into a hateful, bitter person. We did everything we were told. We went to college, got degrees, avoided credit card debt, spent wisely, saved a nice chunk of money in savings accounts and retirement accounts and minded our own business.\n\nThe USA healthcare system took all of our savings and retirement and forced us to refinance our house so that we lost 15 years of equity. This is a country I'm supposed to be proud of? I hate this system and anyone that defends it.",
+        "blurhash": "U39QEi^+Mx%2t7%2xut700xt-paet7%2xaof"
+      }
+    ],
+    "mentions": [],
+    "tags": [],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "109464988946986308",
+    "created_at": "2022-12-06T05:06:14.000Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.lol/users/evacide/statuses/109464988816874702",
+    "url": "https://mastodon.lol/@evacide/109464988816874702",
+    "replies_count": 23,
+    "reblogs_count": 125,
+    "favourites_count": 9,
+    "edited_at": null,
+    "content": "\u003cp\u003eWho is going to tell the Texans that kids don't become queer by seeing drag shows? Kids become queer by seeing Linda Hamilton do pull-ups in Terminator 2.\u003c/p\u003e",
+    "reblog": null,
+    "account": {
+      "id": "109344539375818557",
+      "username": "evacide",
+      "acct": "evacide@mastodon.lol",
+      "display_name": "Eva",
+      "locked": false,
+      "bot": false,
+      "discoverable": true,
+      "group": false,
+      "created_at": "2022-11-13T00:00:00.000Z",
+      "note": "\u003cp\u003eDirector of Cybersecurity \u003cbr\u003e@EFF\u003cbr\u003e / Co-founder of \u003cbr\u003e@stopstalkerware\u003cbr\u003e/ These are my opinions, not my employers’ / I did a TED talk once\u003c/p\u003e",
+      "url": "https://mastodon.lol/@evacide",
+      "avatar": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/344/539/375/818/557/original/ca37b012b77dc696.jpeg",
+      "avatar_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/344/539/375/818/557/original/ca37b012b77dc696.jpeg",
+      "header": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/344/539/375/818/557/original/d6a6325c2515f70e.png",
+      "header_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/344/539/375/818/557/original/d6a6325c2515f70e.png",
+      "followers_count": 13396,
+      "following_count": 195,
+      "statuses_count": 149,
+      "last_status_at": "2022-12-06",
+      "emojis": [],
+      "fields": []
+    },
+    "media_attachments": [],
+    "mentions": [],
+    "tags": [],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "109463324665600821",
+    "created_at": "2022-12-05T22:03:01.153Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.world/users/signalapp/statuses/109463324665600821",
+    "url": "https://mastodon.world/@signalapp/109463324665600821",
+    "replies_count": 34,
+    "reblogs_count": 130,
+    "favourites_count": 297,
+    "edited_at": "2022-12-05T22:03:31.272Z",
+    "content": "\u003cp\u003eDid you know you can talk to yourself on Signal?\u003c/p\u003e\u003cp\u003eYears ago, we built Note to Self to hold your to-do-list, let you send photos from your phone to your Signal Desktop app, or note a friend’s recommendation. Use it for whatever it is you want or need to remember.\u003c/p\u003e\u003cp\u003eIf you’re sending yourself passwords or copies of important documents, consider turning on disappearing messages, too.\u003c/p\u003e",
+    "reblog": null,
+    "application": null,
+    "account": {
+      "id": "109365959166609531",
+      "username": "signalapp",
+      "acct": "signalapp",
+      "display_name": "Signal",
+      "locked": false,
+      "bot": false,
+      "discoverable": true,
+      "group": false,
+      "created_at": "2022-11-18T00:00:00.000Z",
+      "note": "\u003cp\u003eSignal is an end-to-end encrypted messaging app. Privacy isn’t an optional mode, it’s just the way that Signal works. Every message, every call, every time. \u003c/p\u003e\u003cp\u003eSignal is independent and not for profit; a different kind of tech from a different kind of organization.\u003c/p\u003e\u003cp\u003e\u003ca href=\"https://signal.org/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003esignal.org/\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e",
+      "url": "https://mastodon.world/@signalapp",
+      "avatar": "https://s3.eu-central-2.wasabisys.com/mastodonworld/accounts/avatars/109/365/959/166/609/531/original/3308c9dac2c6723e.jpeg",
+      "avatar_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/accounts/avatars/109/365/959/166/609/531/original/3308c9dac2c6723e.jpeg",
+      "header": "https://s3.eu-central-2.wasabisys.com/mastodonworld/accounts/headers/109/365/959/166/609/531/original/f892f910a8e37579.jpeg",
+      "header_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/accounts/headers/109/365/959/166/609/531/original/f892f910a8e37579.jpeg",
+      "followers_count": 22759,
+      "following_count": 0,
+      "statuses_count": 6,
+      "last_status_at": "2022-12-05",
+      "noindex": false,
+      "emojis": [],
+      "fields": []
+    },
+    "media_attachments": [
+      {
+        "id": "109463322467170450",
+        "type": "image",
+        "url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/media_attachments/files/109/463/322/467/170/450/original/717e7997597d8c5e.png",
+        "preview_url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/media_attachments/files/109/463/322/467/170/450/small/717e7997597d8c5e.png",
+        "remote_url": null,
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "original": {
+            "width": 1080,
+            "height": 1350,
+            "size": "1080x1350",
+            "aspect": 0.8
+          },
+          "small": {
+            "width": 429,
+            "height": 536,
+            "size": "429x536",
+            "aspect": 0.8003731343283582
+          }
+        },
+        "description": null,
+        "blurhash": "UROgQo?a_N4o?uM{D*%L%iM{M^x]D$t8%NRP"
+      }
+    ],
+    "mentions": [],
+    "tags": [],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "109464518006414741",
+    "created_at": "2022-12-06T03:06:29.000Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.social/users/kjhealy/statuses/109464517942331654",
+    "url": "https://mastodon.social/@kjhealy/109464517942331654",
+    "replies_count": 10,
+    "reblogs_count": 161,
+    "favourites_count": 7,
+    "edited_at": "2022-12-06T03:06:40.000Z",
+    "content": "\u003cp\u003eNext generation of GPT bot rumored to be so realistic that when you ask it to write something important to meet a deadline it goes ahead and cleans your house.\u003c/p\u003e",
+    "reblog": null,
+    "account": {
+      "id": "109243777317295214",
+      "username": "kjhealy",
+      "acct": "kjhealy@mastodon.social",
+      "display_name": "Kieran Healy",
+      "locked": false,
+      "bot": false,
+      "discoverable": true,
+      "group": false,
+      "created_at": "2022-10-26T00:00:00.000Z",
+      "note": "\u003cp\u003e\u003ca href=\"https://kieranhealy.org\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003ekieranhealy.org\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e",
+      "url": "https://mastodon.social/@kjhealy",
+      "avatar": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/243/777/317/295/214/original/ffba7c93d475cc83.jpg",
+      "avatar_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/243/777/317/295/214/original/ffba7c93d475cc83.jpg",
+      "header": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/243/777/317/295/214/original/4b10b1a314c93476.jpeg",
+      "header_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/243/777/317/295/214/original/4b10b1a314c93476.jpeg",
+      "followers_count": 3859,
+      "following_count": 116,
+      "statuses_count": 169,
+      "last_status_at": "2022-12-06",
+      "emojis": [],
+      "fields": [
+        {
+          "name": "Website",
+          "value": "\u003ca href=\"https://kieranhealy.org\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003ekieranhealy.org\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        },
+        {
+          "name": "Data Visualization",
+          "value": "\u003ca href=\"http://socviz.co\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttp://\u003c/span\u003e\u003cspan class=\"\"\u003esocviz.co\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        },
+        {
+          "name": "GitHub",
+          "value": "\u003ca href=\"https://github.com/kjhealy\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003egithub.com/kjhealy\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        },
+        {
+          "name": "Office",
+          "value": "\u003ca href=\"https://sociology.duke.edu\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003esociology.duke.edu\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [],
+    "mentions": [],
+    "tags": [],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "109463760142890396",
+    "created_at": "2022-12-05T23:53:32.000Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://friend.camp/users/darius/statuses/109463759280138885",
+    "url": "https://friend.camp/@darius/109463759280138885",
+    "replies_count": 10,
+    "reblogs_count": 281,
+    "favourites_count": 7,
+    "edited_at": null,
+    "content": "\u003cp\u003eI'm hosting a webinar about trust and safety on the fediverse this Thursday, Dec 8th at 12pm Eastern. It's an introduction to the state of content moderation and community safety here.\u003c/p\u003e\u003cp\u003eI hope it will be useful to people at civil society organizations who have perhaps heard about Mastodon and the fediverse and would like to know more about where there are gaps in funding and services, and places where orgs could potentially help augment what's already happening.\u003c/p\u003e\u003cp\u003eRSVP: \u003ca href=\"https://meedan.com/event/webinar-trust-and-safety-on-the-fediverse\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"ellipsis\"\u003emeedan.com/event/webinar-trust\u003c/span\u003e\u003cspan class=\"invisible\"\u003e-and-safety-on-the-fediverse\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e",
+    "reblog": null,
+    "account": {
+      "id": "106892103586211226",
+      "username": "darius",
+      "acct": "darius@friend.camp",
+      "display_name": "Darius Kazemi",
+      "locked": false,
+      "bot": false,
+      "discoverable": true,
+      "group": false,
+      "created_at": "2018-08-12T00:00:00.000Z",
+      "note": "\u003cp\u003eI'm the administrator of this server. \u003ca href=\"https://tinysubversions.com\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etinysubversions.com\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e is where most of my stuff lives. I make Hometown along with a bunch of other fediverse software (see pinned posts). I'm trying to fix the internet, and some people say I'm at least kind of succeeding. Based in Portland, Oregon, USA. he/him\u003c/p\u003e",
+      "url": "https://friend.camp/@darius",
+      "avatar": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/106/892/103/586/211/226/original/a5700789c88b847c.jpeg",
+      "avatar_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/106/892/103/586/211/226/original/a5700789c88b847c.jpeg",
+      "header": "https://mastodon.world/headers/original/missing.png",
+      "header_static": "https://mastodon.world/headers/original/missing.png",
+      "followers_count": 8446,
+      "following_count": 1584,
+      "statuses_count": 28707,
+      "last_status_at": "2022-12-06",
+      "emojis": [],
+      "fields": [
+        {
+          "name": "Website",
+          "value": "\u003ca href=\"https://tinysubversions.com\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etinysubversions.com\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": "2022-12-04T03:18:12.252+00:00"
+        },
+        {
+          "name": "Podcast 1",
+          "value": "\u003ca href=\"https://explainjojo.com\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003eexplainjojo.com\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": "2022-12-04T03:18:12.950+00:00"
+        },
+        {
+          "name": "Podcast 2",
+          "value": "\u003ca href=\"https://toomuchnotenough.site\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etoomuchnotenough.site\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": "2022-12-04T03:18:13.537+00:00"
+        }
+      ]
+    },
+    "media_attachments": [],
+    "mentions": [],
+    "tags": [],
+    "emojis": [],
+    "card": {
+      "url": "https://meedan.com/event/webinar-trust-and-safety-on-the-fediverse",
+      "title": "Webinar: Trust and safety on the fediverse",
+      "description": "We are happy to invite you to attend a webinar hosted by Darius Kazemi, an engineer at Meedan who for five years has been writing about the fediverse and writing software for its users. He will be joined by content moderation expert Kat Lo and security expert Aaron Huslage.",
+      "type": "link",
+      "author_name": "",
+      "author_url": "",
+      "provider_name": "",
+      "provider_url": "",
+      "html": "",
+      "width": 400,
+      "height": 267,
+      "image": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/preview_cards/images/001/659/296/original/e26ff58a392ff8fc.jpg",
+      "embed_url": "",
+      "blurhash": "U9Qkh{#MI]OJwEA2oIxAs6NNoJs%-hxZocR+"
+    },
+    "poll": null
+  },
+  {
+    "id": "109464036430629553",
+    "created_at": "2022-12-06T01:03:59.000Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.social/users/docpop/statuses/109464036250339165",
+    "url": "https://mastodon.social/@docpop/109464036250339165",
+    "replies_count": 18,
+    "reblogs_count": 231,
+    "favourites_count": 5,
+    "edited_at": null,
+    "content": "\u003cp\u003eDon't make me tap the sign\u003c/p\u003e",
+    "reblog": null,
+    "account": {
+      "id": "109305125488363455",
+      "username": "docpop",
+      "acct": "docpop@mastodon.social",
+      "display_name": "Doctor Popular",
+      "locked": false,
+      "bot": false,
+      "discoverable": true,
+      "group": false,
+      "created_at": "2017-03-30T00:00:00.000Z",
+      "note": "\u003cp\u003e\"Jack-of-all-trades musician, artist, dramatic yo-yoist, and video game designer-wizard\" - From the San Francisco Bay Guardian's \"Best Of The Bay\" issue. \u003cbr\u003ehe/him\u003cbr\u003eSan Francisco, CA\u003c/p\u003e",
+      "url": "https://mastodon.social/@docpop",
+      "avatar": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/305/125/488/363/455/original/04e8c25cdd20d4df.png",
+      "avatar_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/305/125/488/363/455/original/04e8c25cdd20d4df.png",
+      "header": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/305/125/488/363/455/original/5372cc9a041b961a.jpg",
+      "header_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/305/125/488/363/455/original/5372cc9a041b961a.jpg",
+      "followers_count": 398,
+      "following_count": 216,
+      "statuses_count": 413,
+      "last_status_at": "2022-12-06",
+      "emojis": [],
+      "fields": [
+        {
+          "name": "Personal Blog",
+          "value": "\u003ca href=\"https://docpop.org\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003edocpop.org\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": "2022-11-25T21:26:16.450+00:00"
+        },
+        {
+          "name": "Youtube (mostly long yo-yo videos)",
+          "value": "\u003ca href=\"https://www.youtube.com/docpop\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://www.\u003c/span\u003e\u003cspan class=\"\"\u003eyoutube.com/docpop\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        },
+        {
+          "name": "My Yo-Yo Store",
+          "value": "\u003ca href=\"https://doctorpopular.com\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003edoctorpopular.com\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [
+      {
+        "id": "109464036326431320",
+        "type": "image",
+        "url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/media_attachments/files/109/464/036/326/431/320/original/9754696c21c4738b.png",
+        "preview_url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/media_attachments/files/109/464/036/326/431/320/small/9754696c21c4738b.png",
+        "remote_url": "https://files.mastodon.social/media_attachments/files/109/464/031/089/180/002/original/4e24d36b01f1da37.png",
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "focus": { "x": 0.0, "y": 0.0 },
+          "original": {
+            "width": 642,
+            "height": 462,
+            "size": "642x462",
+            "aspect": 1.3896103896103895
+          },
+          "small": {
+            "width": 566,
+            "height": 407,
+            "size": "566x407",
+            "aspect": 1.3906633906633907
+          }
+        },
+        "description": "A modified screenshot from the Simpsons cartoon show. It shows a cartoonish hand pointing to a sign at the front of a bus. The sign says \"There are never purely technological  solutions to societal problems\"",
+        "blurhash": "UbKnVsr.D%S7ohNgR-s*01xY-pWBR4RjbIog"
+      }
+    ],
+    "mentions": [],
+    "tags": [],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "109463944707410551",
+    "created_at": "2022-12-06T00:40:40.000Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mstdn.social/users/amydiehl/statuses/109463944626130327",
+    "url": "https://mstdn.social/@amydiehl/109463944626130327",
+    "replies_count": 35,
+    "reblogs_count": 218,
+    "favourites_count": 18,
+    "edited_at": null,
+    "content": "\u003cp\u003eFinally, the CDC is encouraging people to wear masks.\u003cbr\u003e\u003ca href=\"https://www.cnbc.com/amp/2022/12/05/cdc-encourages-people-to-wear-masks-to-prevent-spread-of-covid-flu-rsv.html\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://www.\u003c/span\u003e\u003cspan class=\"ellipsis\"\u003ecnbc.com/amp/2022/12/05/cdc-en\u003c/span\u003e\u003cspan class=\"invisible\"\u003ecourages-people-to-wear-masks-to-prevent-spread-of-covid-flu-rsv.html\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e",
+    "reblog": null,
+    "account": {
+      "id": "109293289945041916",
+      "username": "amydiehl",
+      "acct": "amydiehl@mstdn.social",
+      "display_name": "Amy Diehl, Ph.D.",
+      "locked": false,
+      "bot": false,
+      "discoverable": true,
+      "group": false,
+      "created_at": "2022-11-05T00:00:00.000Z",
+      "note": "\u003cp\u003e📖 GLASS WALLS (Rowman \u0026amp; Littlefield, June 2023), CIO, Gender Bias Expert, Researcher, Consultant, Speaker, Traveler, Cyclist, Feminist, Equalist. She/Her/Dr.\u003c/p\u003e",
+      "url": "https://mstdn.social/@amydiehl",
+      "avatar": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/293/289/945/041/916/original/45c6e833849068e2.jpg",
+      "avatar_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/293/289/945/041/916/original/45c6e833849068e2.jpg",
+      "header": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/293/289/945/041/916/original/b13d7bd40643d4af.jpeg",
+      "header_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/293/289/945/041/916/original/b13d7bd40643d4af.jpeg",
+      "followers_count": 4099,
+      "following_count": 2537,
+      "statuses_count": 223,
+      "last_status_at": "2022-12-06",
+      "emojis": [],
+      "fields": [
+        {
+          "name": "Website",
+          "value": "\u003ca href=\"https://amy-diehl.com\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003eamy-diehl.com\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": "2022-12-06T04:27:28.654+00:00"
+        },
+        {
+          "name": "Twitter",
+          "value": "\u003ca href=\"https://twitter.com/amydiehl\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etwitter.com/amydiehl\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        },
+        {
+          "name": "LinkedIn",
+          "value": "\u003ca href=\"https://www.linkedin.com/in/amy-diehl/\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://www.\u003c/span\u003e\u003cspan class=\"\"\u003elinkedin.com/in/amy-diehl/\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        },
+        {
+          "name": "Instagram",
+          "value": "\u003ca href=\"https://www.instagram.com/amydiehlphd/\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://www.\u003c/span\u003e\u003cspan class=\"\"\u003einstagram.com/amydiehlphd/\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [],
+    "mentions": [],
+    "tags": [],
+    "emojis": [],
+    "card": {
+      "url": "https://www.cnbc.com/2022/12/05/cdc-encourages-people-to-wear-masks-to-prevent-spread-of-covid-flu-rsv.html",
+      "title": "CDC encourages people to wear masks to help prevent spread of Covid, flu and RSV over the holidays",
+      "description": "Covid, flu and respiratory syncytial virus are circulating at the same time, putting strain on hospitals. ",
+      "type": "link",
+      "author_name": "Spencer Kimball",
+      "author_url": "",
+      "provider_name": "CNBC",
+      "provider_url": "",
+      "html": "",
+      "width": 400,
+      "height": 267,
+      "image": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/preview_cards/images/001/647/534/original/3d14314dce81612f.jpeg",
+      "embed_url": "",
+      "blurhash": "UEDIqM5PWH-6^ibvEM~C}qXmo#wJ-VWoNfxG"
+    },
+    "poll": null
+  },
+  {
+    "id": "109465546976455519",
+    "created_at": "2022-12-06T07:28:03.000Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://botsin.space/users/APoD/statuses/109465546515084654",
+    "url": "https://botsin.space/@APoD/109465546515084654",
+    "replies_count": 3,
+    "reblogs_count": 64,
+    "favourites_count": 11,
+    "edited_at": null,
+    "content": "\u003cp\u003eM16: A Star Forming Pillar from Webb\u003c/p\u003e\u003cp\u003eImage Credit: NASA, ESA, CSA, STScI, Processing \u0026amp; Copyright: Mehmet Hakan Özsaraç\u003c/p\u003e\u003cp\u003e\u003ca href=\"https://apod.nasa.gov/apod/ap221206.html\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"ellipsis\"\u003eapod.nasa.gov/apod/ap221206.ht\u003c/span\u003e\u003cspan class=\"invisible\"\u003eml\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://botsin.space/tags/APOD\" class=\"mention hashtag\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e#\u003cspan\u003eAPOD\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e",
+    "reblog": null,
+    "account": {
+      "id": "106843942830192273",
+      "username": "APoD",
+      "acct": "APoD@botsin.space",
+      "display_name": "Astronomy Picture of the Day",
+      "locked": false,
+      "bot": true,
+      "discoverable": true,
+      "group": false,
+      "created_at": "2018-01-12T00:00:00.000Z",
+      "note": "\u003cp\u003eDiscover the cosmos! A different image of our fascinating universe every day. \u003c/p\u003e\u003cp\u003e🌌 \u003ca href=\"https://apod.nasa.gov/\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003eapod.nasa.gov/\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e\u003cp\u003e(Automated mirror, supervised by \u003cspan class=\"h-card\"\u003e\u003ca href=\"https://chitter.xyz/@codl\" class=\"u-url mention\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e@\u003cspan\u003ecodl\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, who is not an astronomer)\u003c/p\u003e",
+      "url": "https://botsin.space/@APoD",
+      "avatar": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/106/843/942/830/192/273/original/f3c7e8eceedbf6f4.jpg",
+      "avatar_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/106/843/942/830/192/273/original/f3c7e8eceedbf6f4.jpg",
+      "header": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/106/843/942/830/192/273/original/dd65460b854826bb.jpg",
+      "header_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/106/843/942/830/192/273/original/dd65460b854826bb.jpg",
+      "followers_count": 57231,
+      "following_count": 1,
+      "statuses_count": 1800,
+      "last_status_at": "2022-12-06",
+      "emojis": [],
+      "fields": [
+        {
+          "name": "Banner",
+          "value": "\u003ca href=\"https://apod.nasa.gov/apod/ap131231.html\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"ellipsis\"\u003eapod.nasa.gov/apod/ap131231.ht\u003c/span\u003e\u003cspan class=\"invisible\"\u003eml\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        },
+        {
+          "name": "Avatar",
+          "value": "\u003ca href=\"https://apod.nasa.gov/apod/ap220206.html\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"ellipsis\"\u003eapod.nasa.gov/apod/ap220206.ht\u003c/span\u003e\u003cspan class=\"invisible\"\u003eml\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [
+      {
+        "id": "109465546916267722",
+        "type": "image",
+        "url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/media_attachments/files/109/465/546/916/267/722/original/58ff4a7576a82959.jpg",
+        "preview_url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/media_attachments/files/109/465/546/916/267/722/small/58ff4a7576a82959.jpg",
+        "remote_url": "https://files.botsin.space/media_attachments/files/109/465/546/500/872/391/original/028971e5976e0279.jpg",
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "original": {
+            "width": 1080,
+            "height": 808,
+            "size": "1080x808",
+            "aspect": 1.3366336633663367
+          },
+          "small": {
+            "width": 555,
+            "height": 415,
+            "size": "555x415",
+            "aspect": 1.3373493975903614
+          }
+        },
+        "description": "The featured image shows a large golden-brown pillar of dust surrounded by a few smaller pillars.",
+        "blurhash": "UIIL-u|?S4M}xYI=s.WCoyn%j?oeODWVWq$$"
+      }
+    ],
+    "mentions": [],
+    "tags": [{ "name": "apod", "url": "https://mastodon.world/tags/apod" }],
+    "emojis": [],
+    "card": {
+      "url": "https://apod.nasa.gov/apod/ap221206.html",
+      "title": " APOD: 2022 December 6 - M16: A Star Forming Pillar from Webb \n",
+      "description": "A different astronomy and space science\nrelated image is featured each day, along with a brief explanation.",
+      "type": "link",
+      "author_name": "",
+      "author_url": "",
+      "provider_name": "",
+      "provider_url": "",
+      "html": "",
+      "width": 0,
+      "height": 0,
+      "image": null,
+      "embed_url": "",
+      "blurhash": null
+    },
+    "poll": null
+  },
+  {
+    "id": "109465929145740008",
+    "created_at": "2022-12-06T09:05:20.000Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.online/users/brianbilston/statuses/109465928999774309",
+    "url": "https://mastodon.online/@brianbilston/109465928999774309",
+    "replies_count": 7,
+    "reblogs_count": 47,
+    "favourites_count": 6,
+    "edited_at": null,
+    "content": "\u003cp\u003eToday’s poem is called ‘A Time for Sharing’.\u003c/p\u003e",
+    "reblog": null,
+    "account": {
+      "id": "109301955526865081",
+      "username": "brianbilston",
+      "acct": "brianbilston@mastodon.online",
+      "display_name": "Brian Bilston",
+      "locked": false,
+      "bot": false,
+      "discoverable": true,
+      "group": false,
+      "created_at": "2022-11-06T00:00:00.000Z",
+      "note": "\u003cp\u003eCeci n'est pas un poème. New book: Days Like These (Picador). Represented by Jo Unwin.\u003c/p\u003e",
+      "url": "https://mastodon.online/@brianbilston",
+      "avatar": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/301/955/526/865/081/original/7768a4c8a31403c9.png",
+      "avatar_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/301/955/526/865/081/original/7768a4c8a31403c9.png",
+      "header": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/301/955/526/865/081/original/645bd2819d48528a.jpeg",
+      "header_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/301/955/526/865/081/original/645bd2819d48528a.jpeg",
+      "followers_count": 10050,
+      "following_count": 75,
+      "statuses_count": 385,
+      "last_status_at": "2022-12-06",
+      "emojis": [],
+      "fields": [
+        {
+          "name": "My books",
+          "value": "\u003ca href=\"https://uk.bookshop.org/shop/brianbilston\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"ellipsis\"\u003euk.bookshop.org/shop/brianbils\u003c/span\u003e\u003cspan class=\"invisible\"\u003eton\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        },
+        {
+          "name": "Gigs",
+          "value": "\u003ca href=\"https://brianbilston.com/events/\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003ebrianbilston.com/events/\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [
+      {
+        "id": "109465929086072528",
+        "type": "image",
+        "url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/media_attachments/files/109/465/929/086/072/528/original/27316a963347f98e.jpeg",
+        "preview_url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/media_attachments/files/109/465/929/086/072/528/small/27316a963347f98e.jpeg",
+        "remote_url": "https://files.mastodon.online/media_attachments/files/109/465/927/969/124/421/original/e841b06e7457887e.jpeg",
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "focus": { "x": -0.05399568034557235, "y": 0.8056768558951966 },
+          "original": {
+            "width": 828,
+            "height": 965,
+            "size": "828x965",
+            "aspect": 0.8580310880829015
+          },
+          "small": {
+            "width": 444,
+            "height": 518,
+            "size": "444x518",
+            "aspect": 0.8571428571428571
+          }
+        },
+        "description": "A Time for Sharing\n \nIt had been twelve months since\nthe disappearance of husband, Vince,\nclothes found on Beachy Head,\nnow presumed dead.\n \nHer friends wondered how she might cope\nbut, to her credit, Sue did not mope\nfor long. In fact, by Christmas,\nshe no longer seemed listless,\n \nbut was demonstrating a proclivity\nfor partying and festivity,\nputting a little of the insurance cash\ninto hosting a big yuletide bash.\n \nAfterwards, the neighbours,\nthanks to Sue’s all-night labours,\ndeclared the do to be a coup,\nthe mulled wine divine,\n \nand the deep-filled Vince pies,\nsuch a lovely surprise.\n \n\nBrian Bilston",
+        "blurhash": "U8S$ov4n?b~qM{Rjt7t7?b%MIUIUt7ayRjj["
+      }
+    ],
+    "mentions": [],
+    "tags": [],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "109463292008922025",
+    "created_at": "2022-12-05T21:54:37.000Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://sciences.social/users/conradhackett/statuses/109463291689490060",
+    "url": "https://sciences.social/@conradhackett/109463291689490060",
+    "replies_count": 43,
+    "reblogs_count": 322,
+    "favourites_count": 27,
+    "edited_at": null,
+    "content": "\u003cp\u003eMercator size  vs. true country size\u003cbr\u003eby Neil Kaye\u003c/p\u003e",
+    "reblog": null,
+    "account": {
+      "id": "109289248550517935",
+      "username": "conradhackett",
+      "acct": "conradhackett@sciences.social",
+      "display_name": "Conrad Hackett :verified:",
+      "locked": false,
+      "bot": false,
+      "discoverable": true,
+      "group": false,
+      "created_at": "2022-11-05T00:00:00.000Z",
+      "note": "\u003cp\u003eSenior Demographer \u0026amp; Associate Director of Research at Pew Research Center\u003cbr\u003eStudying global religious change, posting great social science research \u0026amp; visualizations. \u003ca href=\"https://sciences.social/tags/Sociology\" class=\"mention hashtag\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e#\u003cspan\u003eSociology\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://sciences.social/tags/Demography\" class=\"mention hashtag\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e#\u003cspan\u003eDemography\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://sciences.social/tags/Religion\" class=\"mention hashtag\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e#\u003cspan\u003eReligion\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://sciences.social/tags/PewResearch\" class=\"mention hashtag\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e#\u003cspan\u003ePewResearch\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e",
+      "url": "https://sciences.social/@conradhackett",
+      "avatar": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/289/248/550/517/935/original/c6590f2381f19ee7.jpg",
+      "avatar_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/289/248/550/517/935/original/c6590f2381f19ee7.jpg",
+      "header": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/289/248/550/517/935/original/1be60fd0977b1e8c.jpg",
+      "header_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/289/248/550/517/935/original/1be60fd0977b1e8c.jpg",
+      "followers_count": 8402,
+      "following_count": 340,
+      "statuses_count": 580,
+      "last_status_at": "2022-12-06",
+      "emojis": [],
+      "fields": [
+        {
+          "name": "Twitter",
+          "value": "\u003ca href=\"https://twitter.com/conradhackett\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etwitter.com/conradhackett\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": null
+        },
+        {
+          "name": "Verified by",
+          "value": "\u003ca href=\"https://fedified.com/\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003efedified.com/\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "verified_at": "2022-12-04T18:34:46.764+00:00"
+        },
+        { "name": "Location", "value": "DC", "verified_at": null }
+      ]
+    },
+    "media_attachments": [
+      {
+        "id": "109463291921341009",
+        "type": "image",
+        "url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/media_attachments/files/109/463/291/921/341/009/original/c44bcdf0f09a231a.jpeg",
+        "preview_url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/media_attachments/files/109/463/291/921/341/009/small/c44bcdf0f09a231a.jpeg",
+        "remote_url": "https://cdn.masto.host/sciencessocial/media_attachments/files/109/463/289/269/706/193/original/6bc2b099cf49d39b.jpeg",
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "focus": { "x": -0.12, "y": 0.46 },
+          "original": {
+            "width": 1440,
+            "height": 1440,
+            "size": "1440x1440",
+            "aspect": 1.0
+          },
+          "small": {
+            "width": 480,
+            "height": 480,
+            "size": "480x480",
+            "aspect": 1.0
+          }
+        },
+        "description": "Map shows how Mercator projection distorts true country size for many countries.",
+        "blurhash": "UhPH2x%1%LWC$%R*ays.T0WBWBof~BR*WBxt"
+      }
+    ],
+    "mentions": [],
+    "tags": [],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  }
+]

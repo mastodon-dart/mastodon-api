@@ -9,7 +9,10 @@ import '../../entities/blocked_domain.dart';
 import '../../entities/extended_description.dart';
 import '../../entities/instance.dart';
 import '../../entities/instance_activity.dart';
+import '../../entities/preview_card.dart';
 import '../../entities/rule.dart';
+import '../../entities/status.dart';
+import '../../entities/tag.dart';
 import '../../response/mastodon_response.dart';
 
 abstract class InstanceV1Service {
@@ -117,6 +120,69 @@ abstract class InstanceV1Service {
   ///
   /// - https://docs.joinmastodon.org/methods/instance/#extended_description
   Future<MastodonResponse<ExtendedDescription>> lookupExtendedDescription();
+
+  /// Tags that are being used more frequently within the past week.
+  ///
+  /// ## Parameters
+  ///
+  /// - [limit]: Maximum number of results to return. Defaults to 10.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET https://mastodon.example/api/v1/trends/tags HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - Anonymous
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/trends/#tags
+  Future<MastodonResponse<List<Tag>>> lookupTrendingTags({
+    int? limit,
+  });
+
+  /// Statuses that have been interacted with more than others.
+  ///
+  /// ## Parameters
+  ///
+  /// - [limit]: Maximum number of results to return. Defaults to 10.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET https://mastodon.example/api/v1/trends/statuses HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - Anonymous
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/trends/#statuses
+  Future<MastodonResponse<List<Status>>> lookupTrendingStatuses({
+    int? limit,
+  });
+
+  /// Links that have been shared more than others.
+  ///
+  /// ## Parameters
+  ///
+  /// - [limit]: Maximum number of results to return. Defaults to 10.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET https://mastodon.example/api/v1/trends/links HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - Anonymous
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/trends/#links
+  Future<MastodonResponse<List<PreviewCard>>> lookupTrendingLinks({
+    int? limit,
+  });
 }
 
 class _InstanceV1Service extends BaseService implements InstanceV1Service {
@@ -184,4 +250,49 @@ class _InstanceV1Service extends BaseService implements InstanceV1Service {
             ),
             dataBuilder: ExtendedDescription.fromJson,
           );
+
+  @override
+  Future<MastodonResponse<List<Tag>>> lookupTrendingTags({
+    int? limit,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.anonymousOnly,
+          '/api/v1/trends/tags',
+          queryParameters: {
+            'limit': limit,
+          },
+        ),
+        dataBuilder: Tag.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<Status>>> lookupTrendingStatuses({
+    int? limit,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.anonymousOnly,
+          '/api/v1/trends/statuses',
+          queryParameters: {
+            'limit': limit,
+          },
+        ),
+        dataBuilder: Status.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<PreviewCard>>> lookupTrendingLinks({
+    int? limit,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.anonymousOnly,
+          '/api/v1/trends/links',
+          queryParameters: {
+            'limit': limit,
+          },
+        ),
+        dataBuilder: PreviewCard.fromJson,
+      );
 }

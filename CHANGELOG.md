@@ -5,6 +5,10 @@
 - Supported `polls API methods`. ([#25](https://github.com/mastodon-dart/mastodon-api/issues/25))
   - `GET /api/v1/polls/:id`
   - `POST /api/v1/polls/:id/votes`
+- Supported `trends API methods`. ([#36](https://github.com/mastodon-dart/mastodon-api/issues/36))
+  - `GET /api/v1/trends/tags`
+  - `GET /api/v1/trends/statuses`
+  - `GET /api/v1/trends/links`
 
 ## v0.1.0
 

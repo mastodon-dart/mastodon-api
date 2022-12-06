@@ -8,7 +8,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'tag_statistics.dart';
+import 'usage_statistics.dart';
 
 part 'tag.freezed.dart';
 part 'tag.g.dart';
@@ -24,7 +24,7 @@ class Tag with _$Tag {
     required String url,
 
     /// Usage statistics for given days (typically the past week).
-    @JsonKey(name: 'history') required List<TagStatistics> histories,
+    @JsonKey(name: 'history') required List<UsageStatistics> histories,
 
     /// Whether the current token’s authorized user is following this tag.
     bool? isFollowing,

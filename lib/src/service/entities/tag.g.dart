@@ -18,7 +18,7 @@ _$_Tag _$$_TagFromJson(Map json) => $checkedCreate(
           histories: $checkedConvert(
               'history',
               (v) => (v as List<dynamic>)
-                  .map((e) => TagStatistics.fromJson(
+                  .map((e) => UsageStatistics.fromJson(
                       Map<String, Object?>.from(e as Map)))
                   .toList()),
           isFollowing: $checkedConvert('is_following', (v) => v as bool?),
