@@ -9,6 +9,11 @@
   - `GET /api/v1/trends/tags`
   - `GET /api/v1/trends/statuses`
   - `GET /api/v1/trends/links`
+- Supported `announcements API methods`. ([#39](https://github.com/mastodon-dart/mastodon-api/issues/39))
+  - `GET /api/v1/announcements`
+  - `POST /api/v1/announcements/:id/dismiss`
+  - `PUT /api/v1/announcements/:id/reactions/:name`
+  - `DELETE /api/v1/announcements/:id/reactions/:name`
 
 ## v0.1.0
 
