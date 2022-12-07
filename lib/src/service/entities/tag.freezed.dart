@@ -28,7 +28,7 @@ mixin _$Tag {
 
   /// Usage statistics for given days (typically the past week).
   @JsonKey(name: 'history')
-  List<UsageStatistics> get histories => throw _privateConstructorUsedError;
+  List<UsageStatistics>? get histories => throw _privateConstructorUsedError;
 
   /// Whether the current token’s authorized user is following this tag.
   bool? get isFollowing => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ abstract class $TagCopyWith<$Res> {
   $Res call(
       {String name,
       String url,
-      @JsonKey(name: 'history') List<UsageStatistics> histories,
+      @JsonKey(name: 'history') List<UsageStatistics>? histories,
       bool? isFollowing});
 }
 
@@ -64,7 +64,7 @@ class _$TagCopyWithImpl<$Res, $Val extends Tag> implements $TagCopyWith<$Res> {
   $Res call({
     Object? name = null,
     Object? url = null,
-    Object? histories = null,
+    Object? histories = freezed,
     Object? isFollowing = freezed,
   }) {
     return _then(_value.copyWith(
@@ -76,10 +76,10 @@ class _$TagCopyWithImpl<$Res, $Val extends Tag> implements $TagCopyWith<$Res> {
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      histories: null == histories
+      histories: freezed == histories
           ? _value.histories
           : histories // ignore: cast_nullable_to_non_nullable
-              as List<UsageStatistics>,
+              as List<UsageStatistics>?,
       isFollowing: freezed == isFollowing
           ? _value.isFollowing
           : isFollowing // ignore: cast_nullable_to_non_nullable
@@ -97,7 +97,7 @@ abstract class _$$_TagCopyWith<$Res> implements $TagCopyWith<$Res> {
   $Res call(
       {String name,
       String url,
-      @JsonKey(name: 'history') List<UsageStatistics> histories,
+      @JsonKey(name: 'history') List<UsageStatistics>? histories,
       bool? isFollowing});
 }
 
@@ -112,7 +112,7 @@ class __$$_TagCopyWithImpl<$Res> extends _$TagCopyWithImpl<$Res, _$_Tag>
   $Res call({
     Object? name = null,
     Object? url = null,
-    Object? histories = null,
+    Object? histories = freezed,
     Object? isFollowing = freezed,
   }) {
     return _then(_$_Tag(
@@ -124,10 +124,10 @@ class __$$_TagCopyWithImpl<$Res> extends _$TagCopyWithImpl<$Res, _$_Tag>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      histories: null == histories
+      histories: freezed == histories
           ? _value._histories
           : histories // ignore: cast_nullable_to_non_nullable
-              as List<UsageStatistics>,
+              as List<UsageStatistics>?,
       isFollowing: freezed == isFollowing
           ? _value.isFollowing
           : isFollowing // ignore: cast_nullable_to_non_nullable
@@ -143,7 +143,7 @@ class _$_Tag implements _Tag {
   const _$_Tag(
       {required this.name,
       required this.url,
-      @JsonKey(name: 'history') required final List<UsageStatistics> histories,
+      @JsonKey(name: 'history') final List<UsageStatistics>? histories,
       this.isFollowing})
       : _histories = histories;
 
@@ -158,14 +158,16 @@ class _$_Tag implements _Tag {
   final String url;
 
   /// Usage statistics for given days (typically the past week).
-  final List<UsageStatistics> _histories;
+  final List<UsageStatistics>? _histories;
 
   /// Usage statistics for given days (typically the past week).
   @override
   @JsonKey(name: 'history')
-  List<UsageStatistics> get histories {
+  List<UsageStatistics>? get histories {
+    final value = _histories;
+    if (value == null) return null;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_histories);
+    return EqualUnmodifiableListView(value);
   }
 
   /// Whether the current token’s authorized user is following this tag.
@@ -213,7 +215,7 @@ abstract class _Tag implements Tag {
   const factory _Tag(
       {required final String name,
       required final String url,
-      @JsonKey(name: 'history') required final List<UsageStatistics> histories,
+      @JsonKey(name: 'history') final List<UsageStatistics>? histories,
       final bool? isFollowing}) = _$_Tag;
 
   factory _Tag.fromJson(Map<String, dynamic> json) = _$_Tag.fromJson;
@@ -230,7 +232,7 @@ abstract class _Tag implements Tag {
 
   /// Usage statistics for given days (typically the past week).
   @JsonKey(name: 'history')
-  List<UsageStatistics> get histories;
+  List<UsageStatistics>? get histories;
   @override
 
   /// Whether the current token’s authorized user is following this tag.

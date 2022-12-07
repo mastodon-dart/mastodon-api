@@ -17,8 +17,8 @@ _$_Tag _$$_TagFromJson(Map json) => $checkedCreate(
           url: $checkedConvert('url', (v) => v as String),
           histories: $checkedConvert(
               'history',
-              (v) => (v as List<dynamic>)
-                  .map((e) => UsageStatistics.fromJson(
+              (v) => (v as List<dynamic>?)
+                  ?.map((e) => UsageStatistics.fromJson(
                       Map<String, Object?>.from(e as Map)))
                   .toList()),
           isFollowing: $checkedConvert('is_following', (v) => v as bool?),
@@ -35,7 +35,6 @@ Map<String, dynamic> _$$_TagToJson(_$_Tag instance) {
   final val = <String, dynamic>{
     'name': instance.name,
     'url': instance.url,
-    'history': instance.histories.map((e) => e.toJson()).toList(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -44,6 +43,7 @@ Map<String, dynamic> _$$_TagToJson(_$_Tag instance) {
     }
   }
 
+  writeNotNull('history', instance.histories?.map((e) => e.toJson()).toList());
   writeNotNull('is_following', instance.isFollowing);
   return val;
 }

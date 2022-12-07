@@ -5,6 +5,7 @@
 import '../../../core/client/client_context.dart';
 import '../../../core/client/user_context.dart';
 import '../../base_service.dart';
+import '../../entities/announcement.dart';
 import '../../entities/blocked_domain.dart';
 import '../../entities/extended_description.dart';
 import '../../entities/instance.dart';
@@ -183,6 +184,117 @@ abstract class InstanceV1Service {
   Future<MastodonResponse<List<PreviewCard>>> lookupTrendingLinks({
     int? limit,
   });
+
+  /// See all currently active announcements set by admins.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET https://mastodon.example/api/v1/announcements HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/announcements/#get
+  Future<MastodonResponse<List<Announcement>>> lookupActiveAnnouncements();
+
+  /// See all announcements set by admins.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET https://mastodon.example/api/v1/announcements HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/announcements/#get
+  Future<MastodonResponse<List<Announcement>>> lookupAnnouncements();
+
+  /// Allows a user to mark the announcement as read.
+  ///
+  /// ## Parameters
+  ///
+  /// - [announcementId]: The ID of the Announcement in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/announcements/:id/dismiss HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:accounts
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/announcements/#dismiss
+  Future<MastodonResponse<bool>> createMarkAnnouncementAsRead({
+    required String announcementId,
+  });
+
+  /// React to an announcement with an emoji.
+  ///
+  /// ## Parameters
+  ///
+  /// - [announcementId]: The ID of the Announcement in the database.
+  ///
+  /// - [emojiName]: Unicode emoji, or the shortcode of a custom emoji.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - PUT https://mastodon.example/api/v1/announcements/:id/reactions/:name HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:favourites
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/announcements/#put-reactions
+  Future<MastodonResponse<bool>> createReactionToAnnouncement({
+    required String announcementId,
+    required String emojiName,
+  });
+
+  /// Undo a react emoji to an announcement.
+  ///
+  /// ## Parameters
+  ///
+  /// - [announcementId]: The ID of the Announcement in the database.
+  ///
+  /// - [emojiName]: Unicode emoji, or the shortcode of a custom emoji.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - DELETE https://mastodon.example/api/v1/announcements/:id/reactions/:name HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:favourites
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/announcements/#delete-reactions
+  Future<MastodonResponse<bool>> destroyReactionToAnnouncement({
+    required String announcementId,
+    required String emojiName,
+  });
 }
 
 class _InstanceV1Service extends BaseService implements InstanceV1Service {
@@ -294,5 +406,66 @@ class _InstanceV1Service extends BaseService implements InstanceV1Service {
           },
         ),
         dataBuilder: PreviewCard.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<Announcement>>> lookupActiveAnnouncements({
+    bool? includeDismissed,
+  }) async =>
+      await _lookupAnnouncements(includeDismissed: false);
+
+  @override
+  Future<MastodonResponse<List<Announcement>>> lookupAnnouncements({
+    bool? includeDismissed,
+  }) async =>
+      await _lookupAnnouncements(includeDismissed: true);
+
+  @override
+  Future<MastodonResponse<bool>> createMarkAnnouncementAsRead({
+    required String announcementId,
+  }) async =>
+      super.evaluateResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/announcements/$announcementId/dismiss',
+        ),
+      );
+
+  @override
+  Future<MastodonResponse<bool>> createReactionToAnnouncement({
+    required String announcementId,
+    required String emojiName,
+  }) async =>
+      super.evaluateResponse(
+        await super.put(
+          UserContext.oauth2Only,
+          '/api/v1/announcements/$announcementId/reactions/$emojiName',
+        ),
+      );
+
+  @override
+  Future<MastodonResponse<bool>> destroyReactionToAnnouncement({
+    required String announcementId,
+    required String emojiName,
+  }) async =>
+      super.evaluateResponse(
+        await super.delete(
+          UserContext.oauth2Only,
+          '/api/v1/announcements/$announcementId/reactions/$emojiName',
+        ),
+      );
+
+  Future<MastodonResponse<List<Announcement>>> _lookupAnnouncements({
+    bool? includeDismissed,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/announcements',
+          queryParameters: {
+            'with_dismissed': includeDismissed,
+          },
+        ),
+        dataBuilder: Announcement.fromJson,
       );
 }

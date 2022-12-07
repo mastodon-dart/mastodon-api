@@ -28,7 +28,7 @@ mixin _$Emoji {
   String get url => throw _privateConstructorUsedError;
 
   /// A link to a static copy of the custom emoji.
-  String? get statusUrl => throw _privateConstructorUsedError;
+  String? get staticUrl => throw _privateConstructorUsedError;
 
   /// Whether this Emoji should be visible in the picker or unlisted.
   @JsonKey(name: 'visible_in_picker')
@@ -50,7 +50,7 @@ abstract class $EmojiCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'shortcode') String code,
       String url,
-      String? statusUrl,
+      String? staticUrl,
       @JsonKey(name: 'visible_in_picker') bool isVisibleInPicker,
       String? category});
 }
@@ -70,7 +70,7 @@ class _$EmojiCopyWithImpl<$Res, $Val extends Emoji>
   $Res call({
     Object? code = null,
     Object? url = null,
-    Object? statusUrl = freezed,
+    Object? staticUrl = freezed,
     Object? isVisibleInPicker = null,
     Object? category = freezed,
   }) {
@@ -83,9 +83,9 @@ class _$EmojiCopyWithImpl<$Res, $Val extends Emoji>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      statusUrl: freezed == statusUrl
-          ? _value.statusUrl
-          : statusUrl // ignore: cast_nullable_to_non_nullable
+      staticUrl: freezed == staticUrl
+          ? _value.staticUrl
+          : staticUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       isVisibleInPicker: null == isVisibleInPicker
           ? _value.isVisibleInPicker
@@ -108,7 +108,7 @@ abstract class _$$_EmojiCopyWith<$Res> implements $EmojiCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'shortcode') String code,
       String url,
-      String? statusUrl,
+      String? staticUrl,
       @JsonKey(name: 'visible_in_picker') bool isVisibleInPicker,
       String? category});
 }
@@ -124,7 +124,7 @@ class __$$_EmojiCopyWithImpl<$Res> extends _$EmojiCopyWithImpl<$Res, _$_Emoji>
   $Res call({
     Object? code = null,
     Object? url = null,
-    Object? statusUrl = freezed,
+    Object? staticUrl = freezed,
     Object? isVisibleInPicker = null,
     Object? category = freezed,
   }) {
@@ -137,9 +137,9 @@ class __$$_EmojiCopyWithImpl<$Res> extends _$EmojiCopyWithImpl<$Res, _$_Emoji>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      statusUrl: freezed == statusUrl
-          ? _value.statusUrl
-          : statusUrl // ignore: cast_nullable_to_non_nullable
+      staticUrl: freezed == staticUrl
+          ? _value.staticUrl
+          : staticUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       isVisibleInPicker: null == isVisibleInPicker
           ? _value.isVisibleInPicker
@@ -160,7 +160,7 @@ class _$_Emoji implements _Emoji {
   const _$_Emoji(
       {@JsonKey(name: 'shortcode') required this.code,
       required this.url,
-      this.statusUrl,
+      this.staticUrl,
       @JsonKey(name: 'visible_in_picker') required this.isVisibleInPicker,
       this.category});
 
@@ -178,7 +178,7 @@ class _$_Emoji implements _Emoji {
 
   /// A link to a static copy of the custom emoji.
   @override
-  final String? statusUrl;
+  final String? staticUrl;
 
   /// Whether this Emoji should be visible in the picker or unlisted.
   @override
@@ -191,7 +191,7 @@ class _$_Emoji implements _Emoji {
 
   @override
   String toString() {
-    return 'Emoji(code: $code, url: $url, statusUrl: $statusUrl, isVisibleInPicker: $isVisibleInPicker, category: $category)';
+    return 'Emoji(code: $code, url: $url, staticUrl: $staticUrl, isVisibleInPicker: $isVisibleInPicker, category: $category)';
   }
 
   @override
@@ -201,8 +201,8 @@ class _$_Emoji implements _Emoji {
             other is _$_Emoji &&
             (identical(other.code, code) || other.code == code) &&
             (identical(other.url, url) || other.url == url) &&
-            (identical(other.statusUrl, statusUrl) ||
-                other.statusUrl == statusUrl) &&
+            (identical(other.staticUrl, staticUrl) ||
+                other.staticUrl == staticUrl) &&
             (identical(other.isVisibleInPicker, isVisibleInPicker) ||
                 other.isVisibleInPicker == isVisibleInPicker) &&
             (identical(other.category, category) ||
@@ -212,7 +212,7 @@ class _$_Emoji implements _Emoji {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, code, url, statusUrl, isVisibleInPicker, category);
+      runtimeType, code, url, staticUrl, isVisibleInPicker, category);
 
   @JsonKey(ignore: true)
   @override
@@ -232,7 +232,7 @@ abstract class _Emoji implements Emoji {
   const factory _Emoji(
       {@JsonKey(name: 'shortcode') required final String code,
       required final String url,
-      final String? statusUrl,
+      final String? staticUrl,
       @JsonKey(name: 'visible_in_picker') required final bool isVisibleInPicker,
       final String? category}) = _$_Emoji;
 
@@ -250,7 +250,7 @@ abstract class _Emoji implements Emoji {
   @override
 
   /// A link to a static copy of the custom emoji.
-  String? get statusUrl;
+  String? get staticUrl;
   @override
 
   /// Whether this Emoji should be visible in the picker or unlisted.

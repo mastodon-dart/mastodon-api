@@ -111,9 +111,6 @@ abstract class BaseService implements _Service {
     UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
-    Map<String, dynamic> Function(
-            StreamedResponse streamedResponse, String event)?
-        validate,
   }) async =>
       await _helper.getStream(
         userContext,
@@ -122,9 +119,7 @@ abstract class BaseService implements _Service {
         validate: (response, event) {
           _checkGetResponse(response, event);
 
-          final jsonBody = jsonDecode(event);
-
-          return jsonBody;
+          return jsonDecode(event);
         },
       );
 
@@ -134,26 +129,32 @@ abstract class BaseService implements _Service {
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     dynamic body = const {},
-    Response Function(Response response)? validate,
+    bool checkUnprocessableEntity = false,
   }) async =>
       await _helper.post(
         userContext,
         unencodedPath,
         queryParameters: queryParameters,
         body: body,
-        validate: checkResponse,
+        validate: ((response) => checkResponse(
+              response,
+              checkUnprocessableEntity,
+            )),
       );
 
   @override
   Future<Response> delete(
     UserContext userContext,
     final String unencodedPath, {
-    Response Function(Response response)? validate,
+    bool checkUnprocessableEntity = false,
   }) async =>
       await _helper.delete(
         userContext,
         unencodedPath,
-        validate: checkResponse,
+        validate: ((response) => checkResponse(
+              response,
+              checkUnprocessableEntity,
+            )),
       );
 
   @override
@@ -161,13 +162,16 @@ abstract class BaseService implements _Service {
     UserContext userContext,
     final String unencodedPath, {
     dynamic body = const {},
-    Response Function(Response response)? validate,
+    bool checkUnprocessableEntity = false,
   }) async =>
       await _helper.put(
         userContext,
         unencodedPath,
         body: body,
-        validate: checkResponse,
+        validate: ((response) => checkResponse(
+              response,
+              checkUnprocessableEntity,
+            )),
       );
 
   @override
@@ -234,6 +238,7 @@ abstract class BaseService implements _Service {
 
   Response checkResponse(
     final Response response,
+    final bool checkUnprocessableEntity,
   ) {
     if (response.statusCode == 401) {
       throw UnauthorizedException(
@@ -246,11 +251,13 @@ abstract class BaseService implements _Service {
       throw RateLimitExceededException('Rate limit exceeded.', response);
     }
 
-    if (response.statusCode == 422) {
-      throw MastodonException(
-        'Required parameter is missing or improperly formatted.',
-        response,
-      );
+    if (checkUnprocessableEntity) {
+      if (response.statusCode == 422) {
+        throw MastodonException(
+          'Required parameter is missing or improperly formatted.',
+          response,
+        );
+      }
     }
 
     if (response.statusCode == 204) {
