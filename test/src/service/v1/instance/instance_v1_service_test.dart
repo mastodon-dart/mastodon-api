@@ -6,6 +6,7 @@
 
 // Project imports:
 import 'package:mastodon_api/src/core/client/user_context.dart';
+import 'package:mastodon_api/src/service/entities/announcement.dart';
 import 'package:mastodon_api/src/service/entities/blocked_domain.dart';
 import 'package:mastodon_api/src/service/entities/extended_description.dart';
 import 'package:mastodon_api/src/service/entities/instance.dart';
@@ -595,6 +596,375 @@ void main() {
 
       expectRateLimitExceededException(
         () async => await instanceService.lookupTrendingLinks(),
+      );
+    });
+  });
+
+  group('.lookupActiveAnnouncements', () {
+    test('normal case', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/announcements',
+          'test/src/service/v1/instance/data/lookup_announcements.json',
+          {
+            'with_dismissed': 'false',
+          },
+        ),
+      );
+
+      final response = await instanceService.lookupActiveAnnouncements();
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<List<Announcement>>());
+    });
+
+    test('when unauthorized', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/announcements',
+          'test/src/service/v1/instance/data/lookup_announcements.json',
+          {
+            'with_dismissed': 'false',
+          },
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await instanceService.lookupActiveAnnouncements(),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/announcements',
+          'test/src/service/v1/instance/data/lookup_announcements.json',
+          {
+            'with_dismissed': 'false',
+          },
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await instanceService.lookupActiveAnnouncements(),
+      );
+    });
+  });
+
+  group('.lookupAnnouncements', () {
+    test('normal case', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/announcements',
+          'test/src/service/v1/instance/data/lookup_announcements.json',
+          {
+            'with_dismissed': 'true',
+          },
+        ),
+      );
+
+      final response = await instanceService.lookupAnnouncements();
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<List<Announcement>>());
+    });
+
+    test('when unauthorized', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/announcements',
+          'test/src/service/v1/instance/data/lookup_announcements.json',
+          {
+            'with_dismissed': 'true',
+          },
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await instanceService.lookupAnnouncements(),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/announcements',
+          'test/src/service/v1/instance/data/lookup_announcements.json',
+          {
+            'with_dismissed': 'true',
+          },
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await instanceService.lookupAnnouncements(),
+      );
+    });
+  });
+
+  group('.createMarkAnnouncementAsRead', () {
+    test('normal case', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/announcements/1111/dismiss',
+          'test/src/service/v1/instance/data/create_mark_announcement_as_read.json',
+        ),
+      );
+
+      final response = await instanceService.createMarkAnnouncementAsRead(
+        announcementId: '1111',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isTrue);
+    });
+
+    test('when announcement id does not exist', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/announcements/1111/dismiss',
+          'test/src/service/v1/instance/data/create_mark_announcement_as_read.json',
+          statusCode: 404,
+        ),
+      );
+
+      final response = await instanceService.createMarkAnnouncementAsRead(
+        announcementId: '1111',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isFalse);
+    });
+
+    test('when unauthorized', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/announcements/1111/dismiss',
+          'test/src/service/v1/instance/data/create_mark_announcement_as_read.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await instanceService.createMarkAnnouncementAsRead(
+          announcementId: '1111',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/announcements/1111/dismiss',
+          'test/src/service/v1/instance/data/create_mark_announcement_as_read.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await instanceService.createMarkAnnouncementAsRead(
+          announcementId: '1111',
+        ),
+      );
+    });
+  });
+
+  group('.createReactionToAnnouncement', () {
+    test('normal case', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildPutStub(
+          'test',
+          '/api/v1/announcements/1111/reactions/❗',
+          'test/src/service/v1/instance/data/create_reaction_to_announcement.json',
+        ),
+      );
+
+      final response = await instanceService.createReactionToAnnouncement(
+        announcementId: '1111',
+        emojiName: '❗',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isTrue);
+    });
+
+    test('when announcement id does not exist', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildPutStub(
+          'test',
+          '/api/v1/announcements/1111/reactions/❗',
+          'test/src/service/v1/instance/data/create_reaction_to_announcement.json',
+          statusCode: 404,
+        ),
+      );
+
+      final response = await instanceService.createReactionToAnnouncement(
+        announcementId: '1111',
+        emojiName: '❗',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isFalse);
+    });
+
+    test('when unauthorized', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildPutStub(
+          'test',
+          '/api/v1/announcements/1111/reactions/❗',
+          'test/src/service/v1/instance/data/create_reaction_to_announcement.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await instanceService.createReactionToAnnouncement(
+          announcementId: '1111',
+          emojiName: '❗',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildPutStub(
+          'test',
+          '/api/v1/announcements/1111/reactions/❗',
+          'test/src/service/v1/instance/data/create_reaction_to_announcement.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await instanceService.createReactionToAnnouncement(
+          announcementId: '1111',
+          emojiName: '❗',
+        ),
+      );
+    });
+  });
+
+  group('.destroyReactionToAnnouncement', () {
+    test('normal case', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildDeleteStub(
+          'test',
+          '/api/v1/announcements/1111/reactions/❗',
+          'test/src/service/v1/instance/data/destroy_reaction_to_announcement.json',
+        ),
+      );
+
+      final response = await instanceService.destroyReactionToAnnouncement(
+        announcementId: '1111',
+        emojiName: '❗',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isTrue);
+    });
+
+    test('when announcement id does not exist', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildDeleteStub(
+          'test',
+          '/api/v1/announcements/1111/reactions/❗',
+          'test/src/service/v1/instance/data/destroy_reaction_to_announcement.json',
+          statusCode: 404,
+        ),
+      );
+
+      final response = await instanceService.destroyReactionToAnnouncement(
+        announcementId: '1111',
+        emojiName: '❗',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isFalse);
+    });
+
+    test('when unauthorized', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildDeleteStub(
+          'test',
+          '/api/v1/announcements/1111/reactions/❗',
+          'test/src/service/v1/instance/data/destroy_reaction_to_announcement.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await instanceService.destroyReactionToAnnouncement(
+          announcementId: '1111',
+          emojiName: '❗',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildDeleteStub(
+          'test',
+          '/api/v1/announcements/1111/reactions/❗',
+          'test/src/service/v1/instance/data/destroy_reaction_to_announcement.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await instanceService.destroyReactionToAnnouncement(
+          announcementId: '1111',
+          emojiName: '❗',
+        ),
       );
     });
   });

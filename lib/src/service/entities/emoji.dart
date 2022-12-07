@@ -21,7 +21,7 @@ class Emoji with _$Emoji {
     required String url,
 
     /// A link to a static copy of the custom emoji.
-    String? statusUrl,
+    String? staticUrl,
 
     /// Whether this Emoji should be visible in the picker or unlisted.
     @JsonKey(name: 'visible_in_picker') required bool isVisibleInPicker,

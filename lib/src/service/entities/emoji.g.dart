@@ -15,7 +15,7 @@ _$_Emoji _$$_EmojiFromJson(Map json) => $checkedCreate(
         final val = _$_Emoji(
           code: $checkedConvert('shortcode', (v) => v as String),
           url: $checkedConvert('url', (v) => v as String),
-          statusUrl: $checkedConvert('status_url', (v) => v as String?),
+          staticUrl: $checkedConvert('static_url', (v) => v as String?),
           isVisibleInPicker:
               $checkedConvert('visible_in_picker', (v) => v as bool),
           category: $checkedConvert('category', (v) => v as String?),
@@ -24,7 +24,7 @@ _$_Emoji _$$_EmojiFromJson(Map json) => $checkedCreate(
       },
       fieldKeyMap: const {
         'code': 'shortcode',
-        'statusUrl': 'status_url',
+        'staticUrl': 'static_url',
         'isVisibleInPicker': 'visible_in_picker'
       },
     );
@@ -41,7 +41,7 @@ Map<String, dynamic> _$$_EmojiToJson(_$_Emoji instance) {
     }
   }
 
-  writeNotNull('status_url', instance.statusUrl);
+  writeNotNull('static_url', instance.staticUrl);
   val['visible_in_picker'] = instance.isVisibleInPicker;
   writeNotNull('category', instance.category);
   return val;

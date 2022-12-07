@@ -24,7 +24,7 @@ class Tag with _$Tag {
     required String url,
 
     /// Usage statistics for given days (typically the past week).
-    @JsonKey(name: 'history') required List<UsageStatistics> histories,
+    @JsonKey(name: 'history') List<UsageStatistics>? histories,
 
     /// Whether the current token’s authorized user is following this tag.
     bool? isFollowing,
