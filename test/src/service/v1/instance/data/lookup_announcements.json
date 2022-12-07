@@ -1,0 +1,44 @@
+[
+  {
+    "id": "5",
+    "content": "\u003cp\u003eMigration to the new server succeeded. Also the issue with image loading/uploading seems to have been solved by Wasabi. Enjoy!\u003c/p\u003e",
+    "starts_at": null,
+    "ends_at": null,
+    "all_day": false,
+    "published_at": "2022-11-14T15:21:42.665Z",
+    "updated_at": "2022-11-14T15:21:42.686Z",
+    "read": true,
+    "mentions": [],
+    "statuses": [],
+    "tags": [],
+    "emojis": [],
+    "reactions": [
+      { "name": "✅", "count": 1298, "me": true },
+      {
+        "name": "ablobcatrave",
+        "count": 362,
+        "me": false,
+        "url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/custom_emojis/images/000/038/165/original/68f9c461ebaaea50.png",
+        "static_url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/custom_emojis/images/000/038/165/static/68f9c461ebaaea50.png"
+      },
+      { "name": "👍", "count": 1052, "me": false },
+      { "name": "🍨", "count": 145, "me": false },
+      {
+        "name": "apartyblobcat",
+        "count": 196,
+        "me": false,
+        "url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/custom_emojis/images/000/038/141/original/b8d76a2ad711a008.png",
+        "static_url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/custom_emojis/images/000/038/141/static/b8d76a2ad711a008.png"
+      },
+      { "name": "🙌", "count": 279, "me": false },
+      {
+        "name": "ablobspin",
+        "count": 160,
+        "me": false,
+        "url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/custom_emojis/images/000/038/169/original/c3298a6ae022644f.png",
+        "static_url": "https://s3.eu-central-2.wasabisys.com/mastodonworld/custom_emojis/images/000/038/169/static/c3298a6ae022644f.png"
+      },
+      { "name": "🏅", "count": 204, "me": false }
+    ]
+  }
+]
