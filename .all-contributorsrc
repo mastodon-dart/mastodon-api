@@ -12,22 +12,13 @@
       "profile": "https://github.com/myConsciousness",
       "contributions": [
         "code",
-        "content",
-        "data",
         "doc",
         "design",
         "example",
         "fundingFinding",
         "ideas",
-        "infra",
         "maintenance",
-        "mentoring",
-        "projectManagement",
-        "question",
-        "research",
-        "review",
         "security",
-        "translation",
         "test",
         "tutorial"
       ]
