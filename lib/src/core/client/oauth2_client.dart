@@ -62,7 +62,7 @@ class OAuth2Client extends Client {
           .timeout(timeout);
 
   @override
-  Future<http.Response> postMultipart(
+  Future<http.Response> sendMultipart(
     http.MultipartRequest request, {
     List<http.MultipartFile> files = const [],
     required Duration timeout,
@@ -106,6 +106,22 @@ class OAuth2Client extends Client {
   }) async =>
       await http
           .put(
+            uri,
+            headers: {'Authorization': 'Bearer $_bearerToken'}..addAll(headers),
+            body: body,
+            encoding: utf8,
+          )
+          .timeout(timeout);
+
+  @override
+  Future<http.Response> patch(
+    Uri uri, {
+    Map<String, String> headers = const {},
+    dynamic body,
+    required Duration timeout,
+  }) async =>
+      await http
+          .patch(
             uri,
             headers: {'Authorization': 'Bearer $_bearerToken'}..addAll(headers),
             body: body,

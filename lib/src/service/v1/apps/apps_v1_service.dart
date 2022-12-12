@@ -71,7 +71,7 @@ abstract class AppsV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/apps/#verify_credentials
-  Future<MastodonResponse<Application>> verifyOAuthCredentials({
+  Future<MastodonResponse<Application>> verifyApplicationCredentials({
     required String bearerToken,
   });
 
@@ -128,7 +128,7 @@ class _AppsV1Service extends BaseService implements AppsV1Service {
       );
 
   @override
-  Future<MastodonResponse<Application>> verifyOAuthCredentials({
+  Future<MastodonResponse<Application>> verifyApplicationCredentials({
     required String bearerToken,
   }) async =>
       super.transformSingleDataResponse(

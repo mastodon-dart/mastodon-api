@@ -31,7 +31,7 @@ abstract class Client {
     required Duration timeout,
   });
 
-  Future<http.Response> postMultipart(
+  Future<http.Response> sendMultipart(
     http.MultipartRequest request, {
     List<http.MultipartFile> files = const [],
     required Duration timeout,
@@ -45,6 +45,13 @@ abstract class Client {
   });
 
   Future<http.Response> put(
+    Uri uri, {
+    Map<String, String> headers = const {},
+    dynamic body,
+    required Duration timeout,
+  });
+
+  Future<http.Response> patch(
     Uri uri, {
     Map<String, String> headers = const {},
     dynamic body,

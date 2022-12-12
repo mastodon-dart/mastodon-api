@@ -60,6 +60,21 @@ abstract class Service {
     Map<String, String> body = const {},
     http.Response Function(http.Response response)? validate,
   });
+
+  Future<http.Response> patch(
+    UserContext userContext,
+    String unencodedPath, {
+    Map<String, String> body = const {},
+    http.Response Function(http.Response response)? validate,
+  });
+
+  Future<http.Response> patchMultipart(
+    UserContext userContext,
+    String unencodedPath, {
+    List<http.MultipartFile> files = const [],
+    dynamic body = const {},
+    http.Response Function(http.Response response)? validate,
+  });
 }
 
 class ServiceHelper implements Service {
@@ -196,6 +211,43 @@ class ServiceHelper implements Service {
       Uri.https(_authority, unencodedPath),
       headers: {'Content-type': 'application/json'},
       body: converter.jsonEncode(_removeNullValues(body)),
+    );
+
+    return validate != null ? validate(response) : response;
+  }
+
+  @override
+  Future<http.Response> patch(
+    UserContext userContext,
+    final String unencodedPath, {
+    dynamic body = const {},
+    http.Response Function(http.Response response)? validate,
+  }) async {
+    final response = await _context.patch(
+      userContext,
+      Uri.https(_authority, unencodedPath),
+      headers: {'Content-type': 'application/json'},
+      body: converter.jsonEncode(_removeNullValues(body)),
+    );
+
+    return validate != null ? validate(response) : response;
+  }
+
+  @override
+  Future<http.Response> patchMultipart(
+    UserContext userContext,
+    final String unencodedPath, {
+    List<http.MultipartFile> files = const [],
+    dynamic body = const {},
+    http.Response Function(http.Response response)? validate,
+  }) async {
+    final response = await _context.patchMultipart(
+      userContext,
+      Uri.https(
+        _authority,
+        unencodedPath,
+      ),
+      files: files,
     );
 
     return validate != null ? validate(response) : response;

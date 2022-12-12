@@ -198,6 +198,67 @@ class MockClientContext extends _i1.Mock implements _i3.ClientContext {
         )),
       ) as _i4.Future<_i2.Response>);
   @override
+  _i4.Future<_i2.Response> patch(
+    _i5.UserContext? userContext,
+    Uri? uri, {
+    Map<String, String>? headers = const {},
+    dynamic body,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #patch,
+          [
+            userContext,
+            uri,
+          ],
+          {
+            #headers: headers,
+            #body: body,
+          },
+        ),
+        returnValue: _i4.Future<_i2.Response>.value(_FakeResponse_0(
+          this,
+          Invocation.method(
+            #patch,
+            [
+              userContext,
+              uri,
+            ],
+            {
+              #headers: headers,
+              #body: body,
+            },
+          ),
+        )),
+      ) as _i4.Future<_i2.Response>);
+  @override
+  _i4.Future<_i2.Response> patchMultipart(
+    _i5.UserContext? userContext,
+    Uri? uri, {
+    List<_i2.MultipartFile>? files = const [],
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #patchMultipart,
+          [
+            userContext,
+            uri,
+          ],
+          {#files: files},
+        ),
+        returnValue: _i4.Future<_i2.Response>.value(_FakeResponse_0(
+          this,
+          Invocation.method(
+            #patchMultipart,
+            [
+              userContext,
+              uri,
+            ],
+            {#files: files},
+          ),
+        )),
+      ) as _i4.Future<_i2.Response>);
+  @override
   _i4.Future<_i2.StreamedResponse> getStream(
     _i5.UserContext? userContext,
     _i6.StreamRequest? request,

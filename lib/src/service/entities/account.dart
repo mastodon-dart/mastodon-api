@@ -57,6 +57,10 @@ class Account with _$Account {
     /// an animated GIF.
     required String headerStatic,
 
+    /// An extra attribute that contains source values to be used with API
+    /// methods that verify credentials and update credentials.
+    // String? source,
+
     /// The reported followers of this profile.
     required int followersCount,
 

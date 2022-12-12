@@ -56,6 +56,19 @@ abstract class _Service {
     Map<String, String> body = const {},
   });
 
+  Future<Response> patch(
+    UserContext userContext,
+    String unencodedPath, {
+    Map<String, String> body = const {},
+  });
+
+  Future<Response> patchMultipart(
+    final UserContext userContext,
+    final String unencodedPath, {
+    List<MultipartFile> files = const [],
+    bool checkUnprocessableEntity = false,
+  });
+
   MastodonResponse<D> transformSingleDataResponse<D>(
     Response response, {
     required DataBuilder<D> dataBuilder,
@@ -175,6 +188,40 @@ abstract class BaseService implements _Service {
       );
 
   @override
+  Future<Response> patch(
+    UserContext userContext,
+    final String unencodedPath, {
+    dynamic body = const {},
+    bool checkUnprocessableEntity = false,
+  }) async =>
+      await _helper.patch(
+        userContext,
+        unencodedPath,
+        body: body,
+        validate: ((response) => checkResponse(
+              response,
+              checkUnprocessableEntity,
+            )),
+      );
+
+  @override
+  Future<Response> patchMultipart(
+    final UserContext userContext,
+    final String unencodedPath, {
+    List<MultipartFile> files = const [],
+    bool checkUnprocessableEntity = false,
+  }) async =>
+      await _helper.patchMultipart(
+        userContext,
+        unencodedPath,
+        files: files,
+        validate: ((response) => checkResponse(
+              response,
+              checkUnprocessableEntity,
+            )),
+      );
+
+  @override
   MastodonResponse<D> transformSingleDataResponse<D>(
     Response response, {
     required DataBuilder<D> dataBuilder,
@@ -282,6 +329,13 @@ abstract class BaseService implements _Service {
     if (response.statusCode == 401) {
       throw UnauthorizedException(
         'The specified access token is invalid.',
+        response,
+      );
+    }
+
+    if (response.statusCode == 403) {
+      throw MastodonException(
+        'Your request is forbidden.',
         response,
       );
     }

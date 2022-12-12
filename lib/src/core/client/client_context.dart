@@ -63,6 +63,19 @@ abstract class ClientContext {
     dynamic body,
   });
 
+  Future<http.Response> patch(
+    UserContext userContext,
+    Uri uri, {
+    Map<String, String> headers = const {},
+    dynamic body,
+  });
+
+  Future<http.Response> patchMultipart(
+    UserContext userContext,
+    Uri uri, {
+    List<http.MultipartFile> files = const [],
+  });
+
   Future<http.StreamedResponse> getStream(
     UserContext userContext,
     StreamRequest request,
@@ -149,7 +162,7 @@ class _ClientContext implements ClientContext {
   }) async =>
       await _challengeWithRetryIfNecessary(
         _clientResolver.execute(userContext),
-        (client) async => await client.postMultipart(
+        (client) async => await client.sendMultipart(
           http.MultipartRequest('POST', uri),
           files: files,
           timeout: timeout,
@@ -179,6 +192,38 @@ class _ClientContext implements ClientContext {
           uri,
           headers: headers,
           body: body,
+          timeout: timeout,
+        ),
+      );
+
+  @override
+  Future<http.Response> patch(
+    UserContext userContext,
+    Uri uri, {
+    Map<String, String> headers = const {},
+    body,
+  }) async =>
+      await _challengeWithRetryIfNecessary(
+        _clientResolver.execute(userContext),
+        (client) async => await client.patch(
+          uri,
+          headers: headers,
+          body: body,
+          timeout: timeout,
+        ),
+      );
+
+  @override
+  Future<http.Response> patchMultipart(
+    UserContext userContext,
+    Uri uri, {
+    List<http.MultipartFile> files = const [],
+  }) async =>
+      await _challengeWithRetryIfNecessary(
+        _clientResolver.execute(userContext),
+        (client) async => await client.sendMultipart(
+          http.MultipartRequest('PATCH', uri),
+          files: files,
           timeout: timeout,
         ),
       );

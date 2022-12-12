@@ -103,7 +103,7 @@ void main() {
     });
   });
 
-  group('.verifyOAuthCredentials', () {
+  group('.verifyApplicationCredentials', () {
     test('normal case', () async {
       final appsService = AppsV1Service(
         instance: 'test',
@@ -119,7 +119,7 @@ void main() {
         ),
       );
 
-      final response = await appsService.verifyOAuthCredentials(
+      final response = await appsService.verifyApplicationCredentials(
         bearerToken: 'test',
       );
 
@@ -145,7 +145,7 @@ void main() {
       );
 
       expectUnauthorizedException(
-        () async => await appsService.verifyOAuthCredentials(
+        () async => await appsService.verifyApplicationCredentials(
           bearerToken: 'test',
         ),
       );
@@ -168,7 +168,7 @@ void main() {
       );
 
       expectRateLimitExceededException(
-        () async => await appsService.verifyOAuthCredentials(
+        () async => await appsService.verifyApplicationCredentials(
           bearerToken: 'test',
         ),
       );
