@@ -9,10 +9,14 @@ import 'package:http/http.dart';
 
 import '../../../core/client/client_context.dart';
 import '../../../core/client/user_context.dart';
+import '../../../core/language.dart';
 import '../../base_service.dart';
 import '../../entities/account.dart';
+import '../../entities/featured_tag.dart';
+import '../../entities/relationship.dart';
 import '../../entities/status.dart';
 import '../../entities/token.dart';
+import '../../entities/user_list.dart';
 import '../../response/mastodon_response.dart';
 import 'account_default_settings_param.dart';
 import 'account_profile_meta_param.dart';
@@ -97,7 +101,7 @@ abstract class AccountsV1Service {
   ///
   /// - https://docs.joinmastodon.org/methods/accounts/#verify_credentials
   Future<MastodonResponse<Account>> verifyAccountCredentials({
-    required String bearerToken,
+    String? bearerToken,
   });
 
   /// Update the user’s display and preferences.
@@ -265,6 +269,149 @@ abstract class AccountsV1Service {
     int? limit,
     bool? excludeReblogs,
   });
+
+  /// Accounts which follow the given account, if network is not hidden by the
+  /// account owner.
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountId]: The ID of the Account in the database.
+  ///
+  /// - [limit]: Maximum number of results to return. Defaults to 40.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET https://mastodon.example/api/v1/accounts/:id/followers HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:accounts
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/accounts/#followers
+  Future<MastodonResponse<List<Account>>> lookupFollowers({
+    required String accountId,
+    int? limit,
+  });
+
+  /// Accounts which follow the given account, if network is not hidden by the
+  /// account owner.
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountId]: The ID of the Account in the database.
+  ///
+  /// - [limit]: Maximum number of results to return. Defaults to 40.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET https://mastodon.example/api/v1/accounts/:id/following HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:accounts
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/accounts/#following
+  Future<MastodonResponse<List<Account>>> lookupFollowings({
+    required String accountId,
+    int? limit,
+  });
+
+  /// Tags featured by this account.
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountId]: The ID of the Account in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET https://mastodon.example/api/v1/accounts/:id/featured_tags HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - Anonymous
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/accounts/#featured_tags
+  Future<MastodonResponse<List<FeaturedTag>>> lookupFeaturedTags({
+    required String accountId,
+  });
+
+  /// User lists that you have added this account to.
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountId]: The ID of the Account in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET https://mastodon.example/api/v1/accounts/:id/lists HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:lists
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/accounts/#lists
+  Future<MastodonResponse<List<UserList>>> lookupContainedLists({
+    required String accountId,
+  });
+
+  /// Follow the given account. Can also be used to update whether to show
+  /// reblogs or enable notifications.
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountId]: The ID of the Account in the database.
+  ///
+  /// - [receiveReblogs]: Receive this account’s reblogs in home timeline?
+  ///                     Defaults to true.
+  ///
+  /// - [receiveNotifications]: Receive notifications when this account posts
+  ///                          a status? Defaults to false.
+  ///
+  /// - [filteringLanguages]: Filter received statuses for these languages.
+  ///                         If not provided, you will receive this account’s
+  ///                         posts in all languages.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/accounts/:id/follow HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:lists
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/accounts/#follow
+  Future<MastodonResponse<Relationship>> createFollow({
+    required String accountId,
+    bool? receiveReblogs,
+    bool? receiveNotifications,
+    List<Language>? filteringLanguages,
+  });
 }
 
 class _AccountsV1Service extends BaseService implements AccountsV1Service {
@@ -302,14 +449,14 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
 
   @override
   Future<MastodonResponse<Account>> verifyAccountCredentials({
-    required String bearerToken,
+    String? bearerToken,
   }) async =>
       super.transformSingleDataResponse(
         await super.get(
           UserContext.oauth2Only,
           '/api/v1/accounts/verify_credentials',
           headers: {
-            'Authorization': 'Bearer $bearerToken',
+            if (bearerToken != null) 'Authorization': 'Bearer $bearerToken',
           },
         ),
         dataBuilder: Account.fromJson,
@@ -427,5 +574,82 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
           },
         ),
         dataBuilder: Status.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<Account>>> lookupFollowers({
+    required String accountId,
+    int? limit,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/accounts/$accountId/followers',
+          queryParameters: {
+            'limit': limit,
+          },
+        ),
+        dataBuilder: Account.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<Account>>> lookupFollowings({
+    required Object accountId,
+    int? limit,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/accounts/$accountId/following',
+          queryParameters: {
+            'limit': limit,
+          },
+        ),
+        dataBuilder: Account.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<FeaturedTag>>> lookupFeaturedTags({
+    required String accountId,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.anonymousOnly,
+          '/api/v1/accounts/$accountId/featured_tags',
+        ),
+        dataBuilder: FeaturedTag.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<UserList>>> lookupContainedLists({
+    required String accountId,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/accounts/$accountId/lists',
+        ),
+        dataBuilder: UserList.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Relationship>> createFollow({
+    required String accountId,
+    bool? receiveReblogs,
+    bool? receiveNotifications,
+    List<Language>? filteringLanguages,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/accounts/$accountId/follow',
+          body: {
+            'reblogs': receiveReblogs,
+            'notify': receiveNotifications,
+            'languages': filteringLanguages?.map((e) => e.value).toList(),
+          },
+          checkUnprocessableEntity: true,
+        ),
+        dataBuilder: Relationship.fromJson,
       );
 }

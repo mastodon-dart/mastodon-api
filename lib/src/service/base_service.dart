@@ -285,7 +285,7 @@ abstract class BaseService implements _Service {
 
   Response checkResponse(
     final Response response,
-    final bool checkUnprocessableEntity,
+    final bool checkEntity,
   ) {
     if (response.statusCode == 401) {
       throw UnauthorizedException(
@@ -298,8 +298,8 @@ abstract class BaseService implements _Service {
       throw RateLimitExceededException('Rate limit exceeded.', response);
     }
 
-    if (checkUnprocessableEntity) {
-      if (response.statusCode == 422) {
+    if (checkEntity) {
+      if (400 <= response.statusCode && response.statusCode < 500) {
         throw MastodonException(
           'Required parameter is missing or improperly formatted.',
           response,
