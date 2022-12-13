@@ -122,7 +122,7 @@ class _AppsV1Service extends BaseService implements AppsV1Service {
             'scopes': scopes?.map((e) => e.value).toList(),
             'website': websiteUrl,
           },
-          checkUnprocessableEntity: true,
+          checkEntity: true,
         ),
         dataBuilder: RegisteredApplication.fromJson,
       );

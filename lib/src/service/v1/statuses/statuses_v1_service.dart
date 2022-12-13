@@ -196,7 +196,7 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
               'hide_totals': poll?.hideTotals,
             }
           },
-          checkUnprocessableEntity: true,
+          checkEntity: true,
         ),
         dataBuilder: Status.fromJson,
       );
@@ -244,7 +244,7 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
           body: {
             'choices': choices,
           },
-          checkUnprocessableEntity: true,
+          checkEntity: true,
         ),
         dataBuilder: Poll.fromJson,
       );

@@ -12,6 +12,7 @@ import '../../../core/client/user_context.dart';
 import '../../../core/language.dart';
 import '../../base_service.dart';
 import '../../entities/account.dart';
+import '../../entities/familiar_follower.dart';
 import '../../entities/featured_tag.dart';
 import '../../entities/relationship.dart';
 import '../../entities/status.dart';
@@ -412,6 +413,364 @@ abstract class AccountsV1Service {
     bool? receiveNotifications,
     List<Language>? filteringLanguages,
   });
+
+  /// Unfollow the given account.
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountId]: The ID of the Account in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/accounts/:id/unfollow HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:follows
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/accounts/#unfollow
+  Future<MastodonResponse<Relationship>> destroyFollow({
+    required String accountId,
+  });
+
+  /// Remove the given account from your followers.
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountId]: The ID of the Account in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/accounts/:id/remove_from_followers HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:follows
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/accounts/#remove_from_followers
+  Future<MastodonResponse<Relationship>> destroyFollower({
+    required String accountId,
+  });
+
+  /// Block the given account. Clients should filter statuses from this account
+  /// if received (e.g. due to a boost in the Home timeline)
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountId]: The ID of the Account in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/accounts/:id/block HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:blocks
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/accounts/#block
+  Future<MastodonResponse<Relationship>> createBlock({
+    required String accountId,
+  });
+
+  /// Unblock the given account.
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountId]: The ID of the Account in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/accounts/:id/unblock HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:blocks
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/accounts/#unblock
+  Future<MastodonResponse<Relationship>> destroyBlock({
+    required String accountId,
+  });
+
+  /// Mute the given account. Clients should filter statuses and notifications
+  /// from this account, if received (e.g. due to a boost in the Home timeline).
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountId]: The ID of the Account in the database.
+  ///
+  /// - [includeNotifications]: Mute notifications in addition to statuses?
+  ///                           Defaults to true.
+  ///
+  /// - [duration]: How long the mute should last. Defaults to 0 (indefinite).
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/accounts/:id/mute HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:mutes
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/accounts/#mute
+  Future<MastodonResponse<Relationship>> createMute({
+    required String accountId,
+    bool? includeNotifications,
+    Duration? duration,
+  });
+
+  /// Unmute the given account.
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountId]: The ID of the Account in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/accounts/:id/unmute HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:mutes
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/accounts/#unmute
+  Future<MastodonResponse<Relationship>> destroyMute({
+    required String accountId,
+  });
+
+  /// Add the given account to the user’s featured profiles.
+  /// (Featured profiles are currently shown on the user’s own public profile.)
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountId]: The ID of the Account in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/accounts/:id/pin HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:accounts
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/accounts/#pin
+  Future<MastodonResponse<Relationship>> createFeaturedProfile({
+    required String accountId,
+  });
+
+  /// Remove the given account from the user’s featured profiles.
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountId]: The ID of the Account in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/accounts/:id/unpin HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:accounts
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/accounts/#unpin
+  Future<MastodonResponse<Relationship>> destroyFeaturedProfile({
+    required String accountId,
+  });
+
+  /// Sets a private note on a user.
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountId]: The ID of the Account in the database.
+  ///
+  /// - [text]: The comment to be set on that user.
+  ///           Provide an empty string or leave out this parameter to
+  ///           clear the currently set note.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/accounts/:id/note HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:accounts
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/accounts/#note
+  Future<MastodonResponse<Relationship>> updatePrivateComment({
+    required String accountId,
+    String text = '',
+  });
+
+  /// Find out whether a given account is followed, blocked, muted, etc.
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountIds]: Check relationships for the provided account IDs.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET https://mastodon.example/api/v1/accounts/relationships HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:follows
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/accounts/#relationships
+  Future<MastodonResponse<List<Relationship>>> lookupRelationships({
+    required List<String> accountIds,
+  });
+
+  /// Obtain a list of all accounts that follow a given account, filtered for
+  /// accounts you follow.
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountIds]: Find familiar followers for the provided account IDs.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET https://mastodon.example/api/v1/accounts/familiar_followers HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:follows
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/accounts/#familiar_followers
+  Future<MastodonResponse<List<FamiliarFollower>>> lookupFamiliarFollowers({
+    required List<String> accountIds,
+  });
+
+  /// Search for matching accounts by username or display name.
+  ///
+  /// ## Parameters
+  ///
+  /// - [query]: Search query for accounts.
+  ///
+  /// - [limit]: Maximum number of results. Defaults to 40.
+  ///
+  /// - [resolveWithWebFinger]: Attempt WebFinger lookup. Defaults to false.
+  ///                           Use this when [query] is an exact address.
+  ///
+  /// - [onlyFollowings]: Limit the search to users you are following.
+  ///                            Defaults to false.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET https://mastodon.example/api/v1/accounts/search HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:accounts
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/accounts/#search
+  Future<MastodonResponse<List<Account>>> searchAccounts({
+    required String query,
+    int? limit,
+    bool? resolveWithWebFinger,
+    bool? onlyFollowings,
+  });
+
+  /// Quickly lookup a username to see if it is available, or quickly
+  /// resolve a Web Finger address to an account ID.
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountIdentifier]: The username or Web Finger address to lookup.
+  ///
+  /// - [skipWebFinger]: Whether to use the locally cached result instead of
+  ///                    performing full Web Finger resolution. Defaults to
+  ///                    true.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET https://mastodon.example/api/v1/accounts/lookup HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - Anonymous
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:accounts
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/accounts/#lookup
+  Future<MastodonResponse<Account>> lookupAccountFromWebFingerAddress({
+    required String accountIdentifier,
+    bool? skipWebFinger,
+  });
 }
 
 class _AccountsV1Service extends BaseService implements AccountsV1Service {
@@ -442,7 +801,7 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
             'locale': locale,
             'reason': reason,
           },
-          checkUnprocessableEntity: true,
+          checkEntity: true,
         ),
         dataBuilder: Token.fromJson,
       );
@@ -648,8 +1007,197 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
             'notify': receiveNotifications,
             'languages': filteringLanguages?.map((e) => e.value).toList(),
           },
-          checkUnprocessableEntity: true,
+          checkEntity: true,
         ),
         dataBuilder: Relationship.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Relationship>> destroyFollow({
+    required String accountId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/accounts/$accountId/unfollow',
+          checkEntity: true,
+        ),
+        dataBuilder: Relationship.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Relationship>> destroyFollower({
+    required String accountId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/accounts/:$accountId/remove_from_followers',
+          checkEntity: true,
+        ),
+        dataBuilder: Relationship.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Relationship>> createBlock({
+    required Object accountId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/accounts/$accountId/block',
+          checkEntity: true,
+        ),
+        dataBuilder: Relationship.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Relationship>> destroyBlock({
+    required String accountId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          'api/v1/accounts/$accountId/unblock',
+          checkEntity: true,
+        ),
+        dataBuilder: Relationship.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Relationship>> createMute({
+    required String accountId,
+    bool? includeNotifications,
+    Duration? duration,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/accounts/$accountId/mute',
+          body: {
+            'notifications': includeNotifications,
+            'duration': duration?.inSeconds,
+          },
+          checkEntity: true,
+        ),
+        dataBuilder: Relationship.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Relationship>> destroyMute({
+    required String accountId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/accounts/$accountId/unmute',
+          checkEntity: true,
+        ),
+        dataBuilder: Relationship.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Relationship>> createFeaturedProfile({
+    required String accountId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/accounts/$accountId/pin',
+          checkEntity: true,
+        ),
+        dataBuilder: Relationship.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Relationship>> destroyFeaturedProfile({
+    required String accountId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/accounts/$accountId/unpin',
+          checkEntity: true,
+        ),
+        dataBuilder: Relationship.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Relationship>> updatePrivateComment({
+    required String accountId,
+    String text = '',
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/accounts/$accountId/note',
+          body: {
+            'comment': text,
+          },
+          checkEntity: true,
+        ),
+        dataBuilder: Relationship.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<Relationship>>> lookupRelationships({
+    required List<String> accountIds,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/accounts/relationships?${accountIds.map((e) => 'id[]=$e').join('&')}',
+        ),
+        dataBuilder: Relationship.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<FamiliarFollower>>> lookupFamiliarFollowers({
+    required List<String> accountIds,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/accounts/familiar_followers?${accountIds.map((e) => 'id[]=$e').join('&')}',
+        ),
+        dataBuilder: FamiliarFollower.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<Account>>> searchAccounts({
+    required String query,
+    int? limit,
+    bool? resolveWithWebFinger,
+    bool? onlyFollowings,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/accounts/search',
+          queryParameters: {
+            'q': query,
+            'limit': limit,
+            'resolve': resolveWithWebFinger,
+            'following': onlyFollowings,
+          },
+        ),
+        dataBuilder: Account.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Account>> lookupAccountFromWebFingerAddress({
+    required String accountIdentifier,
+    bool? skipWebFinger,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.get(
+          UserContext.anonymousOnly,
+          '/api/v1/accounts/lookup',
+          queryParameters: {
+            'acct': accountIdentifier,
+            'skip_webfinger': skipWebFinger,
+          },
+        ),
+        dataBuilder: Account.fromJson,
       );
 }

@@ -142,7 +142,7 @@ abstract class BaseService implements _Service {
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     dynamic body = const {},
-    bool checkUnprocessableEntity = false,
+    bool checkEntity = false,
   }) async =>
       await _helper.post(
         userContext,
@@ -151,7 +151,7 @@ abstract class BaseService implements _Service {
         body: body,
         validate: ((response) => checkResponse(
               response,
-              checkUnprocessableEntity,
+              checkEntity,
             )),
       );
 
