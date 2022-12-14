@@ -14,6 +14,7 @@ part 'relationship.g.dart';
 
 @freezed
 class Relationship with _$Relationship {
+  @JsonSerializable(includeIfNull: false)
   const factory Relationship({
     /// The account ID.
     required String id,
@@ -55,7 +56,7 @@ class Relationship with _$Relationship {
     @JsonKey(name: 'endorsed') required bool isEndorsed,
 
     /// Which languages are you following from this user?
-    required List<Language> languages,
+    List<Language>? languages,
   }) = _Relationship;
 
   factory Relationship.fromJson(Map<String, Object?> json) =>

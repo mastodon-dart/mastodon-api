@@ -31,8 +31,8 @@ _$_Relationship _$$_RelationshipFromJson(Map json) => $checkedCreate(
           isEndorsed: $checkedConvert('endorsed', (v) => v as bool),
           languages: $checkedConvert(
               'languages',
-              (v) => (v as List<dynamic>)
-                  .map((e) => $enumDecode(_$LanguageEnumMap, e))
+              (v) => (v as List<dynamic>?)
+                  ?.map((e) => $enumDecode(_$LanguageEnumMap, e))
                   .toList()),
         );
         return val;
@@ -53,24 +53,33 @@ _$_Relationship _$$_RelationshipFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_RelationshipToJson(_$_Relationship instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'note': instance.bio,
-      'following': instance.isFollowing,
-      'followed_by': instance.isFollowed,
-      'showing_reblogs': instance.isShowingReblogs,
-      'notifying': instance.isNotifying,
-      'blocking': instance.isBlocking,
-      'blocked_by': instance.isBlocked,
-      'muting': instance.isMuting,
-      'muting_notifications': instance.isMutingNotifications,
-      'requested': instance.isRequested,
-      'domain_blocking': instance.isDomainBlocking,
-      'endorsed': instance.isEndorsed,
-      'languages':
-          instance.languages.map((e) => _$LanguageEnumMap[e]!).toList(),
-    };
+Map<String, dynamic> _$$_RelationshipToJson(_$_Relationship instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'note': instance.bio,
+    'following': instance.isFollowing,
+    'followed_by': instance.isFollowed,
+    'showing_reblogs': instance.isShowingReblogs,
+    'notifying': instance.isNotifying,
+    'blocking': instance.isBlocking,
+    'blocked_by': instance.isBlocked,
+    'muting': instance.isMuting,
+    'muting_notifications': instance.isMutingNotifications,
+    'requested': instance.isRequested,
+    'domain_blocking': instance.isDomainBlocking,
+    'endorsed': instance.isEndorsed,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('languages',
+      instance.languages?.map((e) => _$LanguageEnumMap[e]!).toList());
+  return val;
+}
 
 const _$LanguageEnumMap = {
   Language.afar: 'aa',

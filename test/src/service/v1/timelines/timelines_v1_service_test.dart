@@ -128,13 +128,32 @@ void main() {
           UserContext.oauth2OrAnonymous,
           '/api/v1/timelines/public',
           'test/src/service/v1/timelines/data/no_data.json',
-          {},
+          {
+            'local': 'true',
+            'remote': 'true',
+            'only_media': 'true',
+            'max_id': '1234',
+            'min_id': '5678',
+            'since_id': '0987',
+            'limit': '40',
+          },
         ),
       );
 
-      expectDataNotFoundExceptionDueToNoData(
-        () async => await timelinesService.lookupPublicTimeline(),
+      final response = await timelinesService.lookupPublicTimeline(
+        onlyLocal: true,
+        onlyRemote: true,
+        onlyMedia: true,
+        maxStatusId: '1234',
+        minStatusId: '5678',
+        sinceStatusId: '0987',
+        limit: 40,
       );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<List<Status>>());
+      expect(response.data, []);
     });
   });
 
@@ -259,15 +278,33 @@ void main() {
           UserContext.oauth2OrAnonymous,
           '/api/v1/timelines/tag/test',
           'test/src/service/v1/timelines/data/no_data.json',
-          {},
+          {
+            'local': 'true',
+            'remote': 'true',
+            'only_media': 'true',
+            'max_id': '1234',
+            'min_id': '5678',
+            'since_id': '0987',
+            'limit': '40',
+          },
         ),
       );
 
-      expectDataNotFoundExceptionDueToNoData(
-        () async => await timelinesService.lookupTimelineByHashtag(
-          hashtag: 'test',
-        ),
+      final response = await timelinesService.lookupTimelineByHashtag(
+        hashtag: 'test',
+        onlyLocal: true,
+        onlyRemote: true,
+        onlyMedia: true,
+        maxStatusId: '1234',
+        minStatusId: '5678',
+        sinceStatusId: '0987',
+        limit: 40,
       );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<List<Status>>());
+      expect(response.data, []);
     });
   });
 
@@ -345,13 +382,26 @@ void main() {
           UserContext.oauth2Only,
           '/api/v1/timelines/home',
           'test/src/service/v1/timelines/data/no_data.json',
-          {},
+          {
+            'max_id': '1234',
+            'min_id': '5678',
+            'since_id': '0987',
+            'limit': '40',
+          },
         ),
       );
 
-      expectDataNotFoundExceptionDueToNoData(
-        () async => await timelinesService.lookupHomeTimeline(),
+      final response = await timelinesService.lookupHomeTimeline(
+        maxStatusId: '1234',
+        minStatusId: '5678',
+        sinceStatusId: '0987',
+        limit: 40,
       );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<List<Status>>());
+      expect(response.data, []);
     });
   });
 
@@ -430,13 +480,27 @@ void main() {
           UserContext.oauth2Only,
           '/api/v1/timelines/list/1234',
           'test/src/service/v1/timelines/data/no_data.json',
-          {},
+          {
+            'max_id': '1234',
+            'min_id': '5678',
+            'since_id': '0987',
+            'limit': '40',
+          },
         ),
       );
 
-      expectDataNotFoundExceptionDueToNoData(
-        () async => await timelinesService.lookupListTimeline(listId: '1234'),
+      final response = await timelinesService.lookupListTimeline(
+        listId: '1234',
+        maxStatusId: '1234',
+        minStatusId: '5678',
+        sinceStatusId: '0987',
+        limit: 40,
       );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<List<Status>>());
+      expect(response.data, []);
     });
   });
 }

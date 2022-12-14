@@ -239,26 +239,32 @@ abstract class BaseService implements _Service {
   MastodonResponse<List<D>> transformMultiDataResponse<D>(
     Response response, {
     required DataBuilder<D> dataBuilder,
-  }) =>
-      MastodonResponse(
-        rateLimit: RateLimit.fromJson(
-          rateLimitConverter.convert(response.headers),
-        ),
-        data: jsonDecode(response.body)
-            .map<D>((json) => dataBuilder(json))
-            .toList(),
-      );
+  }) {
+    final json = jsonDecode(response.body);
+
+    return MastodonResponse(
+      rateLimit: RateLimit.fromJson(
+        rateLimitConverter.convert(response.headers),
+      ),
+      data: json.isNotEmpty
+          ? json.map<D>((json) => dataBuilder(json)).toList()
+          : [],
+    );
+  }
 
   @override
   MastodonResponse<List<D>> transformMultiRawDataResponse<D>(
     Response response,
-  ) =>
-      MastodonResponse(
-        rateLimit: RateLimit.fromJson(
-          rateLimitConverter.convert(response.headers),
-        ),
-        data: (jsonDecode(response.body) as List).map<D>((e) => e).toList(),
-      );
+  ) {
+    final json = jsonDecode(response.body);
+
+    return MastodonResponse(
+      rateLimit: RateLimit.fromJson(
+        rateLimitConverter.convert(response.headers),
+      ),
+      data: json.isNotEmpty ? (json as List).map<D>((e) => e).toList() : [],
+    );
+  }
 
   @override
   MastodonResponse<bool> evaluateResponse(final Response response) =>
@@ -351,13 +357,7 @@ abstract class BaseService implements _Service {
       throw RateLimitExceededException('Rate limit exceeded.', response);
     }
 
-    final json = tryJsonDecode(response, event);
-
-    if (json is List) {
-      if (json.isEmpty) {
-        throw DataNotFoundException('No data exists in response.', response);
-      }
-    }
+    tryJsonDecode(response, event);
   }
 }
 
