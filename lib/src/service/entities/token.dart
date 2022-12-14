@@ -8,6 +8,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
+import '../../core/convert/int_date_time_converter.dart';
 import '../../core/convert/scope_converter.dart';
 import '../../core/scope.dart';
 
@@ -27,7 +28,7 @@ class Token with _$Token {
     @JsonKey(name: 'scope') @ScopeConverter() required List<Scope> scopes,
 
     /// When the token was generated.
-    required DateTime createdAt,
+    @IntDateTimeConverter() required DateTime createdAt,
   }) = _Token;
 
   factory Token.fromJson(Map<String, Object?> json) => _$TokenFromJson(json);

@@ -293,6 +293,16 @@ abstract class BaseService implements _Service {
     final Response response,
     final bool checkEntity,
   ) {
+    if (response.statusCode == 204) {
+      //! 204: No Content.
+      return response;
+    }
+
+    if (response.statusCode == 200 && response.body.isEmpty) {
+      //! No JSON in response but okay, it's succeeded.
+      return response;
+    }
+
     if (response.statusCode == 401) {
       throw UnauthorizedException(
         'The specified access token is invalid.',
@@ -311,19 +321,9 @@ abstract class BaseService implements _Service {
           response,
         );
       }
-    }
 
-    if (response.statusCode == 204) {
-      //! 204: No Content.
-      return response;
+      tryJsonDecode(response, response.body);
     }
-
-    if (response.statusCode == 200 && response.body.isEmpty) {
-      //! No JSON in response but okay, it's succeeded.
-      return response;
-    }
-
-    tryJsonDecode(response, response.body);
 
     return response;
   }

@@ -4,10 +4,10 @@
 
 class AccountProfileMetaParam {
   /// Returns the new instance of [AccountProfileMetaParam].
-  const AccountProfileMetaParam(
-    this.name,
-    this.value,
-  );
+  const AccountProfileMetaParam({
+    required this.name,
+    required this.value,
+  });
 
   /// The name of this meta.
   final String name;

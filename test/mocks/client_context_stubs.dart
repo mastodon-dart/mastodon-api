@@ -141,6 +141,31 @@ MockClientContext buildPutStub(
   return mockClientContext;
 }
 
+MockClientContext buildPatchStub(
+  final String instance,
+  final UserContext userContext,
+  final String unencodedPath,
+  final String resourcePath, {
+  int statusCode = 200,
+}) {
+  final mockClientContext = MockClientContext();
+
+  when(mockClientContext.patch(
+    userContext,
+    Uri.https(instance, unencodedPath),
+    headers: anyNamed('headers'),
+    body: anyNamed('body'),
+  )).thenAnswer(
+    (_) async => Response(
+      await File(resourcePath).readAsString(),
+      statusCode,
+      headers: {'content-type': 'application/json; charset=utf-8'},
+    ),
+  );
+
+  return mockClientContext;
+}
+
 MockClientContext buildSendStub(
   final UserContext userContext,
   final String resourcePath, [

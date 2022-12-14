@@ -7,11 +7,11 @@ import 'post_privacy.dart';
 
 class AccountDefaultSettingsParam {
   /// Returns the new instance of [AccountDefaultSettingsParam].
-  const AccountDefaultSettingsParam(
+  const AccountDefaultSettingsParam({
     this.privacy,
     this.sensitive,
-    this.language,
-  );
+    required this.language,
+  });
 
   /// Default post privacy for authored statuses.
   final PostPrivacy? privacy;

@@ -32,6 +32,7 @@ mixin _$Token {
   List<Scope> get scopes => throw _privateConstructorUsedError;
 
   /// When the token was generated.
+  @IntDateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,7 +49,7 @@ abstract class $TokenCopyWith<$Res> {
       {String accessToken,
       String tokenType,
       @JsonKey(name: 'scope') @ScopeConverter() List<Scope> scopes,
-      DateTime createdAt});
+      @IntDateTimeConverter() DateTime createdAt});
 }
 
 /// @nodoc
@@ -100,7 +101,7 @@ abstract class _$$_TokenCopyWith<$Res> implements $TokenCopyWith<$Res> {
       {String accessToken,
       String tokenType,
       @JsonKey(name: 'scope') @ScopeConverter() List<Scope> scopes,
-      DateTime createdAt});
+      @IntDateTimeConverter() DateTime createdAt});
 }
 
 /// @nodoc
@@ -147,7 +148,8 @@ class _$_Token implements _Token {
       @JsonKey(name: 'scope')
       @ScopeConverter()
           required final List<Scope> scopes,
-      required this.createdAt})
+      @IntDateTimeConverter()
+          required this.createdAt})
       : _scopes = scopes;
 
   factory _$_Token.fromJson(Map<String, dynamic> json) =>
@@ -175,6 +177,7 @@ class _$_Token implements _Token {
 
   /// When the token was generated.
   @override
+  @IntDateTimeConverter()
   final DateTime createdAt;
 
   @override
@@ -222,7 +225,8 @@ abstract class _Token implements Token {
       @JsonKey(name: 'scope')
       @ScopeConverter()
           required final List<Scope> scopes,
-      required final DateTime createdAt}) = _$_Token;
+      @IntDateTimeConverter()
+          required final DateTime createdAt}) = _$_Token;
 
   factory _Token.fromJson(Map<String, dynamic> json) = _$_Token.fromJson;
 
@@ -243,6 +247,7 @@ abstract class _Token implements Token {
   @override
 
   /// When the token was generated.
+  @IntDateTimeConverter()
   DateTime get createdAt;
   @override
   @JsonKey(ignore: true)

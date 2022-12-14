@@ -10,6 +10,7 @@ import 'package:http/http.dart';
 import '../../../core/client/client_context.dart';
 import '../../../core/client/user_context.dart';
 import '../../../core/language.dart';
+import '../../../core/locale.dart';
 import '../../base_service.dart';
 import '../../entities/account.dart';
 import '../../entities/familiar_follower.dart';
@@ -76,7 +77,7 @@ abstract class AccountsV1Service {
     required String email,
     required String password,
     required bool agreement,
-    required String locale,
+    required Locale locale,
     String? reason,
   });
 
@@ -786,7 +787,7 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
     required String email,
     required String password,
     required bool agreement,
-    required String locale,
+    required Locale locale,
     String? reason,
   }) async =>
       super.transformSingleDataResponse(
@@ -798,7 +799,7 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
             'email': email,
             'password': password,
             'agreement': agreement,
-            'locale': locale,
+            'locale': locale.toString(),
             'reason': reason,
           },
           checkEntity: true,

@@ -4,11 +4,13 @@
 
 export 'package:mastodon_api/src/core/client/retry_event.dart';
 export 'package:mastodon_api/src/core/config/retry_config.dart';
+export 'package:mastodon_api/src/core/country.dart';
 export 'package:mastodon_api/src/core/exception/data_not_found_exception.dart';
 export 'package:mastodon_api/src/core/exception/mastodon_exception.dart';
 export 'package:mastodon_api/src/core/exception/rate_limit_exceeded_exception.dart';
 export 'package:mastodon_api/src/core/exception/unauthorized_exception.dart';
 export 'package:mastodon_api/src/core/language.dart';
+export 'package:mastodon_api/src/core/locale.dart';
 export 'package:mastodon_api/src/core/mime_type.dart';
 export 'package:mastodon_api/src/core/scope.dart';
 export 'package:mastodon_api/src/core/visibility.dart';

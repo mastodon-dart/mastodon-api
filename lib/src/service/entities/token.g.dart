@@ -17,8 +17,8 @@ _$_Token _$$_TokenFromJson(Map json) => $checkedCreate(
           tokenType: $checkedConvert('token_type', (v) => v as String),
           scopes: $checkedConvert(
               'scope', (v) => const ScopeConverter().fromJson(v as String)),
-          createdAt:
-              $checkedConvert('created_at', (v) => DateTime.parse(v as String)),
+          createdAt: $checkedConvert('created_at',
+              (v) => const IntDateTimeConverter().fromJson(v as int)),
         );
         return val;
       },
@@ -34,5 +34,5 @@ Map<String, dynamic> _$$_TokenToJson(_$_Token instance) => <String, dynamic>{
       'access_token': instance.accessToken,
       'token_type': instance.tokenType,
       'scope': const ScopeConverter().toJson(instance.scopes),
-      'created_at': instance.createdAt.toIso8601String(),
+      'created_at': const IntDateTimeConverter().toJson(instance.createdAt),
     };
