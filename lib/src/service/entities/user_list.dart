@@ -4,9 +4,10 @@
 
 // ignore_for_file: invalid_annotation_target
 
-// Package imports:
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+// 🌎 Project imports:
 import 'list_replies_policy.dart';
 
 part 'user_list.freezed.dart';
@@ -14,6 +15,7 @@ part 'user_list.g.dart';
 
 @freezed
 class UserList with _$UserList {
+  @JsonSerializable(includeIfNull: false)
   const factory UserList({
     /// The internal database ID of the list.
     required String id,
@@ -22,7 +24,7 @@ class UserList with _$UserList {
     required String title,
 
     /// Which replies should be shown in the list.
-    required ListRepliesPolicy repliesPolicy,
+    ListRepliesPolicy? repliesPolicy,
   }) = _UserList;
 
   factory UserList.fromJson(Map<String, Object?> json) =>

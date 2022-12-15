@@ -2,13 +2,13 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
+// 🎯 Dart imports:
 import 'dart:io';
 
-// Package imports:
+// 📦 Package imports:
 import 'package:http/http.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import 'mastodon_exception.dart';
 
 /// This class indicates that an exception occurred during a file upload to

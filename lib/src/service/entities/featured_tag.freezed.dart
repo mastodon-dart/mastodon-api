@@ -27,7 +27,7 @@ mixin _$FeaturedTag {
   String get name => throw _privateConstructorUsedError;
 
   /// A link to all statuses by a user that contain this hashtag.
-  String get url => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
 
   /// The number of authored statuses containing this hashtag.
   int get statusesCount => throw _privateConstructorUsedError;
@@ -50,7 +50,7 @@ abstract class $FeaturedTagCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      String url,
+      String? url,
       int statusesCount,
       DateTime lastStatusAt});
 }
@@ -70,7 +70,7 @@ class _$FeaturedTagCopyWithImpl<$Res, $Val extends FeaturedTag>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? url = null,
+    Object? url = freezed,
     Object? statusesCount = null,
     Object? lastStatusAt = null,
   }) {
@@ -83,10 +83,10 @@ class _$FeaturedTagCopyWithImpl<$Res, $Val extends FeaturedTag>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      url: null == url
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       statusesCount: null == statusesCount
           ? _value.statusesCount
           : statusesCount // ignore: cast_nullable_to_non_nullable
@@ -110,7 +110,7 @@ abstract class _$$_FeaturedTagCopyWith<$Res>
   $Res call(
       {String id,
       String name,
-      String url,
+      String? url,
       int statusesCount,
       DateTime lastStatusAt});
 }
@@ -128,7 +128,7 @@ class __$$_FeaturedTagCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? url = null,
+    Object? url = freezed,
     Object? statusesCount = null,
     Object? lastStatusAt = null,
   }) {
@@ -141,10 +141,10 @@ class __$$_FeaturedTagCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      url: null == url
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       statusesCount: null == statusesCount
           ? _value.statusesCount
           : statusesCount // ignore: cast_nullable_to_non_nullable
@@ -164,7 +164,7 @@ class _$_FeaturedTag implements _FeaturedTag {
   const _$_FeaturedTag(
       {required this.id,
       required this.name,
-      required this.url,
+      this.url,
       required this.statusesCount,
       required this.lastStatusAt});
 
@@ -181,7 +181,7 @@ class _$_FeaturedTag implements _FeaturedTag {
 
   /// A link to all statuses by a user that contain this hashtag.
   @override
-  final String url;
+  final String? url;
 
   /// The number of authored statuses containing this hashtag.
   @override
@@ -233,7 +233,7 @@ abstract class _FeaturedTag implements FeaturedTag {
   const factory _FeaturedTag(
       {required final String id,
       required final String name,
-      required final String url,
+      final String? url,
       required final int statusesCount,
       required final DateTime lastStatusAt}) = _$_FeaturedTag;
 
@@ -251,7 +251,7 @@ abstract class _FeaturedTag implements FeaturedTag {
   @override
 
   /// A link to all statuses by a user that contain this hashtag.
-  String get url;
+  String? get url;
   @override
 
   /// The number of authored statuses containing this hashtag.

@@ -2,13 +2,15 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// 📦 Package imports:
+import 'package:test/test.dart';
+
+// 🌎 Project imports:
 import 'package:mastodon_api/src/core/client/user_context.dart';
 import 'package:mastodon_api/src/service/entities/rate_limit.dart';
 import 'package:mastodon_api/src/service/entities/status.dart';
 import 'package:mastodon_api/src/service/response/mastodon_response.dart';
 import 'package:mastodon_api/src/service/v1/timelines/timelines_v1_service.dart';
-import 'package:test/test.dart';
-
 import '../../../../mocks/client_context_stubs.dart' as context;
 import '../../common_expectations.dart';
 

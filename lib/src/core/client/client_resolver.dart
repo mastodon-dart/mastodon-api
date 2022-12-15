@@ -2,7 +2,7 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Project imports:
+// 🌎 Project imports:
 import '../exception/unauthorized_exception.dart';
 import 'anonymous_client.dart';
 import 'client.dart';

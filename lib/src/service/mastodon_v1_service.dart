@@ -2,7 +2,7 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Project imports:
+// 🌎 Project imports:
 import '../core/client/client_context.dart';
 import 'v1/accounts/accounts_v1_service.dart';
 import 'v1/apps/apps_v1_service.dart';

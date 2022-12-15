@@ -27,7 +27,7 @@ mixin _$UserList {
   String get title => throw _privateConstructorUsedError;
 
   /// Which replies should be shown in the list.
-  ListRepliesPolicy get repliesPolicy => throw _privateConstructorUsedError;
+  ListRepliesPolicy? get repliesPolicy => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,7 +40,7 @@ abstract class $UserListCopyWith<$Res> {
   factory $UserListCopyWith(UserList value, $Res Function(UserList) then) =
       _$UserListCopyWithImpl<$Res, UserList>;
   @useResult
-  $Res call({String id, String title, ListRepliesPolicy repliesPolicy});
+  $Res call({String id, String title, ListRepliesPolicy? repliesPolicy});
 }
 
 /// @nodoc
@@ -58,7 +58,7 @@ class _$UserListCopyWithImpl<$Res, $Val extends UserList>
   $Res call({
     Object? id = null,
     Object? title = null,
-    Object? repliesPolicy = null,
+    Object? repliesPolicy = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -69,10 +69,10 @@ class _$UserListCopyWithImpl<$Res, $Val extends UserList>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      repliesPolicy: null == repliesPolicy
+      repliesPolicy: freezed == repliesPolicy
           ? _value.repliesPolicy
           : repliesPolicy // ignore: cast_nullable_to_non_nullable
-              as ListRepliesPolicy,
+              as ListRepliesPolicy?,
     ) as $Val);
   }
 }
@@ -84,7 +84,7 @@ abstract class _$$_UserListCopyWith<$Res> implements $UserListCopyWith<$Res> {
       __$$_UserListCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String title, ListRepliesPolicy repliesPolicy});
+  $Res call({String id, String title, ListRepliesPolicy? repliesPolicy});
 }
 
 /// @nodoc
@@ -100,7 +100,7 @@ class __$$_UserListCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? title = null,
-    Object? repliesPolicy = null,
+    Object? repliesPolicy = freezed,
   }) {
     return _then(_$_UserList(
       id: null == id
@@ -111,19 +111,20 @@ class __$$_UserListCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      repliesPolicy: null == repliesPolicy
+      repliesPolicy: freezed == repliesPolicy
           ? _value.repliesPolicy
           : repliesPolicy // ignore: cast_nullable_to_non_nullable
-              as ListRepliesPolicy,
+              as ListRepliesPolicy?,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_UserList implements _UserList {
   const _$_UserList(
-      {required this.id, required this.title, required this.repliesPolicy});
+      {required this.id, required this.title, this.repliesPolicy});
 
   factory _$_UserList.fromJson(Map<String, dynamic> json) =>
       _$$_UserListFromJson(json);
@@ -138,7 +139,7 @@ class _$_UserList implements _UserList {
 
   /// Which replies should be shown in the list.
   @override
-  final ListRepliesPolicy repliesPolicy;
+  final ListRepliesPolicy? repliesPolicy;
 
   @override
   String toString() {
@@ -178,7 +179,7 @@ abstract class _UserList implements UserList {
   const factory _UserList(
       {required final String id,
       required final String title,
-      required final ListRepliesPolicy repliesPolicy}) = _$_UserList;
+      final ListRepliesPolicy? repliesPolicy}) = _$_UserList;
 
   factory _UserList.fromJson(Map<String, dynamic> json) = _$_UserList.fromJson;
 
@@ -193,7 +194,7 @@ abstract class _UserList implements UserList {
   @override
 
   /// Which replies should be shown in the list.
-  ListRepliesPolicy get repliesPolicy;
+  ListRepliesPolicy? get repliesPolicy;
   @override
   @JsonKey(ignore: true)
   _$$_UserListCopyWith<_$_UserList> get copyWith =>

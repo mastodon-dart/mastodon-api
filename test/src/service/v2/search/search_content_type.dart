@@ -2,8 +2,11 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-import 'package:mastodon_api/src/service/v2/search/search_content_type.dart';
+// 📦 Package imports:
 import 'package:test/test.dart';
+
+// 🌎 Project imports:
+import 'package:mastodon_api/src/service/v2/search/search_content_type.dart';
 
 void main() {
   test('.name', () {

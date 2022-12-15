@@ -3,8 +3,10 @@
 // modification, are permitted provided the conditions.
 
 // 📦 Package imports:
-import 'package:mastodon_api/src/core/country.dart';
 import 'package:test/test.dart';
+
+// 🌎 Project imports:
+import 'package:mastodon_api/src/core/country.dart';
 
 void main() {
   test('.name', () {

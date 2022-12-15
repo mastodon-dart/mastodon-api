@@ -2,7 +2,9 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// ignore_for_file: invalid_annotation_target
+
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'featured_tag.freezed.dart';
@@ -19,7 +21,7 @@ class FeaturedTag with _$FeaturedTag {
     required String name,
 
     /// A link to all statuses by a user that contain this hashtag.
-    required String url,
+    String? url,
 
     /// The number of authored statuses containing this hashtag.
     required int statusesCount,

@@ -2,11 +2,13 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Project imports:
+// 🎯 Dart imports:
 import 'dart:io';
 
+// 📦 Package imports:
 import 'package:http/http.dart';
 
+// 🌎 Project imports:
 import '../../../core/client/client_context.dart';
 import '../../../core/client/user_context.dart';
 import '../../../core/language.dart';
@@ -1033,7 +1035,7 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
       super.transformSingleDataResponse(
         await super.post(
           UserContext.oauth2Only,
-          '/api/v1/accounts/:$accountId/remove_from_followers',
+          '/api/v1/accounts/$accountId/remove_from_followers',
           checkEntity: true,
         ),
         dataBuilder: Relationship.fromJson,

@@ -2,14 +2,14 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
+// 🎯 Dart imports:
 import 'dart:async';
 import 'dart:convert';
 
-// Package imports:
+// 📦 Package imports:
 import 'package:http/http.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import '../core/client/client_context.dart';
 import '../core/client/stream_response.dart';
 import '../core/client/user_context.dart';

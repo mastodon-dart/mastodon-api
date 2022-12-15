@@ -4,7 +4,10 @@
 
 // ignore_for_file: deprecated_member_use_from_same_package
 
-// Project imports:
+// 📦 Package imports:
+import 'package:test/test.dart';
+
+// 🌎 Project imports:
 import 'package:mastodon_api/src/core/client/user_context.dart';
 import 'package:mastodon_api/src/service/entities/announcement.dart';
 import 'package:mastodon_api/src/service/entities/blocked_domain.dart';
@@ -18,8 +21,6 @@ import 'package:mastodon_api/src/service/entities/status.dart';
 import 'package:mastodon_api/src/service/entities/tag.dart';
 import 'package:mastodon_api/src/service/response/mastodon_response.dart';
 import 'package:mastodon_api/src/service/v1/instance/instance_v1_service.dart';
-import 'package:test/test.dart';
-
 import '../../../../mocks/client_context_stubs.dart' as context;
 import '../../common_expectations.dart';
 

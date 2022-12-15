@@ -2,7 +2,10 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Project imports:
+// 📦 Package imports:
+import 'package:test/test.dart';
+
+// 🌎 Project imports:
 import 'package:mastodon_api/src/core/client/user_context.dart';
 import 'package:mastodon_api/src/core/exception/mastodon_exception.dart';
 import 'package:mastodon_api/src/core/scope.dart';
@@ -11,8 +14,6 @@ import 'package:mastodon_api/src/service/entities/rate_limit.dart';
 import 'package:mastodon_api/src/service/entities/registered_application.dart';
 import 'package:mastodon_api/src/service/response/mastodon_response.dart';
 import 'package:mastodon_api/src/service/v1/apps/apps_v1_service.dart';
-import 'package:test/test.dart';
-
 import '../../../../mocks/client_context_stubs.dart' as context;
 import '../../common_expectations.dart';
 

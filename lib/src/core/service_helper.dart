@@ -2,13 +2,13 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
+// 🎯 Dart imports:
 import 'dart:convert' as converter;
 
-// Package imports:
+// 📦 Package imports:
 import 'package:http/http.dart' as http;
 
-// Project imports:
+// 🌎 Project imports:
 import 'client/client_context.dart';
 import 'client/stream_request.dart';
 import 'client/stream_response.dart';

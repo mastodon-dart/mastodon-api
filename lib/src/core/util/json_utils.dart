@@ -2,13 +2,13 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
+// 🎯 Dart imports:
 import 'dart:convert';
 
-// Package imports:
+// 📦 Package imports:
 import 'package:http/http.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import '../exception/mastodon_exception.dart';
 
 dynamic tryJsonDecode(

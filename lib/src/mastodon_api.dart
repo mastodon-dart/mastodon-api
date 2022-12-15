@@ -2,7 +2,7 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Project imports:
+// 🌎 Project imports:
 import 'core/client/client_context.dart';
 import 'core/config/retry_config.dart';
 import 'service/mastodon_v1_service.dart';

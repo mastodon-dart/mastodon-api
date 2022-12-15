@@ -2,13 +2,13 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
+// 🎯 Dart imports:
 import 'dart:convert';
 
-// Package imports:
+// 📦 Package imports:
 import 'package:http/http.dart' as http;
 
-// Project imports:
+// 🌎 Project imports:
 import 'client.dart';
 
 class AnonymousClient extends Client {

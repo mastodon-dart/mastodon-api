@@ -2,8 +2,11 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-import 'package:mastodon_api/src/service/entities/block_severity.dart';
+// 📦 Package imports:
 import 'package:test/test.dart';
+
+// 🌎 Project imports:
+import 'package:mastodon_api/src/service/entities/block_severity.dart';
 
 void main() {
   test('.name', () {

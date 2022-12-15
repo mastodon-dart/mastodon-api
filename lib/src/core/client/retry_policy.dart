@@ -2,10 +2,10 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
+// 🎯 Dart imports:
 import 'dart:math' as math;
 
-// Project imports:
+// 🌎 Project imports:
 import '../config/retry_config.dart';
 import 'retry_event.dart';
 import 'retry_strategy.dart';
