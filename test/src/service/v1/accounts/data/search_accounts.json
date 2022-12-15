@@ -1,0 +1,31 @@
+[
+  {
+    "id": "109479832628602326",
+    "username": "natesilva",
+    "acct": "natesilva@mstdn.social",
+    "display_name": "Nate Silva",
+    "locked": false,
+    "bot": false,
+    "discoverable": true,
+    "group": false,
+    "created_at": "2022-12-08T00:00:00.000Z",
+    "note": "\u003cp\u003eThis is where I post about \u003ca href=\"https://mstdn.social/tags/family\" class=\"mention hashtag\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e#\u003cspan\u003efamily\u003c/span\u003e\u003c/a\u003e, local events, and personal interests.\u003c/p\u003e\u003cp\u003eFor posts about \u003ca href=\"https://mstdn.social/tags/tech\" class=\"mention hashtag\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e#\u003cspan\u003etech\u003c/span\u003e\u003c/a\u003e, see \u003cspan class=\"h-card\"\u003e\u003ca href=\"https://hachyderm.io/@ns\" class=\"u-url mention\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e@\u003cspan\u003ens\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e.\u003c/p\u003e",
+    "url": "https://mstdn.social/@natesilva",
+    "avatar": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/479/832/628/602/326/original/29f6b9990745b78a.jpeg",
+    "avatar_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/avatars/109/479/832/628/602/326/original/29f6b9990745b78a.jpeg",
+    "header": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/479/832/628/602/326/original/e79b5d098b98559d.jpeg",
+    "header_static": "https://s3.eu-central-2.wasabisys.com/mastodonworld/cache/accounts/headers/109/479/832/628/602/326/original/e79b5d098b98559d.jpeg",
+    "followers_count": 0,
+    "following_count": 30,
+    "statuses_count": 0,
+    "last_status_at": null,
+    "emojis": [],
+    "fields": [
+      {
+        "name": "tech posts",
+        "value": "\u003ca href=\"https://hachyderm.io/@ns\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003ehachyderm.io/@ns\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+        "verified_at": "2022-12-08T20:01:14.455+00:00"
+      }
+    ]
+  }
+]

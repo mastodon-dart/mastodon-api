@@ -2,8 +2,9 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Project imports:
+// 🌎 Project imports:
 import '../core/client/client_context.dart';
+import 'v1/accounts/accounts_v1_service.dart';
 import 'v1/apps/apps_v1_service.dart';
 import 'v1/instance/instance_v1_service.dart';
 import 'v1/statuses/statuses_v1_service.dart';
@@ -27,6 +28,9 @@ abstract class MastodonV1Service {
   /// Returns the apps service.
   AppsV1Service get apps;
 
+  /// Returns the accounts service.
+  AccountsV1Service get accounts;
+
   /// Returns the statuses service.
   StatusesV1Service get statuses;
 
@@ -41,6 +45,7 @@ class _MastodonV1Service implements MastodonV1Service {
     required ClientContext context,
   })  : instance = InstanceV1Service(instance: instance, context: context),
         apps = AppsV1Service(instance: instance, context: context),
+        accounts = AccountsV1Service(instance: instance, context: context),
         statuses = StatusesV1Service(instance: instance, context: context),
         timelines = TimelinesV1Service(instance: instance, context: context);
 
@@ -49,6 +54,9 @@ class _MastodonV1Service implements MastodonV1Service {
 
   @override
   final AppsV1Service apps;
+
+  @override
+  final AccountsV1Service accounts;
 
   @override
   final StatusesV1Service statuses;

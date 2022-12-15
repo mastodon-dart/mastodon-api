@@ -4,9 +4,10 @@
 
 // ignore_for_file: invalid_annotation_target
 
-// Package imports:
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+// 🌎 Project imports:
 import 'announcement_account.dart';
 import 'announcement_status.dart';
 import 'emoji.dart';

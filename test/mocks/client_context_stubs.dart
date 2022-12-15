@@ -2,17 +2,16 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
+// 🎯 Dart imports:
 import 'dart:convert';
 import 'dart:io';
 
-// Package imports:
+// 📦 Package imports:
 import 'package:http/http.dart';
-
-// Project imports:
-import 'package:mastodon_api/src/core/client/user_context.dart';
 import 'package:mockito/mockito.dart';
 
+// 🌎 Project imports:
+import 'package:mastodon_api/src/core/client/user_context.dart';
 import 'mock.mocks.dart';
 
 MockClientContext buildGetStub(
@@ -130,6 +129,55 @@ MockClientContext buildPutStub(
     Uri.https(instance, unencodedPath),
     headers: anyNamed('headers'),
     body: anyNamed('body'),
+  )).thenAnswer(
+    (_) async => Response(
+      await File(resourcePath).readAsString(),
+      statusCode,
+      headers: {'content-type': 'application/json; charset=utf-8'},
+    ),
+  );
+
+  return mockClientContext;
+}
+
+MockClientContext buildPatchStub(
+  final String instance,
+  final UserContext userContext,
+  final String unencodedPath,
+  final String resourcePath, {
+  int statusCode = 200,
+}) {
+  final mockClientContext = MockClientContext();
+
+  when(mockClientContext.patch(
+    userContext,
+    Uri.https(instance, unencodedPath),
+    headers: anyNamed('headers'),
+    body: anyNamed('body'),
+  )).thenAnswer(
+    (_) async => Response(
+      await File(resourcePath).readAsString(),
+      statusCode,
+      headers: {'content-type': 'application/json; charset=utf-8'},
+    ),
+  );
+
+  return mockClientContext;
+}
+
+MockClientContext buildPatchMultipartStub(
+  final String instance,
+  final UserContext userContext,
+  final String unencodedPath,
+  final String resourcePath, {
+  int statusCode = 200,
+}) {
+  final mockClientContext = MockClientContext();
+
+  when(mockClientContext.patchMultipart(
+    userContext,
+    Uri.https(instance, unencodedPath),
+    files: anyNamed('files'),
   )).thenAnswer(
     (_) async => Response(
       await File(resourcePath).readAsString(),

@@ -2,13 +2,13 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
+// 🎯 Dart imports:
 import 'dart:convert';
 
-// Package imports:
+// 📦 Package imports:
 import 'package:http/http.dart' as http;
 
-// Project imports:
+// 🌎 Project imports:
 import 'client.dart';
 
 class AnonymousClient extends Client {
@@ -48,9 +48,10 @@ class AnonymousClient extends Client {
           .timeout(timeout);
 
   @override
-  Future<http.Response> postMultipart(
+  Future<http.Response> sendMultipart(
     http.MultipartRequest request, {
     List<http.MultipartFile> files = const [],
+    dynamic body = const {},
     required Duration timeout,
   }) async {
     request.files.addAll(files);
@@ -91,6 +92,22 @@ class AnonymousClient extends Client {
   }) async =>
       await http
           .put(
+            uri,
+            headers: headers,
+            body: body,
+            encoding: utf8,
+          )
+          .timeout(timeout);
+
+  @override
+  Future<http.Response> patch(
+    Uri uri, {
+    Map<String, String> headers = const {},
+    body,
+    required Duration timeout,
+  }) async =>
+      await http
+          .patch(
             uri,
             headers: headers,
             body: body,

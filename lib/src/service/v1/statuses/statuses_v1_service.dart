@@ -2,7 +2,7 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Project imports:
+// 🌎 Project imports:
 import '../../../core/client/client_context.dart';
 import '../../../core/client/user_context.dart';
 import '../../../core/language.dart';
@@ -196,7 +196,7 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
               'hide_totals': poll?.hideTotals,
             }
           },
-          checkUnprocessableEntity: true,
+          checkEntity: true,
         ),
         dataBuilder: Status.fromJson,
       );
@@ -244,7 +244,7 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
           body: {
             'choices': choices,
           },
-          checkUnprocessableEntity: true,
+          checkEntity: true,
         ),
         dataBuilder: Poll.fromJson,
       );

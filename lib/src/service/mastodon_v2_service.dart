@@ -2,7 +2,7 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Project imports:
+// 🌎 Project imports:
 import '../core/client/client_context.dart';
 import 'v2/search/search_v2_service.dart';
 

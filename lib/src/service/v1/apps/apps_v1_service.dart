@@ -4,6 +4,7 @@
 
 // Project imports:
 
+// 🌎 Project imports:
 import '../../../core/client/client_context.dart';
 import '../../../core/client/user_context.dart';
 import '../../../core/scope.dart';
@@ -71,7 +72,7 @@ abstract class AppsV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/apps/#verify_credentials
-  Future<MastodonResponse<Application>> verifyOAuthCredentials({
+  Future<MastodonResponse<Application>> verifyApplicationCredentials({
     required String bearerToken,
   });
 
@@ -122,13 +123,13 @@ class _AppsV1Service extends BaseService implements AppsV1Service {
             'scopes': scopes?.map((e) => e.value).toList(),
             'website': websiteUrl,
           },
-          checkUnprocessableEntity: true,
+          checkEntity: true,
         ),
         dataBuilder: RegisteredApplication.fromJson,
       );
 
   @override
-  Future<MastodonResponse<Application>> verifyOAuthCredentials({
+  Future<MastodonResponse<Application>> verifyApplicationCredentials({
     required String bearerToken,
   }) async =>
       super.transformSingleDataResponse(

@@ -4,10 +4,10 @@
 
 // ignore_for_file: invalid_annotation_target
 
-// Package imports:
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import 'emoji.dart';
 import 'field.dart';
 
@@ -56,6 +56,10 @@ class Account with _$Account {
     /// Equal to header if its value is a static image; different if header is
     /// an animated GIF.
     required String headerStatic,
+
+    /// An extra attribute that contains source values to be used with API
+    /// methods that verify credentials and update credentials.
+    // String? source,
 
     /// The reported followers of this profile.
     required int followersCount,

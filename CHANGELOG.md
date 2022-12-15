@@ -14,6 +14,30 @@
   - `POST /api/v1/announcements/:id/dismiss`
   - `PUT /api/v1/announcements/:id/reactions/:name`
   - `DELETE /api/v1/announcements/:id/reactions/:name`
+- Supported `accounts API methods`. ([#7](https://github.com/mastodon-dart/mastodon-api/issues/7))
+  - `POST /api/v1/accounts`
+  - `GET /api/v1/accounts/verify_credentials`
+  - `PATCH /api/v1/accounts/update_credentials`
+  - `GET /api/v1/accounts/:id`
+  - `GET /api/v1/accounts/:id/statuses`
+  - `GET /api/v1/accounts/:id/followers`
+  - `GET /api/v1/accounts/:id/following`
+  - `GET /api/v1/accounts/:id/featured_tags`
+  - `GET /api/v1/accounts/:id/lists`
+  - `POST /api/v1/accounts/:id/follow`
+  - `POST /api/v1/accounts/:id/unfollow`
+  - `POST /api/v1/accounts/:id/remove_from_followers`
+  - `POST /api/v1/accounts/:id/block`
+  - `POST /api/v1/accounts/:id/unblock`
+  - `POST /api/v1/accounts/:id/mute`
+  - `POST /api/v1/accounts/:id/unmute`
+  - `POST /api/v1/accounts/:id/pin`
+  - `POST /api/v1/accounts/:id/unpin`
+  - `POST /api/v1/accounts/:id/note`
+  - `GET /api/v1/accounts/relationships`
+  - `GET /api/v1/accounts/familiar_followers`
+  - `GET /api/v1/accounts/search`
+  - `GET /api/v1/accounts/lookup`
 
 ## v0.1.0
 

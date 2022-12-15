@@ -3,13 +3,18 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+
+// 🎯 Dart imports:
 import 'dart:async' as _i4;
 
+// 📦 Package imports:
 import 'package:http/http.dart' as _i2;
+import 'package:mockito/mockito.dart' as _i1;
+
+// 🌎 Project imports:
 import 'package:mastodon_api/src/core/client/client_context.dart' as _i3;
 import 'package:mastodon_api/src/core/client/stream_request.dart' as _i6;
 import 'package:mastodon_api/src/core/client/user_context.dart' as _i5;
-import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -194,6 +199,67 @@ class MockClientContext extends _i1.Mock implements _i3.ClientContext {
               #headers: headers,
               #body: body,
             },
+          ),
+        )),
+      ) as _i4.Future<_i2.Response>);
+  @override
+  _i4.Future<_i2.Response> patch(
+    _i5.UserContext? userContext,
+    Uri? uri, {
+    Map<String, String>? headers = const {},
+    dynamic body,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #patch,
+          [
+            userContext,
+            uri,
+          ],
+          {
+            #headers: headers,
+            #body: body,
+          },
+        ),
+        returnValue: _i4.Future<_i2.Response>.value(_FakeResponse_0(
+          this,
+          Invocation.method(
+            #patch,
+            [
+              userContext,
+              uri,
+            ],
+            {
+              #headers: headers,
+              #body: body,
+            },
+          ),
+        )),
+      ) as _i4.Future<_i2.Response>);
+  @override
+  _i4.Future<_i2.Response> patchMultipart(
+    _i5.UserContext? userContext,
+    Uri? uri, {
+    List<_i2.MultipartFile>? files = const [],
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #patchMultipart,
+          [
+            userContext,
+            uri,
+          ],
+          {#files: files},
+        ),
+        returnValue: _i4.Future<_i2.Response>.value(_FakeResponse_0(
+          this,
+          Invocation.method(
+            #patchMultipart,
+            [
+              userContext,
+              uri,
+            ],
+            {#files: files},
           ),
         )),
       ) as _i4.Future<_i2.Response>);

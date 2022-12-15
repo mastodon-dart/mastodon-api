@@ -2,15 +2,15 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Project imports:
+// 📦 Package imports:
+import 'package:test/test.dart';
+
+// 🌎 Project imports:
 import 'package:mastodon_api/src/core/client/anonymous_client.dart';
 import 'package:mastodon_api/src/core/client/client_resolver.dart';
 import 'package:mastodon_api/src/core/client/oauth2_client.dart';
 import 'package:mastodon_api/src/core/client/user_context.dart';
 import 'package:mastodon_api/src/core/exception/unauthorized_exception.dart';
-
-// Package imports:
-import 'package:test/test.dart';
 
 void main() {
   group('.execute', () {

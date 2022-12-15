@@ -2,7 +2,9 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// ignore_for_file: invalid_annotation_target
+
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'field.freezed.dart';

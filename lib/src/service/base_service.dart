@@ -2,14 +2,14 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
+// 🎯 Dart imports:
 import 'dart:async';
 import 'dart:convert';
 
-// Package imports:
+// 📦 Package imports:
 import 'package:http/http.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import '../core/client/client_context.dart';
 import '../core/client/stream_response.dart';
 import '../core/client/user_context.dart';
@@ -54,6 +54,19 @@ abstract class _Service {
     UserContext userContext,
     String unencodedPath, {
     Map<String, String> body = const {},
+  });
+
+  Future<Response> patch(
+    UserContext userContext,
+    String unencodedPath, {
+    Map<String, String> body = const {},
+  });
+
+  Future<Response> patchMultipart(
+    final UserContext userContext,
+    final String unencodedPath, {
+    List<MultipartFile> files = const [],
+    bool checkUnprocessableEntity = false,
   });
 
   MastodonResponse<D> transformSingleDataResponse<D>(
@@ -129,7 +142,7 @@ abstract class BaseService implements _Service {
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     dynamic body = const {},
-    bool checkUnprocessableEntity = false,
+    bool checkEntity = false,
   }) async =>
       await _helper.post(
         userContext,
@@ -138,7 +151,7 @@ abstract class BaseService implements _Service {
         body: body,
         validate: ((response) => checkResponse(
               response,
-              checkUnprocessableEntity,
+              checkEntity,
             )),
       );
 
@@ -175,6 +188,40 @@ abstract class BaseService implements _Service {
       );
 
   @override
+  Future<Response> patch(
+    UserContext userContext,
+    final String unencodedPath, {
+    dynamic body = const {},
+    bool checkUnprocessableEntity = false,
+  }) async =>
+      await _helper.patch(
+        userContext,
+        unencodedPath,
+        body: body,
+        validate: ((response) => checkResponse(
+              response,
+              checkUnprocessableEntity,
+            )),
+      );
+
+  @override
+  Future<Response> patchMultipart(
+    final UserContext userContext,
+    final String unencodedPath, {
+    List<MultipartFile> files = const [],
+    bool checkUnprocessableEntity = false,
+  }) async =>
+      await _helper.patchMultipart(
+        userContext,
+        unencodedPath,
+        files: files,
+        validate: ((response) => checkResponse(
+              response,
+              checkUnprocessableEntity,
+            )),
+      );
+
+  @override
   MastodonResponse<D> transformSingleDataResponse<D>(
     Response response, {
     required DataBuilder<D> dataBuilder,
@@ -192,26 +239,32 @@ abstract class BaseService implements _Service {
   MastodonResponse<List<D>> transformMultiDataResponse<D>(
     Response response, {
     required DataBuilder<D> dataBuilder,
-  }) =>
-      MastodonResponse(
-        rateLimit: RateLimit.fromJson(
-          rateLimitConverter.convert(response.headers),
-        ),
-        data: jsonDecode(response.body)
-            .map<D>((json) => dataBuilder(json))
-            .toList(),
-      );
+  }) {
+    final json = jsonDecode(response.body);
+
+    return MastodonResponse(
+      rateLimit: RateLimit.fromJson(
+        rateLimitConverter.convert(response.headers),
+      ),
+      data: json.isNotEmpty
+          ? json.map<D>((json) => dataBuilder(json)).toList()
+          : [],
+    );
+  }
 
   @override
   MastodonResponse<List<D>> transformMultiRawDataResponse<D>(
     Response response,
-  ) =>
-      MastodonResponse(
-        rateLimit: RateLimit.fromJson(
-          rateLimitConverter.convert(response.headers),
-        ),
-        data: (jsonDecode(response.body) as List).map<D>((e) => e).toList(),
-      );
+  ) {
+    final json = jsonDecode(response.body);
+
+    return MastodonResponse(
+      rateLimit: RateLimit.fromJson(
+        rateLimitConverter.convert(response.headers),
+      ),
+      data: json.isNotEmpty ? (json as List).map<D>((e) => e).toList() : [],
+    );
+  }
 
   @override
   MastodonResponse<bool> evaluateResponse(final Response response) =>
@@ -238,8 +291,18 @@ abstract class BaseService implements _Service {
 
   Response checkResponse(
     final Response response,
-    final bool checkUnprocessableEntity,
+    final bool checkEntity,
   ) {
+    if (response.statusCode == 204) {
+      //! 204: No Content.
+      return response;
+    }
+
+    if (response.statusCode == 200 && response.body.isEmpty) {
+      //! No JSON in response but okay, it's succeeded.
+      return response;
+    }
+
     if (response.statusCode == 401) {
       throw UnauthorizedException(
         'The specified access token is invalid.',
@@ -251,26 +314,16 @@ abstract class BaseService implements _Service {
       throw RateLimitExceededException('Rate limit exceeded.', response);
     }
 
-    if (checkUnprocessableEntity) {
-      if (response.statusCode == 422) {
+    if (checkEntity) {
+      if (400 <= response.statusCode && response.statusCode < 500) {
         throw MastodonException(
           'Required parameter is missing or improperly formatted.',
           response,
         );
       }
-    }
 
-    if (response.statusCode == 204) {
-      //! 204: No Content.
-      return response;
+      tryJsonDecode(response, response.body);
     }
-
-    if (response.statusCode == 200 && response.body.isEmpty) {
-      //! No JSON in response but okay, it's succeeded.
-      return response;
-    }
-
-    tryJsonDecode(response, response.body);
 
     return response;
   }
@@ -286,6 +339,13 @@ abstract class BaseService implements _Service {
       );
     }
 
+    if (response.statusCode == 403) {
+      throw MastodonException(
+        'Your request is forbidden.',
+        response,
+      );
+    }
+
     if (response.statusCode == 404) {
       throw DataNotFoundException(
         'There is no data associated with request.',
@@ -297,13 +357,7 @@ abstract class BaseService implements _Service {
       throw RateLimitExceededException('Rate limit exceeded.', response);
     }
 
-    final json = tryJsonDecode(response, event);
-
-    if (json is List) {
-      if (json.isEmpty) {
-        throw DataNotFoundException('No data exists in response.', response);
-      }
-    }
+    tryJsonDecode(response, event);
   }
 }
 

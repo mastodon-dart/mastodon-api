@@ -10,10 +10,24 @@ enum Scope {
   write('write'),
 
   /// `follow`
-  follow('follow');
+  follow('follow'),
+
+  /// `push`
+  push('push');
 
   /// The value
   final String value;
 
   const Scope(this.value);
+
+  /// Returns the scope associated with the given [value].
+  static Scope valueOf(final String value) {
+    for (final scope in values) {
+      if (scope.value == value) {
+        return scope;
+      }
+    }
+
+    throw ArgumentError('Invalid scope value: $value');
+  }
 }

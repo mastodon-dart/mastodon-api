@@ -59,6 +59,9 @@ mixin _$Account {
   /// an animated GIF.
   String get headerStatic => throw _privateConstructorUsedError;
 
+  /// An extra attribute that contains source values to be used with API
+  /// methods that verify credentials and update credentials.
+// String? source,
   /// The reported followers of this profile.
   int get followersCount => throw _privateConstructorUsedError;
 
@@ -490,6 +493,9 @@ class _$_Account implements _Account {
   @override
   final String headerStatic;
 
+  /// An extra attribute that contains source values to be used with API
+  /// methods that verify credentials and update credentials.
+// String? source,
   /// The reported followers of this profile.
   @override
   final int followersCount;
@@ -718,6 +724,9 @@ abstract class _Account implements Account {
   String get headerStatic;
   @override
 
+  /// An extra attribute that contains source values to be used with API
+  /// methods that verify credentials and update credentials.
+// String? source,
   /// The reported followers of this profile.
   int get followersCount;
   @override
