@@ -47,11 +47,14 @@
     - [1.3.3. Search Service](#133-search-service)
       - [1.3.3.1. v1](#1331-v1)
       - [1.3.3.2. v2](#1332-v2)
-    - [1.3.4. Timelines Service](#134-timelines-service)
+    - [1.3.4. Accounts Service](#134-accounts-service)
       - [1.3.4.1. v1](#1341-v1)
-    - [1.3.5. Statuses Service](#135-statuses-service)
+      - [1.3.4.2. v2](#1342-v2)
+    - [1.3.5. Timelines Service](#135-timelines-service)
       - [1.3.5.1. v1](#1351-v1)
-      - [1.3.5.2. v2](#1352-v2)
+    - [1.3.6. Statuses Service](#136-statuses-service)
+      - [1.3.6.1. v1](#1361-v1)
+      - [1.3.6.2. v2](#1362-v2)
   - [1.4. Tips 🏄](#14-tips-)
     - [1.4.1. Method Names](#141-method-names)
     - [1.4.2. Null Parameter at Request](#142-null-parameter-at-request)
@@ -204,9 +207,43 @@ Future<void> main() async {
 | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | [GET /api/v2/search](https://docs.joinmastodon.org/methods/search/#v2) | [searchContents](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/SarchV2Service/searchContents.html) |
 
-### 1.3.4. Timelines Service
+### 1.3.4. Accounts Service
 
 #### 1.3.4.1. v1
+
+| **Endpoint**                                                                                                             | **Method Name**                                                                                                                                              |
+| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [POST /api/v1/accounts](https://docs.joinmastodon.org/methods/accounts/#create)                                          | [createAccount](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/createAccount.html)                                         |
+| [GET /api/v1/accounts/verify_credentials](https://docs.joinmastodon.org/methods/accounts/#verify_credentials)            | [verifyAccountCredentials](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/verifyAccountCredentials.html)                   |
+| [PATCH /api/v1/accounts/update_credentials](https://docs.joinmastodon.org/methods/accounts/#verify_credentials)          | [updateAccount](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/updateAccount.html)                                         |
+| [PATCH /api/v1/accounts/update_credentials](https://docs.joinmastodon.org/methods/accounts/#verify_credentials)          | [updateAvatarImage](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/updateAvatarImage.html)                                 |
+| [PATCH /api/v1/accounts/update_credentials](https://docs.joinmastodon.org/methods/accounts/#verify_credentials)          | [updateHeaderImage](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/updateHeaderImage.html)                                 |
+| [GET /api/v1/accounts/:id](https://docs.joinmastodon.org/methods/accounts/#get)                                          | [lookupById](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/lookupById.html)                                               |
+| [GET /api/v1/accounts/:id/statuses](https://docs.joinmastodon.org/methods/accounts/#statuses)                            | [lookupStatuses](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/lookupStatuses.html)                                       |
+| [GET /api/v1/accounts/:id/followers](https://docs.joinmastodon.org/methods/accounts/#followers)                          | [lookupFollowers](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/lookupFollowers.html)                                     |
+| [GET /api/v1/accounts/:id/following](https://docs.joinmastodon.org/methods/accounts/#following)                          | [lookupFollowings](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/lookupFollowings.html)                                   |
+| [GET /api/v1/accounts/:id/featured_tags](https://docs.joinmastodon.org/methods/accounts/#featured_tags)                  | [lookupFeaturedTags](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/lookupFeaturedTags.html)                               |
+| [GET /api/v1/accounts/:id/lists](https://docs.joinmastodon.org/methods/accounts/#lists)                                  | [lookupContainedLists](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/lookupContainedLists.html)                           |
+| [POST /api/v1/accounts/:id/follow](https://docs.joinmastodon.org/methods/accounts/#follow)                               | [createFollow](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/createFollow.html)                                           |
+| [POST /api/v1/accounts/:id/unfollow](https://docs.joinmastodon.org/methods/accounts/#unfollow)                           | [destroyFollow](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/destroyFollow.html)                                         |
+| [POST /api/v1/accounts/:id/remove_from_followers](https://docs.joinmastodon.org/methods/accounts/#remove_from_followers) | [destroyFollower](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/destroyFollower.html)                                     |
+| [POST /api/v1/accounts/:id/block](https://docs.joinmastodon.org/methods/accounts/#block)                                 | [createBlock](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/createBlock.html)                                             |
+| [POST /api/v1/accounts/:id/unblock](https://docs.joinmastodon.org/methods/accounts/#unblock)                             | [destroyBlock](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/destroyBlock.html)                                           |
+| [POST /api/v1/accounts/:id/mute](https://docs.joinmastodon.org/methods/accounts/#mute)                                   | [createMute](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/createMute.html)                                               |
+| [POST /api/v1/accounts/:id/unmute](https://docs.joinmastodon.org/methods/accounts/#unmute)                               | [destroyMute](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/destroyMute.html)                                             |
+| [POST /api/v1/accounts/:id/pin](https://docs.joinmastodon.org/methods/accounts/#pin)                                     | [createFeaturedProfile](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/createFeaturedProfile.html)                         |
+| [POST /api/v1/accounts/:id/unpin](https://docs.joinmastodon.org/methods/accounts/#unpin)                                 | [destroyFeaturedProfile](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/destroyFeaturedProfile.html)                       |
+| [POST /api/v1/accounts/:id/note](https://docs.joinmastodon.org/methods/accounts/#note)                                   | [updatePrivateComment](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/updatePrivateComment.html)                           |
+| [GET /api/v1/accounts/relationships](https://docs.joinmastodon.org/methods/accounts/#relationships)                      | [lookupRelationships](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/lookupRelationships.html)                             |
+| [GET /api/v1/accounts/familiar_followers](https://docs.joinmastodon.org/methods/accounts/#familiar_followers)            | [lookupFamiliarFollowers](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/lookupFamiliarFollowers.html)                     |
+| [GET /api/v1/accounts/search](https://docs.joinmastodon.org/methods/accounts/#search)                                    | [searchAccounts](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/searchAccounts.html)                                       |
+| [GET /api/v1/accounts/lookup](https://docs.joinmastodon.org/methods/accounts/#lookup)                                    | [lookupAccountFromWebFingerAddress](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/lookupAccountFromWebFingerAddress.html) |
+
+#### 1.3.4.2. v2
+
+### 1.3.5. Timelines Service
+
+#### 1.3.5.1. v1
 
 | **Endpoint**                                                                                 | **Method Name**                                                                                                                           |
 | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
@@ -215,9 +252,9 @@ Future<void> main() async {
 | [GET /api/v1/timelines/home](https://docs.joinmastodon.org/methods/timelines/#home)          | [lookupHomeTimeline](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/TimelinesV1Service/lookupHomeTimeline.html)           |
 | [GET /api/v1/timelines/list/:list_id](https://docs.joinmastodon.org/methods/timelines/#list) | [lookupListTimeline](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/TimelinesV1Service/lookupListTimeline.html)           |
 
-### 1.3.5. Statuses Service
+### 1.3.6. Statuses Service
 
-#### 1.3.5.1. v1
+#### 1.3.6.1. v1
 
 | **Endpoint**                                                                     | **Method Name**                                                                                                                                                                                                                     |
 | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -225,7 +262,7 @@ Future<void> main() async {
 | [GET /api/v1/polls/:id](https://docs.joinmastodon.org/methods/polls/#get)        | [lookupPollById](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/lookupPollById.html)                                                                                                              |
 | [POST /api/v1/polls/:id/votes](https://docs.joinmastodon.org/methods/polls/#get) | [createVote](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/createVote.html)</br>[createVotes](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/createVotes.html) |
 
-#### 1.3.5.2. v2
+#### 1.3.6.2. v2
 
 ## 1.4. Tips 🏄
 

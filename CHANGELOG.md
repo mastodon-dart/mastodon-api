@@ -1,5 +1,9 @@
 # Release Note
 
+## v0.2.1
+
+- Added links of `Accounts Service` in `README`.
+
 ## v0.2.0
 
 - Supported `polls API methods`. ([#25](https://github.com/mastodon-dart/mastodon-api/issues/25))
