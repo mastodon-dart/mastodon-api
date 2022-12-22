@@ -2,16 +2,13 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// 📦 Package imports:
-import 'package:test/test.dart';
-import 'package:universal_io/io.dart';
-
 // 🌎 Project imports:
 import 'package:mastodon_api/src/core/client/user_context.dart';
 import 'package:mastodon_api/src/core/country.dart';
 import 'package:mastodon_api/src/core/language.dart';
 import 'package:mastodon_api/src/core/locale.dart';
 import 'package:mastodon_api/src/service/entities/account.dart';
+import 'package:mastodon_api/src/service/entities/account_preferences.dart';
 import 'package:mastodon_api/src/service/entities/familiar_follower.dart';
 import 'package:mastodon_api/src/service/entities/featured_tag.dart';
 import 'package:mastodon_api/src/service/entities/rate_limit.dart';
@@ -24,6 +21,10 @@ import 'package:mastodon_api/src/service/v1/accounts/account_default_settings_pa
 import 'package:mastodon_api/src/service/v1/accounts/account_profile_meta_param.dart';
 import 'package:mastodon_api/src/service/v1/accounts/accounts_v1_service.dart';
 import 'package:mastodon_api/src/service/v1/accounts/post_privacy.dart';
+// 📦 Package imports:
+import 'package:test/test.dart';
+import 'package:universal_io/io.dart';
+
 import '../../../../mocks/client_context_stubs.dart' as context;
 import '../../common_expectations.dart';
 
@@ -1574,6 +1575,63 @@ void main() {
         () async => await accountsService.lookupAccountFromWebFingerAddress(
           accountIdentifier: 'aaaaa',
         ),
+      );
+    });
+  });
+
+  group('.lookupPreferences', () {
+    test('normal case', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/preferences',
+          'test/src/service/v1/accounts/data/lookup_preferences.json',
+          {},
+        ),
+      );
+
+      final response = await accountsService.lookupPreferences();
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<AccountPreferences>());
+    });
+
+    test('when unauthorized', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/preferences',
+          'test/src/service/v1/accounts/data/lookup_preferences.json',
+          {},
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await accountsService.lookupPreferences(),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/preferences',
+          'test/src/service/v1/accounts/data/lookup_preferences.json',
+          {},
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await accountsService.lookupPreferences(),
       );
     });
   });

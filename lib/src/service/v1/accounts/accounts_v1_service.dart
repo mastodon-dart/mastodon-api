@@ -15,6 +15,7 @@ import '../../../core/language.dart';
 import '../../../core/locale.dart';
 import '../../base_service.dart';
 import '../../entities/account.dart';
+import '../../entities/account_preferences.dart';
 import '../../entities/familiar_follower.dart';
 import '../../entities/featured_tag.dart';
 import '../../entities/relationship.dart';
@@ -774,6 +775,25 @@ abstract class AccountsV1Service {
     required String accountIdentifier,
     bool? skipWebFinger,
   });
+
+  /// Preferences defined by the user in their account settings.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/preferences HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:accounts
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/preferences/#get
+  Future<MastodonResponse<AccountPreferences>> lookupPreferences();
 }
 
 class _AccountsV1Service extends BaseService implements AccountsV1Service {
@@ -1202,5 +1222,15 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
           },
         ),
         dataBuilder: Account.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<AccountPreferences>> lookupPreferences() async =>
+      super.transformSingleDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/preferences',
+        ),
+        dataBuilder: AccountPreferences.fromJson,
       );
 }
