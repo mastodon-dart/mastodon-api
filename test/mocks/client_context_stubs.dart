@@ -8,10 +8,9 @@ import 'dart:io';
 
 // 📦 Package imports:
 import 'package:http/http.dart';
+import 'package:mastodon_api/src/core/client/user_context.dart';
 import 'package:mockito/mockito.dart';
 
-// 🌎 Project imports:
-import 'package:mastodon_api/src/core/client/user_context.dart';
 import 'mock.mocks.dart';
 
 MockClientContext buildGetStub(

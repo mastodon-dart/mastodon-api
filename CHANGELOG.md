@@ -1,5 +1,10 @@
 # Release Note
 
+## v0.3.0
+
+- Supported `preferences API methods`. ([#19](https://github.com/mastodon-dart/mastodon-api/issues/19))
+  - `GET /api/v1/preferences`
+
 ## v0.2.1
 
 - Added links of `Accounts Service` in `README`.

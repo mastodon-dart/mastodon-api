@@ -2,12 +2,11 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// 📦 Package imports:
-import 'package:test/test.dart';
-
 // 🌎 Project imports:
 import 'package:mastodon_api/src/core/client/retry_policy.dart';
 import 'package:mastodon_api/src/core/config/retry_config.dart';
+// 📦 Package imports:
+import 'package:test/test.dart';
 
 void main() {
   group('.shouldRetry', () {
