@@ -33,6 +33,16 @@
         "ideas",
         "question"
       ]
+    },
+    {
+      "login": "Elleo",
+      "name": "Mike Sheldon",
+      "avatar_url": "https://avatars.githubusercontent.com/u/59350?v=4",
+      "profile": "https://github.com/Elleo",
+      "contributions": [
+        "ideas",
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 5,
