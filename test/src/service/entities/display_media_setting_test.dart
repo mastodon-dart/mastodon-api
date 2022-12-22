@@ -9,7 +9,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('.name', () {
-    expect(DisplayMediaSetting.none.name, 'node');
+    expect(DisplayMediaSetting.none.name, 'none');
     expect(DisplayMediaSetting.showAll.name, 'showAll');
     expect(DisplayMediaSetting.hideAll.name, 'hideAll');
   });
