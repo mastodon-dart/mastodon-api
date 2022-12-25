@@ -120,7 +120,7 @@ class _AppsV1Service extends BaseService implements AppsV1Service {
           body: {
             'client_name': clientName,
             'redirect_uris': redirectUri,
-            'scopes': scopes?.map((e) => e.value).toList(),
+            'scopes': scopes?.map((e) => e.value).join(" "),
             'website': websiteUrl,
           },
           checkEntity: true,
