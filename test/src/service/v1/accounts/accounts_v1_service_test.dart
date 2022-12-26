@@ -1918,4 +1918,61 @@ void main() {
       );
     });
   });
+
+  group('.destroyFollowSuggestion', () {
+    test('normal case', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildDeleteStub(
+          'test',
+          '/api/v1/suggestions/1234',
+          'test/src/service/v1/accounts/data/destroy_follow_suggestion.json',
+        ),
+      );
+
+      final response = await accountsService.destroyFollowSuggestion(
+        accountId: '1234',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isTrue);
+    });
+
+    test('when unauthorized', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildDeleteStub(
+          'test',
+          '/api/v1/suggestions/1234',
+          'test/src/service/v1/accounts/data/destroy_follow_suggestion.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await accountsService.destroyFollowSuggestion(
+          accountId: '1234',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildDeleteStub(
+          'test',
+          '/api/v1/suggestions/1234',
+          'test/src/service/v1/accounts/data/destroy_follow_suggestion.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await accountsService.destroyFollowSuggestion(
+          accountId: '1234',
+        ),
+      );
+    });
+  });
 }

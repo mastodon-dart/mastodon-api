@@ -1,5 +1,11 @@
 # Release Note
 
+## v0.2.3
+
+- Supported `suggestions API methods`. ([#21](https://github.com/mastodon-dart/mastodon-api/issues/21))
+  - `GET /api/v2/suggestions`
+  - `DELETE /api/v1/suggestions/:account_id`
+
 ## v0.2.2
 
 - Supported `preferences API methods`. ([#19](https://github.com/mastodon-dart/mastodon-api/issues/19))
