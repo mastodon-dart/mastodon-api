@@ -42,6 +42,29 @@ void main() {
       expect(response.data, isA<RegisteredApplication>());
     });
 
+    test('multiple scopes', () async {
+      final appsService = AppsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.anonymousOnly,
+          '/api/v1/apps',
+          'test/src/service/v1/apps/data/create_application.json',
+        ),
+      );
+
+      final response = await appsService.createApplication(
+        clientName: 'test',
+        redirectUri: 'https://test//:oauth',
+        scopes: [Scope.read, Scope.write, Scope.push],
+        websiteUrl: 'https://shinyakato.dev',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<RegisteredApplication>());
+    });
+
     test('when unauthorized', () async {
       final appsService = AppsV1Service(
         instance: 'test',

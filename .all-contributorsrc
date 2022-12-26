@@ -41,7 +41,10 @@
       "profile": "https://github.com/Elleo",
       "contributions": [
         "ideas",
-        "content"
+        "content",
+        "code",
+        "bug",
+        "test"
       ]
     }
   ],
