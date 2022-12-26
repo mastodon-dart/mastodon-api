@@ -31,6 +31,7 @@ mixin _$Tag {
   List<UsageStatistics>? get histories => throw _privateConstructorUsedError;
 
   /// Whether the current token’s authorized user is following this tag.
+  @JsonKey(name: 'following')
   bool? get isFollowing => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,7 +48,7 @@ abstract class $TagCopyWith<$Res> {
       {String name,
       String url,
       @JsonKey(name: 'history') List<UsageStatistics>? histories,
-      bool? isFollowing});
+      @JsonKey(name: 'following') bool? isFollowing});
 }
 
 /// @nodoc
@@ -98,7 +99,7 @@ abstract class _$$_TagCopyWith<$Res> implements $TagCopyWith<$Res> {
       {String name,
       String url,
       @JsonKey(name: 'history') List<UsageStatistics>? histories,
-      bool? isFollowing});
+      @JsonKey(name: 'following') bool? isFollowing});
 }
 
 /// @nodoc
@@ -144,7 +145,7 @@ class _$_Tag implements _Tag {
       {required this.name,
       required this.url,
       @JsonKey(name: 'history') final List<UsageStatistics>? histories,
-      this.isFollowing})
+      @JsonKey(name: 'following') this.isFollowing})
       : _histories = histories;
 
   factory _$_Tag.fromJson(Map<String, dynamic> json) => _$$_TagFromJson(json);
@@ -172,6 +173,7 @@ class _$_Tag implements _Tag {
 
   /// Whether the current token’s authorized user is following this tag.
   @override
+  @JsonKey(name: 'following')
   final bool? isFollowing;
 
   @override
@@ -216,7 +218,7 @@ abstract class _Tag implements Tag {
       {required final String name,
       required final String url,
       @JsonKey(name: 'history') final List<UsageStatistics>? histories,
-      final bool? isFollowing}) = _$_Tag;
+      @JsonKey(name: 'following') final bool? isFollowing}) = _$_Tag;
 
   factory _Tag.fromJson(Map<String, dynamic> json) = _$_Tag.fromJson;
 
@@ -236,6 +238,7 @@ abstract class _Tag implements Tag {
   @override
 
   /// Whether the current token’s authorized user is following this tag.
+  @JsonKey(name: 'following')
   bool? get isFollowing;
   @override
   @JsonKey(ignore: true)

@@ -883,6 +883,30 @@ abstract class AccountsV1Service {
   ///
   /// - https://docs.joinmastodon.org/methods/featured_tags/#suggestions
   Future<MastodonResponse<List<Tag>>> lookupSuggestedTags();
+
+  /// View all followed tags.
+  ///
+  /// ## Parameters
+  ///
+  /// - [limit]: Maximum number of results to return. Defaults to 100 tags.
+  ///            Max 200 tags.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/followed_tags HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:follows
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/followed_tags/#get
+  Future<MastodonResponse<List<Tag>>> lookupFollowedTags({int? limit});
 }
 
 class _AccountsV1Service extends BaseService implements AccountsV1Service {
@@ -1366,6 +1390,21 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
         await super.get(
           UserContext.oauth2Only,
           '/api/v1/featured_tags/suggestions',
+        ),
+        dataBuilder: Tag.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<Tag>>> lookupFollowedTags({
+    int? limit,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/followed_tags',
+          queryParameters: {
+            'limit': limit,
+          },
         ),
         dataBuilder: Tag.fromJson,
       );

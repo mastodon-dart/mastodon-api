@@ -1855,4 +1855,67 @@ void main() {
       );
     });
   });
+
+  group('.lookupFollowedTags', () {
+    test('normal case', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/followed_tags',
+          'test/src/service/v1/accounts/data/lookup_followed_tags.json',
+          {
+            'limit': '10',
+          },
+        ),
+      );
+
+      final response = await accountsService.lookupFollowedTags(limit: 10);
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<List<Tag>>());
+    });
+
+    test('when unauthorized', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/followed_tags',
+          'test/src/service/v1/accounts/data/lookup_followed_tags.json',
+          {
+            'limit': '10',
+          },
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await accountsService.lookupFollowedTags(limit: 10),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/followed_tags',
+          'test/src/service/v1/accounts/data/lookup_followed_tags.json',
+          {
+            'limit': '10',
+          },
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await accountsService.lookupFollowedTags(limit: 10),
+      );
+    });
+  });
 }

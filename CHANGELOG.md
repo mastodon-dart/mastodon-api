@@ -10,6 +10,8 @@
   - `POST /api/v1/featured_tags`
   - `DELETE /api/v1/featured_tags/:id`
   - `GET /api/v1/featured_tags/suggestions`
+- Supported `followed_tags API methods`. ([#20](https://github.com/mastodon-dart/mastodon-api/issues/20))
+  - `GET /api/v1/followed_tags`
 
 ## v0.2.1
 
