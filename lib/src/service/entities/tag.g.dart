@@ -21,14 +21,11 @@ _$_Tag _$$_TagFromJson(Map json) => $checkedCreate(
                   ?.map((e) => UsageStatistics.fromJson(
                       Map<String, Object?>.from(e as Map)))
                   .toList()),
-          isFollowing: $checkedConvert('is_following', (v) => v as bool?),
+          isFollowing: $checkedConvert('following', (v) => v as bool?),
         );
         return val;
       },
-      fieldKeyMap: const {
-        'histories': 'history',
-        'isFollowing': 'is_following'
-      },
+      fieldKeyMap: const {'histories': 'history', 'isFollowing': 'following'},
     );
 
 Map<String, dynamic> _$$_TagToJson(_$_Tag instance) {
@@ -44,6 +41,6 @@ Map<String, dynamic> _$$_TagToJson(_$_Tag instance) {
   }
 
   writeNotNull('history', instance.histories?.map((e) => e.toJson()).toList());
-  writeNotNull('is_following', instance.isFollowing);
+  writeNotNull('following', instance.isFollowing);
   return val;
 }
