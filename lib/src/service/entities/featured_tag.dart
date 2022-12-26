@@ -7,6 +7,8 @@
 // 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../core/convert/int_converter.dart';
+
 part 'featured_tag.freezed.dart';
 part 'featured_tag.g.dart';
 
@@ -24,10 +26,10 @@ class FeaturedTag with _$FeaturedTag {
     String? url,
 
     /// The number of authored statuses containing this hashtag.
-    required int statusesCount,
+    @IntConverter() int? statusesCount,
 
     /// The timestamp of the last authored status containing this hashtag.
-    required DateTime lastStatusAt,
+    DateTime? lastStatusAt,
   }) = _FeaturedTag;
 
   factory FeaturedTag.fromJson(Map<String, Object?> json) =>

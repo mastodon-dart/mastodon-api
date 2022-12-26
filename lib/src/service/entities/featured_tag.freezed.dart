@@ -30,10 +30,11 @@ mixin _$FeaturedTag {
   String? get url => throw _privateConstructorUsedError;
 
   /// The number of authored statuses containing this hashtag.
-  int get statusesCount => throw _privateConstructorUsedError;
+  @IntConverter()
+  int? get statusesCount => throw _privateConstructorUsedError;
 
   /// The timestamp of the last authored status containing this hashtag.
-  DateTime get lastStatusAt => throw _privateConstructorUsedError;
+  DateTime? get lastStatusAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,8 +52,8 @@ abstract class $FeaturedTagCopyWith<$Res> {
       {String id,
       String name,
       String? url,
-      int statusesCount,
-      DateTime lastStatusAt});
+      @IntConverter() int? statusesCount,
+      DateTime? lastStatusAt});
 }
 
 /// @nodoc
@@ -71,8 +72,8 @@ class _$FeaturedTagCopyWithImpl<$Res, $Val extends FeaturedTag>
     Object? id = null,
     Object? name = null,
     Object? url = freezed,
-    Object? statusesCount = null,
-    Object? lastStatusAt = null,
+    Object? statusesCount = freezed,
+    Object? lastStatusAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -87,14 +88,14 @@ class _$FeaturedTagCopyWithImpl<$Res, $Val extends FeaturedTag>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
-      statusesCount: null == statusesCount
+      statusesCount: freezed == statusesCount
           ? _value.statusesCount
           : statusesCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      lastStatusAt: null == lastStatusAt
+              as int?,
+      lastStatusAt: freezed == lastStatusAt
           ? _value.lastStatusAt
           : lastStatusAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -111,8 +112,8 @@ abstract class _$$_FeaturedTagCopyWith<$Res>
       {String id,
       String name,
       String? url,
-      int statusesCount,
-      DateTime lastStatusAt});
+      @IntConverter() int? statusesCount,
+      DateTime? lastStatusAt});
 }
 
 /// @nodoc
@@ -129,8 +130,8 @@ class __$$_FeaturedTagCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? url = freezed,
-    Object? statusesCount = null,
-    Object? lastStatusAt = null,
+    Object? statusesCount = freezed,
+    Object? lastStatusAt = freezed,
   }) {
     return _then(_$_FeaturedTag(
       id: null == id
@@ -145,14 +146,14 @@ class __$$_FeaturedTagCopyWithImpl<$Res>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
-      statusesCount: null == statusesCount
+      statusesCount: freezed == statusesCount
           ? _value.statusesCount
           : statusesCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      lastStatusAt: null == lastStatusAt
+              as int?,
+      lastStatusAt: freezed == lastStatusAt
           ? _value.lastStatusAt
           : lastStatusAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -165,8 +166,8 @@ class _$_FeaturedTag implements _FeaturedTag {
       {required this.id,
       required this.name,
       this.url,
-      required this.statusesCount,
-      required this.lastStatusAt});
+      @IntConverter() this.statusesCount,
+      this.lastStatusAt});
 
   factory _$_FeaturedTag.fromJson(Map<String, dynamic> json) =>
       _$$_FeaturedTagFromJson(json);
@@ -185,11 +186,12 @@ class _$_FeaturedTag implements _FeaturedTag {
 
   /// The number of authored statuses containing this hashtag.
   @override
-  final int statusesCount;
+  @IntConverter()
+  final int? statusesCount;
 
   /// The timestamp of the last authored status containing this hashtag.
   @override
-  final DateTime lastStatusAt;
+  final DateTime? lastStatusAt;
 
   @override
   String toString() {
@@ -234,8 +236,8 @@ abstract class _FeaturedTag implements FeaturedTag {
       {required final String id,
       required final String name,
       final String? url,
-      required final int statusesCount,
-      required final DateTime lastStatusAt}) = _$_FeaturedTag;
+      @IntConverter() final int? statusesCount,
+      final DateTime? lastStatusAt}) = _$_FeaturedTag;
 
   factory _FeaturedTag.fromJson(Map<String, dynamic> json) =
       _$_FeaturedTag.fromJson;
@@ -255,11 +257,12 @@ abstract class _FeaturedTag implements FeaturedTag {
   @override
 
   /// The number of authored statuses containing this hashtag.
-  int get statusesCount;
+  @IntConverter()
+  int? get statusesCount;
   @override
 
   /// The timestamp of the last authored status containing this hashtag.
-  DateTime get lastStatusAt;
+  DateTime? get lastStatusAt;
   @override
   @JsonKey(ignore: true)
   _$$_FeaturedTagCopyWith<_$_FeaturedTag> get copyWith =>

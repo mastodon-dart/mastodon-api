@@ -20,6 +20,7 @@ import '../../entities/familiar_follower.dart';
 import '../../entities/featured_tag.dart';
 import '../../entities/relationship.dart';
 import '../../entities/status.dart';
+import '../../entities/tag.dart';
 import '../../entities/token.dart';
 import '../../entities/user_list.dart';
 import '../../response/mastodon_response.dart';
@@ -794,6 +795,94 @@ abstract class AccountsV1Service {
   ///
   /// - https://docs.joinmastodon.org/methods/preferences/#get
   Future<MastodonResponse<AccountPreferences>> lookupPreferences();
+
+  /// List all hashtags featured on your profile.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/featured_tags HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:accounts
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/featured_tags/#get
+  Future<MastodonResponse<List<FeaturedTag>>> lookupOwnedFeaturedTags();
+
+  /// Promote a hashtag on your profile.
+  ///
+  /// ## Parameters
+  ///
+  /// - [tagName]: The hashtag to be featured, without the hash sign.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST /api/v1/featured_tags HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:accounts
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/featured_tags/#feature
+  Future<MastodonResponse<FeaturedTag>> createFeaturedTag({
+    required String tagName,
+  });
+
+  /// Stop promoting a hashtag on your profile.
+  ///
+  /// ## Parameters
+  ///
+  /// - [tagId]: The ID of the FeaturedTag in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - DELETE /api/v1/featured_tags/:id HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:accounts
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/featured_tags/#unfeature-a-tag-unfeature
+  Future<MastodonResponse<bool>> destroyFeaturedTag({
+    required String tagId,
+  });
+
+  /// Shows up to 10 recently-used tags.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/featured_tags/suggestions HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:accounts
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/featured_tags/#suggestions
+  Future<MastodonResponse<List<Tag>>> lookupSuggestedTags();
 }
 
 class _AccountsV1Service extends BaseService implements AccountsV1Service {
@@ -1232,5 +1321,52 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
           '/api/v1/preferences',
         ),
         dataBuilder: AccountPreferences.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<FeaturedTag>>> lookupOwnedFeaturedTags() async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/featured_tags',
+        ),
+        dataBuilder: FeaturedTag.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<FeaturedTag>> createFeaturedTag({
+    required String tagName,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/featured_tags',
+          body: {
+            'name': tagName,
+          },
+          checkEntity: true,
+        ),
+        dataBuilder: FeaturedTag.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<bool>> destroyFeaturedTag({
+    required String tagId,
+  }) async =>
+      super.evaluateResponse(
+        await super.delete(
+          UserContext.oauth2Only,
+          '/api/v1/featured_tags/$tagId',
+        ),
+      );
+
+  @override
+  Future<MastodonResponse<List<Tag>>> lookupSuggestedTags() async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/featured_tags/suggestions',
+        ),
+        dataBuilder: Tag.fromJson,
       );
 }

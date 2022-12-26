@@ -4,6 +4,12 @@
 
 - Supported `preferences API methods`. ([#19](https://github.com/mastodon-dart/mastodon-api/issues/19))
   - `GET /api/v1/preferences`
+- Fixed ([#78](https://github.com/mastodon-dart/mastodon-api/issues/78)).
+- Supported `featured_tags API methods`. ([#18](https://github.com/mastodon-dart/mastodon-api/issues/18))
+  - `GET /api/v1/featured_tags`
+  - `POST /api/v1/featured_tags`
+  - `DELETE /api/v1/featured_tags/:id`
+  - `GET /api/v1/featured_tags/suggestions`
 
 ## v0.2.1
 
