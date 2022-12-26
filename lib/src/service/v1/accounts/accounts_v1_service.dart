@@ -907,6 +907,31 @@ abstract class AccountsV1Service {
   ///
   /// - https://docs.joinmastodon.org/methods/followed_tags/#get
   Future<MastodonResponse<List<Tag>>> lookupFollowedTags({int? limit});
+
+  /// Remove an account from follow suggestions.
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountId]: The ID of the Account in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - DELETE /api/v1/suggestions/:account_id HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/suggestions/#remove
+  Future<MastodonResponse<bool>> destroyFollowSuggestion({
+    required String accountId,
+  });
 }
 
 class _AccountsV1Service extends BaseService implements AccountsV1Service {
@@ -1407,5 +1432,16 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
           },
         ),
         dataBuilder: Tag.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<bool>> destroyFollowSuggestion({
+    required String accountId,
+  }) async =>
+      super.evaluateResponse(
+        await super.delete(
+          UserContext.oauth2Only,
+          '/api/v1/suggestions/$accountId',
+        ),
       );
 }
