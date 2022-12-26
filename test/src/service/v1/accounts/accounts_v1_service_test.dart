@@ -14,6 +14,7 @@ import 'package:mastodon_api/src/service/entities/featured_tag.dart';
 import 'package:mastodon_api/src/service/entities/rate_limit.dart';
 import 'package:mastodon_api/src/service/entities/relationship.dart';
 import 'package:mastodon_api/src/service/entities/status.dart';
+import 'package:mastodon_api/src/service/entities/tag.dart';
 import 'package:mastodon_api/src/service/entities/token.dart';
 import 'package:mastodon_api/src/service/entities/user_list.dart';
 import 'package:mastodon_api/src/service/response/mastodon_response.dart';
@@ -1632,6 +1633,225 @@ void main() {
 
       expectRateLimitExceededException(
         () async => await accountsService.lookupPreferences(),
+      );
+    });
+  });
+
+  group('.lookupOwnedFeaturedTags', () {
+    test('normal case', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/featured_tags',
+          'test/src/service/v1/accounts/data/lookup_owned_featured_tags.json',
+          {},
+        ),
+      );
+
+      final response = await accountsService.lookupOwnedFeaturedTags();
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<List<FeaturedTag>>());
+    });
+
+    test('when unauthorized', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/featured_tags',
+          'test/src/service/v1/accounts/data/lookup_owned_featured_tags.json',
+          {},
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await accountsService.lookupOwnedFeaturedTags(),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/featured_tags',
+          'test/src/service/v1/accounts/data/lookup_owned_featured_tags.json',
+          {},
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await accountsService.lookupOwnedFeaturedTags(),
+      );
+    });
+  });
+
+  group('.createFeaturedTag', () {
+    test('normal case', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/featured_tags',
+          'test/src/service/v1/accounts/data/create_featured_tag.json',
+        ),
+      );
+
+      final response = await accountsService.createFeaturedTag(tagName: 'test');
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<FeaturedTag>());
+    });
+
+    test('when unauthorized', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/featured_tags',
+          'test/src/service/v1/accounts/data/create_featured_tag.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await accountsService.createFeaturedTag(tagName: 'test'),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/featured_tags',
+          'test/src/service/v1/accounts/data/create_featured_tag.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await accountsService.createFeaturedTag(tagName: 'test'),
+      );
+    });
+  });
+
+  group('.destroyFeaturedTag', () {
+    test('normal case', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildDeleteStub(
+          'test',
+          '/api/v1/featured_tags/1234',
+          'test/src/service/v1/accounts/data/destroy_featured_tag.json',
+        ),
+      );
+
+      final response = await accountsService.destroyFeaturedTag(tagId: '1234');
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isTrue);
+    });
+
+    test('when unauthorized', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildDeleteStub(
+          'test',
+          '/api/v1/featured_tags/1234',
+          'test/src/service/v1/accounts/data/destroy_featured_tag.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await accountsService.destroyFeaturedTag(tagId: '1234'),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildDeleteStub(
+          'test',
+          '/api/v1/featured_tags/1234',
+          'test/src/service/v1/accounts/data/destroy_featured_tag.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await accountsService.destroyFeaturedTag(tagId: '1234'),
+      );
+    });
+  });
+
+  group('.lookupSuggestedTags', () {
+    test('normal case', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/featured_tags/suggestions',
+          'test/src/service/v1/accounts/data/lookup_suggested_tags.json',
+          {},
+        ),
+      );
+
+      final response = await accountsService.lookupSuggestedTags();
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<List<Tag>>());
+    });
+
+    test('when unauthorized', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/featured_tags/suggestions',
+          'test/src/service/v1/accounts/data/lookup_suggested_tags.json',
+          {},
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await accountsService.lookupSuggestedTags(),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/featured_tags/suggestions',
+          'test/src/service/v1/accounts/data/lookup_suggested_tags.json',
+          {},
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await accountsService.lookupSuggestedTags(),
       );
     });
   });
