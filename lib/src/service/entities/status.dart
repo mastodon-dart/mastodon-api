@@ -95,6 +95,9 @@ class Status with _$Status {
     /// Custom emoji to be used when rendering status content.
     required List<Emoji> emojis,
 
+    /// Hashtags used within the status content.
+    required List<Tag> tags,
+
     /// The date when this status was created.
     required DateTime createdAt,
   }) = _Status;

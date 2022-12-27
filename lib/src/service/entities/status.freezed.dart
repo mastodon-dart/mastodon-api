@@ -99,6 +99,9 @@ mixin _$Status {
   /// Custom emoji to be used when rendering status content.
   List<Emoji> get emojis => throw _privateConstructorUsedError;
 
+  /// Hashtags used within the status content.
+  List<Tag> get tags => throw _privateConstructorUsedError;
+
   /// The date when this status was created.
   DateTime get createdAt => throw _privateConstructorUsedError;
 
@@ -137,6 +140,7 @@ abstract class $StatusCopyWith<$Res> {
       Poll? poll,
       Status? reblog,
       List<Emoji> emojis,
+      List<Tag> tags,
       DateTime createdAt});
 
   $AccountCopyWith<$Res> get account;
@@ -182,6 +186,7 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
     Object? poll = freezed,
     Object? reblog = freezed,
     Object? emojis = null,
+    Object? tags = null,
     Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
@@ -281,6 +286,10 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
           ? _value.emojis
           : emojis // ignore: cast_nullable_to_non_nullable
               as List<Emoji>,
+      tags: null == tags
+          ? _value.tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<Tag>,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -364,6 +373,7 @@ abstract class _$$_StatusCopyWith<$Res> implements $StatusCopyWith<$Res> {
       Poll? poll,
       Status? reblog,
       List<Emoji> emojis,
+      List<Tag> tags,
       DateTime createdAt});
 
   @override
@@ -410,6 +420,7 @@ class __$$_StatusCopyWithImpl<$Res>
     Object? poll = freezed,
     Object? reblog = freezed,
     Object? emojis = null,
+    Object? tags = null,
     Object? createdAt = null,
   }) {
     return _then(_$_Status(
@@ -509,6 +520,10 @@ class __$$_StatusCopyWithImpl<$Res>
           ? _value._emojis
           : emojis // ignore: cast_nullable_to_non_nullable
               as List<Emoji>,
+      tags: null == tags
+          ? _value._tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<Tag>,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -546,8 +561,10 @@ class _$_Status implements _Status {
       this.poll,
       this.reblog,
       required final List<Emoji> emojis,
+      required final List<Tag> tags,
       required this.createdAt})
-      : _emojis = emojis;
+      : _emojis = emojis,
+        _tags = tags;
 
   factory _$_Status.fromJson(Map<String, dynamic> json) =>
       _$$_StatusFromJson(json);
@@ -662,13 +679,24 @@ class _$_Status implements _Status {
     return EqualUnmodifiableListView(_emojis);
   }
 
+  /// Hashtags used within the status content.
+  final List<Tag> _tags;
+
+  /// Hashtags used within the status content.
+  @override
+  List<Tag> get tags {
+    if (_tags is EqualUnmodifiableListView) return _tags;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_tags);
+  }
+
   /// The date when this status was created.
   @override
   final DateTime createdAt;
 
   @override
   String toString() {
-    return 'Status(id: $id, url: $url, uri: $uri, content: $content, spoilerText: $spoilerText, visibility: $visibility, favouritesCount: $favouritesCount, repliesCount: $repliesCount, reblogsCount: $reblogsCount, language: $language, inReplyToId: $inReplyToId, inReplyToAccountId: $inReplyToAccountId, isFavourited: $isFavourited, isReblogged: $isReblogged, isMuted: $isMuted, isBookmarked: $isBookmarked, isSensitive: $isSensitive, isPinned: $isPinned, lastStatusAt: $lastStatusAt, account: $account, application: $application, poll: $poll, reblog: $reblog, emojis: $emojis, createdAt: $createdAt)';
+    return 'Status(id: $id, url: $url, uri: $uri, content: $content, spoilerText: $spoilerText, visibility: $visibility, favouritesCount: $favouritesCount, repliesCount: $repliesCount, reblogsCount: $reblogsCount, language: $language, inReplyToId: $inReplyToId, inReplyToAccountId: $inReplyToAccountId, isFavourited: $isFavourited, isReblogged: $isReblogged, isMuted: $isMuted, isBookmarked: $isBookmarked, isSensitive: $isSensitive, isPinned: $isPinned, lastStatusAt: $lastStatusAt, account: $account, application: $application, poll: $poll, reblog: $reblog, emojis: $emojis, tags: $tags, createdAt: $createdAt)';
   }
 
   @override
@@ -715,6 +743,7 @@ class _$_Status implements _Status {
             (identical(other.poll, poll) || other.poll == poll) &&
             (identical(other.reblog, reblog) || other.reblog == reblog) &&
             const DeepCollectionEquality().equals(other._emojis, _emojis) &&
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
@@ -747,6 +776,7 @@ class _$_Status implements _Status {
         poll,
         reblog,
         const DeepCollectionEquality().hash(_emojis),
+        const DeepCollectionEquality().hash(_tags),
         createdAt
       ]);
 
@@ -790,6 +820,7 @@ abstract class _Status implements Status {
       final Poll? poll,
       final Status? reblog,
       required final List<Emoji> emojis,
+      required final List<Tag> tags,
       required final DateTime createdAt}) = _$_Status;
 
   factory _Status.fromJson(Map<String, dynamic> json) = _$_Status.fromJson;
@@ -897,6 +928,10 @@ abstract class _Status implements Status {
 
   /// Custom emoji to be used when rendering status content.
   List<Emoji> get emojis;
+  @override
+
+  /// Hashtags used within the status content.
+  List<Tag> get tags;
   @override
 
   /// The date when this status was created.
