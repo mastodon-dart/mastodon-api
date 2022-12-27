@@ -46,6 +46,15 @@
         "bug",
         "test"
       ]
+    },
+    {
+      "login": "SkywaveTM",
+      "name": "YeongJun",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4926340?v=4",
+      "profile": "http://skywave.kr",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 5,
