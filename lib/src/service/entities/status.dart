@@ -92,6 +92,9 @@ class Status with _$Status {
     /// The status being reblogged.
     Status? reblog,
 
+    /// Media that is attached to this status.
+    required List<MediaAttachment> mediaAttachments,
+
     /// Custom emoji to be used when rendering status content.
     required List<Emoji> emojis,
 

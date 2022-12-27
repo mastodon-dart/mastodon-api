@@ -96,6 +96,10 @@ mixin _$Status {
   /// The status being reblogged.
   Status? get reblog => throw _privateConstructorUsedError;
 
+  /// Media that is attached to this status.
+  List<MediaAttachment> get mediaAttachments =>
+      throw _privateConstructorUsedError;
+
   /// Custom emoji to be used when rendering status content.
   List<Emoji> get emojis => throw _privateConstructorUsedError;
 
@@ -139,6 +143,7 @@ abstract class $StatusCopyWith<$Res> {
       Application? application,
       Poll? poll,
       Status? reblog,
+      List<MediaAttachment> mediaAttachments,
       List<Emoji> emojis,
       List<Tag> tags,
       DateTime createdAt});
@@ -185,6 +190,7 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
     Object? application = freezed,
     Object? poll = freezed,
     Object? reblog = freezed,
+    Object? mediaAttachments = null,
     Object? emojis = null,
     Object? tags = null,
     Object? createdAt = null,
@@ -282,6 +288,10 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
           ? _value.reblog
           : reblog // ignore: cast_nullable_to_non_nullable
               as Status?,
+      mediaAttachments: null == mediaAttachments
+          ? _value.mediaAttachments
+          : mediaAttachments // ignore: cast_nullable_to_non_nullable
+              as List<MediaAttachment>,
       emojis: null == emojis
           ? _value.emojis
           : emojis // ignore: cast_nullable_to_non_nullable
@@ -372,6 +382,7 @@ abstract class _$$_StatusCopyWith<$Res> implements $StatusCopyWith<$Res> {
       Application? application,
       Poll? poll,
       Status? reblog,
+      List<MediaAttachment> mediaAttachments,
       List<Emoji> emojis,
       List<Tag> tags,
       DateTime createdAt});
@@ -419,6 +430,7 @@ class __$$_StatusCopyWithImpl<$Res>
     Object? application = freezed,
     Object? poll = freezed,
     Object? reblog = freezed,
+    Object? mediaAttachments = null,
     Object? emojis = null,
     Object? tags = null,
     Object? createdAt = null,
@@ -516,6 +528,10 @@ class __$$_StatusCopyWithImpl<$Res>
           ? _value.reblog
           : reblog // ignore: cast_nullable_to_non_nullable
               as Status?,
+      mediaAttachments: null == mediaAttachments
+          ? _value._mediaAttachments
+          : mediaAttachments // ignore: cast_nullable_to_non_nullable
+              as List<MediaAttachment>,
       emojis: null == emojis
           ? _value._emojis
           : emojis // ignore: cast_nullable_to_non_nullable
@@ -560,10 +576,12 @@ class _$_Status implements _Status {
       this.application,
       this.poll,
       this.reblog,
+      required final List<MediaAttachment> mediaAttachments,
       required final List<Emoji> emojis,
       required final List<Tag> tags,
       required this.createdAt})
-      : _emojis = emojis,
+      : _mediaAttachments = mediaAttachments,
+        _emojis = emojis,
         _tags = tags;
 
   factory _$_Status.fromJson(Map<String, dynamic> json) =>
@@ -668,6 +686,18 @@ class _$_Status implements _Status {
   @override
   final Status? reblog;
 
+  /// Media that is attached to this status.
+  final List<MediaAttachment> _mediaAttachments;
+
+  /// Media that is attached to this status.
+  @override
+  List<MediaAttachment> get mediaAttachments {
+    if (_mediaAttachments is EqualUnmodifiableListView)
+      return _mediaAttachments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_mediaAttachments);
+  }
+
   /// Custom emoji to be used when rendering status content.
   final List<Emoji> _emojis;
 
@@ -696,7 +726,7 @@ class _$_Status implements _Status {
 
   @override
   String toString() {
-    return 'Status(id: $id, url: $url, uri: $uri, content: $content, spoilerText: $spoilerText, visibility: $visibility, favouritesCount: $favouritesCount, repliesCount: $repliesCount, reblogsCount: $reblogsCount, language: $language, inReplyToId: $inReplyToId, inReplyToAccountId: $inReplyToAccountId, isFavourited: $isFavourited, isReblogged: $isReblogged, isMuted: $isMuted, isBookmarked: $isBookmarked, isSensitive: $isSensitive, isPinned: $isPinned, lastStatusAt: $lastStatusAt, account: $account, application: $application, poll: $poll, reblog: $reblog, emojis: $emojis, tags: $tags, createdAt: $createdAt)';
+    return 'Status(id: $id, url: $url, uri: $uri, content: $content, spoilerText: $spoilerText, visibility: $visibility, favouritesCount: $favouritesCount, repliesCount: $repliesCount, reblogsCount: $reblogsCount, language: $language, inReplyToId: $inReplyToId, inReplyToAccountId: $inReplyToAccountId, isFavourited: $isFavourited, isReblogged: $isReblogged, isMuted: $isMuted, isBookmarked: $isBookmarked, isSensitive: $isSensitive, isPinned: $isPinned, lastStatusAt: $lastStatusAt, account: $account, application: $application, poll: $poll, reblog: $reblog, mediaAttachments: $mediaAttachments, emojis: $emojis, tags: $tags, createdAt: $createdAt)';
   }
 
   @override
@@ -742,6 +772,8 @@ class _$_Status implements _Status {
                 other.application == application) &&
             (identical(other.poll, poll) || other.poll == poll) &&
             (identical(other.reblog, reblog) || other.reblog == reblog) &&
+            const DeepCollectionEquality()
+                .equals(other._mediaAttachments, _mediaAttachments) &&
             const DeepCollectionEquality().equals(other._emojis, _emojis) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             (identical(other.createdAt, createdAt) ||
@@ -775,6 +807,7 @@ class _$_Status implements _Status {
         application,
         poll,
         reblog,
+        const DeepCollectionEquality().hash(_mediaAttachments),
         const DeepCollectionEquality().hash(_emojis),
         const DeepCollectionEquality().hash(_tags),
         createdAt
@@ -819,6 +852,7 @@ abstract class _Status implements Status {
       final Application? application,
       final Poll? poll,
       final Status? reblog,
+      required final List<MediaAttachment> mediaAttachments,
       required final List<Emoji> emojis,
       required final List<Tag> tags,
       required final DateTime createdAt}) = _$_Status;
@@ -924,6 +958,10 @@ abstract class _Status implements Status {
 
   /// The status being reblogged.
   Status? get reblog;
+  @override
+
+  /// Media that is attached to this status.
+  List<MediaAttachment> get mediaAttachments;
   @override
 
   /// Custom emoji to be used when rendering status content.
