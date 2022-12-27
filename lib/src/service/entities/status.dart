@@ -8,11 +8,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // 🌎 Project imports:
-import '../../core/language.dart';
-import '../../core/visibility.dart';
-import 'account.dart';
-import 'application.dart';
-import 'poll.dart';
+import '../../../mastodon_api.dart';
 
 part 'status.freezed.dart';
 part 'status.g.dart';
@@ -53,7 +49,7 @@ class Status with _$Status {
     Language? language,
 
     /// ID of the status being replied.
-    String? inReplyToTweetId,
+    String? inReplyToId,
 
     /// ID of the account being replied to.
     String? inReplyToAccountId,
@@ -87,6 +83,18 @@ class Status with _$Status {
 
     /// The poll attached to the status.
     Poll? poll,
+
+    /// The status being reblogged.
+    Status? reblog,
+
+    /// Media that is attached to this status.
+    required List<MediaAttachment> mediaAttachments,
+
+    /// Custom emoji to be used when rendering status content.
+    required List<Emoji> emojis,
+
+    /// Hashtags used within the status content.
+    required List<Tag> tags,
 
     /// The date when this status was created.
     required DateTime createdAt,

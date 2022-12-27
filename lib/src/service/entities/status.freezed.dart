@@ -52,7 +52,7 @@ mixin _$Status {
   Language? get language => throw _privateConstructorUsedError;
 
   /// ID of the status being replied.
-  String? get inReplyToTweetId => throw _privateConstructorUsedError;
+  String? get inReplyToId => throw _privateConstructorUsedError;
 
   /// ID of the account being replied to.
   String? get inReplyToAccountId => throw _privateConstructorUsedError;
@@ -93,6 +93,19 @@ mixin _$Status {
   /// The poll attached to the status.
   Poll? get poll => throw _privateConstructorUsedError;
 
+  /// The status being reblogged.
+  Status? get reblog => throw _privateConstructorUsedError;
+
+  /// Media that is attached to this status.
+  List<MediaAttachment> get mediaAttachments =>
+      throw _privateConstructorUsedError;
+
+  /// Custom emoji to be used when rendering status content.
+  List<Emoji> get emojis => throw _privateConstructorUsedError;
+
+  /// Hashtags used within the status content.
+  List<Tag> get tags => throw _privateConstructorUsedError;
+
   /// The date when this status was created.
   DateTime get createdAt => throw _privateConstructorUsedError;
 
@@ -117,7 +130,7 @@ abstract class $StatusCopyWith<$Res> {
       int repliesCount,
       int reblogsCount,
       Language? language,
-      String? inReplyToTweetId,
+      String? inReplyToId,
       String? inReplyToAccountId,
       @JsonKey(name: 'favourited') bool? isFavourited,
       @JsonKey(name: 'reblogged') bool? isReblogged,
@@ -129,11 +142,16 @@ abstract class $StatusCopyWith<$Res> {
       Account account,
       Application? application,
       Poll? poll,
+      Status? reblog,
+      List<MediaAttachment> mediaAttachments,
+      List<Emoji> emojis,
+      List<Tag> tags,
       DateTime createdAt});
 
   $AccountCopyWith<$Res> get account;
   $ApplicationCopyWith<$Res>? get application;
   $PollCopyWith<$Res>? get poll;
+  $StatusCopyWith<$Res>? get reblog;
 }
 
 /// @nodoc
@@ -159,7 +177,7 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
     Object? repliesCount = null,
     Object? reblogsCount = null,
     Object? language = freezed,
-    Object? inReplyToTweetId = freezed,
+    Object? inReplyToId = freezed,
     Object? inReplyToAccountId = freezed,
     Object? isFavourited = freezed,
     Object? isReblogged = freezed,
@@ -171,6 +189,10 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
     Object? account = null,
     Object? application = freezed,
     Object? poll = freezed,
+    Object? reblog = freezed,
+    Object? mediaAttachments = null,
+    Object? emojis = null,
+    Object? tags = null,
     Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
@@ -214,9 +236,9 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
               as Language?,
-      inReplyToTweetId: freezed == inReplyToTweetId
-          ? _value.inReplyToTweetId
-          : inReplyToTweetId // ignore: cast_nullable_to_non_nullable
+      inReplyToId: freezed == inReplyToId
+          ? _value.inReplyToId
+          : inReplyToId // ignore: cast_nullable_to_non_nullable
               as String?,
       inReplyToAccountId: freezed == inReplyToAccountId
           ? _value.inReplyToAccountId
@@ -262,6 +284,22 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
           ? _value.poll
           : poll // ignore: cast_nullable_to_non_nullable
               as Poll?,
+      reblog: freezed == reblog
+          ? _value.reblog
+          : reblog // ignore: cast_nullable_to_non_nullable
+              as Status?,
+      mediaAttachments: null == mediaAttachments
+          ? _value.mediaAttachments
+          : mediaAttachments // ignore: cast_nullable_to_non_nullable
+              as List<MediaAttachment>,
+      emojis: null == emojis
+          ? _value.emojis
+          : emojis // ignore: cast_nullable_to_non_nullable
+              as List<Emoji>,
+      tags: null == tags
+          ? _value.tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<Tag>,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -300,6 +338,18 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
       return _then(_value.copyWith(poll: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StatusCopyWith<$Res>? get reblog {
+    if (_value.reblog == null) {
+      return null;
+    }
+
+    return $StatusCopyWith<$Res>(_value.reblog!, (value) {
+      return _then(_value.copyWith(reblog: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -319,7 +369,7 @@ abstract class _$$_StatusCopyWith<$Res> implements $StatusCopyWith<$Res> {
       int repliesCount,
       int reblogsCount,
       Language? language,
-      String? inReplyToTweetId,
+      String? inReplyToId,
       String? inReplyToAccountId,
       @JsonKey(name: 'favourited') bool? isFavourited,
       @JsonKey(name: 'reblogged') bool? isReblogged,
@@ -331,6 +381,10 @@ abstract class _$$_StatusCopyWith<$Res> implements $StatusCopyWith<$Res> {
       Account account,
       Application? application,
       Poll? poll,
+      Status? reblog,
+      List<MediaAttachment> mediaAttachments,
+      List<Emoji> emojis,
+      List<Tag> tags,
       DateTime createdAt});
 
   @override
@@ -339,6 +393,8 @@ abstract class _$$_StatusCopyWith<$Res> implements $StatusCopyWith<$Res> {
   $ApplicationCopyWith<$Res>? get application;
   @override
   $PollCopyWith<$Res>? get poll;
+  @override
+  $StatusCopyWith<$Res>? get reblog;
 }
 
 /// @nodoc
@@ -361,7 +417,7 @@ class __$$_StatusCopyWithImpl<$Res>
     Object? repliesCount = null,
     Object? reblogsCount = null,
     Object? language = freezed,
-    Object? inReplyToTweetId = freezed,
+    Object? inReplyToId = freezed,
     Object? inReplyToAccountId = freezed,
     Object? isFavourited = freezed,
     Object? isReblogged = freezed,
@@ -373,6 +429,10 @@ class __$$_StatusCopyWithImpl<$Res>
     Object? account = null,
     Object? application = freezed,
     Object? poll = freezed,
+    Object? reblog = freezed,
+    Object? mediaAttachments = null,
+    Object? emojis = null,
+    Object? tags = null,
     Object? createdAt = null,
   }) {
     return _then(_$_Status(
@@ -416,9 +476,9 @@ class __$$_StatusCopyWithImpl<$Res>
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
               as Language?,
-      inReplyToTweetId: freezed == inReplyToTweetId
-          ? _value.inReplyToTweetId
-          : inReplyToTweetId // ignore: cast_nullable_to_non_nullable
+      inReplyToId: freezed == inReplyToId
+          ? _value.inReplyToId
+          : inReplyToId // ignore: cast_nullable_to_non_nullable
               as String?,
       inReplyToAccountId: freezed == inReplyToAccountId
           ? _value.inReplyToAccountId
@@ -464,6 +524,22 @@ class __$$_StatusCopyWithImpl<$Res>
           ? _value.poll
           : poll // ignore: cast_nullable_to_non_nullable
               as Poll?,
+      reblog: freezed == reblog
+          ? _value.reblog
+          : reblog // ignore: cast_nullable_to_non_nullable
+              as Status?,
+      mediaAttachments: null == mediaAttachments
+          ? _value._mediaAttachments
+          : mediaAttachments // ignore: cast_nullable_to_non_nullable
+              as List<MediaAttachment>,
+      emojis: null == emojis
+          ? _value._emojis
+          : emojis // ignore: cast_nullable_to_non_nullable
+              as List<Emoji>,
+      tags: null == tags
+          ? _value._tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<Tag>,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -487,7 +563,7 @@ class _$_Status implements _Status {
       required this.repliesCount,
       required this.reblogsCount,
       this.language,
-      this.inReplyToTweetId,
+      this.inReplyToId,
       this.inReplyToAccountId,
       @JsonKey(name: 'favourited') this.isFavourited,
       @JsonKey(name: 'reblogged') this.isReblogged,
@@ -499,7 +575,14 @@ class _$_Status implements _Status {
       required this.account,
       this.application,
       this.poll,
-      required this.createdAt});
+      this.reblog,
+      required final List<MediaAttachment> mediaAttachments,
+      required final List<Emoji> emojis,
+      required final List<Tag> tags,
+      required this.createdAt})
+      : _mediaAttachments = mediaAttachments,
+        _emojis = emojis,
+        _tags = tags;
 
   factory _$_Status.fromJson(Map<String, dynamic> json) =>
       _$$_StatusFromJson(json);
@@ -547,7 +630,7 @@ class _$_Status implements _Status {
 
   /// ID of the status being replied.
   @override
-  final String? inReplyToTweetId;
+  final String? inReplyToId;
 
   /// ID of the account being replied to.
   @override
@@ -599,13 +682,51 @@ class _$_Status implements _Status {
   @override
   final Poll? poll;
 
+  /// The status being reblogged.
+  @override
+  final Status? reblog;
+
+  /// Media that is attached to this status.
+  final List<MediaAttachment> _mediaAttachments;
+
+  /// Media that is attached to this status.
+  @override
+  List<MediaAttachment> get mediaAttachments {
+    if (_mediaAttachments is EqualUnmodifiableListView)
+      return _mediaAttachments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_mediaAttachments);
+  }
+
+  /// Custom emoji to be used when rendering status content.
+  final List<Emoji> _emojis;
+
+  /// Custom emoji to be used when rendering status content.
+  @override
+  List<Emoji> get emojis {
+    if (_emojis is EqualUnmodifiableListView) return _emojis;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_emojis);
+  }
+
+  /// Hashtags used within the status content.
+  final List<Tag> _tags;
+
+  /// Hashtags used within the status content.
+  @override
+  List<Tag> get tags {
+    if (_tags is EqualUnmodifiableListView) return _tags;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_tags);
+  }
+
   /// The date when this status was created.
   @override
   final DateTime createdAt;
 
   @override
   String toString() {
-    return 'Status(id: $id, url: $url, uri: $uri, content: $content, spoilerText: $spoilerText, visibility: $visibility, favouritesCount: $favouritesCount, repliesCount: $repliesCount, reblogsCount: $reblogsCount, language: $language, inReplyToTweetId: $inReplyToTweetId, inReplyToAccountId: $inReplyToAccountId, isFavourited: $isFavourited, isReblogged: $isReblogged, isMuted: $isMuted, isBookmarked: $isBookmarked, isSensitive: $isSensitive, isPinned: $isPinned, lastStatusAt: $lastStatusAt, account: $account, application: $application, poll: $poll, createdAt: $createdAt)';
+    return 'Status(id: $id, url: $url, uri: $uri, content: $content, spoilerText: $spoilerText, visibility: $visibility, favouritesCount: $favouritesCount, repliesCount: $repliesCount, reblogsCount: $reblogsCount, language: $language, inReplyToId: $inReplyToId, inReplyToAccountId: $inReplyToAccountId, isFavourited: $isFavourited, isReblogged: $isReblogged, isMuted: $isMuted, isBookmarked: $isBookmarked, isSensitive: $isSensitive, isPinned: $isPinned, lastStatusAt: $lastStatusAt, account: $account, application: $application, poll: $poll, reblog: $reblog, mediaAttachments: $mediaAttachments, emojis: $emojis, tags: $tags, createdAt: $createdAt)';
   }
 
   @override
@@ -629,8 +750,8 @@ class _$_Status implements _Status {
                 other.reblogsCount == reblogsCount) &&
             (identical(other.language, language) ||
                 other.language == language) &&
-            (identical(other.inReplyToTweetId, inReplyToTweetId) ||
-                other.inReplyToTweetId == inReplyToTweetId) &&
+            (identical(other.inReplyToId, inReplyToId) ||
+                other.inReplyToId == inReplyToId) &&
             (identical(other.inReplyToAccountId, inReplyToAccountId) ||
                 other.inReplyToAccountId == inReplyToAccountId) &&
             (identical(other.isFavourited, isFavourited) ||
@@ -650,6 +771,11 @@ class _$_Status implements _Status {
             (identical(other.application, application) ||
                 other.application == application) &&
             (identical(other.poll, poll) || other.poll == poll) &&
+            (identical(other.reblog, reblog) || other.reblog == reblog) &&
+            const DeepCollectionEquality()
+                .equals(other._mediaAttachments, _mediaAttachments) &&
+            const DeepCollectionEquality().equals(other._emojis, _emojis) &&
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
@@ -668,7 +794,7 @@ class _$_Status implements _Status {
         repliesCount,
         reblogsCount,
         language,
-        inReplyToTweetId,
+        inReplyToId,
         inReplyToAccountId,
         isFavourited,
         isReblogged,
@@ -680,6 +806,10 @@ class _$_Status implements _Status {
         account,
         application,
         poll,
+        reblog,
+        const DeepCollectionEquality().hash(_mediaAttachments),
+        const DeepCollectionEquality().hash(_emojis),
+        const DeepCollectionEquality().hash(_tags),
         createdAt
       ]);
 
@@ -709,7 +839,7 @@ abstract class _Status implements Status {
       required final int repliesCount,
       required final int reblogsCount,
       final Language? language,
-      final String? inReplyToTweetId,
+      final String? inReplyToId,
       final String? inReplyToAccountId,
       @JsonKey(name: 'favourited') final bool? isFavourited,
       @JsonKey(name: 'reblogged') final bool? isReblogged,
@@ -721,6 +851,10 @@ abstract class _Status implements Status {
       required final Account account,
       final Application? application,
       final Poll? poll,
+      final Status? reblog,
+      required final List<MediaAttachment> mediaAttachments,
+      required final List<Emoji> emojis,
+      required final List<Tag> tags,
       required final DateTime createdAt}) = _$_Status;
 
   factory _Status.fromJson(Map<String, dynamic> json) = _$_Status.fromJson;
@@ -769,7 +903,7 @@ abstract class _Status implements Status {
   @override
 
   /// ID of the status being replied.
-  String? get inReplyToTweetId;
+  String? get inReplyToId;
   @override
 
   /// ID of the account being replied to.
@@ -820,6 +954,22 @@ abstract class _Status implements Status {
 
   /// The poll attached to the status.
   Poll? get poll;
+  @override
+
+  /// The status being reblogged.
+  Status? get reblog;
+  @override
+
+  /// Media that is attached to this status.
+  List<MediaAttachment> get mediaAttachments;
+  @override
+
+  /// Custom emoji to be used when rendering status content.
+  List<Emoji> get emojis;
+  @override
+
+  /// Hashtags used within the status content.
+  List<Tag> get tags;
   @override
 
   /// The date when this status was created.

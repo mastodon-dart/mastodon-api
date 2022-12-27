@@ -25,8 +25,7 @@ _$_Status _$$_StatusFromJson(Map json) => $checkedCreate(
           reblogsCount: $checkedConvert('reblogs_count', (v) => v as int),
           language: $checkedConvert(
               'language', (v) => $enumDecodeNullable(_$LanguageEnumMap, v)),
-          inReplyToTweetId:
-              $checkedConvert('in_reply_to_tweet_id', (v) => v as String?),
+          inReplyToId: $checkedConvert('in_reply_to_id', (v) => v as String?),
           inReplyToAccountId:
               $checkedConvert('in_reply_to_account_id', (v) => v as String?),
           isFavourited: $checkedConvert('favourited', (v) => v as bool?),
@@ -49,6 +48,28 @@ _$_Status _$$_StatusFromJson(Map json) => $checkedCreate(
               (v) => v == null
                   ? null
                   : Poll.fromJson(Map<String, Object?>.from(v as Map))),
+          reblog: $checkedConvert(
+              'reblog',
+              (v) => v == null
+                  ? null
+                  : Status.fromJson(Map<String, Object?>.from(v as Map))),
+          mediaAttachments: $checkedConvert(
+              'media_attachments',
+              (v) => (v as List<dynamic>)
+                  .map((e) => MediaAttachment.fromJson(
+                      Map<String, Object?>.from(e as Map)))
+                  .toList()),
+          emojis: $checkedConvert(
+              'emojis',
+              (v) => (v as List<dynamic>)
+                  .map((e) =>
+                      Emoji.fromJson(Map<String, Object?>.from(e as Map)))
+                  .toList()),
+          tags: $checkedConvert(
+              'tags',
+              (v) => (v as List<dynamic>)
+                  .map((e) => Tag.fromJson(Map<String, Object?>.from(e as Map)))
+                  .toList()),
           createdAt:
               $checkedConvert('created_at', (v) => DateTime.parse(v as String)),
         );
@@ -59,7 +80,7 @@ _$_Status _$$_StatusFromJson(Map json) => $checkedCreate(
         'favouritesCount': 'favourites_count',
         'repliesCount': 'replies_count',
         'reblogsCount': 'reblogs_count',
-        'inReplyToTweetId': 'in_reply_to_tweet_id',
+        'inReplyToId': 'in_reply_to_id',
         'inReplyToAccountId': 'in_reply_to_account_id',
         'isFavourited': 'favourited',
         'isReblogged': 'reblogged',
@@ -68,6 +89,7 @@ _$_Status _$$_StatusFromJson(Map json) => $checkedCreate(
         'isSensitive': 'sensitive',
         'isPinned': 'pinned',
         'lastStatusAt': 'last_status_at',
+        'mediaAttachments': 'media_attachments',
         'createdAt': 'created_at'
       },
     );
@@ -92,7 +114,7 @@ Map<String, dynamic> _$$_StatusToJson(_$_Status instance) {
   val['replies_count'] = instance.repliesCount;
   val['reblogs_count'] = instance.reblogsCount;
   writeNotNull('language', _$LanguageEnumMap[instance.language]);
-  writeNotNull('in_reply_to_tweet_id', instance.inReplyToTweetId);
+  writeNotNull('in_reply_to_id', instance.inReplyToId);
   writeNotNull('in_reply_to_account_id', instance.inReplyToAccountId);
   writeNotNull('favourited', instance.isFavourited);
   writeNotNull('reblogged', instance.isReblogged);
@@ -104,6 +126,11 @@ Map<String, dynamic> _$$_StatusToJson(_$_Status instance) {
   val['account'] = instance.account.toJson();
   writeNotNull('application', instance.application?.toJson());
   writeNotNull('poll', instance.poll?.toJson());
+  writeNotNull('reblog', instance.reblog?.toJson());
+  val['media_attachments'] =
+      instance.mediaAttachments.map((e) => e.toJson()).toList();
+  val['emojis'] = instance.emojis.map((e) => e.toJson()).toList();
+  val['tags'] = instance.tags.map((e) => e.toJson()).toList();
   val['created_at'] = instance.createdAt.toIso8601String();
   return val;
 }
