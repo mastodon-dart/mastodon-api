@@ -4,6 +4,7 @@
 
 // 🌎 Project imports:
 import 'package:mastodon_api/src/core/client/user_context.dart';
+import 'package:mastodon_api/src/service/entities/conversation.dart';
 import 'package:mastodon_api/src/service/entities/rate_limit.dart';
 import 'package:mastodon_api/src/service/entities/status.dart';
 import 'package:mastodon_api/src/service/response/mastodon_response.dart';
@@ -503,6 +504,186 @@ void main() {
       expect(response.rateLimit, isA<RateLimit>());
       expect(response.data, isA<List<Status>>());
       expect(response.data, []);
+    });
+  });
+
+  group('.lookupConversations', () {
+    test('normal case', () async {
+      final timelinesService = TimelinesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/conversations',
+          'test/src/service/v1/timelines/data/lookup_conversations.json',
+          {
+            'limit': '10',
+          },
+        ),
+      );
+
+      final response = await timelinesService.lookupConversations(limit: 10);
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<List<Conversation>>());
+    });
+
+    test('when unauthorized', () async {
+      final timelinesService = TimelinesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/conversations',
+          'test/src/service/v1/timelines/data/lookup_conversations.json',
+          {
+            'limit': '10',
+          },
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await timelinesService.lookupConversations(limit: 10),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final timelinesService = TimelinesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/conversations',
+          'test/src/service/v1/timelines/data/lookup_conversations.json',
+          {
+            'limit': '10',
+          },
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await timelinesService.lookupConversations(limit: 10),
+      );
+    });
+  });
+
+  group('.destroyConversation', () {
+    test('normal case', () async {
+      final timelinesService = TimelinesV1Service(
+        instance: 'test',
+        context: context.buildDeleteStub(
+          'test',
+          '/api/v1/conversations/1234',
+          'test/src/service/v1/timelines/data/destroy_conversation.json',
+        ),
+      );
+
+      final response = await timelinesService.destroyConversation(
+        conversationId: '1234',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isTrue);
+    });
+
+    test('when unauthorized', () async {
+      final timelinesService = TimelinesV1Service(
+        instance: 'test',
+        context: context.buildDeleteStub(
+          'test',
+          '/api/v1/conversations/1234',
+          'test/src/service/v1/timelines/data/destroy_conversation.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await timelinesService.destroyConversation(
+          conversationId: '1234',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final timelinesService = TimelinesV1Service(
+        instance: 'test',
+        context: context.buildDeleteStub(
+          'test',
+          '/api/v1/conversations/1234',
+          'test/src/service/v1/timelines/data/destroy_conversation.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await timelinesService.destroyConversation(
+          conversationId: '1234',
+        ),
+      );
+    });
+  });
+
+  group('.createMarkConversationAsRead', () {
+    test('normal case', () async {
+      final timelinesService = TimelinesV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/conversations/1234/read',
+          'test/src/service/v1/timelines/data/create_mark_conversation_as_read.json',
+        ),
+      );
+
+      final response = await timelinesService.createMarkConversationAsRead(
+        conversationId: '1234',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<Conversation>());
+    });
+
+    test('when unauthorized', () async {
+      final timelinesService = TimelinesV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/conversations/1234/read',
+          'test/src/service/v1/timelines/data/create_mark_conversation_as_read.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await timelinesService.createMarkConversationAsRead(
+          conversationId: '1234',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final timelinesService = TimelinesV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/conversations/1234/read',
+          'test/src/service/v1/timelines/data/create_mark_conversation_as_read.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await timelinesService.createMarkConversationAsRead(
+          conversationId: '1234',
+        ),
+      );
     });
   });
 }

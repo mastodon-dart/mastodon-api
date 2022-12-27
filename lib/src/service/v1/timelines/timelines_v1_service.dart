@@ -6,6 +6,7 @@
 import '../../../core/client/client_context.dart';
 import '../../../core/client/user_context.dart';
 import '../../base_service.dart';
+import '../../entities/conversation.dart';
 import '../../entities/status.dart';
 import '../../response/mastodon_response.dart';
 
@@ -181,6 +182,82 @@ abstract class TimelinesV1Service {
     String? sinceStatusId,
     int? limit,
   });
+
+  /// View all conversations
+  ///
+  /// ## Parameters
+  ///
+  /// - [limit]: Maximum number of results to return. Defaults to 20
+  ///            conversations. Max 40 conversations.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/conversations HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/conversations/#get
+  Future<MastodonResponse<List<Conversation>>> lookupConversations({
+    int? limit,
+  });
+
+  /// Removes a conversation from your list of conversations.
+  ///
+  /// ## Parameters
+  ///
+  /// - [conversationId]: The ID of the Conversation in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - DELETE /api/v1/conversations/:id HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:conversations
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/conversations/#delete
+  Future<MastodonResponse<bool>> destroyConversation({
+    required String conversationId,
+  });
+
+  /// Mark a conversation as read.
+  ///
+  /// ## Parameters
+  ///
+  /// - [conversationId]: The ID of the Conversation in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST /api/v1/conversations/:id/read HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:conversations
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/conversations/#delete
+  Future<MastodonResponse<Conversation>> createMarkConversationAsRead({
+    required String conversationId,
+  });
 }
 
 class _TimelinesV1Service extends BaseService implements TimelinesV1Service {
@@ -286,5 +363,44 @@ class _TimelinesV1Service extends BaseService implements TimelinesV1Service {
           },
         ),
         dataBuilder: Status.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<Conversation>>> lookupConversations({
+    int? limit,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/conversations',
+          queryParameters: {
+            'limit': limit,
+          },
+        ),
+        dataBuilder: Conversation.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<bool>> destroyConversation({
+    required String conversationId,
+  }) async =>
+      super.evaluateResponse(
+        await super.delete(
+          UserContext.oauth2Only,
+          '/api/v1/conversations/$conversationId',
+        ),
+      );
+
+  @override
+  Future<MastodonResponse<Conversation>> createMarkConversationAsRead({
+    required String conversationId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/conversations/$conversationId/read',
+          checkEntity: true,
+        ),
+        dataBuilder: Conversation.fromJson,
       );
 }

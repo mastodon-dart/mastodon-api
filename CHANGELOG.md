@@ -5,6 +5,10 @@
 - Supported `suggestions API methods`. ([#21](https://github.com/mastodon-dart/mastodon-api/issues/21))
   - `GET /api/v2/suggestions`
   - `DELETE /api/v1/suggestions/:account_id`
+- Supported `conversations API methods`. ([#28](https://github.com/mastodon-dart/mastodon-api/issues/28))
+  - `GET /api/v1/conversations`
+  - `DELETE /api/v1/conversations/:id`
+  - `POST /api/v1/conversations/:id/read`
 
 ## v0.2.2
 
