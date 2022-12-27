@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'v2_search.dart';
 
@@ -144,6 +144,7 @@ class _$_V2Search implements _V2Search {
   List<Account>? get accounts {
     final value = _accounts;
     if (value == null) return null;
+    if (_accounts is EqualUnmodifiableListView) return _accounts;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -156,6 +157,7 @@ class _$_V2Search implements _V2Search {
   List<Status>? get statuses {
     final value = _statuses;
     if (value == null) return null;
+    if (_statuses is EqualUnmodifiableListView) return _statuses;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -168,6 +170,7 @@ class _$_V2Search implements _V2Search {
   List<Tag>? get hashtags {
     final value = _hashtags;
     if (value == null) return null;
+    if (_hashtags is EqualUnmodifiableListView) return _hashtags;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }

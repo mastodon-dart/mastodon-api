@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'announcement.dart';
 
@@ -374,6 +374,7 @@ class _$_Announcement implements _Announcement {
   /// Accounts mentioned in the announcement text.
   @override
   List<AnnouncementAccount> get mentions {
+    if (_mentions is EqualUnmodifiableListView) return _mentions;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_mentions);
   }
@@ -384,6 +385,7 @@ class _$_Announcement implements _Announcement {
   /// Statuses linked in the announcement text.
   @override
   List<AnnouncementStatus> get statuses {
+    if (_statuses is EqualUnmodifiableListView) return _statuses;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_statuses);
   }
@@ -394,6 +396,7 @@ class _$_Announcement implements _Announcement {
   /// Tags linked in the announcement text.
   @override
   List<Tag> get tags {
+    if (_tags is EqualUnmodifiableListView) return _tags;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tags);
   }
@@ -404,6 +407,7 @@ class _$_Announcement implements _Announcement {
   /// Custom emoji used in the announcement text.
   @override
   List<Emoji> get emojis {
+    if (_emojis is EqualUnmodifiableListView) return _emojis;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_emojis);
   }
@@ -414,6 +418,7 @@ class _$_Announcement implements _Announcement {
   /// Emoji reactions attached to the announcement.
   @override
   List<EmojiReaction> get reactions {
+    if (_reactions is EqualUnmodifiableListView) return _reactions;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_reactions);
   }
