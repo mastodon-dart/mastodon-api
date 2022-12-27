@@ -88,6 +88,9 @@ class Status with _$Status {
     /// The poll attached to the status.
     Poll? poll,
 
+    /// The status being reblogged.
+    Status? reblog,
+
     /// The date when this status was created.
     required DateTime createdAt,
   }) = _Status;

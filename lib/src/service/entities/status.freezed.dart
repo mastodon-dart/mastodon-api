@@ -93,6 +93,9 @@ mixin _$Status {
   /// The poll attached to the status.
   Poll? get poll => throw _privateConstructorUsedError;
 
+  /// The status being reblogged.
+  Status? get reblog => throw _privateConstructorUsedError;
+
   /// The date when this status was created.
   DateTime get createdAt => throw _privateConstructorUsedError;
 
@@ -129,11 +132,13 @@ abstract class $StatusCopyWith<$Res> {
       Account account,
       Application? application,
       Poll? poll,
+      Status? reblog,
       DateTime createdAt});
 
   $AccountCopyWith<$Res> get account;
   $ApplicationCopyWith<$Res>? get application;
   $PollCopyWith<$Res>? get poll;
+  $StatusCopyWith<$Res>? get reblog;
 }
 
 /// @nodoc
@@ -171,6 +176,7 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
     Object? account = null,
     Object? application = freezed,
     Object? poll = freezed,
+    Object? reblog = freezed,
     Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
@@ -262,6 +268,10 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
           ? _value.poll
           : poll // ignore: cast_nullable_to_non_nullable
               as Poll?,
+      reblog: freezed == reblog
+          ? _value.reblog
+          : reblog // ignore: cast_nullable_to_non_nullable
+              as Status?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -300,6 +310,18 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
       return _then(_value.copyWith(poll: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StatusCopyWith<$Res>? get reblog {
+    if (_value.reblog == null) {
+      return null;
+    }
+
+    return $StatusCopyWith<$Res>(_value.reblog!, (value) {
+      return _then(_value.copyWith(reblog: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -331,6 +353,7 @@ abstract class _$$_StatusCopyWith<$Res> implements $StatusCopyWith<$Res> {
       Account account,
       Application? application,
       Poll? poll,
+      Status? reblog,
       DateTime createdAt});
 
   @override
@@ -339,6 +362,8 @@ abstract class _$$_StatusCopyWith<$Res> implements $StatusCopyWith<$Res> {
   $ApplicationCopyWith<$Res>? get application;
   @override
   $PollCopyWith<$Res>? get poll;
+  @override
+  $StatusCopyWith<$Res>? get reblog;
 }
 
 /// @nodoc
@@ -373,6 +398,7 @@ class __$$_StatusCopyWithImpl<$Res>
     Object? account = null,
     Object? application = freezed,
     Object? poll = freezed,
+    Object? reblog = freezed,
     Object? createdAt = null,
   }) {
     return _then(_$_Status(
@@ -464,6 +490,10 @@ class __$$_StatusCopyWithImpl<$Res>
           ? _value.poll
           : poll // ignore: cast_nullable_to_non_nullable
               as Poll?,
+      reblog: freezed == reblog
+          ? _value.reblog
+          : reblog // ignore: cast_nullable_to_non_nullable
+              as Status?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -499,6 +529,7 @@ class _$_Status implements _Status {
       required this.account,
       this.application,
       this.poll,
+      this.reblog,
       required this.createdAt});
 
   factory _$_Status.fromJson(Map<String, dynamic> json) =>
@@ -599,13 +630,17 @@ class _$_Status implements _Status {
   @override
   final Poll? poll;
 
+  /// The status being reblogged.
+  @override
+  final Status? reblog;
+
   /// The date when this status was created.
   @override
   final DateTime createdAt;
 
   @override
   String toString() {
-    return 'Status(id: $id, url: $url, uri: $uri, content: $content, spoilerText: $spoilerText, visibility: $visibility, favouritesCount: $favouritesCount, repliesCount: $repliesCount, reblogsCount: $reblogsCount, language: $language, inReplyToId: $inReplyToId, inReplyToAccountId: $inReplyToAccountId, isFavourited: $isFavourited, isReblogged: $isReblogged, isMuted: $isMuted, isBookmarked: $isBookmarked, isSensitive: $isSensitive, isPinned: $isPinned, lastStatusAt: $lastStatusAt, account: $account, application: $application, poll: $poll, createdAt: $createdAt)';
+    return 'Status(id: $id, url: $url, uri: $uri, content: $content, spoilerText: $spoilerText, visibility: $visibility, favouritesCount: $favouritesCount, repliesCount: $repliesCount, reblogsCount: $reblogsCount, language: $language, inReplyToId: $inReplyToId, inReplyToAccountId: $inReplyToAccountId, isFavourited: $isFavourited, isReblogged: $isReblogged, isMuted: $isMuted, isBookmarked: $isBookmarked, isSensitive: $isSensitive, isPinned: $isPinned, lastStatusAt: $lastStatusAt, account: $account, application: $application, poll: $poll, reblog: $reblog, createdAt: $createdAt)';
   }
 
   @override
@@ -650,6 +685,7 @@ class _$_Status implements _Status {
             (identical(other.application, application) ||
                 other.application == application) &&
             (identical(other.poll, poll) || other.poll == poll) &&
+            (identical(other.reblog, reblog) || other.reblog == reblog) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
@@ -680,6 +716,7 @@ class _$_Status implements _Status {
         account,
         application,
         poll,
+        reblog,
         createdAt
       ]);
 
@@ -721,6 +758,7 @@ abstract class _Status implements Status {
       required final Account account,
       final Application? application,
       final Poll? poll,
+      final Status? reblog,
       required final DateTime createdAt}) = _$_Status;
 
   factory _Status.fromJson(Map<String, dynamic> json) = _$_Status.fromJson;
@@ -820,6 +858,10 @@ abstract class _Status implements Status {
 
   /// The poll attached to the status.
   Poll? get poll;
+  @override
+
+  /// The status being reblogged.
+  Status? get reblog;
   @override
 
   /// The date when this status was created.
