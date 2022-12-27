@@ -23,6 +23,7 @@ export 'package:mastodon_api/src/service/entities/announcement_status.dart';
 export 'package:mastodon_api/src/service/entities/application.dart';
 export 'package:mastodon_api/src/service/entities/block_severity.dart';
 export 'package:mastodon_api/src/service/entities/blocked_domain.dart';
+export 'package:mastodon_api/src/service/entities/conversation.dart';
 export 'package:mastodon_api/src/service/entities/display_media_setting.dart';
 export 'package:mastodon_api/src/service/entities/emoji.dart';
 export 'package:mastodon_api/src/service/entities/emoji_reaction.dart';
