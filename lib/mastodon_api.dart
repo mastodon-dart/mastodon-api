@@ -42,6 +42,8 @@ export 'package:mastodon_api/src/service/entities/instance_statuses_configuratio
 export 'package:mastodon_api/src/service/entities/instance_urls_configuration.dart';
 export 'package:mastodon_api/src/service/entities/instance_usage.dart';
 export 'package:mastodon_api/src/service/entities/instance_usage_users.dart';
+export 'package:mastodon_api/src/service/entities/media_attachment.dart';
+export 'package:mastodon_api/src/service/entities/media_attachment_type.dart';
 export 'package:mastodon_api/src/service/entities/poll.dart';
 export 'package:mastodon_api/src/service/entities/poll_option.dart';
 export 'package:mastodon_api/src/service/entities/preview_card.dart';
