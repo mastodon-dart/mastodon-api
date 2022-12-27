@@ -25,8 +25,7 @@ _$_Status _$$_StatusFromJson(Map json) => $checkedCreate(
           reblogsCount: $checkedConvert('reblogs_count', (v) => v as int),
           language: $checkedConvert(
               'language', (v) => $enumDecodeNullable(_$LanguageEnumMap, v)),
-          inReplyToTweetId:
-              $checkedConvert('in_reply_to_tweet_id', (v) => v as String?),
+          inReplyToId: $checkedConvert('in_reply_to_id', (v) => v as String?),
           inReplyToAccountId:
               $checkedConvert('in_reply_to_account_id', (v) => v as String?),
           isFavourited: $checkedConvert('favourited', (v) => v as bool?),
@@ -59,7 +58,7 @@ _$_Status _$$_StatusFromJson(Map json) => $checkedCreate(
         'favouritesCount': 'favourites_count',
         'repliesCount': 'replies_count',
         'reblogsCount': 'reblogs_count',
-        'inReplyToTweetId': 'in_reply_to_tweet_id',
+        'inReplyToId': 'in_reply_to_id',
         'inReplyToAccountId': 'in_reply_to_account_id',
         'isFavourited': 'favourited',
         'isReblogged': 'reblogged',
@@ -92,7 +91,7 @@ Map<String, dynamic> _$$_StatusToJson(_$_Status instance) {
   val['replies_count'] = instance.repliesCount;
   val['reblogs_count'] = instance.reblogsCount;
   writeNotNull('language', _$LanguageEnumMap[instance.language]);
-  writeNotNull('in_reply_to_tweet_id', instance.inReplyToTweetId);
+  writeNotNull('in_reply_to_id', instance.inReplyToId);
   writeNotNull('in_reply_to_account_id', instance.inReplyToAccountId);
   writeNotNull('favourited', instance.isFavourited);
   writeNotNull('reblogged', instance.isReblogged);

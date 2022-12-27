@@ -53,7 +53,7 @@ class Status with _$Status {
     Language? language,
 
     /// ID of the status being replied.
-    String? inReplyToTweetId,
+    String? inReplyToId,
 
     /// ID of the account being replied to.
     String? inReplyToAccountId,

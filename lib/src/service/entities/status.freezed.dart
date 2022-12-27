@@ -52,7 +52,7 @@ mixin _$Status {
   Language? get language => throw _privateConstructorUsedError;
 
   /// ID of the status being replied.
-  String? get inReplyToTweetId => throw _privateConstructorUsedError;
+  String? get inReplyToId => throw _privateConstructorUsedError;
 
   /// ID of the account being replied to.
   String? get inReplyToAccountId => throw _privateConstructorUsedError;
@@ -117,7 +117,7 @@ abstract class $StatusCopyWith<$Res> {
       int repliesCount,
       int reblogsCount,
       Language? language,
-      String? inReplyToTweetId,
+      String? inReplyToId,
       String? inReplyToAccountId,
       @JsonKey(name: 'favourited') bool? isFavourited,
       @JsonKey(name: 'reblogged') bool? isReblogged,
@@ -159,7 +159,7 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
     Object? repliesCount = null,
     Object? reblogsCount = null,
     Object? language = freezed,
-    Object? inReplyToTweetId = freezed,
+    Object? inReplyToId = freezed,
     Object? inReplyToAccountId = freezed,
     Object? isFavourited = freezed,
     Object? isReblogged = freezed,
@@ -214,9 +214,9 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
               as Language?,
-      inReplyToTweetId: freezed == inReplyToTweetId
-          ? _value.inReplyToTweetId
-          : inReplyToTweetId // ignore: cast_nullable_to_non_nullable
+      inReplyToId: freezed == inReplyToId
+          ? _value.inReplyToId
+          : inReplyToId // ignore: cast_nullable_to_non_nullable
               as String?,
       inReplyToAccountId: freezed == inReplyToAccountId
           ? _value.inReplyToAccountId
@@ -319,7 +319,7 @@ abstract class _$$_StatusCopyWith<$Res> implements $StatusCopyWith<$Res> {
       int repliesCount,
       int reblogsCount,
       Language? language,
-      String? inReplyToTweetId,
+      String? inReplyToId,
       String? inReplyToAccountId,
       @JsonKey(name: 'favourited') bool? isFavourited,
       @JsonKey(name: 'reblogged') bool? isReblogged,
@@ -361,7 +361,7 @@ class __$$_StatusCopyWithImpl<$Res>
     Object? repliesCount = null,
     Object? reblogsCount = null,
     Object? language = freezed,
-    Object? inReplyToTweetId = freezed,
+    Object? inReplyToId = freezed,
     Object? inReplyToAccountId = freezed,
     Object? isFavourited = freezed,
     Object? isReblogged = freezed,
@@ -416,9 +416,9 @@ class __$$_StatusCopyWithImpl<$Res>
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
               as Language?,
-      inReplyToTweetId: freezed == inReplyToTweetId
-          ? _value.inReplyToTweetId
-          : inReplyToTweetId // ignore: cast_nullable_to_non_nullable
+      inReplyToId: freezed == inReplyToId
+          ? _value.inReplyToId
+          : inReplyToId // ignore: cast_nullable_to_non_nullable
               as String?,
       inReplyToAccountId: freezed == inReplyToAccountId
           ? _value.inReplyToAccountId
@@ -487,7 +487,7 @@ class _$_Status implements _Status {
       required this.repliesCount,
       required this.reblogsCount,
       this.language,
-      this.inReplyToTweetId,
+      this.inReplyToId,
       this.inReplyToAccountId,
       @JsonKey(name: 'favourited') this.isFavourited,
       @JsonKey(name: 'reblogged') this.isReblogged,
@@ -547,7 +547,7 @@ class _$_Status implements _Status {
 
   /// ID of the status being replied.
   @override
-  final String? inReplyToTweetId;
+  final String? inReplyToId;
 
   /// ID of the account being replied to.
   @override
@@ -605,7 +605,7 @@ class _$_Status implements _Status {
 
   @override
   String toString() {
-    return 'Status(id: $id, url: $url, uri: $uri, content: $content, spoilerText: $spoilerText, visibility: $visibility, favouritesCount: $favouritesCount, repliesCount: $repliesCount, reblogsCount: $reblogsCount, language: $language, inReplyToTweetId: $inReplyToTweetId, inReplyToAccountId: $inReplyToAccountId, isFavourited: $isFavourited, isReblogged: $isReblogged, isMuted: $isMuted, isBookmarked: $isBookmarked, isSensitive: $isSensitive, isPinned: $isPinned, lastStatusAt: $lastStatusAt, account: $account, application: $application, poll: $poll, createdAt: $createdAt)';
+    return 'Status(id: $id, url: $url, uri: $uri, content: $content, spoilerText: $spoilerText, visibility: $visibility, favouritesCount: $favouritesCount, repliesCount: $repliesCount, reblogsCount: $reblogsCount, language: $language, inReplyToId: $inReplyToId, inReplyToAccountId: $inReplyToAccountId, isFavourited: $isFavourited, isReblogged: $isReblogged, isMuted: $isMuted, isBookmarked: $isBookmarked, isSensitive: $isSensitive, isPinned: $isPinned, lastStatusAt: $lastStatusAt, account: $account, application: $application, poll: $poll, createdAt: $createdAt)';
   }
 
   @override
@@ -629,8 +629,8 @@ class _$_Status implements _Status {
                 other.reblogsCount == reblogsCount) &&
             (identical(other.language, language) ||
                 other.language == language) &&
-            (identical(other.inReplyToTweetId, inReplyToTweetId) ||
-                other.inReplyToTweetId == inReplyToTweetId) &&
+            (identical(other.inReplyToId, inReplyToId) ||
+                other.inReplyToId == inReplyToId) &&
             (identical(other.inReplyToAccountId, inReplyToAccountId) ||
                 other.inReplyToAccountId == inReplyToAccountId) &&
             (identical(other.isFavourited, isFavourited) ||
@@ -668,7 +668,7 @@ class _$_Status implements _Status {
         repliesCount,
         reblogsCount,
         language,
-        inReplyToTweetId,
+        inReplyToId,
         inReplyToAccountId,
         isFavourited,
         isReblogged,
@@ -709,7 +709,7 @@ abstract class _Status implements Status {
       required final int repliesCount,
       required final int reblogsCount,
       final Language? language,
-      final String? inReplyToTweetId,
+      final String? inReplyToId,
       final String? inReplyToAccountId,
       @JsonKey(name: 'favourited') final bool? isFavourited,
       @JsonKey(name: 'reblogged') final bool? isReblogged,
@@ -769,7 +769,7 @@ abstract class _Status implements Status {
   @override
 
   /// ID of the status being replied.
-  String? get inReplyToTweetId;
+  String? get inReplyToId;
   @override
 
   /// ID of the account being replied to.
