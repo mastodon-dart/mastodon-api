@@ -8,6 +8,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // 🌎 Project imports:
+import '../../../mastodon_api.dart';
 import '../../core/language.dart';
 import '../../core/visibility.dart';
 import 'account.dart';
@@ -90,6 +91,9 @@ class Status with _$Status {
 
     /// The status being reblogged.
     Status? reblog,
+
+    /// Custom emoji to be used when rendering status content.
+    required List<Emoji> emojis,
 
     /// The date when this status was created.
     required DateTime createdAt,

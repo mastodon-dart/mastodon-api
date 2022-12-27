@@ -53,6 +53,12 @@ _$_Status _$$_StatusFromJson(Map json) => $checkedCreate(
               (v) => v == null
                   ? null
                   : Status.fromJson(Map<String, Object?>.from(v as Map))),
+          emojis: $checkedConvert(
+              'emojis',
+              (v) => (v as List<dynamic>)
+                  .map((e) =>
+                      Emoji.fromJson(Map<String, Object?>.from(e as Map)))
+                  .toList()),
           createdAt:
               $checkedConvert('created_at', (v) => DateTime.parse(v as String)),
         );
@@ -109,6 +115,7 @@ Map<String, dynamic> _$$_StatusToJson(_$_Status instance) {
   writeNotNull('application', instance.application?.toJson());
   writeNotNull('poll', instance.poll?.toJson());
   writeNotNull('reblog', instance.reblog?.toJson());
+  val['emojis'] = instance.emojis.map((e) => e.toJson()).toList();
   val['created_at'] = instance.createdAt.toIso8601String();
   return val;
 }
