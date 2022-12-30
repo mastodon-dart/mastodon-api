@@ -17,6 +17,8 @@
   - `GET /api/v1/tags/:id`
   - `POST /api/v1/tags/:id/follow`
   - `POST /api/v1/tags/:id/unfollow`
+- Supported `reports API methods`. ([#15](https://github.com/mastodon-dart/mastodon-api/issues/15))
+  - `POST /api/v1/reports`
 
 ## v0.2.2
 
