@@ -19,6 +19,10 @@
   - `POST /api/v1/tags/:id/unfollow`
 - Supported `reports API methods`. ([#15](https://github.com/mastodon-dart/mastodon-api/issues/15))
   - `POST /api/v1/reports`
+- Supported retry algorithm have been changed to only `Exponential BackOff and Jitter`. All of the following factory constructors provided until now are deprecated and should be modified by `v0.5.0` to use the default constructor of `RetryConfig`. The following deprecated factory constructors will be removed in `v0.5.0`, and the `Exponential BackOff and Jitter` algorithm will always be used regardless of constructor. ([#101](https://github.com/mastodon-dart/mastodon-api/issues/101))
+  - `ofRegularIntervals`
+  - `ofExponentialBackOff`
+  - `ofExponentialBackOffAndJitter`
 
 ## v0.2.2
 
