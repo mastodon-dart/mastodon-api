@@ -13,6 +13,7 @@ import 'package:mastodon_api/src/service/entities/familiar_follower.dart';
 import 'package:mastodon_api/src/service/entities/featured_tag.dart';
 import 'package:mastodon_api/src/service/entities/rate_limit.dart';
 import 'package:mastodon_api/src/service/entities/relationship.dart';
+import 'package:mastodon_api/src/service/entities/report.dart';
 import 'package:mastodon_api/src/service/entities/status.dart';
 import 'package:mastodon_api/src/service/entities/tag.dart';
 import 'package:mastodon_api/src/service/entities/token.dart';
@@ -2154,6 +2155,66 @@ void main() {
       expectRateLimitExceededException(
         () async => await accountsService.destroyFollowingTag(
           tagId: '1234',
+        ),
+      );
+    });
+  });
+
+  group('.createReport', () {
+    test('normal case', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/reports',
+          'test/src/service/v1/accounts/data/create_report.json',
+        ),
+      );
+
+      final response = await accountsService.createReport(
+        accountId: '1234',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<Report>());
+    });
+
+    test('when unauthorized', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/reports',
+          'test/src/service/v1/accounts/data/create_report.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await accountsService.createReport(
+          accountId: '1234',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/reports',
+          'test/src/service/v1/accounts/data/create_report.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await accountsService.createReport(
+          accountId: '1234',
         ),
       );
     });

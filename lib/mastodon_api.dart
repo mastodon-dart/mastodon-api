@@ -50,6 +50,8 @@ export 'package:mastodon_api/src/service/entities/preview_card.dart';
 export 'package:mastodon_api/src/service/entities/preview_card_type.dart';
 export 'package:mastodon_api/src/service/entities/rate_limit.dart';
 export 'package:mastodon_api/src/service/entities/registered_application.dart';
+export 'package:mastodon_api/src/service/entities/report.dart';
+export 'package:mastodon_api/src/service/entities/report_category.dart';
 export 'package:mastodon_api/src/service/entities/rule.dart';
 export 'package:mastodon_api/src/service/entities/status.dart';
 export 'package:mastodon_api/src/service/entities/suggested_reason.dart';

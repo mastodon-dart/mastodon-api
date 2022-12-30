@@ -19,6 +19,8 @@ import '../../entities/account_preferences.dart';
 import '../../entities/familiar_follower.dart';
 import '../../entities/featured_tag.dart';
 import '../../entities/relationship.dart';
+import '../../entities/report.dart';
+import '../../entities/report_category.dart';
 import '../../entities/status.dart';
 import '../../entities/tag.dart';
 import '../../entities/token.dart';
@@ -1010,6 +1012,55 @@ abstract class AccountsV1Service {
   Future<MastodonResponse<Tag>> destroyFollowingTag({
     required String tagId,
   });
+
+  /// Report problematic users to your moderators.
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountId]: ID of the account to report.
+  ///
+  /// - [reason]: The reason for the report. Default maximum of
+  ///              1000 characters.
+  ///
+  /// - [forward]: If the account is remote, should the report be forwarded
+  ///              to the remote admin? Defaults to false.
+  ///
+  /// - [category]: Specify if the report is due to [ReportCategory.spam],
+  ///               [ReportCategory.violation] of enumerated instance
+  ///               rules, or some other reason. Defaults to
+  ///               [ReportCategory.other]. Will be set to violation if
+  ///               [ruleIds] is provided (regardless of any category value
+  ///               you provide).
+  ///
+  /// - [statusIds]: You can attach statuses to the report to provide
+  ///                additional context.
+  ///
+  /// - [ruleIds]: For violation category reports, specify the ID
+  ///              of the exact rules broken.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST /api/v1/reports HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:reports
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/reports/#post
+  Future<MastodonResponse<Report>> createReport({
+    required String accountId,
+    String? reason,
+    bool? forward,
+    ReportCategory? category,
+    List<String>? statusIds,
+    List<String>? ruleIds,
+  });
 }
 
 class _AccountsV1Service extends BaseService implements AccountsV1Service {
@@ -1559,5 +1610,31 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
           checkEntity: true,
         ),
         dataBuilder: Tag.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Report>> createReport({
+    required String accountId,
+    String? reason,
+    bool? forward,
+    ReportCategory? category,
+    List<String>? statusIds,
+    List<String>? ruleIds,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/reports',
+          body: {
+            'account_id': accountId,
+            'comment': reason,
+            'forward': forward,
+            'category': category?.value,
+            'status_ids[]': statusIds,
+            'rule_ids[]': ruleIds,
+          },
+          checkEntity: true,
+        ),
+        dataBuilder: Report.fromJson,
       );
 }
