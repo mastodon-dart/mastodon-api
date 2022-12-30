@@ -8,7 +8,6 @@ import 'dart:math' as math;
 // 🌎 Project imports:
 import '../config/retry_config.dart';
 import 'retry_event.dart';
-import 'retry_strategy.dart';
 
 abstract class RetryPolicy {
   /// Returns the new instance of [RetryPolicy].
@@ -79,23 +78,11 @@ class _RetryPolicy implements RetryPolicy {
 
   bool get _hasRetryConfig => _retryConfig != null;
 
-  int _computeWaitIntervals(final int retryCount) {
-    if (_retryConfig!.strategy == RetryStrategy.exponentialBackOff ||
-        _retryConfig!.strategy == RetryStrategy.exponentialBackOffAndJitter) {
-      return _computeExponentialBackOff(retryCount) + _jitter;
-    }
-
-    return _retryConfig!.intervalInSeconds;
-  }
+  int _computeWaitIntervals(final int retryCount) =>
+      _computeExponentialBackOff(retryCount) + _jitter;
 
   int _computeExponentialBackOff(final int retryCount) =>
       math.pow(2, retryCount).toInt();
 
-  int get _jitter {
-    if (_retryConfig!.strategy == RetryStrategy.exponentialBackOffAndJitter) {
-      return _random.nextInt(4);
-    }
-
-    return 0;
-  }
+  int get _jitter => _random.nextInt(4);
 }
