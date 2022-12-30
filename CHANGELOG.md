@@ -13,6 +13,10 @@
   - `package:mastodon_api/src/service/entities/rule.dart`
   - `package:mastodon_api/src/service/v1/instance/instance_v1_service.dart`
   - `package:mastodon_api/src/service/v2/instance/instance_v2_service.dart`
+- Supported `tags API methods`. ([#22](https://github.com/mastodon-dart/mastodon-api/issues/22))
+  - `GET /api/v1/tags/:id`
+  - `POST /api/v1/tags/:id/follow`
+  - `POST /api/v1/tags/:id/unfollow`
 
 ## v0.2.2
 
