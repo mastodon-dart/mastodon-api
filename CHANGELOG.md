@@ -1,6 +1,6 @@
 # Release Note
 
-## v0.2.3
+## v0.3.0
 
 - Supported `suggestions API methods`. ([#21](https://github.com/mastodon-dart/mastodon-api/issues/21))
   - `GET /api/v2/suggestions`
@@ -23,6 +23,8 @@
   - `ofRegularIntervals`
   - `ofExponentialBackOff`
   - `ofExponentialBackOffAndJitter`
+- Supported `endorsements API methods`. ([#17](https://github.com/mastodon-dart/mastodon-api/issues/17))
+  - `GET /api/v1/endorsements`
 
 ## v0.2.2
 
