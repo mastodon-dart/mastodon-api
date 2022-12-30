@@ -61,10 +61,8 @@
     - [1.4.3. OAuth 2.0 Authorization Code Flow](#143-oauth-20-authorization-code-flow)
     - [1.4.4. Change the Timeout Duration](#144-change-the-timeout-duration)
     - [1.4.5. Automatic Retry](#145-automatic-retry)
-      - [1.4.5.1. Regular Intervals](#1451-regular-intervals)
-      - [1.4.5.2. Exponential Backoff](#1452-exponential-backoff)
-      - [1.4.5.3. Exponential Backoff and Jitter](#1453-exponential-backoff-and-jitter)
-      - [1.4.5.4. Do Something on Retry](#1454-do-something-on-retry)
+      - [1.4.5.1. Exponential Backoff and Jitter](#1451-exponential-backoff-and-jitter)
+      - [1.4.5.2. Do Something on Retry](#1452-do-something-on-retry)
     - [1.4.6. Thrown Exceptions](#146-thrown-exceptions)
   - [1.5. Contribution 🏆](#15-contribution-)
   - [1.6. Contributors ✨](#16-contributors-)
@@ -128,7 +126,7 @@ Future<void> main() async {
 
     //! Automatic retry is available when server error or network error occurs
     //! when communicating with the API.
-    retryConfig: RetryConfig.ofExponentialBackOffAndJitter(
+    retryConfig: RetryConfig(
       maxAttempts: 5,
       onExecute: (event) => print(
         'Retry after ${event.intervalInSeconds} seconds... '
@@ -346,70 +344,13 @@ Due to the nature of this library's communication with external systems, timeout
 
 When such timeouts occur, an effective countermeasure in many cases is to send the request again after a certain interval. And **mastodon_api** provides an **automatic retry** feature as a solution to this problem.
 
-There are 3 retry methods provided by **mastodon_api**.
-
-| Retry Strategy                 | Constructor                               | Description                                                                                                             |
-| ------------------------------ | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| Regular Intervals              | RetryConfig.ofRegularIntervals            | Retry at regular intervals.                                                                                             |
-| Exponential Backoff            | RetryConfig.ofExponentialBackOff          | The retry interval is increased exponentially according to the number of retries.                                       |
-| Exponential Backoff and Jitter | RetryConfig.ofExponentialBackOffAndJitter | A random number called Jitter is added to increase the retry interval exponentially according to the number of retries. |
-
 Also, errors subject to retry are as follows.
 
 - When the status code of the response returned from Mastodon is `500` or `503`.
 - When the network is temporarily lost and a `SocketException` is thrown.
 - When communication times out temporarily and a `TimeoutException` is thrown
 
-#### 1.4.5.1. Regular Intervals
-
-It would be easy to imagine **retries at regular intervals**. For example, if a timeout occurs and the request is assumed to be retried 3 times, waiting for 5 seconds and then sending the request again, it can be defined as follows.
-
-```dart
-import 'package:mastodon_api/mastodon_api.dart';
-
-Future<void> main() async {
-  final mastodon = MastodonApi(
-    instance: 'MASTODON_INSTANCE',
-    bearerToken: 'YOUR_TOKEN_HERE',
-
-    //! Add these lines.
-    retryConfig: RetryConfig.ofRegularIntervals(
-      maxAttempts: 3,
-      intervalInSeconds: 5,
-    ),
-  );
-}
-```
-
-#### 1.4.5.2. Exponential Backoff
-
-Although retries can be effective by simply performing them at regular intervals as in the above example, sending a large number of requests at regular intervals when the server to which the request is being sent is experiencing a failure is something that should be avoided. Even if the network or server is already down, the retry process can further aggravate the situation by adding to the load.
-
-The solution to these problems is to increase the interval exponentially for each retry. This is an algorithm called `Exponential Backoff` and **mastodon_api** supports a specification that allows easy use of this algorithm.
-
-The **Exponential Backoff** algorithm can be applied on retries by defining **RetryConfig** as follows.
-
-```dart
-import 'package:mastodon_api/mastodon_api.dart';
-
-Future<void> main() async {
-  final mastodon = MastodonApi(
-    instance: 'MASTODON_INSTANCE',
-    bearerToken: 'YOUR_TOKEN_HERE',
-
-    //! Add these lines.
-    retryConfig: RetryConfig.ofExponentialBackOff(
-      maxAttempts: 3,
-    ),
-  );
-}
-```
-
-In the above implementation, the interval increases exponentially for each retry count. It can be expressed by next formula.
-
-> 2 ^ retryCount
-
-#### 1.4.5.3. Exponential Backoff and Jitter
+#### 1.4.5.1. Exponential Backoff and Jitter
 
 Although the algorithm introduced earlier that exponentially increases the retry interval is already powerful, some may believe that it is not yet sufficient to distribute the sensation of retries. It's more distributed than equally spaced retries, but retries still occur at static intervals.
 
@@ -426,7 +367,7 @@ Future<void> main() async {
     bearerToken: 'YOUR_TOKEN_HERE',
 
     //! Add these lines.
-    retryConfig: RetryConfig.ofExponentialBackOffAndJitter(
+    retryConfig: RetryConfig(
       maxAttempts: 3,
     ),
   );
@@ -437,7 +378,7 @@ In the above implementation, the interval increases exponentially for each retry
 
 > **(2 ^ retryCount) + jitter(Random Number between 0 ~ 3)**
 
-#### 1.4.5.4. Do Something on Retry
+#### 1.4.5.2. Do Something on Retry
 
 It would be useful to output logging on retries and a popup notifying the user that a retry has been executed. So **mastodon_api** provides callbacks that can perform arbitrary processing when retries are executed.
 
@@ -450,9 +391,8 @@ Future<void> main() async {
   final mastodon = MastodonApi(
     instance: 'MASTODON_INSTANCE',
     bearerToken: 'YOUR_TOKEN_HERE',
-    retryConfig: RetryConfig.ofRegularIntervals(
+    retryConfig: RetryConfig(
       maxAttempts: 3,
-      intervalInSeconds: 5,
 
       //! Add this line.
       onExecute: (event) => print('Retrying... ${event.retryCount} times.'),

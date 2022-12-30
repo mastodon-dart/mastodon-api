@@ -19,7 +19,7 @@ void main() {
 
     test('when max attempt is 0', () {
       final policy = RetryPolicy(
-        RetryConfig.ofRegularIntervals(maxAttempts: 0),
+        RetryConfig(maxAttempts: 0),
       );
 
       expect(policy.shouldRetry(0), isFalse);
@@ -28,7 +28,7 @@ void main() {
 
     test('when max attempt is 10', () {
       final policy = RetryPolicy(
-        RetryConfig.ofRegularIntervals(maxAttempts: 10),
+        RetryConfig(maxAttempts: 10),
       );
 
       expect(policy.shouldRetry(0), isTrue);
@@ -41,7 +41,7 @@ void main() {
 
     test('when retryCount is less than 0', () {
       final policy = RetryPolicy(
-        RetryConfig.ofRegularIntervals(maxAttempts: 10),
+        RetryConfig(maxAttempts: 10),
       );
 
       expect(
@@ -71,36 +71,9 @@ void main() {
       expect(endAt.difference(startAt).inSeconds == 0, isTrue);
     });
 
-    test('when RetryConfig is not null', () async {
-      final policy = RetryPolicy(
-        RetryConfig.ofRegularIntervals(maxAttempts: 10),
-      );
-
-      final startAt = DateTime.now();
-      await policy.wait(0);
-      final endAt = DateTime.now();
-
-      expect(endAt.difference(startAt).inSeconds, 2);
-    });
-
-    test('when interval is 5 seconds', () async {
-      final policy = RetryPolicy(
-        RetryConfig.ofRegularIntervals(
-          maxAttempts: 10,
-          intervalInSeconds: 5,
-        ),
-      );
-
-      final startAt = DateTime.now();
-      await policy.wait(0);
-      final endAt = DateTime.now();
-
-      expect(endAt.difference(startAt).inSeconds, 5);
-    });
-
     test('when retryCount is less than 0', () async {
       final policy = RetryPolicy(
-        RetryConfig.ofRegularIntervals(maxAttempts: 10),
+        RetryConfig(maxAttempts: 10),
       );
 
       expect(
@@ -117,38 +90,9 @@ void main() {
       );
     });
 
-    test('when retryCount is 3 without exponential back off', () async {
-      final policy = RetryPolicy(
-        RetryConfig.ofRegularIntervals(
-          maxAttempts: 10,
-          intervalInSeconds: 3,
-        ),
-      );
-
-      final startAt = DateTime.now();
-      await policy.wait(3);
-      final endAt = DateTime.now();
-
-      expect(endAt.difference(startAt).inSeconds, 3);
-    });
-
-    test('when retryCount is 3 with exponential back off', () async {
-      final policy = RetryPolicy(
-        RetryConfig.ofExponentialBackOff(
-          maxAttempts: 10,
-        ),
-      );
-
-      final startAt = DateTime.now();
-      await policy.wait(3);
-      final endAt = DateTime.now();
-
-      expect(endAt.difference(startAt).inSeconds, 4);
-    });
-
     test('when retryCount is 3 with exponential back off and jitter', () async {
       final policy = RetryPolicy(
-        RetryConfig.ofExponentialBackOffAndJitter(
+        RetryConfig(
           maxAttempts: 10,
         ),
       );
@@ -162,49 +106,9 @@ void main() {
       expect(4 <= elapsedSeconds && elapsedSeconds <= 7, isTrue);
     });
 
-    test('with complex case without exponential back off', () async {
-      final int intervalInSeconds = 3;
-
-      final policy = RetryPolicy(
-        RetryConfig.ofRegularIntervals(
-          maxAttempts: 10,
-          intervalInSeconds: intervalInSeconds,
-        ),
-      );
-
-      for (int retryCount = 0; retryCount < 4; retryCount++) {
-        final startAt = DateTime.now();
-        await policy.wait(retryCount);
-        final endAt = DateTime.now();
-
-        expect(endAt.difference(startAt).inSeconds, intervalInSeconds);
-      }
-    });
-
-    test('with complex case with exponential back off', () async {
-      final policy = RetryPolicy(
-        RetryConfig.ofExponentialBackOff(
-          maxAttempts: 10,
-        ),
-      );
-
-      final expectedResults = <int>[1, 2, 4, 8];
-
-      for (int i = 1; i < 5; i++) {
-        final startAt = DateTime.now();
-        await policy.wait(i);
-        final endAt = DateTime.now();
-
-        expect(
-          endAt.difference(startAt).inSeconds,
-          expectedResults[i - 1],
-        );
-      }
-    });
-
     test('with complex case with exponential back off and jitter', () async {
       final policy = RetryPolicy(
-        RetryConfig.ofExponentialBackOffAndJitter(
+        RetryConfig(
           maxAttempts: 10,
         ),
       );

@@ -13,7 +13,7 @@ Future<void> main() async {
 
     //! Automatic retry is available when server error or network error occurs
     //! when communicating with the API.
-    retryConfig: RetryConfig.ofExponentialBackOffAndJitter(
+    retryConfig: RetryConfig(
       maxAttempts: 5,
       onExecute: (event) => print(
         'Retry after ${event.intervalInSeconds} seconds...'
