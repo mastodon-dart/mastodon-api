@@ -9,6 +9,9 @@
   - `GET /api/v1/conversations`
   - `DELETE /api/v1/conversations/:id`
   - `POST /api/v1/conversations/:id/read`
+- Supported `markers API methods`. ([#30](https://github.com/mastodon-dart/mastodon-api/issues/30))
+  - `GET /api/v1/markers`
+  - `POST /api/v1/markers`
 
 ## v0.2.2
 

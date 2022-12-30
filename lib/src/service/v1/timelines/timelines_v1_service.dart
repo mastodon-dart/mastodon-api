@@ -7,7 +7,9 @@ import '../../../core/client/client_context.dart';
 import '../../../core/client/user_context.dart';
 import '../../base_service.dart';
 import '../../entities/conversation.dart';
+import '../../entities/position_marker.dart';
 import '../../entities/status.dart';
+import '../../entities/timeline_snapshot.dart';
 import '../../response/mastodon_response.dart';
 
 abstract class TimelinesV1Service {
@@ -258,6 +260,16 @@ abstract class TimelinesV1Service {
   Future<MastodonResponse<Conversation>> createMarkConversationAsRead({
     required String conversationId,
   });
+
+  Future<MastodonResponse<TimelineSnapshot>> lookupSnapshot();
+
+  Future<MastodonResponse<PositionMarker>> createStatusSnapshot({
+    required String statusId,
+  });
+
+  Future<MastodonResponse<PositionMarker>> createNotificationSnapshot({
+    required String notificationId,
+  });
 }
 
 class _TimelinesV1Service extends BaseService implements TimelinesV1Service {
@@ -402,5 +414,51 @@ class _TimelinesV1Service extends BaseService implements TimelinesV1Service {
           checkEntity: true,
         ),
         dataBuilder: Conversation.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<TimelineSnapshot>> lookupSnapshot() async =>
+      super.transformSingleDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/markers?timelines[]=“home”',
+        ),
+        dataBuilder: TimelineSnapshot.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<PositionMarker>> createStatusSnapshot({
+    required String statusId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/markers',
+          body: {
+            'home': {
+              'last_read_id': statusId,
+            }
+          },
+          checkEntity: true,
+        ),
+        dataBuilder: PositionMarker.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<PositionMarker>> createNotificationSnapshot({
+    required String notificationId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/markers',
+          body: {
+            'notifications': {
+              'last_read_id': notificationId,
+            }
+          },
+          checkEntity: true,
+        ),
+        dataBuilder: PositionMarker.fromJson,
       );
 }
