@@ -1975,4 +1975,187 @@ void main() {
       );
     });
   });
+
+  group('.lookupTag', () {
+    test('normal case', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/tags/1234',
+          'test/src/service/v1/accounts/data/lookup_tag.json',
+          {},
+        ),
+      );
+
+      final response = await accountsService.lookupTag(
+        tagId: '1234',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<Tag>());
+    });
+
+    test('when unauthorized', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/tags/1234',
+          'test/src/service/v1/accounts/data/lookup_tag.json',
+          {},
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await accountsService.lookupTag(
+          tagId: '1234',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/tags/1234',
+          'test/src/service/v1/accounts/data/lookup_tag.json',
+          {},
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await accountsService.lookupTag(
+          tagId: '1234',
+        ),
+      );
+    });
+  });
+
+  group('.createFollowingTag', () {
+    test('normal case', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/tags/1234/follow',
+          'test/src/service/v1/accounts/data/create_following_tag.json',
+        ),
+      );
+
+      final response = await accountsService.createFollowingTag(
+        tagId: '1234',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<Tag>());
+    });
+
+    test('when unauthorized', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/tags/1234/follow',
+          'test/src/service/v1/accounts/data/create_following_tag.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await accountsService.createFollowingTag(
+          tagId: '1234',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/tags/1234/follow',
+          'test/src/service/v1/accounts/data/create_following_tag.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await accountsService.createFollowingTag(
+          tagId: '1234',
+        ),
+      );
+    });
+  });
+
+  group('.destroyFollowingTag', () {
+    test('normal case', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/tags/1234/unfollow',
+          'test/src/service/v1/accounts/data/destroy_following_tag.json',
+        ),
+      );
+
+      final response = await accountsService.destroyFollowingTag(
+        tagId: '1234',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<Tag>());
+    });
+
+    test('when unauthorized', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/tags/1234/unfollow',
+          'test/src/service/v1/accounts/data/destroy_following_tag.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await accountsService.destroyFollowingTag(
+          tagId: '1234',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/tags/1234/unfollow',
+          'test/src/service/v1/accounts/data/destroy_following_tag.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await accountsService.destroyFollowingTag(
+          tagId: '1234',
+        ),
+      );
+    });
+  });
 }

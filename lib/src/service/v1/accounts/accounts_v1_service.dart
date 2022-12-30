@@ -932,6 +932,84 @@ abstract class AccountsV1Service {
   Future<MastodonResponse<bool>> destroyFollowSuggestion({
     required String accountId,
   });
+
+  /// Show a hashtag and its associated information
+  ///
+  /// ## Parameters
+  ///
+  /// - [tagId]: The name of the hashtag.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/tags/:id HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - Anonymous
+  /// - OAuth 2.0
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/tags/#get
+  Future<MastodonResponse<Tag>> lookupTag({
+    required String tagId,
+  });
+
+  /// Follow a hashtag.
+  ///
+  /// Posts containing a followed hashtag will be inserted into your home
+  /// timeline.
+  ///
+  /// ## Parameters
+  ///
+  /// - [tagId]: The name of the hashtag.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST /api/v1/tags/:id/follow HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:follows
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/tags/#follow
+  Future<MastodonResponse<Tag>> createFollowingTag({
+    required String tagId,
+  });
+
+  /// Unfollow a hashtag.
+  ///
+  /// Posts containing this hashtag will no longer be inserted into your home
+  /// timeline.
+  ///
+  /// ## Parameters
+  ///
+  /// - [tagId]: The name of the hashtag.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST /api/v1/tags/:id/unfollow HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:follows
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/tags/#unfollow
+  Future<MastodonResponse<Tag>> destroyFollowingTag({
+    required String tagId,
+  });
 }
 
 class _AccountsV1Service extends BaseService implements AccountsV1Service {
@@ -1443,5 +1521,43 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
           UserContext.oauth2Only,
           '/api/v1/suggestions/$accountId',
         ),
+      );
+
+  @override
+  Future<MastodonResponse<Tag>> lookupTag({
+    required String tagId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.get(
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/tags/$tagId',
+        ),
+        dataBuilder: Tag.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Tag>> createFollowingTag({
+    required String tagId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/tags/$tagId/follow',
+          checkEntity: true,
+        ),
+        dataBuilder: Tag.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Tag>> destroyFollowingTag({
+    required String tagId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/tags/$tagId/unfollow',
+          checkEntity: true,
+        ),
+        dataBuilder: Tag.fromJson,
       );
 }
