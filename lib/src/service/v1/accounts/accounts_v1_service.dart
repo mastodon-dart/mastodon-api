@@ -1061,6 +1061,32 @@ abstract class AccountsV1Service {
     List<String>? statusIds,
     List<String>? ruleIds,
   });
+
+  /// Accounts that the user is currently featuring on their profile.
+  ///
+  /// ## Parameters
+  ///
+  /// - [limit]: Maximum number of results to return. Defaults to 40 accounts.
+  ///            Max 80 accounts.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/endorsements HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:accounts
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/endorsements/#get
+  Future<MastodonResponse<List<Account>>> lookupFeaturedProfiles({
+    int? limit,
+  });
 }
 
 class _AccountsV1Service extends BaseService implements AccountsV1Service {
@@ -1636,5 +1662,20 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
           checkEntity: true,
         ),
         dataBuilder: Report.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<Account>>> lookupFeaturedProfiles({
+    int? limit,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/endorsements',
+          queryParameters: {
+            'limit': limit,
+          },
+        ),
+        dataBuilder: Account.fromJson,
       );
 }
