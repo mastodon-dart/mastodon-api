@@ -9,6 +9,10 @@
   - `GET /api/v1/conversations`
   - `DELETE /api/v1/conversations/:id`
   - `POST /api/v1/conversations/:id/read`
+- Exposed objects. ([#94](https://github.com/mastodon-dart/mastodon-api/issues/94))
+  - `package:mastodon_api/src/service/entities/rule.dart`
+  - `package:mastodon_api/src/service/v1/instance/instance_v1_service.dart`
+  - `package:mastodon_api/src/service/v2/instance/instance_v2_service.dart`
 
 ## v0.2.2
 
