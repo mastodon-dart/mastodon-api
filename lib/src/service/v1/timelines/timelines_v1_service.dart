@@ -7,9 +7,9 @@ import '../../../core/client/client_context.dart';
 import '../../../core/client/user_context.dart';
 import '../../base_service.dart';
 import '../../entities/conversation.dart';
-import '../../entities/position_marker.dart';
+import '../../entities/notification_snapshot.dart';
 import '../../entities/status.dart';
-import '../../entities/timeline_snapshot.dart';
+import '../../entities/status_snapshot.dart';
 import '../../response/mastodon_response.dart';
 
 abstract class TimelinesV1Service {
@@ -261,13 +261,15 @@ abstract class TimelinesV1Service {
     required String conversationId,
   });
 
-  Future<MastodonResponse<TimelineSnapshot>> lookupSnapshot();
+  Future<MastodonResponse<StatusSnapshot>> lookupStatusSnapshot();
 
-  Future<MastodonResponse<PositionMarker>> createStatusSnapshot({
+  Future<MastodonResponse<NotificationSnapshot>> lookupNotificationSnapshot();
+
+  Future<MastodonResponse<StatusSnapshot>> createStatusSnapshot({
     required String statusId,
   });
 
-  Future<MastodonResponse<PositionMarker>> createNotificationSnapshot({
+  Future<MastodonResponse<NotificationSnapshot>> createNotificationSnapshot({
     required String notificationId,
   });
 }
@@ -417,17 +419,33 @@ class _TimelinesV1Service extends BaseService implements TimelinesV1Service {
       );
 
   @override
-  Future<MastodonResponse<TimelineSnapshot>> lookupSnapshot() async =>
+  Future<MastodonResponse<StatusSnapshot>> lookupStatusSnapshot() async =>
       super.transformSingleDataResponse(
         await super.get(
           UserContext.oauth2Only,
-          '/api/v1/markers?timelines[]=“home”',
+          '/api/v1/markers',
+          queryParameters: {
+            'timeline[]': 'home',
+          },
         ),
-        dataBuilder: TimelineSnapshot.fromJson,
+        dataBuilder: StatusSnapshot.fromJson,
       );
 
   @override
-  Future<MastodonResponse<PositionMarker>> createStatusSnapshot({
+  Future<MastodonResponse<NotificationSnapshot>>
+      lookupNotificationSnapshot() async => super.transformSingleDataResponse(
+            await super.get(
+              UserContext.oauth2Only,
+              '/api/v1/markers',
+              queryParameters: {
+                'timeline[]': 'notifications',
+              },
+            ),
+            dataBuilder: NotificationSnapshot.fromJson,
+          );
+
+  @override
+  Future<MastodonResponse<StatusSnapshot>> createStatusSnapshot({
     required String statusId,
   }) async =>
       super.transformSingleDataResponse(
@@ -441,11 +459,11 @@ class _TimelinesV1Service extends BaseService implements TimelinesV1Service {
           },
           checkEntity: true,
         ),
-        dataBuilder: PositionMarker.fromJson,
+        dataBuilder: StatusSnapshot.fromJson,
       );
 
   @override
-  Future<MastodonResponse<PositionMarker>> createNotificationSnapshot({
+  Future<MastodonResponse<NotificationSnapshot>> createNotificationSnapshot({
     required String notificationId,
   }) async =>
       super.transformSingleDataResponse(
@@ -459,6 +477,6 @@ class _TimelinesV1Service extends BaseService implements TimelinesV1Service {
           },
           checkEntity: true,
         ),
-        dataBuilder: PositionMarker.fromJson,
+        dataBuilder: NotificationSnapshot.fromJson,
       );
 }

@@ -9,21 +9,17 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'position_marker.dart';
 
-part 'timeline_snapshot.freezed.dart';
-part 'timeline_snapshot.g.dart';
+part 'notification_snapshot.freezed.dart';
+part 'notification_snapshot.g.dart';
 
 /// Represents the last read position within a user's timelines.
 @freezed
-class TimelineSnapshot with _$TimelineSnapshot {
-  @JsonSerializable(includeIfNull: false)
-  const factory TimelineSnapshot({
+class NotificationSnapshot with _$NotificationSnapshot {
+  const factory NotificationSnapshot({
     /// Snapshot for notifications.
-    PositionMarker? notifications,
+    @JsonKey(name: 'notifications') required PositionMarker marker,
+  }) = _NotificationSnapshot;
 
-    /// Snapshot for home timeline.
-    PositionMarker? home,
-  }) = _TimelineSnapshot;
-
-  factory TimelineSnapshot.fromJson(Map<String, Object?> json) =>
-      _$TimelineSnapshotFromJson(json);
+  factory NotificationSnapshot.fromJson(Map<String, Object?> json) =>
+      _$NotificationSnapshotFromJson(json);
 }

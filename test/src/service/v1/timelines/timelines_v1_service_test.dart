@@ -5,8 +5,10 @@
 // 🌎 Project imports:
 import 'package:mastodon_api/src/core/client/user_context.dart';
 import 'package:mastodon_api/src/service/entities/conversation.dart';
+import 'package:mastodon_api/src/service/entities/notification_snapshot.dart';
 import 'package:mastodon_api/src/service/entities/rate_limit.dart';
 import 'package:mastodon_api/src/service/entities/status.dart';
+import 'package:mastodon_api/src/service/entities/status_snapshot.dart';
 import 'package:mastodon_api/src/service/response/mastodon_response.dart';
 import 'package:mastodon_api/src/service/v1/timelines/timelines_v1_service.dart';
 // 📦 Package imports:
@@ -682,6 +684,252 @@ void main() {
       expectRateLimitExceededException(
         () async => await timelinesService.createMarkConversationAsRead(
           conversationId: '1234',
+        ),
+      );
+    });
+  });
+
+  group('.lookupStatusSnapshot', () {
+    test('normal case', () async {
+      final timelinesService = TimelinesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/markers',
+          'test/src/service/v1/timelines/data/lookup_status_snapshot.json',
+          {
+            'timeline[]': 'home',
+          },
+        ),
+      );
+
+      final response = await timelinesService.lookupStatusSnapshot();
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<StatusSnapshot>());
+    });
+
+    test('when unauthorized', () async {
+      final timelinesService = TimelinesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/markers',
+          'test/src/service/v1/timelines/data/lookup_status_snapshot.json',
+          {
+            'timeline[]': 'home',
+          },
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await timelinesService.lookupStatusSnapshot(),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final timelinesService = TimelinesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/markers',
+          'test/src/service/v1/timelines/data/lookup_status_snapshot.json',
+          {
+            'timeline[]': 'home',
+          },
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await timelinesService.lookupStatusSnapshot(),
+      );
+    });
+  });
+
+  group('.lookupNotificationSnapshot', () {
+    test('normal case', () async {
+      final timelinesService = TimelinesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/markers',
+          'test/src/service/v1/timelines/data/lookup_notification_snapshot.json',
+          {
+            'timeline[]': 'notifications',
+          },
+        ),
+      );
+
+      final response = await timelinesService.lookupNotificationSnapshot();
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<NotificationSnapshot>());
+    });
+
+    test('when unauthorized', () async {
+      final timelinesService = TimelinesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/markers',
+          'test/src/service/v1/timelines/data/lookup_notification_snapshot.json',
+          {
+            'timeline[]': 'notifications',
+          },
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await timelinesService.lookupNotificationSnapshot(),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final timelinesService = TimelinesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/markers',
+          'test/src/service/v1/timelines/data/lookup_notification_snapshot.json',
+          {
+            'timeline[]': 'notifications',
+          },
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await timelinesService.lookupNotificationSnapshot(),
+      );
+    });
+  });
+
+  group('.createStatusSnapshot', () {
+    test('normal case', () async {
+      final timelinesService = TimelinesV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/markers',
+          'test/src/service/v1/timelines/data/create_status_snapshot.json',
+        ),
+      );
+
+      final response = await timelinesService.createStatusSnapshot(
+        statusId: '1234',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<StatusSnapshot>());
+    });
+
+    test('when unauthorized', () async {
+      final timelinesService = TimelinesV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/markers',
+          'test/src/service/v1/timelines/data/create_status_snapshot.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await timelinesService.createStatusSnapshot(
+          statusId: '1234',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final timelinesService = TimelinesV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/markers',
+          'test/src/service/v1/timelines/data/create_status_snapshot.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await timelinesService.createStatusSnapshot(
+          statusId: '1234',
+        ),
+      );
+    });
+  });
+
+  group('.createNotificationsSnapshot', () {
+    test('normal case', () async {
+      final timelinesService = TimelinesV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/markers',
+          'test/src/service/v1/timelines/data/create_notification_snapshot.json',
+        ),
+      );
+
+      final response = await timelinesService.createNotificationSnapshot(
+        notificationId: '1234',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<NotificationSnapshot>());
+    });
+
+    test('when unauthorized', () async {
+      final timelinesService = TimelinesV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/markers',
+          'test/src/service/v1/timelines/data/create_notification_snapshot.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await timelinesService.createNotificationSnapshot(
+          notificationId: '1234',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final timelinesService = TimelinesV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/markers',
+          'test/src/service/v1/timelines/data/create_notification_snapshot.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await timelinesService.createNotificationSnapshot(
+          notificationId: '1234',
         ),
       );
     });
