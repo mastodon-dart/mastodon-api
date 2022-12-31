@@ -261,14 +261,90 @@ abstract class TimelinesV1Service {
     required String conversationId,
   });
 
+  /// Get saved timeline status position.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/markers HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/markers/#get
   Future<MastodonResponse<StatusSnapshot>> lookupStatusSnapshot();
 
+  /// Get saved timeline notification position.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/markers HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/markers/#get
   Future<MastodonResponse<NotificationSnapshot>> lookupNotificationSnapshot();
 
+  /// Get saved timeline notification position.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]: ID of the last status read in the home timeline.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST /api/v1/markers HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/markers/#create
   Future<MastodonResponse<StatusSnapshot>> createStatusSnapshot({
     required String statusId,
   });
 
+  /// Get saved timeline notification position.
+  ///
+  /// ## Parameters
+  ///
+  /// - [notificationId]: ID of the last notification read.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST /api/v1/markers HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/markers/#create
   Future<MastodonResponse<NotificationSnapshot>> createNotificationSnapshot({
     required String notificationId,
   });
