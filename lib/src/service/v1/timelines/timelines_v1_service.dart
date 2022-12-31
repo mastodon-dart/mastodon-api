@@ -7,7 +7,9 @@ import '../../../core/client/client_context.dart';
 import '../../../core/client/user_context.dart';
 import '../../base_service.dart';
 import '../../entities/conversation.dart';
+import '../../entities/notification_snapshot.dart';
 import '../../entities/status.dart';
+import '../../entities/status_snapshot.dart';
 import '../../response/mastodon_response.dart';
 
 abstract class TimelinesV1Service {
@@ -258,6 +260,94 @@ abstract class TimelinesV1Service {
   Future<MastodonResponse<Conversation>> createMarkConversationAsRead({
     required String conversationId,
   });
+
+  /// Get saved timeline status position.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/markers HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/markers/#get
+  Future<MastodonResponse<StatusSnapshot>> lookupStatusSnapshot();
+
+  /// Get saved timeline notification position.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/markers HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/markers/#get
+  Future<MastodonResponse<NotificationSnapshot>> lookupNotificationSnapshot();
+
+  /// Get saved timeline notification position.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]: ID of the last status read in the home timeline.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST /api/v1/markers HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/markers/#create
+  Future<MastodonResponse<StatusSnapshot>> createStatusSnapshot({
+    required String statusId,
+  });
+
+  /// Get saved timeline notification position.
+  ///
+  /// ## Parameters
+  ///
+  /// - [notificationId]: ID of the last notification read.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST /api/v1/markers HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/markers/#create
+  Future<MastodonResponse<NotificationSnapshot>> createNotificationSnapshot({
+    required String notificationId,
+  });
 }
 
 class _TimelinesV1Service extends BaseService implements TimelinesV1Service {
@@ -402,5 +492,67 @@ class _TimelinesV1Service extends BaseService implements TimelinesV1Service {
           checkEntity: true,
         ),
         dataBuilder: Conversation.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<StatusSnapshot>> lookupStatusSnapshot() async =>
+      super.transformSingleDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/markers',
+          queryParameters: {
+            'timeline[]': 'home',
+          },
+        ),
+        dataBuilder: StatusSnapshot.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<NotificationSnapshot>>
+      lookupNotificationSnapshot() async => super.transformSingleDataResponse(
+            await super.get(
+              UserContext.oauth2Only,
+              '/api/v1/markers',
+              queryParameters: {
+                'timeline[]': 'notifications',
+              },
+            ),
+            dataBuilder: NotificationSnapshot.fromJson,
+          );
+
+  @override
+  Future<MastodonResponse<StatusSnapshot>> createStatusSnapshot({
+    required String statusId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/markers',
+          body: {
+            'home': {
+              'last_read_id': statusId,
+            }
+          },
+          checkEntity: true,
+        ),
+        dataBuilder: StatusSnapshot.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<NotificationSnapshot>> createNotificationSnapshot({
+    required String notificationId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/markers',
+          body: {
+            'notifications': {
+              'last_read_id': notificationId,
+            }
+          },
+          checkEntity: true,
+        ),
+        dataBuilder: NotificationSnapshot.fromJson,
       );
 }
