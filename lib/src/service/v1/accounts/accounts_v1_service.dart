@@ -19,6 +19,8 @@ import '../../entities/account_preferences.dart';
 import '../../entities/familiar_follower.dart';
 import '../../entities/featured_tag.dart';
 import '../../entities/relationship.dart';
+import '../../entities/report.dart';
+import '../../entities/report_category.dart';
 import '../../entities/status.dart';
 import '../../entities/tag.dart';
 import '../../entities/token.dart';
@@ -932,6 +934,159 @@ abstract class AccountsV1Service {
   Future<MastodonResponse<bool>> destroyFollowSuggestion({
     required String accountId,
   });
+
+  /// Show a hashtag and its associated information
+  ///
+  /// ## Parameters
+  ///
+  /// - [tagId]: The name of the hashtag.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/tags/:id HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - Anonymous
+  /// - OAuth 2.0
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/tags/#get
+  Future<MastodonResponse<Tag>> lookupTag({
+    required String tagId,
+  });
+
+  /// Follow a hashtag.
+  ///
+  /// Posts containing a followed hashtag will be inserted into your home
+  /// timeline.
+  ///
+  /// ## Parameters
+  ///
+  /// - [tagId]: The name of the hashtag.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST /api/v1/tags/:id/follow HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:follows
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/tags/#follow
+  Future<MastodonResponse<Tag>> createFollowingTag({
+    required String tagId,
+  });
+
+  /// Unfollow a hashtag.
+  ///
+  /// Posts containing this hashtag will no longer be inserted into your home
+  /// timeline.
+  ///
+  /// ## Parameters
+  ///
+  /// - [tagId]: The name of the hashtag.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST /api/v1/tags/:id/unfollow HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:follows
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/tags/#unfollow
+  Future<MastodonResponse<Tag>> destroyFollowingTag({
+    required String tagId,
+  });
+
+  /// Report problematic users to your moderators.
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountId]: ID of the account to report.
+  ///
+  /// - [reason]: The reason for the report. Default maximum of
+  ///              1000 characters.
+  ///
+  /// - [forward]: If the account is remote, should the report be forwarded
+  ///              to the remote admin? Defaults to false.
+  ///
+  /// - [category]: Specify if the report is due to [ReportCategory.spam],
+  ///               [ReportCategory.violation] of enumerated instance
+  ///               rules, or some other reason. Defaults to
+  ///               [ReportCategory.other]. Will be set to violation if
+  ///               [ruleIds] is provided (regardless of any category value
+  ///               you provide).
+  ///
+  /// - [statusIds]: You can attach statuses to the report to provide
+  ///                additional context.
+  ///
+  /// - [ruleIds]: For violation category reports, specify the ID
+  ///              of the exact rules broken.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST /api/v1/reports HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:reports
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/reports/#post
+  Future<MastodonResponse<Report>> createReport({
+    required String accountId,
+    String? reason,
+    bool? forward,
+    ReportCategory? category,
+    List<String>? statusIds,
+    List<String>? ruleIds,
+  });
+
+  /// Accounts that the user is currently featuring on their profile.
+  ///
+  /// ## Parameters
+  ///
+  /// - [limit]: Maximum number of results to return. Defaults to 40 accounts.
+  ///            Max 80 accounts.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/endorsements HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:accounts
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/endorsements/#get
+  Future<MastodonResponse<List<Account>>> lookupFeaturedProfiles({
+    int? limit,
+  });
 }
 
 class _AccountsV1Service extends BaseService implements AccountsV1Service {
@@ -1443,5 +1598,84 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
           UserContext.oauth2Only,
           '/api/v1/suggestions/$accountId',
         ),
+      );
+
+  @override
+  Future<MastodonResponse<Tag>> lookupTag({
+    required String tagId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.get(
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/tags/$tagId',
+        ),
+        dataBuilder: Tag.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Tag>> createFollowingTag({
+    required String tagId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/tags/$tagId/follow',
+          checkEntity: true,
+        ),
+        dataBuilder: Tag.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Tag>> destroyFollowingTag({
+    required String tagId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/tags/$tagId/unfollow',
+          checkEntity: true,
+        ),
+        dataBuilder: Tag.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Report>> createReport({
+    required String accountId,
+    String? reason,
+    bool? forward,
+    ReportCategory? category,
+    List<String>? statusIds,
+    List<String>? ruleIds,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/reports',
+          body: {
+            'account_id': accountId,
+            'comment': reason,
+            'forward': forward,
+            'category': category?.value,
+            'status_ids[]': statusIds,
+            'rule_ids[]': ruleIds,
+          },
+          checkEntity: true,
+        ),
+        dataBuilder: Report.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<Account>>> lookupFeaturedProfiles({
+    int? limit,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/endorsements',
+          queryParameters: {
+            'limit': limit,
+          },
+        ),
+        dataBuilder: Account.fromJson,
       );
 }

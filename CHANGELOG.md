@@ -1,6 +1,6 @@
 # Release Note
 
-## v0.2.3
+## v0.3.0
 
 - Supported `suggestions API methods`. ([#21](https://github.com/mastodon-dart/mastodon-api/issues/21))
   - `GET /api/v2/suggestions`
@@ -12,6 +12,22 @@
 - Supported `markers API methods`. ([#30](https://github.com/mastodon-dart/mastodon-api/issues/30))
   - `GET /api/v1/markers`
   - `POST /api/v1/markers`
+- Exposed objects. ([#94](https://github.com/mastodon-dart/mastodon-api/issues/94))
+  - `package:mastodon_api/src/service/entities/rule.dart`
+  - `package:mastodon_api/src/service/v1/instance/instance_v1_service.dart`
+  - `package:mastodon_api/src/service/v2/instance/instance_v2_service.dart`
+- Supported `tags API methods`. ([#22](https://github.com/mastodon-dart/mastodon-api/issues/22))
+  - `GET /api/v1/tags/:id`
+  - `POST /api/v1/tags/:id/follow`
+  - `POST /api/v1/tags/:id/unfollow`
+- Supported `reports API methods`. ([#15](https://github.com/mastodon-dart/mastodon-api/issues/15))
+  - `POST /api/v1/reports`
+- Supported retry algorithm have been changed to only `Exponential BackOff and Jitter`. All of the following factory constructors provided until now are deprecated and should be modified by `v0.5.0` to use the default constructor of `RetryConfig`. The following deprecated factory constructors will be removed in `v0.5.0`, and the `Exponential BackOff and Jitter` algorithm will always be used regardless of constructor. ([#101](https://github.com/mastodon-dart/mastodon-api/issues/101))
+  - `ofRegularIntervals`
+  - `ofExponentialBackOff`
+  - `ofExponentialBackOffAndJitter`
+- Supported `endorsements API methods`. ([#17](https://github.com/mastodon-dart/mastodon-api/issues/17))
+  - `GET /api/v1/endorsements`
 
 ## v0.2.2
 
