@@ -1114,6 +1114,32 @@ abstract class AccountsV1Service {
   Future<MastodonResponse<List<Account>>> lookupMutedAccounts({
     int? limit,
   });
+
+  /// Statuses the user has favourited.
+  ///
+  /// ## Parameters
+  ///
+  /// - [limit]: Maximum number of results to return. Defaults to 20 statuses.
+  ///            Max 40 statuses.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/favourites HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:favourites
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/favourites/#get
+  Future<MastodonResponse<List<Status>>> lookupFavouritedStatuses({
+    int? limit,
+  });
 }
 
 class _AccountsV1Service extends BaseService implements AccountsV1Service {
@@ -1719,5 +1745,20 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
           },
         ),
         dataBuilder: Account.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<Status>>> lookupFavouritedStatuses({
+    int? limit,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/favourites',
+          queryParameters: {
+            'limit': limit,
+          },
+        ),
+        dataBuilder: Status.fromJson,
       );
 }
