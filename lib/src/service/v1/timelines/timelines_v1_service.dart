@@ -256,7 +256,7 @@ abstract class TimelinesV1Service {
   ///
   /// ## Reference
   ///
-  /// - https://docs.joinmastodon.org/methods/conversations/#delete
+  /// - https://docs.joinmastodon.org/methods/conversations/#read
   Future<MastodonResponse<Conversation>> createMarkConversationAsRead({
     required String conversationId,
   });
