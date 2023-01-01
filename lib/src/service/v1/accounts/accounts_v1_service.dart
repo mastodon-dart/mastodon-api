@@ -1140,6 +1140,32 @@ abstract class AccountsV1Service {
   Future<MastodonResponse<List<Status>>> lookupFavouritedStatuses({
     int? limit,
   });
+
+  /// View your blocks.
+  ///
+  /// ## Parameters
+  ///
+  /// - [limit]: Maximum number of results to return. Defaults to 40 accounts.
+  ///            Max 80 accounts.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/blocks HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:blocks
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/blocks/#get
+  Future<MastodonResponse<List<Account>>> lookupBlockedAccounts({
+    int? limit,
+  });
 }
 
 class _AccountsV1Service extends BaseService implements AccountsV1Service {
@@ -1760,5 +1786,20 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
           },
         ),
         dataBuilder: Status.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<Account>>> lookupBlockedAccounts({
+    int? limit,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/blocks',
+          queryParameters: {
+            'limit': limit,
+          },
+        ),
+        dataBuilder: Account.fromJson,
       );
 }

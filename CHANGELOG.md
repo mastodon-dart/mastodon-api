@@ -6,6 +6,8 @@
   - `GET /api/v1/mutes`
 - Supported `favourites API methods`. ([#9](https://github.com/mastodon-dart/mastodon-api/issues/9))
   - `GET /api/v1/favourites`
+- Supported `blocks API methods`. ([#11](https://github.com/mastodon-dart/mastodon-api/issues/11))
+  - `GET /api/v1/blocks`
 
 ## v0.3.0
 
