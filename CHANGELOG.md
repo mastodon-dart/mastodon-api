@@ -8,6 +8,8 @@
   - `GET /api/v1/favourites`
 - Supported `blocks API methods`. ([#11](https://github.com/mastodon-dart/mastodon-api/issues/11))
   - `GET /api/v1/blocks`
+- Supported `bookmarks API methods`. ([#8](https://github.com/mastodon-dart/mastodon-api/issues/8))
+  - `GET /api/v1/bookmarks`
 
 ## v0.3.0
 
