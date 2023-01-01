@@ -1166,6 +1166,32 @@ abstract class AccountsV1Service {
   Future<MastodonResponse<List<Account>>> lookupBlockedAccounts({
     int? limit,
   });
+
+  /// Statuses the user has bookmarked.
+  ///
+  /// ## Parameters
+  ///
+  /// - [limit]: Maximum number of results to return. Defaults to 20 statuses.
+  ///            Max 40 statuses.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/bookmarks HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:bookmarks
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/bookmarks/#get
+  Future<MastodonResponse<List<Status>>> lookupBookmarkedStatuses({
+    int? limit,
+  });
 }
 
 class _AccountsV1Service extends BaseService implements AccountsV1Service {
@@ -1801,5 +1827,20 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
           },
         ),
         dataBuilder: Account.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<Status>>> lookupBookmarkedStatuses({
+    int? limit,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/bookmarks',
+          queryParameters: {
+            'limit': limit,
+          },
+        ),
+        dataBuilder: Status.fromJson,
       );
 }
