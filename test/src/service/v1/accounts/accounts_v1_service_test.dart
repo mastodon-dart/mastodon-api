@@ -2495,4 +2495,73 @@ void main() {
       );
     });
   });
+
+  group('.lookupBlockedAccounts', () {
+    test('normal case', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/blocks',
+          'test/src/service/v1/accounts/data/lookup_blocked_accounts.json',
+          {
+            'limit': '40',
+          },
+        ),
+      );
+
+      final response = await accountsService.lookupBlockedAccounts(
+        limit: 40,
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<List<Account>>());
+    });
+
+    test('when unauthorized', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/blocks',
+          'test/src/service/v1/accounts/data/lookup_blocked_accounts.json',
+          {
+            'limit': '40',
+          },
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await accountsService.lookupBlockedAccounts(
+          limit: 40,
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/blocks',
+          'test/src/service/v1/accounts/data/lookup_blocked_accounts.json',
+          {
+            'limit': '40',
+          },
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await accountsService.lookupBlockedAccounts(
+          limit: 40,
+        ),
+      );
+    });
+  });
 }
