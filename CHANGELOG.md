@@ -1,5 +1,10 @@
 # Release Note
 
+## v0.3.1
+
+- Supported `mutes API methods`. ([#10](https://github.com/mastodon-dart/mastodon-api/issues/10))
+  - `GET /api/v1/mutes`
+
 ## v0.3.0
 
 - Supported `suggestions API methods`. ([#21](https://github.com/mastodon-dart/mastodon-api/issues/21))
