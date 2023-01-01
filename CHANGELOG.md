@@ -1,5 +1,9 @@
 # Release Note
 
+## v0.3.2
+
+- Added links in `README`.
+
 ## v0.3.1
 
 - Supported `mutes API methods`. ([#10](https://github.com/mastodon-dart/mastodon-api/issues/10))
