@@ -1087,6 +1087,33 @@ abstract class AccountsV1Service {
   Future<MastodonResponse<List<Account>>> lookupFeaturedProfiles({
     int? limit,
   });
+
+  /// Accounts the user has muted.
+  ///
+  /// ## Parameters
+  ///
+  /// - [limit]: Maximum number of results to return. Defaults to 40 accounts.
+  ///            Max 80 accounts.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/mutes HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - follow
+  /// - read:mutes
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/mutes/#get
+  Future<MastodonResponse<List<Account>>> lookupMutedAccounts({
+    int? limit,
+  });
 }
 
 class _AccountsV1Service extends BaseService implements AccountsV1Service {
@@ -1672,6 +1699,21 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
         await super.get(
           UserContext.oauth2Only,
           '/api/v1/endorsements',
+          queryParameters: {
+            'limit': limit,
+          },
+        ),
+        dataBuilder: Account.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<Account>>> lookupMutedAccounts({
+    int? limit,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/mutes',
           queryParameters: {
             'limit': limit,
           },
