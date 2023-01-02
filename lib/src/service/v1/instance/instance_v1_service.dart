@@ -8,6 +8,7 @@ import '../../../core/client/user_context.dart';
 import '../../base_service.dart';
 import '../../entities/announcement.dart';
 import '../../entities/blocked_domain.dart';
+import '../../entities/emoji.dart';
 import '../../entities/extended_description.dart';
 import '../../entities/instance.dart';
 import '../../entities/instance_activity.dart';
@@ -296,6 +297,21 @@ abstract class InstanceV1Service {
     required String announcementId,
     required String emojiName,
   });
+
+  /// Returns custom emojis that are available on the server.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/custom_emojis HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - Anonymous
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/custom_emojis/#get
+  Future<MastodonResponse<List<Emoji>>> lookupAvailableEmoji();
 }
 
 class _InstanceV1Service extends BaseService implements InstanceV1Service {
@@ -468,5 +484,15 @@ class _InstanceV1Service extends BaseService implements InstanceV1Service {
           },
         ),
         dataBuilder: Announcement.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<Emoji>>> lookupAvailableEmoji() async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.anonymousOnly,
+          '/api/v1/custom_emojis',
+        ),
+        dataBuilder: Emoji.fromJson,
       );
 }
