@@ -1,5 +1,10 @@
 # Release Note
 
+## v0.3.3
+
+- Supported `custom_emojis API methods`. ([#38](https://github.com/mastodon-dart/mastodon-api/issues/38))
+  - `GET /api/v1/custom_emojis`
+
 ## v0.3.2
 
 - Added links in `README`.

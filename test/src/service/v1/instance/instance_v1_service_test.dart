@@ -8,6 +8,7 @@
 import 'package:mastodon_api/src/core/client/user_context.dart';
 import 'package:mastodon_api/src/service/entities/announcement.dart';
 import 'package:mastodon_api/src/service/entities/blocked_domain.dart';
+import 'package:mastodon_api/src/service/entities/emoji.dart';
 import 'package:mastodon_api/src/service/entities/extended_description.dart';
 import 'package:mastodon_api/src/service/entities/instance.dart';
 import 'package:mastodon_api/src/service/entities/instance_activity.dart';
@@ -966,6 +967,63 @@ void main() {
           announcementId: '1111',
           emojiName: '❗',
         ),
+      );
+    });
+  });
+
+  group('.lookupAvailableEmoji', () {
+    test('normal case', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.anonymousOnly,
+          '/api/v1/custom_emojis',
+          'test/src/service/v1/instance/data/lookup_available_emoji.json',
+          {},
+        ),
+      );
+
+      final response = await instanceService.lookupAvailableEmoji();
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<List<Emoji>>());
+    });
+
+    test('when unauthorized', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.anonymousOnly,
+          '/api/v1/custom_emojis',
+          'test/src/service/v1/instance/data/lookup_available_emoji.json',
+          {},
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await instanceService.lookupAvailableEmoji(),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.anonymousOnly,
+          '/api/v1/custom_emojis',
+          'test/src/service/v1/instance/data/lookup_available_emoji.json',
+          {},
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await instanceService.lookupAvailableEmoji(),
       );
     });
   });
