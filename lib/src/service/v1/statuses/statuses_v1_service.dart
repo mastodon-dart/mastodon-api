@@ -10,6 +10,7 @@ import '../../../core/visibility.dart';
 import '../../base_service.dart';
 import '../../entities/poll.dart';
 import '../../entities/status.dart';
+import '../../entities/status_context.dart';
 import '../../response/mastodon_response.dart';
 import 'status_poll_param.dart';
 
@@ -157,6 +158,56 @@ abstract class StatusesV1Service {
     required String pollId,
     required List<int> choices,
   });
+
+  /// Obtain information about a status.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]:  The ID of the Status in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/statuses/:id HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/statuses/#get
+  Future<MastodonResponse<Status>> getStatus({
+    required String statusId,
+  });
+
+  /// View statuses above and below this status in the thread.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]:  The ID of the Status in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/statuses/:id/context HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/statuses/#get
+  Future<MastodonResponse<StatusContext>> getStatusContext({
+    required String statusId,
+  });
 }
 
 class _StatusesV1Service extends BaseService implements StatusesV1Service {
@@ -247,5 +298,29 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
           checkEntity: true,
         ),
         dataBuilder: Poll.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Status>> getStatus({
+    required String statusId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.get(
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/statuses/$statusId',
+        ),
+        dataBuilder: Status.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<StatusContext>> getStatusContext({
+    required String statusId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.get(
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/statuses/$statusId/context',
+        ),
+        dataBuilder: StatusContext.fromJson,
       );
 }

@@ -8,6 +8,7 @@ import 'package:mastodon_api/src/core/exception/mastodon_exception.dart';
 import 'package:mastodon_api/src/service/entities/poll.dart';
 import 'package:mastodon_api/src/service/entities/rate_limit.dart';
 import 'package:mastodon_api/src/service/entities/status.dart';
+import 'package:mastodon_api/src/service/entities/status_context.dart';
 import 'package:mastodon_api/src/service/response/mastodon_response.dart';
 import 'package:mastodon_api/src/service/v1/statuses/status_poll_param.dart';
 import 'package:mastodon_api/src/service/v1/statuses/statuses_v1_service.dart';
@@ -323,6 +324,132 @@ void main() {
                   'Required parameter is missing or improperly formatted.',
             ),
           ),
+        ),
+      );
+    });
+  });
+
+  group('.getStatus', () {
+    test('normal case', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/statuses/1234',
+          'test/src/service/v1/statuses/data/get_status.json',
+          {},
+        ),
+      );
+
+      final response = await statusesService.getStatus(
+        statusId: '1234',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<Status>());
+    });
+
+    test('when unauthorized', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/statuses/1234',
+          'test/src/service/v1/statuses/data/get_status.json',
+          statusCode: 401,
+          {},
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await statusesService.getStatus(
+          statusId: '1234',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/statuses/1234',
+          'test/src/service/v1/statuses/data/get_status.json',
+          statusCode: 429,
+          {},
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await statusesService.getStatus(
+          statusId: '1234'
+        ),
+      );
+    });
+  });
+
+  group('.getStatusContext', () {
+    test('normal case', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/statuses/1234/context',
+          'test/src/service/v1/statuses/data/get_status_context.json',
+          {},
+        ),
+      );
+
+      final response = await statusesService.getStatusContext(
+        statusId: '1234',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<StatusContext>());
+    });
+
+    test('when unauthorized', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/statuses/1234/context',
+          'test/src/service/v1/statuses/data/get_status_context.json',
+          statusCode: 401,
+          {},
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await statusesService.getStatusContext(
+          statusId: '1234',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/statuses/1234/context',
+          'test/src/service/v1/statuses/data/get_status_context.json',
+          statusCode: 429,
+          {},
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await statusesService.getStatusContext(
+          statusId: '1234'
         ),
       );
     });
