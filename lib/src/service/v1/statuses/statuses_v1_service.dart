@@ -8,6 +8,7 @@ import '../../../core/client/user_context.dart';
 import '../../../core/language.dart';
 import '../../../core/visibility.dart';
 import '../../base_service.dart';
+import '../../entities/account.dart';
 import '../../entities/poll.dart';
 import '../../entities/status.dart';
 import '../../entities/status_context.dart';
@@ -180,7 +181,7 @@ abstract class StatusesV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/statuses/#get
-  Future<MastodonResponse<Status>> getStatus({
+  Future<MastodonResponse<Status>> lookupStatus({
     required String statusId,
   });
 
@@ -205,8 +206,82 @@ abstract class StatusesV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/statuses/#get
-  Future<MastodonResponse<StatusContext>> getStatusContext({
+  Future<MastodonResponse<StatusContext>> lookupStatusContext({
     required String statusId,
+  });
+
+  /// View who boosted a given status.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]:  The ID of the Status in the database.
+  ///
+  /// - [maxStatusId]: Return results older than ID.
+  ///
+  /// - [minStatusId]: Return results immediately newer than ID.
+  ///
+  /// - [sinceStatusId]: Return results newer than ID.
+  ///
+  /// - [limit]: Maximum number of results to return. Defaults to 20. Max 40.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/statuses/:id/reblogged_by HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/statuses/#reblogged_by
+  Future<MastodonResponse<Account>> lookupStatusRebloggedBy({
+    required String statusId,
+    String? maxStatusId,
+    String? minStatusId,
+    String? sinceStatusId,
+    int? limit,
+  });
+
+  /// View who favourited a given status.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]:  The ID of the Status in the database.
+  ///
+  /// - [maxStatusId]: Return results older than ID.
+  ///
+  /// - [minStatusId]: Return results immediately newer than ID.
+  ///
+  /// - [sinceStatusId]: Return results newer than ID.
+  ///
+  /// - [limit]: Maximum number of results to return. Defaults to 20. Max 40.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/statuses/:id/favourited_by HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/statuses/#favourited_by
+  Future<MastodonResponse<Account>> lookupStatusFavouritedBy({
+    required String statusId,
+    String? maxStatusId,
+    String? minStatusId,
+    String? sinceStatusId,
+    int? limit,
   });
 }
 
@@ -301,7 +376,7 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
       );
 
   @override
-  Future<MastodonResponse<Status>> getStatus({
+  Future<MastodonResponse<Status>> lookupStatus({
     required String statusId,
   }) async =>
       super.transformSingleDataResponse(
@@ -313,7 +388,7 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
       );
 
   @override
-  Future<MastodonResponse<StatusContext>> getStatusContext({
+  Future<MastodonResponse<StatusContext>> lookupStatusContext({
     required String statusId,
   }) async =>
       super.transformSingleDataResponse(
@@ -322,5 +397,49 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
           '/api/v1/statuses/$statusId/context',
         ),
         dataBuilder: StatusContext.fromJson,
+      );
+  
+  @override
+  Future<MastodonResponse<Account>> lookupStatusRebloggedBy({
+    required String statusId,
+    String? maxStatusId,
+    String? minStatusId,
+    String? sinceStatusId,
+    int? limit,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.get(
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/statuses/$statusId/reblogged_by',
+          queryParameters: {
+            'max_id': maxStatusId,
+            'min_id': minStatusId,
+            'since_id': sinceStatusId,
+            'limit': limit,
+          },
+        ),
+        dataBuilder: Account.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Account>> lookupStatusFavouritedBy({
+    required String statusId,
+    String? maxStatusId,
+    String? minStatusId,
+    String? sinceStatusId,
+    int? limit,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.get(
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/statuses/$statusId/favourited_by',
+          queryParameters: {
+            'max_id': maxStatusId,
+            'min_id': minStatusId,
+            'since_id': sinceStatusId,
+            'limit': limit,
+          },
+        ),
+        dataBuilder: Account.fromJson,
       );
 }

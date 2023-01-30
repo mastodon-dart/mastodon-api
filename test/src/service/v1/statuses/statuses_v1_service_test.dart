@@ -5,6 +5,7 @@
 // 🌎 Project imports:
 import 'package:mastodon_api/src/core/client/user_context.dart';
 import 'package:mastodon_api/src/core/exception/mastodon_exception.dart';
+import 'package:mastodon_api/src/service/entities/account.dart';
 import 'package:mastodon_api/src/service/entities/poll.dart';
 import 'package:mastodon_api/src/service/entities/rate_limit.dart';
 import 'package:mastodon_api/src/service/entities/status.dart';
@@ -329,7 +330,7 @@ void main() {
     });
   });
 
-  group('.getStatus', () {
+  group('.lookupStatus', () {
     test('normal case', () async {
       final statusesService = StatusesV1Service(
         instance: 'test',
@@ -337,12 +338,12 @@ void main() {
           'test',
           UserContext.oauth2OrAnonymous,
           '/api/v1/statuses/1234',
-          'test/src/service/v1/statuses/data/get_status.json',
+          'test/src/service/v1/statuses/data/lookup_status.json',
           {},
         ),
       );
 
-      final response = await statusesService.getStatus(
+      final response = await statusesService.lookupStatus(
         statusId: '1234',
       );
 
@@ -358,14 +359,14 @@ void main() {
           'test',
           UserContext.oauth2OrAnonymous,
           '/api/v1/statuses/1234',
-          'test/src/service/v1/statuses/data/get_status.json',
+          'test/src/service/v1/statuses/data/lookup_status.json',
           statusCode: 401,
           {},
         ),
       );
 
       expectUnauthorizedException(
-        () async => await statusesService.getStatus(
+        () async => await statusesService.lookupStatus(
           statusId: '1234',
         ),
       );
@@ -378,21 +379,21 @@ void main() {
           'test',
           UserContext.oauth2OrAnonymous,
           '/api/v1/statuses/1234',
-          'test/src/service/v1/statuses/data/get_status.json',
+          'test/src/service/v1/statuses/data/lookup_status.json',
           statusCode: 429,
           {},
         ),
       );
 
       expectRateLimitExceededException(
-        () async => await statusesService.getStatus(
+        () async => await statusesService.lookupStatus(
           statusId: '1234'
         ),
       );
     });
   });
 
-  group('.getStatusContext', () {
+  group('.lookupStatusContext', () {
     test('normal case', () async {
       final statusesService = StatusesV1Service(
         instance: 'test',
@@ -400,12 +401,12 @@ void main() {
           'test',
           UserContext.oauth2OrAnonymous,
           '/api/v1/statuses/1234/context',
-          'test/src/service/v1/statuses/data/get_status_context.json',
+          'test/src/service/v1/statuses/data/lookup_status_context.json',
           {},
         ),
       );
 
-      final response = await statusesService.getStatusContext(
+      final response = await statusesService.lookupStatusContext(
         statusId: '1234',
       );
 
@@ -421,14 +422,14 @@ void main() {
           'test',
           UserContext.oauth2OrAnonymous,
           '/api/v1/statuses/1234/context',
-          'test/src/service/v1/statuses/data/get_status_context.json',
+          'test/src/service/v1/statuses/data/lookup_status_context.json',
           statusCode: 401,
           {},
         ),
       );
 
       expectUnauthorizedException(
-        () async => await statusesService.getStatusContext(
+        () async => await statusesService.lookupStatusContext(
           statusId: '1234',
         ),
       );
@@ -441,17 +442,144 @@ void main() {
           'test',
           UserContext.oauth2OrAnonymous,
           '/api/v1/statuses/1234/context',
-          'test/src/service/v1/statuses/data/get_status_context.json',
+          'test/src/service/v1/statuses/data/lookup_status_context.json',
           statusCode: 429,
           {},
         ),
       );
 
       expectRateLimitExceededException(
-        () async => await statusesService.getStatusContext(
+        () async => await statusesService.lookupStatusContext(
           statusId: '1234'
         ),
       );
     });
   });
+
+  group('.lookupStatusRebloggedBy', () {
+    test('normal case', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/statuses/1234/reblogged_by',
+          'test/src/service/v1/statuses/data/lookup_status_reblogged_by.json',
+          {},
+        ),
+      );
+
+      final response = await statusesService.lookupStatusRebloggedBy(
+        statusId: '1234',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<Account>());
+    });
+
+    test('when unauthorized', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/statuses/1234/reblogged_by',
+          'test/src/service/v1/statuses/data/lookup_status_reblogged_by.json',
+          statusCode: 401,
+          {},
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await statusesService.lookupStatusRebloggedBy(
+          statusId: '1234',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/statuses/1234/reblogged_by',
+          'test/src/service/v1/statuses/data/lookup_status_reblogged_by.json',
+          statusCode: 429,
+          {},
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await statusesService.lookupStatusRebloggedBy(
+          statusId: '1234'
+        ),
+      );
+    });
+  });
+
+  group('.lookupStatusFavouritedBy', () {
+    test('normal case', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/statuses/1234/favourited_by',
+          'test/src/service/v1/statuses/data/lookup_status_favourited_by.json',
+          {},
+        ),
+      );
+
+      final response = await statusesService.lookupStatusFavouritedBy(
+        statusId: '1234',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<Account>());
+    });
+
+    test('when unauthorized', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/statuses/1234/favourited_by',
+          'test/src/service/v1/statuses/data/lookup_status_favourited_by.json',
+          statusCode: 401,
+          {},
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await statusesService.lookupStatusFavouritedBy(
+          statusId: '1234',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/statuses/1234/favourited_by',
+          'test/src/service/v1/statuses/data/lookup_status_favourited_by.json',
+          statusCode: 429,
+          {},
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await statusesService.lookupStatusFavouritedBy(
+          statusId: '1234'
+        ),
+      );
+    });
+  });
+  
 }
