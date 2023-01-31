@@ -205,7 +205,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Reference
   ///
-  /// - https://docs.joinmastodon.org/methods/statuses/#get
+  /// - https://docs.joinmastodon.org/methods/statuses/#context
   Future<MastodonResponse<StatusContext>> lookupStatusContext({
     required String statusId,
   });
@@ -282,6 +282,31 @@ abstract class StatusesV1Service {
     String? minStatusId,
     String? sinceStatusId,
     int? limit,
+  });
+
+  /// Add a status to your favourites list.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]:  The ID of the Status in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/statuses/:id/favourite HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:favourites
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/statuses/#favourite
+  Future<MastodonResponse<Status>> favouriteStatus({
+    required String statusId,
   });
 }
 
@@ -441,5 +466,18 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
           },
         ),
         dataBuilder: Account.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Status>> favouriteStatus({
+    required String statusId
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/statuses/$statusId/favourite',
+          checkEntity: true,
+        ),
+        dataBuilder: Status.fromJson,
       );
 }

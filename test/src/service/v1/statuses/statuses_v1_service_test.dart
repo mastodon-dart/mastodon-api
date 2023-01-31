@@ -581,5 +581,28 @@ void main() {
       );
     });
   });
+
+  group('.favouriteStatus', () {
+    test('normal case', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/statuses/1234/favourite',
+          'test/src/service/v1/statuses/data/lookup_status.json',
+          {},
+        ),
+      );
+
+      final response = await statusesService.favouriteStatus(
+        statusId: '1234',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<Status>());
+    });
+  });
   
 }
