@@ -333,6 +333,56 @@ abstract class StatusesV1Service {
   Future<MastodonResponse<Status>> unfavouriteStatus({
     required String statusId,
   });
+
+  /// Reshare a status on your own profile.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]:  The ID of the Status in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/statuses/:id/reblog HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/statuses/#reblog
+  Future<MastodonResponse<Status>> reblogStatus({
+    required String statusId,
+  });
+
+  /// Undo a reshare of a status.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]:  The ID of the Status in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/statuses/:id/unreblog HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/statuses/#unreblog
+  Future<MastodonResponse<Status>> unreblogStatus({
+    required String statusId,
+  });
 }
 
 class _StatusesV1Service extends BaseService implements StatusesV1Service {
@@ -514,6 +564,32 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/statuses/$statusId/unfavourite',
+          checkEntity: true,
+        ),
+        dataBuilder: Status.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Status>> reblogStatus({
+    required String statusId
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/statuses/$statusId/reblog',
+          checkEntity: true,
+        ),
+        dataBuilder: Status.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Status>> unreblogStatus({
+    required String statusId
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/statuses/$statusId/unreblog',
           checkEntity: true,
         ),
         dataBuilder: Status.fromJson,
