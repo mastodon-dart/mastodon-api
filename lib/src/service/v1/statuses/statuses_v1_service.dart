@@ -383,6 +383,56 @@ abstract class StatusesV1Service {
   Future<MastodonResponse<Status>> unreblogStatus({
     required String statusId,
   });
+
+  /// Privately bookmark a status.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]:  The ID of the Status in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/statuses/:id/bookmark HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:bookmarks
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/statuses/#bookmark
+  Future<MastodonResponse<Status>> bookmarkStatus({
+    required String statusId,
+  });
+
+  /// Remove a status from your private bookmarks.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]:  The ID of the Status in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/statuses/:id/unbookmark HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:bookmarks
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/statuses/#unbookmark
+  Future<MastodonResponse<Status>> unbookmarkStatus({
+    required String statusId,
+  });
 }
 
 class _StatusesV1Service extends BaseService implements StatusesV1Service {
@@ -590,6 +640,32 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/statuses/$statusId/unreblog',
+          checkEntity: true,
+        ),
+        dataBuilder: Status.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Status>> bookmarkStatus({
+    required String statusId
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/statuses/$statusId/bookmark',
+          checkEntity: true,
+        ),
+        dataBuilder: Status.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Status>> unbookmarkStatus({
+    required String statusId
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/statuses/$statusId/unbookmark',
           checkEntity: true,
         ),
         dataBuilder: Status.fromJson,

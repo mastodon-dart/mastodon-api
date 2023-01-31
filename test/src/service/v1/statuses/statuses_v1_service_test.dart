@@ -669,5 +669,49 @@ void main() {
       expect(response.data, isA<Status>());
     });
   });
+
+  group('.bookmarkStatus', () {
+    test('normal case', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/statuses/1234/bookmark',
+          'test/src/service/v1/statuses/data/lookup_status.json',
+        ),
+      );
+
+      final response = await statusesService.bookmarkStatus(
+        statusId: '1234',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<Status>());
+    });
+  });
+
+  group('.unbookmarkStatus', () {
+    test('normal case', () async {
+      final statusesService = StatusesV1Service( 
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/statuses/1234/unbookmark',
+          'test/src/service/v1/statuses/data/lookup_status.json',
+        ),
+      );
+
+      final response = await statusesService.unbookmarkStatus(
+        statusId: '1234',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<Status>());
+    });
+  });
   
 }
