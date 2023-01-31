@@ -433,6 +433,109 @@ abstract class StatusesV1Service {
   Future<MastodonResponse<Status>> unbookmarkStatus({
     required String statusId,
   });
+
+  /// Do not receive notifications for the thread that this status is part of.
+  /// Must be a thread in which you are a participant.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]:  The ID of the Status in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/statuses/:id/mute HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:mutes
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/statuses/#mute
+  Future<MastodonResponse<Status>> muteStatus({
+    required String statusId,
+  });
+
+  /// Start receiving notifications again for the thread that this status is part of.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]:  The ID of the Status in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/statuses/:id/unmute HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:mutes
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/statuses/#unmute
+  Future<MastodonResponse<Status>> unmuteStatus({
+    required String statusId,
+  });
+
+  /// Feature one of your own public statuses at the top of your profile.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]:  The local ID of the Status in the database.
+  /// The status should be authored by the authorized account.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/statuses/:id/pin HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:accounts
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/statuses/#pin
+  Future<MastodonResponse<Status>> pinStatus({
+    required String statusId,
+  });
+
+  /// Unfeature a status from the top of your profile.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]:  The local ID of the Status in the database.
+  /// The status should be authored by the authorized account.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/statuses/:id/unpin HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:accounts
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/statuses/#unpin
+  Future<MastodonResponse<Status>> unpinStatus({
+    required String statusId,
+  });
 }
 
 class _StatusesV1Service extends BaseService implements StatusesV1Service {
@@ -666,6 +769,58 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/statuses/$statusId/unbookmark',
+          checkEntity: true,
+        ),
+        dataBuilder: Status.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Status>> muteStatus({
+    required String statusId
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/statuses/$statusId/mute',
+          checkEntity: true,
+        ),
+        dataBuilder: Status.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Status>> unmuteStatus({
+    required String statusId
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/statuses/$statusId/unmute',
+          checkEntity: true,
+        ),
+        dataBuilder: Status.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Status>> pinStatus({
+    required String statusId
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/statuses/$statusId/pin',
+          checkEntity: true,
+        ),
+        dataBuilder: Status.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Status>> unpinStatus({
+    required String statusId
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/statuses/$statusId/unpin',
           checkEntity: true,
         ),
         dataBuilder: Status.fromJson,
