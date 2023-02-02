@@ -80,6 +80,83 @@ abstract class StatusesV1Service {
     StatusPollParam? poll,
   });
 
+  /// Delete one of your own statuses.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]: The ID of the Status in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - DELETE /api/v1/statuses/:id HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/statuses/#delete
+  Future<MastodonResponse<Status>> destroyStatus({
+    required String statusId,
+  });
+
+  /// Edit a given status to change its text, sensitivity, media attachments, o
+  /// r poll.
+  ///
+  /// Note that editing a poll’s options will reset the votes.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]: The ID of the SOMETHING in the database.
+  ///
+  /// - [text]: The text content of the status. If media_ids is provided,
+  ///           this becomes optional.
+  ///
+  /// - [spoilerText]: Text to be shown as a warning or subject before the
+  ///                  actual content. Statuses are generally collapsed behind
+  ///                  this field.
+  ///
+  /// - [sensitive]: Mark status and attached media as sensitive?
+  ///                Defaults to false.
+  ///
+  /// - [language]: ISO 639 language code for this status.
+  ///
+  /// - [mediaIds]: Include Attachment IDs to be attached as media.
+  ///               If provided, [text] becomes optional, and poll cannot
+  ///               be used.
+  ///
+  /// - [poll]: The object of the poll to be assigned to the status.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - PUT /api/v1/statuses/:id HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/statuses/#edit
+  Future<MastodonResponse<Status>> updateStatus({
+    required String statusId,
+    required String text,
+    String? spoilerText,
+    bool? sensitive,
+    Language? language,
+    List<String>? mediaIds,
+    StatusPollParam? poll,
+  });
+
   /// Returns a specific poll.
   ///
   /// ## Parameters
@@ -181,7 +258,7 @@ abstract class StatusesV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/statuses/#get
-  Future<MastodonResponse<Status>> lookupStatus({
+  Future<MastodonResponse<Status>> lookupById({
     required String statusId,
   });
 
@@ -239,7 +316,7 @@ abstract class StatusesV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/statuses/#reblogged_by
-  Future<MastodonResponse<Account>> lookupStatusRebloggedBy({
+  Future<MastodonResponse<List<Account>>> lookupRebloggedUsers({
     required String statusId,
     String? maxStatusId,
     String? minStatusId,
@@ -276,7 +353,7 @@ abstract class StatusesV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/statuses/#favourited_by
-  Future<MastodonResponse<Account>> lookupStatusFavouritedBy({
+  Future<MastodonResponse<List<Account>>> lookupFavouritedUsers({
     required String statusId,
     String? maxStatusId,
     String? minStatusId,
@@ -305,7 +382,7 @@ abstract class StatusesV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/statuses/#favourite
-  Future<MastodonResponse<Status>> favouriteStatus({
+  Future<MastodonResponse<Status>> createFavourite({
     required String statusId,
   });
 
@@ -330,11 +407,11 @@ abstract class StatusesV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/statuses/#unfavourite
-  Future<MastodonResponse<Status>> unfavouriteStatus({
+  Future<MastodonResponse<Status>> destroyFavourite({
     required String statusId,
   });
 
-  /// Reshare a status on your own profile.
+  /// Re-share a status on your own profile.
   ///
   /// ## Parameters
   ///
@@ -355,11 +432,11 @@ abstract class StatusesV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/statuses/#reblog
-  Future<MastodonResponse<Status>> reblogStatus({
+  Future<MastodonResponse<Status>> createReblog({
     required String statusId,
   });
 
-  /// Undo a reshare of a status.
+  /// Undo a re-share of a status.
   ///
   /// ## Parameters
   ///
@@ -380,7 +457,7 @@ abstract class StatusesV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/statuses/#unreblog
-  Future<MastodonResponse<Status>> unreblogStatus({
+  Future<MastodonResponse<Status>> destroyReblog({
     required String statusId,
   });
 
@@ -405,7 +482,7 @@ abstract class StatusesV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/statuses/#bookmark
-  Future<MastodonResponse<Status>> bookmarkStatus({
+  Future<MastodonResponse<Status>> createBookmark({
     required String statusId,
   });
 
@@ -430,7 +507,7 @@ abstract class StatusesV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/statuses/#unbookmark
-  Future<MastodonResponse<Status>> unbookmarkStatus({
+  Future<MastodonResponse<Status>> destroyBookmark({
     required String statusId,
   });
 
@@ -456,11 +533,12 @@ abstract class StatusesV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/statuses/#mute
-  Future<MastodonResponse<Status>> muteStatus({
+  Future<MastodonResponse<Status>> createMute({
     required String statusId,
   });
 
-  /// Start receiving notifications again for the thread that this status is part of.
+  /// Start receiving notifications again for the thread that this status is
+  /// part of.
   ///
   /// ## Parameters
   ///
@@ -481,7 +559,7 @@ abstract class StatusesV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/statuses/#unmute
-  Future<MastodonResponse<Status>> unmuteStatus({
+  Future<MastodonResponse<Status>> destroyMute({
     required String statusId,
   });
 
@@ -507,11 +585,11 @@ abstract class StatusesV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/statuses/#pin
-  Future<MastodonResponse<Status>> pinStatus({
+  Future<MastodonResponse<Status>> createPinnedStatus({
     required String statusId,
   });
 
-  /// Unfeature a status from the top of your profile.
+  /// Un-feature a status from the top of your profile.
   ///
   /// ## Parameters
   ///
@@ -533,7 +611,7 @@ abstract class StatusesV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/statuses/#unpin
-  Future<MastodonResponse<Status>> unpinStatus({
+  Future<MastodonResponse<Status>> destroyPinnedStatus({
     required String statusId,
   });
 }
@@ -576,6 +654,49 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
             }
           },
           checkEntity: true,
+        ),
+        dataBuilder: Status.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Status>> destroyStatus({
+    required String statusId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.delete(
+          UserContext.oauth2Only,
+          '/api/v1/statuses/$statusId',
+        ),
+        dataBuilder: Status.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Status>> updateStatus({
+    required String statusId,
+    required String text,
+    String? spoilerText,
+    bool? sensitive,
+    Language? language,
+    List<String>? mediaIds,
+    StatusPollParam? poll,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.put(
+          UserContext.oauth2Only,
+          '/api/v1/statuses/$statusId',
+          body: {
+            'status': text,
+            'spoiler_text': spoilerText,
+            'sensitive': sensitive,
+            'language': language,
+            'media_ids': mediaIds,
+            'poll': {
+              'options': poll?.options,
+              'expires_in': poll?.expiresIn.inSeconds,
+              'multiple': poll?.multiple,
+              'hide_totals': poll?.hideTotals,
+            }
+          },
         ),
         dataBuilder: Status.fromJson,
       );
@@ -629,7 +750,7 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
       );
 
   @override
-  Future<MastodonResponse<Status>> lookupStatus({
+  Future<MastodonResponse<Status>> lookupById({
     required String statusId,
   }) async =>
       super.transformSingleDataResponse(
@@ -651,16 +772,16 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
         ),
         dataBuilder: StatusContext.fromJson,
       );
-  
+
   @override
-  Future<MastodonResponse<Account>> lookupStatusRebloggedBy({
+  Future<MastodonResponse<List<Account>>> lookupRebloggedUsers({
     required String statusId,
     String? maxStatusId,
     String? minStatusId,
     String? sinceStatusId,
     int? limit,
   }) async =>
-      super.transformSingleDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrAnonymous,
           '/api/v1/statuses/$statusId/reblogged_by',
@@ -675,14 +796,14 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
       );
 
   @override
-  Future<MastodonResponse<Account>> lookupStatusFavouritedBy({
+  Future<MastodonResponse<List<Account>>> lookupFavouritedUsers({
     required String statusId,
     String? maxStatusId,
     String? minStatusId,
     String? sinceStatusId,
     int? limit,
   }) async =>
-      super.transformSingleDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrAnonymous,
           '/api/v1/statuses/$statusId/favourited_by',
@@ -697,8 +818,8 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
       );
 
   @override
-  Future<MastodonResponse<Status>> favouriteStatus({
-    required String statusId
+  Future<MastodonResponse<Status>> createFavourite({
+    required String statusId,
   }) async =>
       super.transformSingleDataResponse(
         await super.post(
@@ -710,8 +831,8 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
       );
 
   @override
-  Future<MastodonResponse<Status>> unfavouriteStatus({
-    required String statusId
+  Future<MastodonResponse<Status>> destroyFavourite({
+    required String statusId,
   }) async =>
       super.transformSingleDataResponse(
         await super.post(
@@ -723,8 +844,8 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
       );
 
   @override
-  Future<MastodonResponse<Status>> reblogStatus({
-    required String statusId
+  Future<MastodonResponse<Status>> createReblog({
+    required String statusId,
   }) async =>
       super.transformSingleDataResponse(
         await super.post(
@@ -736,9 +857,8 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
       );
 
   @override
-  Future<MastodonResponse<Status>> unreblogStatus({
-    required String statusId
-  }) async =>
+  Future<MastodonResponse<Status>> destroyReblog(
+          {required String statusId}) async =>
       super.transformSingleDataResponse(
         await super.post(
           UserContext.oauth2Only,
@@ -749,8 +869,8 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
       );
 
   @override
-  Future<MastodonResponse<Status>> bookmarkStatus({
-    required String statusId
+  Future<MastodonResponse<Status>> createBookmark({
+    required String statusId,
   }) async =>
       super.transformSingleDataResponse(
         await super.post(
@@ -762,8 +882,8 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
       );
 
   @override
-  Future<MastodonResponse<Status>> unbookmarkStatus({
-    required String statusId
+  Future<MastodonResponse<Status>> destroyBookmark({
+    required String statusId,
   }) async =>
       super.transformSingleDataResponse(
         await super.post(
@@ -775,8 +895,8 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
       );
 
   @override
-  Future<MastodonResponse<Status>> muteStatus({
-    required String statusId
+  Future<MastodonResponse<Status>> createMute({
+    required String statusId,
   }) async =>
       super.transformSingleDataResponse(
         await super.post(
@@ -788,8 +908,8 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
       );
 
   @override
-  Future<MastodonResponse<Status>> unmuteStatus({
-    required String statusId
+  Future<MastodonResponse<Status>> destroyMute({
+    required String statusId,
   }) async =>
       super.transformSingleDataResponse(
         await super.post(
@@ -801,8 +921,8 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
       );
 
   @override
-  Future<MastodonResponse<Status>> pinStatus({
-    required String statusId
+  Future<MastodonResponse<Status>> createPinnedStatus({
+    required String statusId,
   }) async =>
       super.transformSingleDataResponse(
         await super.post(
@@ -814,8 +934,8 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
       );
 
   @override
-  Future<MastodonResponse<Status>> unpinStatus({
-    required String statusId
+  Future<MastodonResponse<Status>> destroyPinnedStatus({
+    required String statusId,
   }) async =>
       super.transformSingleDataResponse(
         await super.post(

@@ -330,7 +330,7 @@ void main() {
     });
   });
 
-  group('.lookupStatus', () {
+  group('.lookupById', () {
     test('normal case', () async {
       final statusesService = StatusesV1Service(
         instance: 'test',
@@ -338,12 +338,12 @@ void main() {
           'test',
           UserContext.oauth2OrAnonymous,
           '/api/v1/statuses/1234',
-          'test/src/service/v1/statuses/data/lookup_status.json',
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
           {},
         ),
       );
 
-      final response = await statusesService.lookupStatus(
+      final response = await statusesService.lookupById(
         statusId: '1234',
       );
 
@@ -359,14 +359,14 @@ void main() {
           'test',
           UserContext.oauth2OrAnonymous,
           '/api/v1/statuses/1234',
-          'test/src/service/v1/statuses/data/lookup_status.json',
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
           statusCode: 401,
           {},
         ),
       );
 
       expectUnauthorizedException(
-        () async => await statusesService.lookupStatus(
+        () async => await statusesService.lookupById(
           statusId: '1234',
         ),
       );
@@ -379,16 +379,14 @@ void main() {
           'test',
           UserContext.oauth2OrAnonymous,
           '/api/v1/statuses/1234',
-          'test/src/service/v1/statuses/data/lookup_status.json',
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
           statusCode: 429,
           {},
         ),
       );
 
       expectRateLimitExceededException(
-        () async => await statusesService.lookupStatus(
-          statusId: '1234'
-        ),
+        () async => await statusesService.lookupById(statusId: '1234'),
       );
     });
   });
@@ -449,14 +447,12 @@ void main() {
       );
 
       expectRateLimitExceededException(
-        () async => await statusesService.lookupStatusContext(
-          statusId: '1234'
-        ),
+        () async => await statusesService.lookupStatusContext(statusId: '1234'),
       );
     });
   });
 
-  group('.lookupStatusRebloggedBy', () {
+  group('.lookupRebloggedUsers', () {
     test('normal case', () async {
       final statusesService = StatusesV1Service(
         instance: 'test',
@@ -464,18 +460,18 @@ void main() {
           'test',
           UserContext.oauth2OrAnonymous,
           '/api/v1/statuses/1234/reblogged_by',
-          'test/src/service/v1/statuses/data/lookup_status_reblogged_by.json',
+          'test/src/service/v1/statuses/data/lookup_reblogged_users.json',
           {},
         ),
       );
 
-      final response = await statusesService.lookupStatusRebloggedBy(
+      final response = await statusesService.lookupRebloggedUsers(
         statusId: '1234',
       );
 
       expect(response, isA<MastodonResponse>());
       expect(response.rateLimit, isA<RateLimit>());
-      expect(response.data, isA<Account>());
+      expect(response.data, isA<List<Account>>());
     });
 
     test('when unauthorized', () async {
@@ -485,14 +481,14 @@ void main() {
           'test',
           UserContext.oauth2OrAnonymous,
           '/api/v1/statuses/1234/reblogged_by',
-          'test/src/service/v1/statuses/data/lookup_status_reblogged_by.json',
+          'test/src/service/v1/statuses/data/lookup_reblogged_users.json',
           statusCode: 401,
           {},
         ),
       );
 
       expectUnauthorizedException(
-        () async => await statusesService.lookupStatusRebloggedBy(
+        () async => await statusesService.lookupRebloggedUsers(
           statusId: '1234',
         ),
       );
@@ -505,21 +501,20 @@ void main() {
           'test',
           UserContext.oauth2OrAnonymous,
           '/api/v1/statuses/1234/reblogged_by',
-          'test/src/service/v1/statuses/data/lookup_status_reblogged_by.json',
+          'test/src/service/v1/statuses/data/lookup_reblogged_users.json',
           statusCode: 429,
           {},
         ),
       );
 
       expectRateLimitExceededException(
-        () async => await statusesService.lookupStatusRebloggedBy(
-          statusId: '1234'
-        ),
+        () async =>
+            await statusesService.lookupRebloggedUsers(statusId: '1234'),
       );
     });
   });
 
-  group('.lookupStatusFavouritedBy', () {
+  group('.lookupFavouritedUsers', () {
     test('normal case', () async {
       final statusesService = StatusesV1Service(
         instance: 'test',
@@ -527,18 +522,18 @@ void main() {
           'test',
           UserContext.oauth2OrAnonymous,
           '/api/v1/statuses/1234/favourited_by',
-          'test/src/service/v1/statuses/data/lookup_status_favourited_by.json',
+          'test/src/service/v1/statuses/data/lookup_favourited_users.json',
           {},
         ),
       );
 
-      final response = await statusesService.lookupStatusFavouritedBy(
+      final response = await statusesService.lookupFavouritedUsers(
         statusId: '1234',
       );
 
       expect(response, isA<MastodonResponse>());
       expect(response.rateLimit, isA<RateLimit>());
-      expect(response.data, isA<Account>());
+      expect(response.data, isA<List<Account>>());
     });
 
     test('when unauthorized', () async {
@@ -548,14 +543,14 @@ void main() {
           'test',
           UserContext.oauth2OrAnonymous,
           '/api/v1/statuses/1234/favourited_by',
-          'test/src/service/v1/statuses/data/lookup_status_favourited_by.json',
+          'test/src/service/v1/statuses/data/lookup_favourited_users.json',
           statusCode: 401,
           {},
         ),
       );
 
       expectUnauthorizedException(
-        () async => await statusesService.lookupStatusFavouritedBy(
+        () async => await statusesService.lookupFavouritedUsers(
           statusId: '1234',
         ),
       );
@@ -568,21 +563,20 @@ void main() {
           'test',
           UserContext.oauth2OrAnonymous,
           '/api/v1/statuses/1234/favourited_by',
-          'test/src/service/v1/statuses/data/lookup_status_favourited_by.json',
+          'test/src/service/v1/statuses/data/lookup_favourited_users.json',
           statusCode: 429,
           {},
         ),
       );
 
       expectRateLimitExceededException(
-        () async => await statusesService.lookupStatusFavouritedBy(
-          statusId: '1234'
-        ),
+        () async =>
+            await statusesService.lookupFavouritedUsers(statusId: '1234'),
       );
     });
   });
 
-  group('.favouriteStatus', () {
+  group('.createFavourite', () {
     test('normal case', () async {
       final statusesService = StatusesV1Service(
         instance: 'test',
@@ -590,11 +584,11 @@ void main() {
           'test',
           UserContext.oauth2Only,
           '/api/v1/statuses/1234/favourite',
-          'test/src/service/v1/statuses/data/lookup_status.json',
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
         ),
       );
 
-      final response = await statusesService.favouriteStatus(
+      final response = await statusesService.createFavourite(
         statusId: '1234',
       );
 
@@ -610,20 +604,20 @@ void main() {
           'test',
           UserContext.oauth2Only,
           '/api/v1/statuses/1234/favourite',
-          'test/src/service/v1/statuses/data/lookup_status.json',
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
           statusCode: 401,
         ),
       );
 
       expectUnauthorizedException(
-        () async => await statusesService.favouriteStatus(
+        () async => await statusesService.createFavourite(
           statusId: '1234',
         ),
       );
     });
   });
 
-  group('.unfavouriteStatus', () {
+  group('.destroyFavourite', () {
     test('normal case', () async {
       final statusesService = StatusesV1Service(
         instance: 'test',
@@ -631,11 +625,11 @@ void main() {
           'test',
           UserContext.oauth2Only,
           '/api/v1/statuses/1234/unfavourite',
-          'test/src/service/v1/statuses/data/lookup_status.json',
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
         ),
       );
 
-      final response = await statusesService.unfavouriteStatus(
+      final response = await statusesService.destroyFavourite(
         statusId: '1234',
       );
 
@@ -651,20 +645,20 @@ void main() {
           'test',
           UserContext.oauth2Only,
           '/api/v1/statuses/1234/unfavourite',
-          'test/src/service/v1/statuses/data/lookup_status.json',
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
           statusCode: 401,
         ),
       );
 
       expectUnauthorizedException(
-        () async => await statusesService.unfavouriteStatus(
+        () async => await statusesService.destroyFavourite(
           statusId: '1234',
         ),
       );
     });
   });
 
-  group('.reblogStatus', () {
+  group('.createReblog', () {
     test('normal case', () async {
       final statusesService = StatusesV1Service(
         instance: 'test',
@@ -672,11 +666,11 @@ void main() {
           'test',
           UserContext.oauth2Only,
           '/api/v1/statuses/1234/reblog',
-          'test/src/service/v1/statuses/data/lookup_status.json',
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
         ),
       );
 
-      final response = await statusesService.reblogStatus(
+      final response = await statusesService.createReblog(
         statusId: '1234',
       );
 
@@ -692,20 +686,20 @@ void main() {
           'test',
           UserContext.oauth2Only,
           '/api/v1/statuses/1234/reblog',
-          'test/src/service/v1/statuses/data/lookup_status.json',
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
           statusCode: 401,
         ),
       );
 
       expectUnauthorizedException(
-        () async => await statusesService.reblogStatus(
+        () async => await statusesService.createReblog(
           statusId: '1234',
         ),
       );
     });
   });
 
-  group('.unreblogStatus', () {
+  group('.destroyReblog', () {
     test('normal case', () async {
       final statusesService = StatusesV1Service(
         instance: 'test',
@@ -713,11 +707,11 @@ void main() {
           'test',
           UserContext.oauth2Only,
           '/api/v1/statuses/1234/unreblog',
-          'test/src/service/v1/statuses/data/lookup_status.json',
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
         ),
       );
 
-      final response = await statusesService.unreblogStatus(
+      final response = await statusesService.destroyReblog(
         statusId: '1234',
       );
 
@@ -733,20 +727,20 @@ void main() {
           'test',
           UserContext.oauth2Only,
           '/api/v1/statuses/1234/unreblog',
-          'test/src/service/v1/statuses/data/lookup_status.json',
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
           statusCode: 401,
         ),
       );
 
       expectUnauthorizedException(
-        () async => await statusesService.unreblogStatus(
+        () async => await statusesService.destroyReblog(
           statusId: '1234',
         ),
       );
     });
   });
 
-  group('.bookmarkStatus', () {
+  group('.createBookmark', () {
     test('normal case', () async {
       final statusesService = StatusesV1Service(
         instance: 'test',
@@ -754,11 +748,11 @@ void main() {
           'test',
           UserContext.oauth2Only,
           '/api/v1/statuses/1234/bookmark',
-          'test/src/service/v1/statuses/data/lookup_status.json',
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
         ),
       );
 
-      final response = await statusesService.bookmarkStatus(
+      final response = await statusesService.createBookmark(
         statusId: '1234',
       );
 
@@ -774,73 +768,32 @@ void main() {
           'test',
           UserContext.oauth2Only,
           '/api/v1/statuses/1234/bookmark',
-          'test/src/service/v1/statuses/data/lookup_status.json',
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
           statusCode: 401,
         ),
       );
 
       expectUnauthorizedException(
-        () async => await statusesService.bookmarkStatus(
+        () async => await statusesService.createBookmark(
           statusId: '1234',
         ),
       );
     });
   });
 
-  group('.unbookmarkStatus', () {
+  group('.destroyBookmark', () {
     test('normal case', () async {
-      final statusesService = StatusesV1Service( 
-        instance: 'test',
-        context: context.buildPostStub(
-          'test',
-          UserContext.oauth2Only,
-          '/api/v1/statuses/1234/unbookmark',
-          'test/src/service/v1/statuses/data/lookup_status.json',
-        ),
-      );
-
-      final response = await statusesService.unbookmarkStatus(
-        statusId: '1234',
-      );
-
-      expect(response, isA<MastodonResponse>());
-      expect(response.rateLimit, isA<RateLimit>());
-      expect(response.data, isA<Status>());
-    });
-
-    test('when unauthorized', () async {
       final statusesService = StatusesV1Service(
         instance: 'test',
         context: context.buildPostStub(
           'test',
           UserContext.oauth2Only,
           '/api/v1/statuses/1234/unbookmark',
-          'test/src/service/v1/statuses/data/lookup_status.json',
-          statusCode: 401,
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
         ),
       );
 
-      expectUnauthorizedException(
-        () async => await statusesService.unbookmarkStatus(
-          statusId: '1234',
-        ),
-      );
-    });
-  });
-
-  group('.muteStatus', () {
-    test('normal case', () async {
-      final statusesService = StatusesV1Service( 
-        instance: 'test',
-        context: context.buildPostStub(
-          'test',
-          UserContext.oauth2Only,
-          '/api/v1/statuses/1234/mute',
-          'test/src/service/v1/statuses/data/lookup_status.json',
-        ),
-      );
-
-      final response = await statusesService.muteStatus(
+      final response = await statusesService.destroyBookmark(
         statusId: '1234',
       );
 
@@ -850,38 +803,38 @@ void main() {
     });
 
     test('when unauthorized', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/statuses/1234/unbookmark',
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await statusesService.destroyBookmark(
+          statusId: '1234',
+        ),
+      );
+    });
+  });
+
+  group('.createMute', () {
+    test('normal case', () async {
       final statusesService = StatusesV1Service(
         instance: 'test',
         context: context.buildPostStub(
           'test',
           UserContext.oauth2Only,
           '/api/v1/statuses/1234/mute',
-          'test/src/service/v1/statuses/data/lookup_status.json',
-          statusCode: 401,
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
         ),
       );
 
-      expectUnauthorizedException(
-        () async => await statusesService.muteStatus(
-          statusId: '1234',
-        ),
-      );
-    });
-  });
-
-  group('.unmuteStatus', () {
-    test('normal case', () async {
-      final statusesService = StatusesV1Service( 
-        instance: 'test',
-        context: context.buildPostStub(
-          'test',
-          UserContext.oauth2Only,
-          '/api/v1/statuses/1234/unmute',
-          'test/src/service/v1/statuses/data/lookup_status.json',
-        ),
-      );
-
-      final response = await statusesService.unmuteStatus(
+      final response = await statusesService.createMute(
         statusId: '1234',
       );
 
@@ -891,38 +844,79 @@ void main() {
     });
 
     test('when unauthorized', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/statuses/1234/mute',
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await statusesService.createMute(
+          statusId: '1234',
+        ),
+      );
+    });
+  });
+
+  group('.destroyMute', () {
+    test('normal case', () async {
       final statusesService = StatusesV1Service(
         instance: 'test',
         context: context.buildPostStub(
           'test',
           UserContext.oauth2Only,
           '/api/v1/statuses/1234/unmute',
-          'test/src/service/v1/statuses/data/lookup_status.json',
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
+        ),
+      );
+
+      final response = await statusesService.destroyMute(
+        statusId: '1234',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<Status>());
+    });
+
+    test('when unauthorized', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/statuses/1234/unmute',
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
           statusCode: 401,
         ),
       );
 
       expectUnauthorizedException(
-        () async => await statusesService.unmuteStatus(
+        () async => await statusesService.destroyMute(
           statusId: '1234',
         ),
       );
     });
   });
 
-  group('.pinStatus', () {
+  group('.createPinnedStatus', () {
     test('normal case', () async {
-      final statusesService = StatusesV1Service( 
+      final statusesService = StatusesV1Service(
         instance: 'test',
         context: context.buildPostStub(
           'test',
           UserContext.oauth2Only,
           '/api/v1/statuses/1234/pin',
-          'test/src/service/v1/statuses/data/lookup_status.json',
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
         ),
       );
 
-      final response = await statusesService.pinStatus(
+      final response = await statusesService.createPinnedStatus(
         statusId: '1234',
       );
 
@@ -938,32 +932,32 @@ void main() {
           'test',
           UserContext.oauth2Only,
           '/api/v1/statuses/1234/pin',
-          'test/src/service/v1/statuses/data/lookup_status.json',
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
           statusCode: 401,
         ),
       );
 
       expectUnauthorizedException(
-        () async => await statusesService.pinStatus(
+        () async => await statusesService.createPinnedStatus(
           statusId: '1234',
         ),
       );
     });
   });
 
-  group('.unpinStatus', () {
+  group('.destroyPinnedStatus', () {
     test('normal case', () async {
-      final statusesService = StatusesV1Service( 
+      final statusesService = StatusesV1Service(
         instance: 'test',
         context: context.buildPostStub(
           'test',
           UserContext.oauth2Only,
           '/api/v1/statuses/1234/unpin',
-          'test/src/service/v1/statuses/data/lookup_status.json',
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
         ),
       );
 
-      final response = await statusesService.unpinStatus(
+      final response = await statusesService.destroyPinnedStatus(
         statusId: '1234',
       );
 
@@ -979,17 +973,16 @@ void main() {
           'test',
           UserContext.oauth2Only,
           '/api/v1/statuses/1234/unpin',
-          'test/src/service/v1/statuses/data/lookup_status.json',
+          'test/src/service/v1/statuses/data/lookup_by_id.json',
           statusCode: 401,
         ),
       );
 
       expectUnauthorizedException(
-        () async => await statusesService.unpinStatus(
+        () async => await statusesService.destroyPinnedStatus(
           statusId: '1234',
         ),
       );
     });
   });
-  
 }
