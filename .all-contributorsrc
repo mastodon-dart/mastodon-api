@@ -67,6 +67,16 @@
         "question",
         "bug"
       ]
+    },
+    {
+      "login": "Kraigo",
+      "name": "Igor",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8700639?v=4",
+      "profile": "https://github.com/Kraigo",
+      "contributions": [
+        "code",
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 5,
