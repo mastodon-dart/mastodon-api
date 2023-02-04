@@ -6,9 +6,7 @@
 
 // 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-// 🌎 Project imports:
-import '../../../mastodon_api.dart';
+import 'status.dart';
 
 part 'status_context.freezed.dart';
 part 'status_context.g.dart';

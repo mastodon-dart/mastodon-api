@@ -208,6 +208,11 @@ abstract class AccountsV1Service {
     required File file,
   });
 
+  @Deprecated('Use lookupAccount instead. Will be removed v1.0.0')
+  Future<MastodonResponse<Account>> lookupById({
+    required String accountId,
+  });
+
   /// View information about a profile.
   ///
   /// ## Parameters
@@ -230,7 +235,7 @@ abstract class AccountsV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/accounts/#get
-  Future<MastodonResponse<Account>> lookupById({
+  Future<MastodonResponse<Account>> lookupAccount({
     required String accountId,
   });
 
@@ -1320,6 +1325,12 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
 
   @override
   Future<MastodonResponse<Account>> lookupById({
+    required String accountId,
+  }) async =>
+      await lookupAccount(accountId: accountId);
+
+  @override
+  Future<MastodonResponse<Account>> lookupAccount({
     required String accountId,
   }) async =>
       super.transformSingleDataResponse(
