@@ -47,8 +47,10 @@ class MastodonUploadException extends MastodonException {
       }
     }
 
-    buffer.writeln('  Please create an Issue if you have a question '
-        'or suggestion for this exception.');
+    buffer
+      ..writeln('  Please create an Issue if you have a question '
+          'or suggestion for this exception.')
+      ..writeln('  https://github.com/mastodon-dart/mastodon-api/issues');
 
     return buffer.toString();
   }
