@@ -3,6 +3,11 @@
 ## v0.4.0
 
 - Split the `PreviewCard` object into a `TrendsLink` object. Now `List<TrendsLink>` is returned from `InstanceV1Service.lookupTrendingLinks`. The fields are the same as in PreviewCard before the modification, so there is no effect if the type is not explicitly specified. If you have explicitly specified the `PreviewCard` as type, rewrite it to `TrendsLink` if necessary. ([#91](https://github.com/mastodon-dart/mastodon-api/issues/91))
+- Add `NotificationsV1Service`. ([#32](https://github.com/mastodon-dart/mastodon-api/issues/32))
+  - `GET /api/v1/notifications`
+  - `GET /api/v1/notification/:id`
+  - `POST /api/v1/notifications/clear`
+  - `POST /api/v1/notifications/:id/dismiss`
 
 ## v0.3.3
 
