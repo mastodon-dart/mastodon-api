@@ -87,7 +87,7 @@ abstract class NotificationsV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/notifications/#get-one
-  Future<MastodonResponse<Notification>> lookupNotificationById({
+  Future<MastodonResponse<Notification>> lookupNotification({
     required String notificationId,
   });
 
@@ -108,7 +108,7 @@ abstract class NotificationsV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/notifications/#clear
-  Future<MastodonResponse<bool>> clearAllNotifications();
+  Future<MastodonResponse<bool>> destroyAllNotifications();
 
   /// Dismiss a single notification from the server.
   ///
@@ -131,7 +131,7 @@ abstract class NotificationsV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/notifications/#dismiss
-  Future<MastodonResponse<bool>> clearNotificationById({
+  Future<MastodonResponse<bool>> destroyNotification({
     required String notificationId,
   });
 }
@@ -172,7 +172,7 @@ class _NotificationsV1Service extends BaseService
       );
 
   @override
-  Future<MastodonResponse<Notification>> lookupNotificationById({
+  Future<MastodonResponse<Notification>> lookupNotification({
     required String notificationId,
   }) async =>
       super.transformSingleDataResponse(
@@ -184,7 +184,7 @@ class _NotificationsV1Service extends BaseService
       );
 
   @override
-  Future<MastodonResponse<bool>> clearAllNotifications() async =>
+  Future<MastodonResponse<bool>> destroyAllNotifications() async =>
       super.evaluateResponse(
         await super.post(
           UserContext.oauth2Only,
@@ -193,7 +193,7 @@ class _NotificationsV1Service extends BaseService
       );
 
   @override
-  Future<MastodonResponse<bool>> clearNotificationById({
+  Future<MastodonResponse<bool>> destroyNotification({
     required String notificationId,
   }) async =>
       super.evaluateResponse(

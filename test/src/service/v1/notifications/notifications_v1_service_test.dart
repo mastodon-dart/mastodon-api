@@ -13,6 +13,7 @@ import 'package:mastodon_api/src/service/v1/notifications/notifications_v1_servi
 import 'package:test/test.dart';
 
 import '../../../../mocks/client_context_stubs.dart' as context;
+import '../../common_expectations.dart';
 
 void main() {
   group('.lookupsNotifications', () {
@@ -49,9 +50,45 @@ void main() {
       expect(response.rateLimit, isA<RateLimit>());
       expect(response.data, isA<List<Notification>>());
     });
+
+    test('when unauthorized', () async {
+      final notificationsService = NotificationsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/notifications',
+          'test/src/service/v1/notifications/data/lookup_notifications.json',
+          statusCode: 401,
+          {},
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await notificationsService.lookupNotifications(),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final notificationsService = NotificationsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/notifications',
+          'test/src/service/v1/notifications/data/lookup_notifications.json',
+          statusCode: 429,
+          {},
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await notificationsService.lookupNotifications(),
+      );
+    });
   });
 
-  group('.lookupNotificationById', () {
+  group('.lookupNotification', () {
     test('normal case', () async {
       final notificationsService = NotificationsV1Service(
         instance: 'test',
@@ -59,12 +96,12 @@ void main() {
           'test',
           UserContext.oauth2Only,
           '/api/v1/notification/12345',
-          'test/src/service/v1/notifications/data/lookup_notification_by_id.json',
+          'test/src/service/v1/notifications/data/lookup_notification.json',
           {},
         ),
       );
 
-      final response = await notificationsService.lookupNotificationById(
+      final response = await notificationsService.lookupNotification(
         notificationId: '12345',
       );
 
@@ -72,9 +109,49 @@ void main() {
       expect(response.rateLimit, isA<RateLimit>());
       expect(response.data, isA<Notification>());
     });
+
+    test('when unauthorized', () async {
+      final notificationsService = NotificationsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/notification/12345',
+          'test/src/service/v1/notifications/data/lookup_notification.json',
+          statusCode: 401,
+          {},
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await notificationsService.lookupNotification(
+          notificationId: '12345',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final notificationsService = NotificationsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/notification/12345',
+          'test/src/service/v1/notifications/data/lookup_notification.json',
+          statusCode: 429,
+          {},
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await notificationsService.lookupNotification(
+          notificationId: '12345',
+        ),
+      );
+    });
   });
 
-  group('.clearAllNotifications', () {
+  group('.destroyAllNotifications', () {
     test('normal case', () async {
       final notificationsService = NotificationsV1Service(
         instance: 'test',
@@ -82,19 +159,53 @@ void main() {
           'test',
           UserContext.oauth2Only,
           '/api/v1/notifications/clear',
-          'test/src/service/v1/notifications/data/clear_all_notifications.json',
+          'test/src/service/v1/notifications/data/destroy_all_notifications.json',
         ),
       );
 
-      final response = await notificationsService.clearAllNotifications();
+      final response = await notificationsService.destroyAllNotifications();
 
       expect(response, isA<MastodonResponse>());
       expect(response.rateLimit, isA<RateLimit>());
       expect(response.data, isTrue);
     });
+
+    test('when unauthorized', () async {
+      final notificationsService = NotificationsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/notifications/clear',
+          'test/src/service/v1/notifications/data/destroy_all_notifications.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await notificationsService.destroyAllNotifications(),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final notificationsService = NotificationsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/notifications/clear',
+          'test/src/service/v1/notifications/data/destroy_all_notifications.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await notificationsService.destroyAllNotifications(),
+      );
+    });
   });
 
-  group('.clearNotificationById', () {
+  group('.destroyNotification', () {
     test('normal case', () async {
       final notificationsService = NotificationsV1Service(
         instance: 'test',
@@ -102,17 +213,55 @@ void main() {
           'test',
           UserContext.oauth2Only,
           '/api/v1/notifications/12345/dismiss',
-          'test/src/service/v1/notifications/data/clear_notification_by_id.json',
+          'test/src/service/v1/notifications/data/destroy_notification.json',
         ),
       );
 
-      final response = await notificationsService.clearNotificationById(
+      final response = await notificationsService.destroyNotification(
         notificationId: '12345',
       );
 
       expect(response, isA<MastodonResponse>());
       expect(response.rateLimit, isA<RateLimit>());
       expect(response.data, isTrue);
+    });
+
+    test('when unauthorized', () async {
+      final notificationsService = NotificationsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/notifications/12345/dismiss',
+          'test/src/service/v1/notifications/data/destroy_notification.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await notificationsService.destroyNotification(
+          notificationId: '12345',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final notificationsService = NotificationsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/notifications/12345/dismiss',
+          'test/src/service/v1/notifications/data/destroy_notification.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await notificationsService.destroyNotification(
+          notificationId: '12345',
+        ),
+      );
     });
   });
 }
