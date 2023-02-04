@@ -12,7 +12,6 @@ import 'package:mastodon_api/src/service/entities/emoji.dart';
 import 'package:mastodon_api/src/service/entities/extended_description.dart';
 import 'package:mastodon_api/src/service/entities/instance.dart';
 import 'package:mastodon_api/src/service/entities/instance_activity.dart';
-import 'package:mastodon_api/src/service/entities/preview_card.dart';
 import 'package:mastodon_api/src/service/entities/rate_limit.dart';
 import 'package:mastodon_api/src/service/entities/rule.dart';
 import 'package:mastodon_api/src/service/entities/status.dart';
