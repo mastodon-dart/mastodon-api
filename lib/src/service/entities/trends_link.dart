@@ -9,13 +9,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // 🌎 Project imports:
 import 'preview_card_type.dart';
+import 'usage_statistics.dart';
 
-part 'preview_card.freezed.dart';
-part 'preview_card.g.dart';
+part 'trends_link.freezed.dart';
+part 'trends_link.g.dart';
 
 @freezed
-class PreviewCard with _$PreviewCard {
-  const factory PreviewCard({
+class TrendsLink with _$TrendsLink {
+  const factory TrendsLink({
     /// Location of linked resource.
     required String url,
 
@@ -58,8 +59,11 @@ class PreviewCard with _$PreviewCard {
     /// A hash computed by the BlurHash algorithm, for generating colorful
     /// preview thumbnails when media has not been downloaded yet.
     @JsonKey(name: 'blurhash') String? blurHash,
-  }) = _PreviewCard;
 
-  factory PreviewCard.fromJson(Map<String, Object?> json) =>
-      _$PreviewCardFromJson(json);
+    /// Usage statistics for given days (typically the past week).
+    @JsonKey(name: 'history') required List<UsageStatistics> usageHistory,
+  }) = _TrendsLink;
+
+  factory TrendsLink.fromJson(Map<String, Object?> json) =>
+      _$TrendsLinkFromJson(json);
 }

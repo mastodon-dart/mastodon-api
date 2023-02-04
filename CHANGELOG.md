@@ -1,5 +1,9 @@
 # Release Note
 
+## v0.4.0
+
+- Split the `PreviewCard` object into a `TrendsLink` object. Now `List<TrendsLink>` is returned from `InstanceV1Service.lookupTrendingLinks`. The fields are the same as in PreviewCard before the modification, so there is no effect if the type is not explicitly specified. If you have explicitly specified the `PreviewCard` as type, rewrite it to `TrendsLink` if necessary. ([#91](https://github.com/mastodon-dart/mastodon-api/issues/91))
+
 ## v0.3.3
 
 - Supported `custom_emojis API methods`. ([#38](https://github.com/mastodon-dart/mastodon-api/issues/38))

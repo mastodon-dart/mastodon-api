@@ -2,17 +2,17 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-part of 'preview_card.dart';
+part of 'trends_link.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PreviewCard _$$_PreviewCardFromJson(Map json) => $checkedCreate(
-      r'_$_PreviewCard',
+_$_TrendsLink _$$_TrendsLinkFromJson(Map json) => $checkedCreate(
+      r'_$_TrendsLink',
       json,
       ($checkedConvert) {
-        final val = _$_PreviewCard(
+        final val = _$_TrendsLink(
           url: $checkedConvert('url', (v) => v as String),
           title: $checkedConvert('title', (v) => v as String),
           description: $checkedConvert('description', (v) => v as String),
@@ -28,6 +28,12 @@ _$_PreviewCard _$$_PreviewCardFromJson(Map json) => $checkedCreate(
           imageUrl: $checkedConvert('image', (v) => v as String?),
           embedUrl: $checkedConvert('embed_url', (v) => v as String),
           blurHash: $checkedConvert('blurhash', (v) => v as String?),
+          usageHistory: $checkedConvert(
+              'history',
+              (v) => (v as List<dynamic>)
+                  .map((e) => UsageStatistics.fromJson(
+                      Map<String, Object?>.from(e as Map)))
+                  .toList()),
         );
         return val;
       },
@@ -38,11 +44,12 @@ _$_PreviewCard _$$_PreviewCardFromJson(Map json) => $checkedCreate(
         'providerUrl': 'provider_url',
         'imageUrl': 'image',
         'embedUrl': 'embed_url',
-        'blurHash': 'blurhash'
+        'blurHash': 'blurhash',
+        'usageHistory': 'history'
       },
     );
 
-Map<String, dynamic> _$$_PreviewCardToJson(_$_PreviewCard instance) =>
+Map<String, dynamic> _$$_TrendsLinkToJson(_$_TrendsLink instance) =>
     <String, dynamic>{
       'url': instance.url,
       'title': instance.title,
@@ -58,6 +65,7 @@ Map<String, dynamic> _$$_PreviewCardToJson(_$_PreviewCard instance) =>
       'image': instance.imageUrl,
       'embed_url': instance.embedUrl,
       'blurhash': instance.blurHash,
+      'history': instance.usageHistory.map((e) => e.toJson()).toList(),
     };
 
 const _$PreviewCardTypeEnumMap = {
