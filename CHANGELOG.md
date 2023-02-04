@@ -2,6 +2,26 @@
 
 ## v0.4.0
 
+- Added endpoints in `StatusesV1Service`. ([#23](https://github.com/mastodon-dart/mastodon-api/issues/23))
+  - `POST /api/v1/statuses`
+  - `GET /api/v1/statuses/:id`
+  - `DELETE /api/v1/statuses/:id`
+  - `GET /api/v1/statuses/:id/context`
+  - `GET /api/v1/statuses/:id/reblogged_by`
+  - `GET /api/v1/statuses/:id/favourited_by`
+  - `POST /api/v1/statuses/:id/favourite`
+  - `POST /api/v1/statuses/:id/unfavourite`
+  - `POST /api/v1/statuses/:id/reblog`
+  - `POST /api/v1/statuses/:id/unreblog`
+  - `POST /api/v1/statuses/:id/bookmark`
+  - `POST /api/v1/statuses/:id/unbookmark`
+  - `POST /api/v1/statuses/:id/mute`
+  - `POST /api/v1/statuses/:id/unmute`
+  - `POST /api/v1/statuses/:id/pin`
+  - `POST /api/v1/statuses/:id/unpin`
+  - `PUT /api/v1/statuses/:id`
+  - `GET /api/v1/statuses/:id/history`
+  - `GET /api/v1/statuses/:id/source`
 - Split the `PreviewCard` object into a `TrendsLink` object. Now `List<TrendsLink>` is returned from `InstanceV1Service.lookupTrendingLinks`. The fields are the same as in PreviewCard before the modification, so there is no effect if the type is not explicitly specified. If you have explicitly specified the `PreviewCard` as type, rewrite it to `TrendsLink` if necessary. ([#91](https://github.com/mastodon-dart/mastodon-api/issues/91))
 - Add `NotificationsV1Service`. ([#32](https://github.com/mastodon-dart/mastodon-api/issues/32))
   - `GET /api/v1/notifications`
