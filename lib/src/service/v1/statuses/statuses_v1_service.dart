@@ -211,7 +211,7 @@ abstract class StatusesV1Service {
     required String statusId,
   });
 
-  @Deprecated('Use lookupPoll instead. Will be removed in v0.5.0')
+  @Deprecated('Use lookupPoll instead. Will be removed in v1.0.0')
   Future<MastodonResponse<Poll>> lookupPollById({required String pollId});
 
   /// Returns a specific poll.
@@ -294,7 +294,7 @@ abstract class StatusesV1Service {
     required List<int> choices,
   });
 
-  @Deprecated('Use lookupStatus instead. Will be removed in v0.5.0')
+  @Deprecated('Use lookupStatus instead. Will be removed in v1.0.0')
   Future<MastodonResponse<Status>> lookupById({
     required String statusId,
   });
