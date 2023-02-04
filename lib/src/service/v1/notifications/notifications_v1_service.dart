@@ -38,7 +38,8 @@ abstract class NotificationsV1Service {
   ///
   /// - [excludeTypes]: Types to exclude from the results.
   ///
-  /// - [accountId]: Return only notifications received from the specified account.
+  /// - [accountId]: Return only notifications received from the specified
+  ///                account.
   ///
   /// ## Endpoint Url
   ///

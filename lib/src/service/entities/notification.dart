@@ -31,8 +31,9 @@ class Notification with _$Notification {
     /// The account that performed the action that generated the notification.
     required Account account,
 
-    /// Status that was the object of the notification. Attached when type of the
-    /// notification is favourite, reblog, status, mention, poll, or update.
+    /// Status that was the object of the notification. Attached when type of
+    /// the notification is favourite, reblog, status, mention, poll,
+    /// or update.
     Status? status,
 
     // Report that was the object of the notification.
