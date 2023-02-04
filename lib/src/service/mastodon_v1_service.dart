@@ -7,6 +7,7 @@ import '../core/client/client_context.dart';
 import 'v1/accounts/accounts_v1_service.dart';
 import 'v1/apps/apps_v1_service.dart';
 import 'v1/instance/instance_v1_service.dart';
+import 'v1/notifications/notifications_v1_service.dart';
 import 'v1/statuses/statuses_v1_service.dart';
 import 'v1/timelines/timelines_v1_service.dart';
 
@@ -36,6 +37,9 @@ abstract class MastodonV1Service {
 
   /// Returns the timelines service.
   TimelinesV1Service get timelines;
+
+  /// Returns the notifications service.
+  NotificationsV1Service get notifications;
 }
 
 class _MastodonV1Service implements MastodonV1Service {
@@ -47,7 +51,9 @@ class _MastodonV1Service implements MastodonV1Service {
         apps = AppsV1Service(instance: instance, context: context),
         accounts = AccountsV1Service(instance: instance, context: context),
         statuses = StatusesV1Service(instance: instance, context: context),
-        timelines = TimelinesV1Service(instance: instance, context: context);
+        timelines = TimelinesV1Service(instance: instance, context: context),
+        notifications =
+            NotificationsV1Service(instance: instance, context: context);
 
   @override
   final InstanceV1Service instance;
@@ -63,4 +69,7 @@ class _MastodonV1Service implements MastodonV1Service {
 
   @override
   final TimelinesV1Service timelines;
+
+  @override
+  final NotificationsV1Service notifications;
 }
