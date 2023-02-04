@@ -12,11 +12,11 @@ import 'package:mastodon_api/src/service/entities/emoji.dart';
 import 'package:mastodon_api/src/service/entities/extended_description.dart';
 import 'package:mastodon_api/src/service/entities/instance.dart';
 import 'package:mastodon_api/src/service/entities/instance_activity.dart';
-import 'package:mastodon_api/src/service/entities/preview_card.dart';
 import 'package:mastodon_api/src/service/entities/rate_limit.dart';
 import 'package:mastodon_api/src/service/entities/rule.dart';
 import 'package:mastodon_api/src/service/entities/status.dart';
 import 'package:mastodon_api/src/service/entities/tag.dart';
+import 'package:mastodon_api/src/service/entities/trends_link.dart';
 import 'package:mastodon_api/src/service/response/mastodon_response.dart';
 import 'package:mastodon_api/src/service/v1/instance/instance_v1_service.dart';
 // 📦 Package imports:
@@ -562,7 +562,7 @@ void main() {
 
       expect(response, isA<MastodonResponse>());
       expect(response.rateLimit, isA<RateLimit>());
-      expect(response.data, isA<List<PreviewCard>>());
+      expect(response.data, isA<List<TrendsLink>>());
     });
 
     test('when unauthorized', () async {

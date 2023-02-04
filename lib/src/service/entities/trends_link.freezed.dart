@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'preview_card.dart';
+part of 'trends_link.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PreviewCard _$PreviewCardFromJson(Map<String, dynamic> json) {
-  return _PreviewCard.fromJson(json);
+TrendsLink _$TrendsLinkFromJson(Map<String, dynamic> json) {
+  return _TrendsLink.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PreviewCard {
+mixin _$TrendsLink {
   /// Location of linked resource.
   String get url => throw _privateConstructorUsedError;
 
@@ -65,17 +65,21 @@ mixin _$PreviewCard {
   @JsonKey(name: 'blurhash')
   String? get blurHash => throw _privateConstructorUsedError;
 
+  /// Usage statistics for given days (typically the past week).
+  @JsonKey(name: 'history')
+  List<UsageStatistics> get usageHistory => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PreviewCardCopyWith<PreviewCard> get copyWith =>
+  $TrendsLinkCopyWith<TrendsLink> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PreviewCardCopyWith<$Res> {
-  factory $PreviewCardCopyWith(
-          PreviewCard value, $Res Function(PreviewCard) then) =
-      _$PreviewCardCopyWithImpl<$Res, PreviewCard>;
+abstract class $TrendsLinkCopyWith<$Res> {
+  factory $TrendsLinkCopyWith(
+          TrendsLink value, $Res Function(TrendsLink) then) =
+      _$TrendsLinkCopyWithImpl<$Res, TrendsLink>;
   @useResult
   $Res call(
       {String url,
@@ -91,13 +95,14 @@ abstract class $PreviewCardCopyWith<$Res> {
       int height,
       @JsonKey(name: 'image') String? imageUrl,
       String embedUrl,
-      @JsonKey(name: 'blurhash') String? blurHash});
+      @JsonKey(name: 'blurhash') String? blurHash,
+      @JsonKey(name: 'history') List<UsageStatistics> usageHistory});
 }
 
 /// @nodoc
-class _$PreviewCardCopyWithImpl<$Res, $Val extends PreviewCard>
-    implements $PreviewCardCopyWith<$Res> {
-  _$PreviewCardCopyWithImpl(this._value, this._then);
+class _$TrendsLinkCopyWithImpl<$Res, $Val extends TrendsLink>
+    implements $TrendsLinkCopyWith<$Res> {
+  _$TrendsLinkCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -121,6 +126,7 @@ class _$PreviewCardCopyWithImpl<$Res, $Val extends PreviewCard>
     Object? imageUrl = freezed,
     Object? embedUrl = null,
     Object? blurHash = freezed,
+    Object? usageHistory = null,
   }) {
     return _then(_value.copyWith(
       url: null == url
@@ -179,16 +185,20 @@ class _$PreviewCardCopyWithImpl<$Res, $Val extends PreviewCard>
           ? _value.blurHash
           : blurHash // ignore: cast_nullable_to_non_nullable
               as String?,
+      usageHistory: null == usageHistory
+          ? _value.usageHistory
+          : usageHistory // ignore: cast_nullable_to_non_nullable
+              as List<UsageStatistics>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_PreviewCardCopyWith<$Res>
-    implements $PreviewCardCopyWith<$Res> {
-  factory _$$_PreviewCardCopyWith(
-          _$_PreviewCard value, $Res Function(_$_PreviewCard) then) =
-      __$$_PreviewCardCopyWithImpl<$Res>;
+abstract class _$$_TrendsLinkCopyWith<$Res>
+    implements $TrendsLinkCopyWith<$Res> {
+  factory _$$_TrendsLinkCopyWith(
+          _$_TrendsLink value, $Res Function(_$_TrendsLink) then) =
+      __$$_TrendsLinkCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -205,15 +215,16 @@ abstract class _$$_PreviewCardCopyWith<$Res>
       int height,
       @JsonKey(name: 'image') String? imageUrl,
       String embedUrl,
-      @JsonKey(name: 'blurhash') String? blurHash});
+      @JsonKey(name: 'blurhash') String? blurHash,
+      @JsonKey(name: 'history') List<UsageStatistics> usageHistory});
 }
 
 /// @nodoc
-class __$$_PreviewCardCopyWithImpl<$Res>
-    extends _$PreviewCardCopyWithImpl<$Res, _$_PreviewCard>
-    implements _$$_PreviewCardCopyWith<$Res> {
-  __$$_PreviewCardCopyWithImpl(
-      _$_PreviewCard _value, $Res Function(_$_PreviewCard) _then)
+class __$$_TrendsLinkCopyWithImpl<$Res>
+    extends _$TrendsLinkCopyWithImpl<$Res, _$_TrendsLink>
+    implements _$$_TrendsLinkCopyWith<$Res> {
+  __$$_TrendsLinkCopyWithImpl(
+      _$_TrendsLink _value, $Res Function(_$_TrendsLink) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -233,8 +244,9 @@ class __$$_PreviewCardCopyWithImpl<$Res>
     Object? imageUrl = freezed,
     Object? embedUrl = null,
     Object? blurHash = freezed,
+    Object? usageHistory = null,
   }) {
-    return _then(_$_PreviewCard(
+    return _then(_$_TrendsLink(
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -291,14 +303,18 @@ class __$$_PreviewCardCopyWithImpl<$Res>
           ? _value.blurHash
           : blurHash // ignore: cast_nullable_to_non_nullable
               as String?,
+      usageHistory: null == usageHistory
+          ? _value._usageHistory
+          : usageHistory // ignore: cast_nullable_to_non_nullable
+              as List<UsageStatistics>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_PreviewCard implements _PreviewCard {
-  const _$_PreviewCard(
+class _$_TrendsLink implements _TrendsLink {
+  const _$_TrendsLink(
       {required this.url,
       required this.title,
       required this.description,
@@ -310,12 +326,17 @@ class _$_PreviewCard implements _PreviewCard {
       required this.html,
       required this.width,
       required this.height,
-      @JsonKey(name: 'image') this.imageUrl,
+      @JsonKey(name: 'image')
+          this.imageUrl,
       required this.embedUrl,
-      @JsonKey(name: 'blurhash') this.blurHash});
+      @JsonKey(name: 'blurhash')
+          this.blurHash,
+      @JsonKey(name: 'history')
+          required final List<UsageStatistics> usageHistory})
+      : _usageHistory = usageHistory;
 
-  factory _$_PreviewCard.fromJson(Map<String, dynamic> json) =>
-      _$$_PreviewCardFromJson(json);
+  factory _$_TrendsLink.fromJson(Map<String, dynamic> json) =>
+      _$$_TrendsLinkFromJson(json);
 
   /// Location of linked resource.
   @override
@@ -376,16 +397,28 @@ class _$_PreviewCard implements _PreviewCard {
   @JsonKey(name: 'blurhash')
   final String? blurHash;
 
+  /// Usage statistics for given days (typically the past week).
+  final List<UsageStatistics> _usageHistory;
+
+  /// Usage statistics for given days (typically the past week).
+  @override
+  @JsonKey(name: 'history')
+  List<UsageStatistics> get usageHistory {
+    if (_usageHistory is EqualUnmodifiableListView) return _usageHistory;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_usageHistory);
+  }
+
   @override
   String toString() {
-    return 'PreviewCard(url: $url, title: $title, description: $description, type: $type, authorName: $authorName, authorUrl: $authorUrl, providerName: $providerName, providerUrl: $providerUrl, html: $html, width: $width, height: $height, imageUrl: $imageUrl, embedUrl: $embedUrl, blurHash: $blurHash)';
+    return 'TrendsLink(url: $url, title: $title, description: $description, type: $type, authorName: $authorName, authorUrl: $authorUrl, providerName: $providerName, providerUrl: $providerUrl, html: $html, width: $width, height: $height, imageUrl: $imageUrl, embedUrl: $embedUrl, blurHash: $blurHash, usageHistory: $usageHistory)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PreviewCard &&
+            other is _$_TrendsLink &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
@@ -407,7 +440,9 @@ class _$_PreviewCard implements _PreviewCard {
             (identical(other.embedUrl, embedUrl) ||
                 other.embedUrl == embedUrl) &&
             (identical(other.blurHash, blurHash) ||
-                other.blurHash == blurHash));
+                other.blurHash == blurHash) &&
+            const DeepCollectionEquality()
+                .equals(other._usageHistory, _usageHistory));
   }
 
   @JsonKey(ignore: true)
@@ -427,24 +462,25 @@ class _$_PreviewCard implements _PreviewCard {
       height,
       imageUrl,
       embedUrl,
-      blurHash);
+      blurHash,
+      const DeepCollectionEquality().hash(_usageHistory));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PreviewCardCopyWith<_$_PreviewCard> get copyWith =>
-      __$$_PreviewCardCopyWithImpl<_$_PreviewCard>(this, _$identity);
+  _$$_TrendsLinkCopyWith<_$_TrendsLink> get copyWith =>
+      __$$_TrendsLinkCopyWithImpl<_$_TrendsLink>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PreviewCardToJson(
+    return _$$_TrendsLinkToJson(
       this,
     );
   }
 }
 
-abstract class _PreviewCard implements PreviewCard {
-  const factory _PreviewCard(
+abstract class _TrendsLink implements TrendsLink {
+  const factory _TrendsLink(
       {required final String url,
       required final String title,
       required final String description,
@@ -456,12 +492,16 @@ abstract class _PreviewCard implements PreviewCard {
       required final String html,
       required final int width,
       required final int height,
-      @JsonKey(name: 'image') final String? imageUrl,
+      @JsonKey(name: 'image')
+          final String? imageUrl,
       required final String embedUrl,
-      @JsonKey(name: 'blurhash') final String? blurHash}) = _$_PreviewCard;
+      @JsonKey(name: 'blurhash')
+          final String? blurHash,
+      @JsonKey(name: 'history')
+          required final List<UsageStatistics> usageHistory}) = _$_TrendsLink;
 
-  factory _PreviewCard.fromJson(Map<String, dynamic> json) =
-      _$_PreviewCard.fromJson;
+  factory _TrendsLink.fromJson(Map<String, dynamic> json) =
+      _$_TrendsLink.fromJson;
 
   @override
 
@@ -523,7 +563,12 @@ abstract class _PreviewCard implements PreviewCard {
   @JsonKey(name: 'blurhash')
   String? get blurHash;
   @override
+
+  /// Usage statistics for given days (typically the past week).
+  @JsonKey(name: 'history')
+  List<UsageStatistics> get usageHistory;
+  @override
   @JsonKey(ignore: true)
-  _$$_PreviewCardCopyWith<_$_PreviewCard> get copyWith =>
+  _$$_TrendsLinkCopyWith<_$_TrendsLink> get copyWith =>
       throw _privateConstructorUsedError;
 }

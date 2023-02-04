@@ -12,10 +12,10 @@ import '../../entities/emoji.dart';
 import '../../entities/extended_description.dart';
 import '../../entities/instance.dart';
 import '../../entities/instance_activity.dart';
-import '../../entities/preview_card.dart';
 import '../../entities/rule.dart';
 import '../../entities/status.dart';
 import '../../entities/tag.dart';
+import '../../entities/trends_link.dart';
 import '../../response/mastodon_response.dart';
 
 abstract class InstanceV1Service {
@@ -183,7 +183,7 @@ abstract class InstanceV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/trends/#links
-  Future<MastodonResponse<List<PreviewCard>>> lookupTrendingLinks({
+  Future<MastodonResponse<List<TrendsLink>>> lookupTrendingLinks({
     int? limit,
   });
 
@@ -411,7 +411,7 @@ class _InstanceV1Service extends BaseService implements InstanceV1Service {
       );
 
   @override
-  Future<MastodonResponse<List<PreviewCard>>> lookupTrendingLinks({
+  Future<MastodonResponse<List<TrendsLink>>> lookupTrendingLinks({
     int? limit,
   }) async =>
       super.transformMultiDataResponse(
@@ -422,7 +422,7 @@ class _InstanceV1Service extends BaseService implements InstanceV1Service {
             'limit': limit,
           },
         ),
-        dataBuilder: PreviewCard.fromJson,
+        dataBuilder: TrendsLink.fromJson,
       );
 
   @override
