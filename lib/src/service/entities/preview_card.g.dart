@@ -28,7 +28,7 @@ _$_PreviewCard _$$_PreviewCardFromJson(Map json) => $checkedCreate(
           imageUrl: $checkedConvert('image', (v) => v as String?),
           embedUrl: $checkedConvert('embed_url', (v) => v as String),
           blurHash: $checkedConvert('blurhash', (v) => v as String?),
-          histories: $checkedConvert(
+          usageHistory: $checkedConvert(
               'history',
               (v) => (v as List<dynamic>)
                   .map((e) => UsageStatistics.fromJson(
@@ -45,7 +45,7 @@ _$_PreviewCard _$$_PreviewCardFromJson(Map json) => $checkedCreate(
         'imageUrl': 'image',
         'embedUrl': 'embed_url',
         'blurHash': 'blurhash',
-        'histories': 'history'
+        'usageHistory': 'history'
       },
     );
 
@@ -65,7 +65,7 @@ Map<String, dynamic> _$$_PreviewCardToJson(_$_PreviewCard instance) =>
       'image': instance.imageUrl,
       'embed_url': instance.embedUrl,
       'blurhash': instance.blurHash,
-      'history': instance.histories.map((e) => e.toJson()).toList(),
+      'history': instance.usageHistory.map((e) => e.toJson()).toList(),
     };
 
 const _$PreviewCardTypeEnumMap = {

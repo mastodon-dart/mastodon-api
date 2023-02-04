@@ -7,8 +7,16 @@
 // 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../core/language.dart';
+import '../../core/visibility.dart';
+import 'account.dart';
+import 'application.dart';
+import 'emoji.dart';
+import 'media_attachment.dart';
+import 'poll.dart';
+import 'tag.dart';
+
 // 🌎 Project imports:
-import '../../../mastodon_api.dart';
 
 part 'status.freezed.dart';
 part 'status.g.dart';

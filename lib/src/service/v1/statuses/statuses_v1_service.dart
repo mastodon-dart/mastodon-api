@@ -12,6 +12,8 @@ import '../../entities/account.dart';
 import '../../entities/poll.dart';
 import '../../entities/status.dart';
 import '../../entities/status_context.dart';
+import '../../entities/status_edit.dart';
+import '../../entities/status_source.dart';
 import '../../response/mastodon_response.dart';
 import 'status_poll_param.dart';
 
@@ -157,6 +159,61 @@ abstract class StatusesV1Service {
     StatusPollParam? poll,
   });
 
+  /// Get all known versions of a status, including the initial and current
+  /// states.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]: The ID of the SOMETHING in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/statuses/:id/history HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - Anonymous
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/statuses/#history
+  Future<MastodonResponse<List<StatusEdit>>> lookupEditHistory({
+    required String statusId,
+  });
+
+  /// Obtain the source properties for a status so that it can be edited.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]: The ID of the SOMETHING in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/statuses/:id/source HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/statuses/#source
+  Future<MastodonResponse<StatusSource>> lookupEditableSource({
+    required String statusId,
+  });
+
+  @Deprecated('Use lookupPoll instead. Will be removed in v1.0.0')
+  Future<MastodonResponse<Poll>> lookupPollById({required String pollId});
+
   /// Returns a specific poll.
   ///
   /// ## Parameters
@@ -179,7 +236,7 @@ abstract class StatusesV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/polls/#get
-  Future<MastodonResponse<Poll>> lookupPollById({required String pollId});
+  Future<MastodonResponse<Poll>> lookupPoll({required String pollId});
 
   /// Post a vote to specific choice.
   ///
@@ -237,6 +294,11 @@ abstract class StatusesV1Service {
     required List<int> choices,
   });
 
+  @Deprecated('Use lookupStatus instead. Will be removed in v1.0.0')
+  Future<MastodonResponse<Status>> lookupById({
+    required String statusId,
+  });
+
   /// Obtain information about a status.
   ///
   /// ## Parameters
@@ -258,7 +320,7 @@ abstract class StatusesV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/statuses/#get
-  Future<MastodonResponse<Status>> lookupById({
+  Future<MastodonResponse<Status>> lookupStatus({
     required String statusId,
   });
 
@@ -702,7 +764,37 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
       );
 
   @override
+  Future<MastodonResponse<List<StatusEdit>>> lookupEditHistory({
+    required String statusId,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/statuses/$statusId/history',
+        ),
+        dataBuilder: StatusEdit.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<StatusSource>> lookupEditableSource({
+    required String statusId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/statuses/$statusId/source',
+        ),
+        dataBuilder: StatusSource.fromJson,
+      );
+
+  @override
   Future<MastodonResponse<Poll>> lookupPollById({
+    required String pollId,
+  }) async =>
+      await lookupPoll(pollId: pollId);
+
+  @override
+  Future<MastodonResponse<Poll>> lookupPoll({
     required String pollId,
   }) async =>
       super.transformSingleDataResponse(
@@ -751,6 +843,12 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
 
   @override
   Future<MastodonResponse<Status>> lookupById({
+    required String statusId,
+  }) async =>
+      await lookupStatus(statusId: statusId);
+
+  @override
+  Future<MastodonResponse<Status>> lookupStatus({
     required String statusId,
   }) async =>
       super.transformSingleDataResponse(
