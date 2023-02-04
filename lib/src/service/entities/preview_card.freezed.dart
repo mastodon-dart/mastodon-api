@@ -67,7 +67,7 @@ mixin _$PreviewCard {
 
   /// Usage statistics for given days (typically the past week).
   @JsonKey(name: 'history')
-  List<UsageStatistics> get histories => throw _privateConstructorUsedError;
+  List<UsageStatistics> get usageHistory => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -96,7 +96,7 @@ abstract class $PreviewCardCopyWith<$Res> {
       @JsonKey(name: 'image') String? imageUrl,
       String embedUrl,
       @JsonKey(name: 'blurhash') String? blurHash,
-      @JsonKey(name: 'history') List<UsageStatistics> histories});
+      @JsonKey(name: 'history') List<UsageStatistics> usageHistory});
 }
 
 /// @nodoc
@@ -126,7 +126,7 @@ class _$PreviewCardCopyWithImpl<$Res, $Val extends PreviewCard>
     Object? imageUrl = freezed,
     Object? embedUrl = null,
     Object? blurHash = freezed,
-    Object? histories = null,
+    Object? usageHistory = null,
   }) {
     return _then(_value.copyWith(
       url: null == url
@@ -185,9 +185,9 @@ class _$PreviewCardCopyWithImpl<$Res, $Val extends PreviewCard>
           ? _value.blurHash
           : blurHash // ignore: cast_nullable_to_non_nullable
               as String?,
-      histories: null == histories
-          ? _value.histories
-          : histories // ignore: cast_nullable_to_non_nullable
+      usageHistory: null == usageHistory
+          ? _value.usageHistory
+          : usageHistory // ignore: cast_nullable_to_non_nullable
               as List<UsageStatistics>,
     ) as $Val);
   }
@@ -216,7 +216,7 @@ abstract class _$$_PreviewCardCopyWith<$Res>
       @JsonKey(name: 'image') String? imageUrl,
       String embedUrl,
       @JsonKey(name: 'blurhash') String? blurHash,
-      @JsonKey(name: 'history') List<UsageStatistics> histories});
+      @JsonKey(name: 'history') List<UsageStatistics> usageHistory});
 }
 
 /// @nodoc
@@ -244,7 +244,7 @@ class __$$_PreviewCardCopyWithImpl<$Res>
     Object? imageUrl = freezed,
     Object? embedUrl = null,
     Object? blurHash = freezed,
-    Object? histories = null,
+    Object? usageHistory = null,
   }) {
     return _then(_$_PreviewCard(
       url: null == url
@@ -303,9 +303,9 @@ class __$$_PreviewCardCopyWithImpl<$Res>
           ? _value.blurHash
           : blurHash // ignore: cast_nullable_to_non_nullable
               as String?,
-      histories: null == histories
-          ? _value._histories
-          : histories // ignore: cast_nullable_to_non_nullable
+      usageHistory: null == usageHistory
+          ? _value._usageHistory
+          : usageHistory // ignore: cast_nullable_to_non_nullable
               as List<UsageStatistics>,
     ));
   }
@@ -326,11 +326,14 @@ class _$_PreviewCard implements _PreviewCard {
       required this.html,
       required this.width,
       required this.height,
-      @JsonKey(name: 'image') this.imageUrl,
+      @JsonKey(name: 'image')
+          this.imageUrl,
       required this.embedUrl,
-      @JsonKey(name: 'blurhash') this.blurHash,
-      @JsonKey(name: 'history') required final List<UsageStatistics> histories})
-      : _histories = histories;
+      @JsonKey(name: 'blurhash')
+          this.blurHash,
+      @JsonKey(name: 'history')
+          required final List<UsageStatistics> usageHistory})
+      : _usageHistory = usageHistory;
 
   factory _$_PreviewCard.fromJson(Map<String, dynamic> json) =>
       _$$_PreviewCardFromJson(json);
@@ -395,20 +398,20 @@ class _$_PreviewCard implements _PreviewCard {
   final String? blurHash;
 
   /// Usage statistics for given days (typically the past week).
-  final List<UsageStatistics> _histories;
+  final List<UsageStatistics> _usageHistory;
 
   /// Usage statistics for given days (typically the past week).
   @override
   @JsonKey(name: 'history')
-  List<UsageStatistics> get histories {
-    if (_histories is EqualUnmodifiableListView) return _histories;
+  List<UsageStatistics> get usageHistory {
+    if (_usageHistory is EqualUnmodifiableListView) return _usageHistory;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_histories);
+    return EqualUnmodifiableListView(_usageHistory);
   }
 
   @override
   String toString() {
-    return 'PreviewCard(url: $url, title: $title, description: $description, type: $type, authorName: $authorName, authorUrl: $authorUrl, providerName: $providerName, providerUrl: $providerUrl, html: $html, width: $width, height: $height, imageUrl: $imageUrl, embedUrl: $embedUrl, blurHash: $blurHash, histories: $histories)';
+    return 'PreviewCard(url: $url, title: $title, description: $description, type: $type, authorName: $authorName, authorUrl: $authorUrl, providerName: $providerName, providerUrl: $providerUrl, html: $html, width: $width, height: $height, imageUrl: $imageUrl, embedUrl: $embedUrl, blurHash: $blurHash, usageHistory: $usageHistory)';
   }
 
   @override
@@ -439,7 +442,7 @@ class _$_PreviewCard implements _PreviewCard {
             (identical(other.blurHash, blurHash) ||
                 other.blurHash == blurHash) &&
             const DeepCollectionEquality()
-                .equals(other._histories, _histories));
+                .equals(other._usageHistory, _usageHistory));
   }
 
   @JsonKey(ignore: true)
@@ -460,7 +463,7 @@ class _$_PreviewCard implements _PreviewCard {
       imageUrl,
       embedUrl,
       blurHash,
-      const DeepCollectionEquality().hash(_histories));
+      const DeepCollectionEquality().hash(_usageHistory));
 
   @JsonKey(ignore: true)
   @override
@@ -495,7 +498,7 @@ abstract class _PreviewCard implements PreviewCard {
       @JsonKey(name: 'blurhash')
           final String? blurHash,
       @JsonKey(name: 'history')
-          required final List<UsageStatistics> histories}) = _$_PreviewCard;
+          required final List<UsageStatistics> usageHistory}) = _$_PreviewCard;
 
   factory _PreviewCard.fromJson(Map<String, dynamic> json) =
       _$_PreviewCard.fromJson;
@@ -563,7 +566,7 @@ abstract class _PreviewCard implements PreviewCard {
 
   /// Usage statistics for given days (typically the past week).
   @JsonKey(name: 'history')
-  List<UsageStatistics> get histories;
+  List<UsageStatistics> get usageHistory;
   @override
   @JsonKey(ignore: true)
   _$$_PreviewCardCopyWith<_$_PreviewCard> get copyWith =>

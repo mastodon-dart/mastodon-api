@@ -230,7 +230,7 @@ abstract class AccountsV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/accounts/#get
-  Future<MastodonResponse<Account>> lookupById({
+  Future<MastodonResponse<Account>> lookupAccount({
     required String accountId,
   });
 
@@ -1319,7 +1319,7 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
       );
 
   @override
-  Future<MastodonResponse<Account>> lookupById({
+  Future<MastodonResponse<Account>> lookupAccount({
     required String accountId,
   }) async =>
       super.transformSingleDataResponse(

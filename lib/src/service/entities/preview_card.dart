@@ -61,7 +61,7 @@ class PreviewCard with _$PreviewCard {
     @JsonKey(name: 'blurhash') String? blurHash,
 
     /// Usage statistics for given days (typically the past week).
-    @JsonKey(name: 'history') required List<UsageStatistics> histories,
+    @JsonKey(name: 'history') required List<UsageStatistics> usageHistory,
   }) = _PreviewCard;
 
   factory PreviewCard.fromJson(Map<String, Object?> json) =>

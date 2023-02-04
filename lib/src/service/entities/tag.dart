@@ -23,8 +23,8 @@ class Tag with _$Tag {
     /// A link to the hashtag on the instance.
     required String url,
 
-    /// Usage statistics for given days (typically the past week).
-    @JsonKey(name: 'history') List<UsageStatistics>? histories,
+    /// Usage history for given days (typically the past week).
+    @JsonKey(name: 'history') List<UsageStatistics>? usageHistory,
 
     /// Whether the current token’s authorized user is following this tag.
     @JsonKey(name: 'following') bool? isFollowing,

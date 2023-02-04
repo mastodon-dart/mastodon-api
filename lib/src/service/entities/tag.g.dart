@@ -15,7 +15,7 @@ _$_Tag _$$_TagFromJson(Map json) => $checkedCreate(
         final val = _$_Tag(
           name: $checkedConvert('name', (v) => v as String),
           url: $checkedConvert('url', (v) => v as String),
-          histories: $checkedConvert(
+          usageHistory: $checkedConvert(
               'history',
               (v) => (v as List<dynamic>?)
                   ?.map((e) => UsageStatistics.fromJson(
@@ -25,7 +25,10 @@ _$_Tag _$$_TagFromJson(Map json) => $checkedCreate(
         );
         return val;
       },
-      fieldKeyMap: const {'histories': 'history', 'isFollowing': 'following'},
+      fieldKeyMap: const {
+        'usageHistory': 'history',
+        'isFollowing': 'following'
+      },
     );
 
 Map<String, dynamic> _$$_TagToJson(_$_Tag instance) {
@@ -40,7 +43,8 @@ Map<String, dynamic> _$$_TagToJson(_$_Tag instance) {
     }
   }
 
-  writeNotNull('history', instance.histories?.map((e) => e.toJson()).toList());
+  writeNotNull(
+      'history', instance.usageHistory?.map((e) => e.toJson()).toList());
   writeNotNull('following', instance.isFollowing);
   return val;
 }

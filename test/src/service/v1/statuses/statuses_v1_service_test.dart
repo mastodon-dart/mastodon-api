@@ -81,7 +81,7 @@ void main() {
     });
   });
 
-  group('.lookupPollById', () {
+  group('.lookupPoll', () {
     test('normal case', () async {
       final statusesService = StatusesV1Service(
         instance: 'test',
@@ -94,7 +94,7 @@ void main() {
         ),
       );
 
-      final response = await statusesService.lookupPollById(
+      final response = await statusesService.lookupPoll(
         pollId: '1234',
       );
 
@@ -117,7 +117,7 @@ void main() {
       );
 
       expectUnauthorizedException(
-        () async => await statusesService.lookupPollById(
+        () async => await statusesService.lookupPoll(
           pollId: '1234',
         ),
       );
@@ -137,7 +137,7 @@ void main() {
       );
 
       expectRateLimitExceededException(
-        () async => await statusesService.lookupPollById(
+        () async => await statusesService.lookupPoll(
           pollId: '1234',
         ),
       );
@@ -330,7 +330,7 @@ void main() {
     });
   });
 
-  group('.lookupById', () {
+  group('.lookupStatus', () {
     test('normal case', () async {
       final statusesService = StatusesV1Service(
         instance: 'test',
@@ -343,7 +343,7 @@ void main() {
         ),
       );
 
-      final response = await statusesService.lookupById(
+      final response = await statusesService.lookupStatus(
         statusId: '1234',
       );
 
@@ -366,7 +366,7 @@ void main() {
       );
 
       expectUnauthorizedException(
-        () async => await statusesService.lookupById(
+        () async => await statusesService.lookupStatus(
           statusId: '1234',
         ),
       );
@@ -386,7 +386,7 @@ void main() {
       );
 
       expectRateLimitExceededException(
-        () async => await statusesService.lookupById(statusId: '1234'),
+        () async => await statusesService.lookupStatus(statusId: '1234'),
       );
     });
   });

@@ -409,7 +409,7 @@ void main() {
     });
   });
 
-  group('.lookupById', () {
+  group('.lookupAccount', () {
     test('normal case', () async {
       final accountsService = AccountsV1Service(
         instance: 'test',
@@ -422,7 +422,7 @@ void main() {
         ),
       );
 
-      final response = await accountsService.lookupById(accountId: '1111');
+      final response = await accountsService.lookupAccount(accountId: '1111');
 
       expect(response, isA<MastodonResponse>());
       expect(response.rateLimit, isA<RateLimit>());
@@ -443,7 +443,7 @@ void main() {
       );
 
       expectUnauthorizedException(
-        () async => await accountsService.lookupById(accountId: '1111'),
+        () async => await accountsService.lookupAccount(accountId: '1111'),
       );
     });
 
@@ -461,7 +461,7 @@ void main() {
       );
 
       expectRateLimitExceededException(
-        () async => await accountsService.lookupById(accountId: '1111'),
+        () async => await accountsService.lookupAccount(accountId: '1111'),
       );
     });
   });
