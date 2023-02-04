@@ -64,6 +64,75 @@ abstract class NotificationsV1Service {
     List<NotificationType>? excludeTypes,
     String? accountId,
   });
+
+  /// View information about a notification with a given ID.
+  ///
+  /// ## Parameters
+  ///
+  /// - [notificationId]: The ID of the Notification in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET https://mastodon.example/api/v1/notification/:id HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:notifications
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/notifications/#get-one
+  Future<MastodonResponse<Notification>> lookupNotificationById({
+    required String notificationId,
+  });
+
+  /// Clear all notifications from the server.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/notifications/clear HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:notifications
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/notifications/#clear
+  Future<MastodonResponse<bool>> clearAllNotifications();
+
+  /// Dismiss a single notification from the server.
+  ///
+  /// ## Parameters
+  ///
+  /// - [notificationId]: The ID of the Notification in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/notifications/:id/dismiss HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:notifications
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/notifications/#dismiss
+  Future<MastodonResponse<bool>> clearNotificationById({
+    required String notificationId,
+  });
 }
 
 class _NotificationsV1Service extends BaseService
@@ -99,5 +168,37 @@ class _NotificationsV1Service extends BaseService
           },
         ),
         dataBuilder: Notification.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Notification>> lookupNotificationById({
+    required String notificationId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/notification/$notificationId',
+        ),
+        dataBuilder: Notification.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<bool>> clearAllNotifications() async =>
+      super.evaluateResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/notifications/clear',
+        ),
+      );
+
+  @override
+  Future<MastodonResponse<bool>> clearNotificationById({
+    required String notificationId,
+  }) async =>
+      super.evaluateResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/notifications/$notificationId/dismiss',
+        ),
       );
 }
