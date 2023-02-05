@@ -104,6 +104,7 @@ MockClientContext buildDeleteStub(
   when(mockClientContext.delete(
     UserContext.oauth2Only,
     Uri.https(instance, unencodedPath),
+    body: anyNamed('body'),
   )).thenAnswer(
     (_) async => Response(
       await File(resourcePath).readAsString(),

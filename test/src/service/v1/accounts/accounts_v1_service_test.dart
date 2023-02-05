@@ -2633,4 +2633,232 @@ void main() {
       );
     });
   });
+
+  group('.lookupBlockedDomains', () {
+    test('normal case', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/domain_blocks',
+          'test/src/service/v1/accounts/data/lookup_blocked_domains.json',
+          {
+            'limit': '40',
+          },
+        ),
+      );
+
+      final response = await accountsService.lookupBlockedDomains(
+        limit: 40,
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<List<String>>());
+      expect(response.data, ['nsfw.social', 'artalley.social']);
+    });
+
+    test('when unauthorized', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/domain_blocks',
+          'test/src/service/v1/accounts/data/lookup_blocked_domains.json',
+          {
+            'limit': '40',
+          },
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await accountsService.lookupBlockedDomains(
+          limit: 40,
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/domain_blocks',
+          'test/src/service/v1/accounts/data/lookup_blocked_domains.json',
+          {
+            'limit': '40',
+          },
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await accountsService.lookupBlockedDomains(
+          limit: 40,
+        ),
+      );
+    });
+  });
+
+  group('.createBlockedDomain', () {
+    test('normal case', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/domain_blocks',
+          'test/src/service/v1/accounts/data/create_blocked_domain.json',
+        ),
+      );
+
+      final response = await accountsService.createBlockedDomain(
+        domainName: 'test.com',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isTrue);
+    });
+
+    test('when unauthorized', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/domain_blocks',
+          'test/src/service/v1/accounts/data/create_blocked_domain.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await accountsService.createBlockedDomain(
+          domainName: 'test.com',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/domain_blocks',
+          'test/src/service/v1/accounts/data/create_blocked_domain.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await accountsService.createBlockedDomain(
+          domainName: 'test.com',
+        ),
+      );
+    });
+
+    test('when parameters are invalid', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/domain_blocks',
+          'test/src/service/v1/accounts/data/create_blocked_domain.json',
+          statusCode: 422,
+        ),
+      );
+
+      final response = await accountsService.createBlockedDomain(
+        domainName: 'test.com',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isFalse);
+    });
+  });
+
+  group('.destroyBlockedDomain', () {
+    test('normal case', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildDeleteStub(
+          'test',
+          '/api/v1/domain_blocks',
+          'test/src/service/v1/accounts/data/destroy_blocked_domain.json',
+        ),
+      );
+
+      final response = await accountsService.destroyBlockedDomain(
+        domainName: 'test.com',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isTrue);
+    });
+
+    test('when unauthorized', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildDeleteStub(
+          'test',
+          '/api/v1/domain_blocks',
+          'test/src/service/v1/accounts/data/destroy_blocked_domain.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await accountsService.destroyBlockedDomain(
+          domainName: 'test.com',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildDeleteStub(
+          'test',
+          '/api/v1/domain_blocks',
+          'test/src/service/v1/accounts/data/destroy_blocked_domain.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await accountsService.destroyBlockedDomain(
+          domainName: 'test.com',
+        ),
+      );
+    });
+
+    test('when parameters are invalid', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildDeleteStub(
+          'test',
+          '/api/v1/domain_blocks',
+          'test/src/service/v1/accounts/data/destroy_blocked_domain.json',
+          statusCode: 422,
+        ),
+      );
+
+      final response = await accountsService.destroyBlockedDomain(
+        domainName: 'test.com',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isFalse);
+    });
+  });
 }

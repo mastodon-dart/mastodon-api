@@ -142,8 +142,9 @@ class MockClientContext extends _i1.Mock implements _i3.ClientContext {
   @override
   _i4.Future<_i2.Response> delete(
     _i5.UserContext? userContext,
-    Uri? uri,
-  ) =>
+    Uri? uri, {
+    dynamic body,
+  }) =>
       (super.noSuchMethod(
         Invocation.method(
           #delete,
@@ -151,6 +152,7 @@ class MockClientContext extends _i1.Mock implements _i3.ClientContext {
             userContext,
             uri,
           ],
+          {#body: body},
         ),
         returnValue: _i4.Future<_i2.Response>.value(_FakeResponse_0(
           this,
@@ -160,6 +162,7 @@ class MockClientContext extends _i1.Mock implements _i3.ClientContext {
               userContext,
               uri,
             ],
+            {#body: body},
           ),
         )),
       ) as _i4.Future<_i2.Response>);
