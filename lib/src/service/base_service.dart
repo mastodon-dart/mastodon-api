@@ -159,11 +159,13 @@ abstract class BaseService implements _Service {
   Future<Response> delete(
     UserContext userContext,
     final String unencodedPath, {
+    dynamic body = const {},
     bool checkUnprocessableEntity = false,
   }) async =>
       await _helper.delete(
         userContext,
         unencodedPath,
+        body: body,
         validate: ((response) => checkResponse(
               response,
               checkUnprocessableEntity,
