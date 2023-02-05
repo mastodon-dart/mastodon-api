@@ -32,8 +32,9 @@ mixin _$Notification {
   /// The account that performed the action that generated the notification.
   Account get account => throw _privateConstructorUsedError;
 
-  /// Status that was the object of the notification. Attached when type of the
-  /// notification is favourite, reblog, status, mention, poll, or update.
+  /// Status that was the object of the notification. Attached when type of
+  /// the notification is favourite, reblog, status, mention, poll,
+  /// or update.
   Status? get status =>
       throw _privateConstructorUsedError; // Report that was the object of the notification.
 // Attached when type of the notification is admin.report.
@@ -247,8 +248,9 @@ class _$_Notification implements _Notification {
   @override
   final Account account;
 
-  /// Status that was the object of the notification. Attached when type of the
-  /// notification is favourite, reblog, status, mention, poll, or update.
+  /// Status that was the object of the notification. Attached when type of
+  /// the notification is favourite, reblog, status, mention, poll,
+  /// or update.
   @override
   final Status? status;
 // Report that was the object of the notification.
@@ -324,8 +326,9 @@ abstract class _Notification implements Notification {
   Account get account;
   @override
 
-  /// Status that was the object of the notification. Attached when type of the
-  /// notification is favourite, reblog, status, mention, poll, or update.
+  /// Status that was the object of the notification. Attached when type of
+  /// the notification is favourite, reblog, status, mention, poll,
+  /// or update.
   Status? get status;
   @override // Report that was the object of the notification.
 // Attached when type of the notification is admin.report.

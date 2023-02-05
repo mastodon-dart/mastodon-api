@@ -53,8 +53,9 @@ abstract class ClientContext {
 
   Future<http.Response> delete(
     UserContext userContext,
-    Uri uri,
-  );
+    Uri uri, {
+    dynamic body,
+  });
 
   Future<http.Response> put(
     UserContext userContext,
@@ -172,11 +173,16 @@ class _ClientContext implements ClientContext {
   @override
   Future<http.Response> delete(
     UserContext userContext,
-    Uri uri,
-  ) async =>
+    Uri uri, {
+    dynamic body,
+  }) async =>
       await _challengeWithRetryIfNecessary(
         _clientResolver.execute(userContext),
-        (client) async => await client.delete(uri, timeout: timeout),
+        (client) async => await client.delete(
+          uri,
+          body: body,
+          timeout: timeout,
+        ),
       );
 
   @override

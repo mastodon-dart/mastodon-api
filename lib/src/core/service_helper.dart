@@ -189,11 +189,13 @@ class ServiceHelper implements Service {
   Future<http.Response> delete(
     UserContext userContext,
     final String unencodedPath, {
+    dynamic body = const {},
     http.Response Function(http.Response response)? validate,
   }) async {
     final response = await _context.delete(
       userContext,
       Uri.https(_authority, unencodedPath),
+      body: body,
     );
 
     return validate != null ? validate(response) : response;

@@ -1197,6 +1197,92 @@ abstract class AccountsV1Service {
   Future<MastodonResponse<List<Status>>> lookupBookmarkedStatuses({
     int? limit,
   });
+
+  /// View domains the user has blocked.
+  ///
+  /// ## Parameters
+  ///
+  /// - [limit]: Maximum number of results to return. Defaults to 100 domain
+  ///            blocks. Max 200 domain blocks.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/domain_blocks HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - follow
+  /// - read:blocks
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/domain_blocks/#get
+  Future<MastodonResponse<List<String>>> lookupBlockedDomains({
+    int? limit,
+  });
+
+  /// Block a domain to:
+  ///
+  /// - hide all public posts from it
+  /// - hide all notifications from it
+  /// - remove all followers from it
+  /// - prevent following new users from it (but does not remove existing
+  ///   follows)
+  ///
+  /// ## Parameters
+  ///
+  /// - [domainName]: Domain to block.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST /api/v1/domain_blocks HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - follow
+  /// - write:blocks
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/domain_blocks/#block
+  Future<MastodonResponse<bool>> createBlockedDomain({
+    required String domainName,
+  });
+
+  /// Remove a domain block, if it exists in the user’s array of
+  /// blocked domains.
+  ///
+  /// ## Parameters
+  ///
+  /// - [domainName]: Domain to block.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - DELETE /api/v1/domain_blocks HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - follow
+  /// - write:blocks
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/domain_blocks/#unblock
+  Future<MastodonResponse<bool>> destroyBlockedDomain({
+    required String domainName,
+  });
 }
 
 class _AccountsV1Service extends BaseService implements AccountsV1Service {
@@ -1853,5 +1939,44 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
           },
         ),
         dataBuilder: Status.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<String>>> lookupBlockedDomains({
+    int? limit,
+  }) async =>
+      super.transformMultiRawDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/domain_blocks',
+          queryParameters: {
+            'limit': limit,
+          },
+        ),
+      );
+
+  @override
+  Future<MastodonResponse<bool>> createBlockedDomain({
+    required String domainName,
+  }) async =>
+      super.evaluateResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/domain_blocks',
+          body: {
+            'domain': domainName,
+          },
+        ),
+      );
+
+  @override
+  Future<MastodonResponse<bool>> destroyBlockedDomain({
+    required String domainName,
+  }) async =>
+      super.evaluateResponse(
+        await super.delete(
+          UserContext.oauth2Only,
+          '/api/v1/domain_blocks',
+        ),
       );
 }
