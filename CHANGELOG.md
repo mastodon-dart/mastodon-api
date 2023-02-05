@@ -1,5 +1,10 @@
 # Release Note
 
+- Added `domain_blocks API methods`. ([#12](https://github.com/mastodon-dart/mastodon-api/issues/12))
+  - `GET /api/v1/domain_blocks`
+  - `POST /api/v1/domain_blocks`
+  - `DELETE /api/v1/domain_blocks`
+
 ## v0.4.0
 
 - Added endpoints in `StatusesV1Service`. ([#23](https://github.com/mastodon-dart/mastodon-api/issues/23))
