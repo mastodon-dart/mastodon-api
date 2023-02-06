@@ -10,9 +10,13 @@ import '../entities/rate_limit.dart';
 class MastodonResponse<D> {
   /// Returns the new instance of [MastodonResponse].
   const MastodonResponse({
+    required this.headers,
     required this.rateLimit,
     required this.data,
   });
+
+  /// The headers of this response.
+  final Map<String, String> headers;
 
   /// The rate limit
   final RateLimit rateLimit;
