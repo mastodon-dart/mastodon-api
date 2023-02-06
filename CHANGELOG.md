@@ -9,6 +9,7 @@
   - `DELETE /api/v1/domain_blocks`
 - Added response headers in `MastodonResponse`. ([#128](https://github.com/mastodon-dart/mastodon-api/issues/128))
 - Added HTTP status in `MastodonResponse`. ([#126](https://github.com/mastodon-dart/mastodon-api/issues/126))
+- Added HTTP request in `MastodonResponse`. ([#127](https://github.com/mastodon-dart/mastodon-api/issues/127))
 
 ## v0.4.0
 
