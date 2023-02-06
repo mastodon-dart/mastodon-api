@@ -9,6 +9,7 @@ export 'package:mastodon_api/src/core/exception/data_not_found_exception.dart';
 export 'package:mastodon_api/src/core/exception/mastodon_exception.dart';
 export 'package:mastodon_api/src/core/exception/rate_limit_exceeded_exception.dart';
 export 'package:mastodon_api/src/core/exception/unauthorized_exception.dart';
+export 'package:mastodon_api/src/core/http_status.dart';
 export 'package:mastodon_api/src/core/language.dart';
 export 'package:mastodon_api/src/core/locale.dart';
 export 'package:mastodon_api/src/core/mime_type.dart';
