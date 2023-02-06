@@ -3,6 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // 🌎 Project imports:
+import '../../core/http_status.dart';
 import '../entities/empty.dart';
 import '../entities/rate_limit.dart';
 
@@ -11,12 +12,16 @@ class MastodonResponse<D> {
   /// Returns the new instance of [MastodonResponse].
   const MastodonResponse({
     required this.headers,
+    required this.status,
     required this.rateLimit,
     required this.data,
   });
 
   /// The headers of this response.
   final Map<String, String> headers;
+
+  /// The HTTP status from Mastodon API server.
+  final HttpStatus status;
 
   /// The rate limit
   final RateLimit rateLimit;

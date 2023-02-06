@@ -17,6 +17,7 @@ import '../core/exception/data_not_found_exception.dart';
 import '../core/exception/mastodon_exception.dart';
 import '../core/exception/rate_limit_exceeded_exception.dart';
 import '../core/exception/unauthorized_exception.dart';
+import '../core/http_status.dart';
 import '../core/service_helper.dart';
 import '../core/util/json_utils.dart';
 import 'entities/empty.dart';
@@ -211,6 +212,7 @@ abstract class BaseService implements _Service {
   ) =>
       MastodonResponse(
         headers: response.headers,
+        status: HttpStatus.valueOf(response.statusCode),
         rateLimit: RateLimit.fromJson(
           rateLimitConverter.convert(response.headers),
         ),
@@ -224,6 +226,7 @@ abstract class BaseService implements _Service {
   }) =>
       MastodonResponse(
         headers: response.headers,
+        status: HttpStatus.valueOf(response.statusCode),
         rateLimit: RateLimit.fromJson(
           rateLimitConverter.convert(response.headers),
         ),
@@ -241,6 +244,7 @@ abstract class BaseService implements _Service {
 
     return MastodonResponse(
       headers: response.headers,
+      status: HttpStatus.valueOf(response.statusCode),
       rateLimit: RateLimit.fromJson(
         rateLimitConverter.convert(response.headers),
       ),
@@ -258,6 +262,7 @@ abstract class BaseService implements _Service {
 
     return MastodonResponse(
       headers: response.headers,
+      status: HttpStatus.valueOf(response.statusCode),
       rateLimit: RateLimit.fromJson(
         rateLimitConverter.convert(response.headers),
       ),
