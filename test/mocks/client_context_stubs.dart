@@ -33,6 +33,10 @@ MockClientContext buildGetStub(
       await File(resourcePath).readAsString(),
       statusCode,
       headers: {'content-type': 'application/json; charset=utf-8'},
+      request: Request(
+        'GET',
+        Uri(),
+      ),
     ),
   );
 
@@ -60,6 +64,10 @@ MockClientContext buildPostStub(
       headers: {
         'content-type': 'application/json; charset=utf-8',
       },
+      request: Request(
+        'POST',
+        Uri(),
+      ),
     ),
   );
 
@@ -87,6 +95,10 @@ MockClientContext buildPostMultipartStub(
       headers: {
         'content-type': 'application/json; charset=utf-8',
       },
+      request: Request(
+        'POST',
+        Uri(),
+      ),
     ),
   );
 
@@ -110,6 +122,10 @@ MockClientContext buildDeleteStub(
       await File(resourcePath).readAsString(),
       statusCode,
       headers: {'content-type': 'application/json; charset=utf-8'},
+      request: Request(
+        'DELETE',
+        Uri(),
+      ),
     ),
   );
 
@@ -134,6 +150,10 @@ MockClientContext buildPutStub(
       await File(resourcePath).readAsString(),
       statusCode,
       headers: {'content-type': 'application/json; charset=utf-8'},
+      request: Request(
+        'PUT',
+        Uri(),
+      ),
     ),
   );
 
@@ -159,6 +179,10 @@ MockClientContext buildPatchStub(
       await File(resourcePath).readAsString(),
       statusCode,
       headers: {'content-type': 'application/json; charset=utf-8'},
+      request: Request(
+        'PATCH',
+        Uri(),
+      ),
     ),
   );
 
@@ -183,6 +207,10 @@ MockClientContext buildPatchMultipartStub(
       await File(resourcePath).readAsString(),
       statusCode,
       headers: {'content-type': 'application/json; charset=utf-8'},
+      request: Request(
+        'PATCH',
+        Uri(),
+      ),
     ),
   );
 
@@ -216,6 +244,10 @@ MockClientContext buildSendStub(
         responseStream(),
         statusCode,
         headers: {'content-type': 'application/json; charset=utf-8'},
+        request: Request(
+          'GET',
+          Uri(),
+        ),
       );
     },
   );
