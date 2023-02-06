@@ -7,6 +7,7 @@ import 'package:mastodon_api/src/core/client/user_context.dart';
 import 'package:mastodon_api/src/core/exception/mastodon_exception.dart';
 import 'package:mastodon_api/src/core/scope.dart';
 import 'package:mastodon_api/src/service/entities/application.dart';
+import 'package:mastodon_api/src/service/entities/empty.dart';
 import 'package:mastodon_api/src/service/entities/rate_limit.dart';
 import 'package:mastodon_api/src/service/entities/registered_application.dart';
 import 'package:mastodon_api/src/service/response/mastodon_response.dart';
@@ -217,8 +218,7 @@ void main() {
 
       expect(response, isA<MastodonResponse>());
       expect(response.rateLimit, isA<RateLimit>());
-      expect(response.data, isA<bool>());
-      expect(response.data, isTrue);
+      expect(response.data, isA<Empty>());
     });
 
     test('when access is forbidden', () async {
@@ -233,14 +233,11 @@ void main() {
         ),
       );
 
-      final response = await appsService.createNewConfirmationEmail(
-        email: 'test',
+      expectMastodonExceptionException(
+        () async => await appsService.createNewConfirmationEmail(
+          email: 'test',
+        ),
       );
-
-      expect(response, isA<MastodonResponse>());
-      expect(response.rateLimit, isA<RateLimit>());
-      expect(response.data, isA<bool>());
-      expect(response.data, isFalse);
     });
 
     test('when unauthorized', () async {

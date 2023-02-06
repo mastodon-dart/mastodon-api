@@ -9,6 +9,7 @@ import 'package:mastodon_api/src/core/client/user_context.dart';
 import 'package:mastodon_api/src/service/entities/announcement.dart';
 import 'package:mastodon_api/src/service/entities/blocked_domain.dart';
 import 'package:mastodon_api/src/service/entities/emoji.dart';
+import 'package:mastodon_api/src/service/entities/empty.dart';
 import 'package:mastodon_api/src/service/entities/extended_description.dart';
 import 'package:mastodon_api/src/service/entities/instance.dart';
 import 'package:mastodon_api/src/service/entities/instance_activity.dart';
@@ -746,7 +747,7 @@ void main() {
 
       expect(response, isA<MastodonResponse>());
       expect(response.rateLimit, isA<RateLimit>());
-      expect(response.data, isTrue);
+      expect(response.data, isA<Empty>());
     });
 
     test('when announcement id does not exist', () async {
@@ -761,13 +762,11 @@ void main() {
         ),
       );
 
-      final response = await instanceService.createMarkAnnouncementAsRead(
-        announcementId: '1111',
+      expectMastodonExceptionException(
+        () async => await instanceService.createMarkAnnouncementAsRead(
+          announcementId: '1111',
+        ),
       );
-
-      expect(response, isA<MastodonResponse>());
-      expect(response.rateLimit, isA<RateLimit>());
-      expect(response.data, isFalse);
     });
 
     test('when unauthorized', () async {
@@ -827,7 +826,7 @@ void main() {
 
       expect(response, isA<MastodonResponse>());
       expect(response.rateLimit, isA<RateLimit>());
-      expect(response.data, isTrue);
+      expect(response.data, isA<Empty>());
     });
 
     test('when announcement id does not exist', () async {
@@ -841,14 +840,12 @@ void main() {
         ),
       );
 
-      final response = await instanceService.createReactionToAnnouncement(
-        announcementId: '1111',
-        emojiName: '❗',
+      expectMastodonExceptionException(
+        () async => await instanceService.createReactionToAnnouncement(
+          announcementId: '1111',
+          emojiName: '❗',
+        ),
       );
-
-      expect(response, isA<MastodonResponse>());
-      expect(response.rateLimit, isA<RateLimit>());
-      expect(response.data, isFalse);
     });
 
     test('when unauthorized', () async {
@@ -908,7 +905,7 @@ void main() {
 
       expect(response, isA<MastodonResponse>());
       expect(response.rateLimit, isA<RateLimit>());
-      expect(response.data, isTrue);
+      expect(response.data, isA<Empty>());
     });
 
     test('when announcement id does not exist', () async {
@@ -922,14 +919,12 @@ void main() {
         ),
       );
 
-      final response = await instanceService.destroyReactionToAnnouncement(
-        announcementId: '1111',
-        emojiName: '❗',
+      expectMastodonExceptionException(
+        () async => await instanceService.destroyReactionToAnnouncement(
+          announcementId: '1111',
+          emojiName: '❗',
+        ),
       );
-
-      expect(response, isA<MastodonResponse>());
-      expect(response.rateLimit, isA<RateLimit>());
-      expect(response.data, isFalse);
     });
 
     test('when unauthorized', () async {

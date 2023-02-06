@@ -9,6 +9,7 @@ import 'package:mastodon_api/src/core/language.dart';
 import 'package:mastodon_api/src/core/locale.dart';
 import 'package:mastodon_api/src/service/entities/account.dart';
 import 'package:mastodon_api/src/service/entities/account_preferences.dart';
+import 'package:mastodon_api/src/service/entities/empty.dart';
 import 'package:mastodon_api/src/service/entities/familiar_follower.dart';
 import 'package:mastodon_api/src/service/entities/featured_tag.dart';
 import 'package:mastodon_api/src/service/entities/rate_limit.dart';
@@ -1764,7 +1765,7 @@ void main() {
 
       expect(response, isA<MastodonResponse>());
       expect(response.rateLimit, isA<RateLimit>());
-      expect(response.data, isTrue);
+      expect(response.data, isA<Empty>());
     });
 
     test('when unauthorized', () async {
@@ -1937,7 +1938,7 @@ void main() {
 
       expect(response, isA<MastodonResponse>());
       expect(response.rateLimit, isA<RateLimit>());
-      expect(response.data, isTrue);
+      expect(response.data, isA<Empty>());
     });
 
     test('when unauthorized', () async {
@@ -2722,7 +2723,7 @@ void main() {
 
       expect(response, isA<MastodonResponse>());
       expect(response.rateLimit, isA<RateLimit>());
-      expect(response.data, isTrue);
+      expect(response.data, isA<Empty>());
     });
 
     test('when unauthorized', () async {
@@ -2775,13 +2776,11 @@ void main() {
         ),
       );
 
-      final response = await accountsService.createBlockedDomain(
-        domainName: 'test.com',
+      expectMastodonExceptionException(
+        () async => await accountsService.createBlockedDomain(
+          domainName: 'test.com',
+        ),
       );
-
-      expect(response, isA<MastodonResponse>());
-      expect(response.rateLimit, isA<RateLimit>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -2802,7 +2801,7 @@ void main() {
 
       expect(response, isA<MastodonResponse>());
       expect(response.rateLimit, isA<RateLimit>());
-      expect(response.data, isTrue);
+      expect(response.data, isA<Empty>());
     });
 
     test('when unauthorized', () async {
@@ -2852,13 +2851,11 @@ void main() {
         ),
       );
 
-      final response = await accountsService.destroyBlockedDomain(
-        domainName: 'test.com',
+      expectMastodonExceptionException(
+        () async => await accountsService.destroyBlockedDomain(
+          domainName: 'test.com',
+        ),
       );
-
-      expect(response, isA<MastodonResponse>());
-      expect(response.rateLimit, isA<RateLimit>());
-      expect(response.data, isFalse);
     });
   });
 }
