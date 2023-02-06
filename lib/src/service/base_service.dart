@@ -19,6 +19,7 @@ import '../core/exception/rate_limit_exceeded_exception.dart';
 import '../core/exception/unauthorized_exception.dart';
 import '../core/service_helper.dart';
 import '../core/util/json_utils.dart';
+import 'entities/empty.dart';
 import 'entities/rate_limit.dart';
 import 'response/mastodon_response.dart';
 
@@ -66,8 +67,11 @@ abstract class _Service {
     final UserContext userContext,
     final String unencodedPath, {
     List<MultipartFile> files = const [],
-    bool checkUnprocessableEntity = false,
   });
+
+  MastodonResponse<Empty> transformEmptyResponse(
+    Response response,
+  );
 
   MastodonResponse<D> transformSingleDataResponse<D>(
     Response response, {
@@ -82,8 +86,6 @@ abstract class _Service {
   MastodonResponse<List<D>> transformMultiRawDataResponse<D>(
     Response response,
   );
-
-  MastodonResponse<bool> evaluateResponse(final Response response);
 }
 
 abstract class BaseService implements _Service {
@@ -142,17 +144,13 @@ abstract class BaseService implements _Service {
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     dynamic body = const {},
-    bool checkEntity = false,
   }) async =>
       await _helper.post(
         userContext,
         unencodedPath,
         queryParameters: queryParameters,
         body: body,
-        validate: ((response) => checkResponse(
-              response,
-              checkEntity,
-            )),
+        validate: checkResponse,
       );
 
   @override
@@ -160,16 +158,12 @@ abstract class BaseService implements _Service {
     UserContext userContext,
     final String unencodedPath, {
     dynamic body = const {},
-    bool checkUnprocessableEntity = false,
   }) async =>
       await _helper.delete(
         userContext,
         unencodedPath,
         body: body,
-        validate: ((response) => checkResponse(
-              response,
-              checkUnprocessableEntity,
-            )),
+        validate: checkResponse,
       );
 
   @override
@@ -177,16 +171,12 @@ abstract class BaseService implements _Service {
     UserContext userContext,
     final String unencodedPath, {
     dynamic body = const {},
-    bool checkUnprocessableEntity = false,
   }) async =>
       await _helper.put(
         userContext,
         unencodedPath,
         body: body,
-        validate: ((response) => checkResponse(
-              response,
-              checkUnprocessableEntity,
-            )),
+        validate: checkResponse,
       );
 
   @override
@@ -194,16 +184,12 @@ abstract class BaseService implements _Service {
     UserContext userContext,
     final String unencodedPath, {
     dynamic body = const {},
-    bool checkUnprocessableEntity = false,
   }) async =>
       await _helper.patch(
         userContext,
         unencodedPath,
         body: body,
-        validate: ((response) => checkResponse(
-              response,
-              checkUnprocessableEntity,
-            )),
+        validate: checkResponse,
       );
 
   @override
@@ -211,16 +197,23 @@ abstract class BaseService implements _Service {
     final UserContext userContext,
     final String unencodedPath, {
     List<MultipartFile> files = const [],
-    bool checkUnprocessableEntity = false,
   }) async =>
       await _helper.patchMultipart(
         userContext,
         unencodedPath,
         files: files,
-        validate: ((response) => checkResponse(
-              response,
-              checkUnprocessableEntity,
-            )),
+        validate: checkResponse,
+      );
+
+  @override
+  MastodonResponse<Empty> transformEmptyResponse(
+    Response response,
+  ) =>
+      MastodonResponse(
+        rateLimit: RateLimit.fromJson(
+          rateLimitConverter.convert(response.headers),
+        ),
+        data: const Empty(),
       );
 
   @override
@@ -268,32 +261,8 @@ abstract class BaseService implements _Service {
     );
   }
 
-  @override
-  MastodonResponse<bool> evaluateResponse(final Response response) =>
-      MastodonResponse(
-        rateLimit: RateLimit.fromJson(
-          rateLimitConverter.convert(response.headers),
-        ),
-        data: _evaluateResponse(response),
-      );
-
-  bool _evaluateResponse(final Response response) {
-    if (response.statusCode == 204) {
-      //! 204: No Content.
-      return true;
-    }
-
-    if (response.statusCode == 200) {
-      //! Okay, it's succeeded.
-      return true;
-    }
-
-    return false;
-  }
-
   Response checkResponse(
     final Response response,
-    final bool checkEntity,
   ) {
     if (response.statusCode == 204) {
       //! 204: No Content.
@@ -316,16 +285,14 @@ abstract class BaseService implements _Service {
       throw RateLimitExceededException('Rate limit exceeded.', response);
     }
 
-    if (checkEntity) {
-      if (400 <= response.statusCode && response.statusCode < 500) {
-        throw MastodonException(
-          'Required parameter is missing or improperly formatted.',
-          response,
-        );
-      }
-
-      tryJsonDecode(response, response.body);
+    if (400 <= response.statusCode && response.statusCode < 500) {
+      throw MastodonException(
+        'Required parameter is missing or improperly formatted.',
+        response,
+      );
     }
+
+    tryJsonDecode(response, response.body);
 
     return response;
   }

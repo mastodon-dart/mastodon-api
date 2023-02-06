@@ -27,6 +27,7 @@ export 'package:mastodon_api/src/service/entities/conversation.dart';
 export 'package:mastodon_api/src/service/entities/display_media_setting.dart';
 export 'package:mastodon_api/src/service/entities/emoji.dart';
 export 'package:mastodon_api/src/service/entities/emoji_reaction.dart';
+export 'package:mastodon_api/src/service/entities/empty.dart';
 export 'package:mastodon_api/src/service/entities/extended_description.dart';
 export 'package:mastodon_api/src/service/entities/field.dart';
 export 'package:mastodon_api/src/service/entities/instance.dart';

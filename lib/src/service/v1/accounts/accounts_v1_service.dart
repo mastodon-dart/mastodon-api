@@ -16,6 +16,7 @@ import '../../../core/locale.dart';
 import '../../base_service.dart';
 import '../../entities/account.dart';
 import '../../entities/account_preferences.dart';
+import '../../entities/empty.dart';
 import '../../entities/familiar_follower.dart';
 import '../../entities/featured_tag.dart';
 import '../../entities/relationship.dart';
@@ -868,7 +869,7 @@ abstract class AccountsV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/featured_tags/#unfeature-a-tag-unfeature
-  Future<MastodonResponse<bool>> destroyFeaturedTag({
+  Future<MastodonResponse<Empty>> destroyFeaturedTag({
     required String tagId,
   });
 
@@ -936,7 +937,7 @@ abstract class AccountsV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/suggestions/#remove
-  Future<MastodonResponse<bool>> destroyFollowSuggestion({
+  Future<MastodonResponse<Empty>> destroyFollowSuggestion({
     required String accountId,
   });
 
@@ -1253,7 +1254,7 @@ abstract class AccountsV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/domain_blocks/#block
-  Future<MastodonResponse<bool>> createBlockedDomain({
+  Future<MastodonResponse<Empty>> createBlockedDomain({
     required String domainName,
   });
 
@@ -1280,7 +1281,7 @@ abstract class AccountsV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/domain_blocks/#unblock
-  Future<MastodonResponse<bool>> destroyBlockedDomain({
+  Future<MastodonResponse<Empty>> destroyBlockedDomain({
     required String domainName,
   });
 }
@@ -1313,7 +1314,6 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
             'locale': locale.toString(),
             'reason': reason,
           },
-          checkEntity: true,
         ),
         dataBuilder: Token.fromJson,
       );
@@ -1525,7 +1525,6 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
             'notify': receiveNotifications,
             'languages': filteringLanguages?.map((e) => e.value).toList(),
           },
-          checkEntity: true,
         ),
         dataBuilder: Relationship.fromJson,
       );
@@ -1538,7 +1537,6 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/accounts/$accountId/unfollow',
-          checkEntity: true,
         ),
         dataBuilder: Relationship.fromJson,
       );
@@ -1551,7 +1549,6 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/accounts/$accountId/remove_from_followers',
-          checkEntity: true,
         ),
         dataBuilder: Relationship.fromJson,
       );
@@ -1564,7 +1561,6 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/accounts/$accountId/block',
-          checkEntity: true,
         ),
         dataBuilder: Relationship.fromJson,
       );
@@ -1577,7 +1573,6 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
         await super.post(
           UserContext.oauth2Only,
           'api/v1/accounts/$accountId/unblock',
-          checkEntity: true,
         ),
         dataBuilder: Relationship.fromJson,
       );
@@ -1596,7 +1591,6 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
             'notifications': includeNotifications,
             'duration': duration?.inSeconds,
           },
-          checkEntity: true,
         ),
         dataBuilder: Relationship.fromJson,
       );
@@ -1609,7 +1603,6 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/accounts/$accountId/unmute',
-          checkEntity: true,
         ),
         dataBuilder: Relationship.fromJson,
       );
@@ -1622,7 +1615,6 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/accounts/$accountId/pin',
-          checkEntity: true,
         ),
         dataBuilder: Relationship.fromJson,
       );
@@ -1635,7 +1627,6 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/accounts/$accountId/unpin',
-          checkEntity: true,
         ),
         dataBuilder: Relationship.fromJson,
       );
@@ -1652,7 +1643,6 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
           body: {
             'comment': text,
           },
-          checkEntity: true,
         ),
         dataBuilder: Relationship.fromJson,
       );
@@ -1750,16 +1740,15 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
           body: {
             'name': tagName,
           },
-          checkEntity: true,
         ),
         dataBuilder: FeaturedTag.fromJson,
       );
 
   @override
-  Future<MastodonResponse<bool>> destroyFeaturedTag({
+  Future<MastodonResponse<Empty>> destroyFeaturedTag({
     required String tagId,
   }) async =>
-      super.evaluateResponse(
+      super.transformEmptyResponse(
         await super.delete(
           UserContext.oauth2Only,
           '/api/v1/featured_tags/$tagId',
@@ -1792,10 +1781,10 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
       );
 
   @override
-  Future<MastodonResponse<bool>> destroyFollowSuggestion({
+  Future<MastodonResponse<Empty>> destroyFollowSuggestion({
     required String accountId,
   }) async =>
-      super.evaluateResponse(
+      super.transformEmptyResponse(
         await super.delete(
           UserContext.oauth2Only,
           '/api/v1/suggestions/$accountId',
@@ -1822,7 +1811,6 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/tags/$tagId/follow',
-          checkEntity: true,
         ),
         dataBuilder: Tag.fromJson,
       );
@@ -1835,7 +1823,6 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/tags/$tagId/unfollow',
-          checkEntity: true,
         ),
         dataBuilder: Tag.fromJson,
       );
@@ -1861,7 +1848,6 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
             'status_ids[]': statusIds,
             'rule_ids[]': ruleIds,
           },
-          checkEntity: true,
         ),
         dataBuilder: Report.fromJson,
       );
@@ -1956,10 +1942,10 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
       );
 
   @override
-  Future<MastodonResponse<bool>> createBlockedDomain({
+  Future<MastodonResponse<Empty>> createBlockedDomain({
     required String domainName,
   }) async =>
-      super.evaluateResponse(
+      super.transformEmptyResponse(
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/domain_blocks',
@@ -1970,10 +1956,10 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
       );
 
   @override
-  Future<MastodonResponse<bool>> destroyBlockedDomain({
+  Future<MastodonResponse<Empty>> destroyBlockedDomain({
     required String domainName,
   }) async =>
-      super.evaluateResponse(
+      super.transformEmptyResponse(
         await super.delete(
           UserContext.oauth2Only,
           '/api/v1/domain_blocks',

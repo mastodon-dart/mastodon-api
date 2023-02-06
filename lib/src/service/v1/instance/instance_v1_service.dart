@@ -9,6 +9,7 @@ import '../../base_service.dart';
 import '../../entities/announcement.dart';
 import '../../entities/blocked_domain.dart';
 import '../../entities/emoji.dart';
+import '../../entities/empty.dart';
 import '../../entities/extended_description.dart';
 import '../../entities/instance.dart';
 import '../../entities/instance_activity.dart';
@@ -238,7 +239,7 @@ abstract class InstanceV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/announcements/#dismiss
-  Future<MastodonResponse<bool>> createMarkAnnouncementAsRead({
+  Future<MastodonResponse<Empty>> createMarkAnnouncementAsRead({
     required String announcementId,
   });
 
@@ -265,7 +266,7 @@ abstract class InstanceV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/announcements/#put-reactions
-  Future<MastodonResponse<bool>> createReactionToAnnouncement({
+  Future<MastodonResponse<Empty>> createReactionToAnnouncement({
     required String announcementId,
     required String emojiName,
   });
@@ -293,7 +294,7 @@ abstract class InstanceV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/announcements/#delete-reactions
-  Future<MastodonResponse<bool>> destroyReactionToAnnouncement({
+  Future<MastodonResponse<Empty>> destroyReactionToAnnouncement({
     required String announcementId,
     required String emojiName,
   });
@@ -438,10 +439,10 @@ class _InstanceV1Service extends BaseService implements InstanceV1Service {
       await _lookupAnnouncements(includeDismissed: true);
 
   @override
-  Future<MastodonResponse<bool>> createMarkAnnouncementAsRead({
+  Future<MastodonResponse<Empty>> createMarkAnnouncementAsRead({
     required String announcementId,
   }) async =>
-      super.evaluateResponse(
+      super.transformEmptyResponse(
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/announcements/$announcementId/dismiss',
@@ -449,11 +450,11 @@ class _InstanceV1Service extends BaseService implements InstanceV1Service {
       );
 
   @override
-  Future<MastodonResponse<bool>> createReactionToAnnouncement({
+  Future<MastodonResponse<Empty>> createReactionToAnnouncement({
     required String announcementId,
     required String emojiName,
   }) async =>
-      super.evaluateResponse(
+      super.transformEmptyResponse(
         await super.put(
           UserContext.oauth2Only,
           '/api/v1/announcements/$announcementId/reactions/$emojiName',
@@ -461,11 +462,11 @@ class _InstanceV1Service extends BaseService implements InstanceV1Service {
       );
 
   @override
-  Future<MastodonResponse<bool>> destroyReactionToAnnouncement({
+  Future<MastodonResponse<Empty>> destroyReactionToAnnouncement({
     required String announcementId,
     required String emojiName,
   }) async =>
-      super.evaluateResponse(
+      super.transformEmptyResponse(
         await super.delete(
           UserContext.oauth2Only,
           '/api/v1/announcements/$announcementId/reactions/$emojiName',

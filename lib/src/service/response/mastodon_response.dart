@@ -3,6 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // 🌎 Project imports:
+import '../entities/empty.dart';
 import '../entities/rate_limit.dart';
 
 /// The class represents the response from Mastodon API.
@@ -19,11 +20,15 @@ class MastodonResponse<D> {
   /// The data field
   final D data;
 
-  Map<String, dynamic> toJson() => {
-        'data': data is List
-            ? (data as List).map((e) => e.toJson()).toList()
-            : (data as dynamic).toJson(),
-      };
+  Map<String, dynamic> toJson() => data is Empty
+      ? {
+          'data': {},
+        }
+      : {
+          'data': data is List
+              ? (data as List).map((e) => e.toJson()).toList()
+              : (data as dynamic).toJson(),
+        };
 
   @override
   String toString() {
