@@ -10,6 +10,22 @@ import 'package:mastodon_api/src/core/exception/unauthorized_exception.dart';
 // 📦 Package imports:
 import 'package:test/test.dart';
 
+void expectMastodonExceptionException(Function fn) {
+  expect(
+    () async => await fn.call(),
+    throwsA(
+      allOf(
+        isA<MastodonException>(),
+        predicate(
+          (dynamic e) =>
+              e.message ==
+              'Required parameter is missing or improperly formatted.',
+        ),
+      ),
+    ),
+  );
+}
+
 void expectUnauthorizedException(Function fn) {
   expect(
     () async => await fn.call(),

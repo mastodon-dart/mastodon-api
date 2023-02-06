@@ -715,7 +715,6 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
               'hide_totals': poll?.hideTotals,
             }
           },
-          checkEntity: true,
         ),
         dataBuilder: Status.fromJson,
       );
@@ -836,7 +835,6 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
           body: {
             'choices': choices,
           },
-          checkEntity: true,
         ),
         dataBuilder: Poll.fromJson,
       );
@@ -923,7 +921,6 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/statuses/$statusId/favourite',
-          checkEntity: true,
         ),
         dataBuilder: Status.fromJson,
       );
@@ -936,7 +933,6 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/statuses/$statusId/unfavourite',
-          checkEntity: true,
         ),
         dataBuilder: Status.fromJson,
       );
@@ -949,7 +945,6 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/statuses/$statusId/reblog',
-          checkEntity: true,
         ),
         dataBuilder: Status.fromJson,
       );
@@ -961,7 +956,6 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/statuses/$statusId/unreblog',
-          checkEntity: true,
         ),
         dataBuilder: Status.fromJson,
       );
@@ -974,7 +968,6 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/statuses/$statusId/bookmark',
-          checkEntity: true,
         ),
         dataBuilder: Status.fromJson,
       );
@@ -987,7 +980,6 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/statuses/$statusId/unbookmark',
-          checkEntity: true,
         ),
         dataBuilder: Status.fromJson,
       );
@@ -1000,7 +992,6 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/statuses/$statusId/mute',
-          checkEntity: true,
         ),
         dataBuilder: Status.fromJson,
       );
@@ -1013,7 +1004,6 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/statuses/$statusId/unmute',
-          checkEntity: true,
         ),
         dataBuilder: Status.fromJson,
       );
@@ -1026,7 +1016,6 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/statuses/$statusId/pin',
-          checkEntity: true,
         ),
         dataBuilder: Status.fromJson,
       );
@@ -1039,7 +1028,6 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/statuses/$statusId/unpin',
-          checkEntity: true,
         ),
         dataBuilder: Status.fromJson,
       );

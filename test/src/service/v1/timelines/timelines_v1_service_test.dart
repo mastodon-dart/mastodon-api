@@ -5,6 +5,7 @@
 // 🌎 Project imports:
 import 'package:mastodon_api/src/core/client/user_context.dart';
 import 'package:mastodon_api/src/service/entities/conversation.dart';
+import 'package:mastodon_api/src/service/entities/empty.dart';
 import 'package:mastodon_api/src/service/entities/notification_snapshot.dart';
 import 'package:mastodon_api/src/service/entities/rate_limit.dart';
 import 'package:mastodon_api/src/service/entities/status.dart';
@@ -589,7 +590,7 @@ void main() {
 
       expect(response, isA<MastodonResponse>());
       expect(response.rateLimit, isA<RateLimit>());
-      expect(response.data, isTrue);
+      expect(response.data, isA<Empty>());
     });
 
     test('when unauthorized', () async {

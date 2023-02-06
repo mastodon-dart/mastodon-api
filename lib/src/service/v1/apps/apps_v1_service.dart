@@ -10,6 +10,7 @@ import '../../../core/client/user_context.dart';
 import '../../../core/scope.dart';
 import '../../base_service.dart';
 import '../../entities/application.dart';
+import '../../entities/empty.dart';
 import '../../entities/registered_application.dart';
 import '../../response/mastodon_response.dart';
 
@@ -94,7 +95,7 @@ abstract class AppsV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/emails/#confirmation
-  Future<MastodonResponse<bool>> createNewConfirmationEmail({
+  Future<MastodonResponse<Empty>> createNewConfirmationEmail({
     required String email,
   });
 }
@@ -123,7 +124,6 @@ class _AppsV1Service extends BaseService implements AppsV1Service {
             'scopes': scopes?.map((e) => e.value).join(" "),
             'website': websiteUrl,
           },
-          checkEntity: true,
         ),
         dataBuilder: RegisteredApplication.fromJson,
       );
@@ -144,10 +144,10 @@ class _AppsV1Service extends BaseService implements AppsV1Service {
       );
 
   @override
-  Future<MastodonResponse<bool>> createNewConfirmationEmail({
+  Future<MastodonResponse<Empty>> createNewConfirmationEmail({
     required String email,
   }) async =>
-      super.evaluateResponse(
+      super.transformEmptyResponse(
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/emails/confirmation',

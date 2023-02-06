@@ -6,6 +6,7 @@
 import '../../../core/client/client_context.dart';
 import '../../../core/client/user_context.dart';
 import '../../base_service.dart';
+import '../../entities/empty.dart';
 import '../../entities/notification.dart';
 import '../../entities/notification_type.dart';
 import '../../response/mastodon_response.dart';
@@ -108,7 +109,7 @@ abstract class NotificationsV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/notifications/#clear
-  Future<MastodonResponse<bool>> destroyAllNotifications();
+  Future<MastodonResponse<Empty>> destroyAllNotifications();
 
   /// Dismiss a single notification from the server.
   ///
@@ -131,7 +132,7 @@ abstract class NotificationsV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/notifications/#dismiss
-  Future<MastodonResponse<bool>> destroyNotification({
+  Future<MastodonResponse<Empty>> destroyNotification({
     required String notificationId,
   });
 }
@@ -184,8 +185,8 @@ class _NotificationsV1Service extends BaseService
       );
 
   @override
-  Future<MastodonResponse<bool>> destroyAllNotifications() async =>
-      super.evaluateResponse(
+  Future<MastodonResponse<Empty>> destroyAllNotifications() async =>
+      super.transformEmptyResponse(
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/notifications/clear',
@@ -193,10 +194,10 @@ class _NotificationsV1Service extends BaseService
       );
 
   @override
-  Future<MastodonResponse<bool>> destroyNotification({
+  Future<MastodonResponse<Empty>> destroyNotification({
     required String notificationId,
   }) async =>
-      super.evaluateResponse(
+      super.transformEmptyResponse(
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/notifications/$notificationId/dismiss',

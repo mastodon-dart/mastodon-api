@@ -7,6 +7,7 @@ import '../../../core/client/client_context.dart';
 import '../../../core/client/user_context.dart';
 import '../../base_service.dart';
 import '../../entities/conversation.dart';
+import '../../entities/empty.dart';
 import '../../entities/notification_snapshot.dart';
 import '../../entities/status.dart';
 import '../../entities/status_snapshot.dart';
@@ -232,7 +233,7 @@ abstract class TimelinesV1Service {
   /// ## Reference
   ///
   /// - https://docs.joinmastodon.org/methods/conversations/#delete
-  Future<MastodonResponse<bool>> destroyConversation({
+  Future<MastodonResponse<Empty>> destroyConversation({
     required String conversationId,
   });
 
@@ -471,10 +472,10 @@ class _TimelinesV1Service extends BaseService implements TimelinesV1Service {
       );
 
   @override
-  Future<MastodonResponse<bool>> destroyConversation({
+  Future<MastodonResponse<Empty>> destroyConversation({
     required String conversationId,
   }) async =>
-      super.evaluateResponse(
+      super.transformEmptyResponse(
         await super.delete(
           UserContext.oauth2Only,
           '/api/v1/conversations/$conversationId',
@@ -489,7 +490,6 @@ class _TimelinesV1Service extends BaseService implements TimelinesV1Service {
         await super.post(
           UserContext.oauth2Only,
           '/api/v1/conversations/$conversationId/read',
-          checkEntity: true,
         ),
         dataBuilder: Conversation.fromJson,
       );
@@ -533,7 +533,6 @@ class _TimelinesV1Service extends BaseService implements TimelinesV1Service {
               'last_read_id': statusId,
             }
           },
-          checkEntity: true,
         ),
         dataBuilder: StatusSnapshot.fromJson,
       );
@@ -551,7 +550,6 @@ class _TimelinesV1Service extends BaseService implements TimelinesV1Service {
               'last_read_id': notificationId,
             }
           },
-          checkEntity: true,
         ),
         dataBuilder: NotificationSnapshot.fromJson,
       );

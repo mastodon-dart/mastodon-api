@@ -1,5 +1,8 @@
 # Release Note
 
+## v0.5.0
+
+- The return type of `MastodonResponse<bool>` has been modified to assign an object corresponding to each endpoint. Basically, if there is no return value for a successful POST or DELETE method, an `Empty` object is returned as `data`. It means that the request was successful if `Empty` is returned; if the request failed, an exception is thrown. ([#125](https://github.com/mastodon-dart/mastodon-api/issues/125))
 - Added `domain_blocks API methods`. ([#12](https://github.com/mastodon-dart/mastodon-api/issues/12))
   - `GET /api/v1/domain_blocks`
   - `POST /api/v1/domain_blocks`
