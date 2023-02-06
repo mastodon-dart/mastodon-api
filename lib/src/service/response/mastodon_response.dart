@@ -6,6 +6,7 @@
 import '../../core/http_status.dart';
 import '../entities/empty.dart';
 import '../entities/rate_limit.dart';
+import 'mastodon_request.dart';
 
 /// The class represents the response from Mastodon API.
 class MastodonResponse<D> {
@@ -13,6 +14,7 @@ class MastodonResponse<D> {
   const MastodonResponse({
     required this.headers,
     required this.status,
+    required this.request,
     required this.rateLimit,
     required this.data,
   });
@@ -22,6 +24,9 @@ class MastodonResponse<D> {
 
   /// The HTTP status from Mastodon API server.
   final HttpStatus status;
+
+  /// The request that generated this response.
+  final MastodonRequest request;
 
   /// The rate limit
   final RateLimit rateLimit;

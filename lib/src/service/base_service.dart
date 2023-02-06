@@ -17,11 +17,13 @@ import '../core/exception/data_not_found_exception.dart';
 import '../core/exception/mastodon_exception.dart';
 import '../core/exception/rate_limit_exceeded_exception.dart';
 import '../core/exception/unauthorized_exception.dart';
+import '../core/http_method.dart';
 import '../core/http_status.dart';
 import '../core/service_helper.dart';
 import '../core/util/json_utils.dart';
 import 'entities/empty.dart';
 import 'entities/rate_limit.dart';
+import 'response/mastodon_request.dart';
 import 'response/mastodon_response.dart';
 
 /// The callback function for building data object from response.
@@ -213,6 +215,10 @@ abstract class BaseService implements _Service {
       MastodonResponse(
         headers: response.headers,
         status: HttpStatus.valueOf(response.statusCode),
+        request: MastodonRequest(
+          method: HttpMethod.valueOf(response.request!.method),
+          url: response.request!.url,
+        ),
         rateLimit: RateLimit.fromJson(
           rateLimitConverter.convert(response.headers),
         ),
@@ -227,6 +233,10 @@ abstract class BaseService implements _Service {
       MastodonResponse(
         headers: response.headers,
         status: HttpStatus.valueOf(response.statusCode),
+        request: MastodonRequest(
+          method: HttpMethod.valueOf(response.request!.method),
+          url: response.request!.url,
+        ),
         rateLimit: RateLimit.fromJson(
           rateLimitConverter.convert(response.headers),
         ),
@@ -245,6 +255,10 @@ abstract class BaseService implements _Service {
     return MastodonResponse(
       headers: response.headers,
       status: HttpStatus.valueOf(response.statusCode),
+      request: MastodonRequest(
+        method: HttpMethod.valueOf(response.request!.method),
+        url: response.request!.url,
+      ),
       rateLimit: RateLimit.fromJson(
         rateLimitConverter.convert(response.headers),
       ),
@@ -263,6 +277,10 @@ abstract class BaseService implements _Service {
     return MastodonResponse(
       headers: response.headers,
       status: HttpStatus.valueOf(response.statusCode),
+      request: MastodonRequest(
+        method: HttpMethod.valueOf(response.request!.method),
+        url: response.request!.url,
+      ),
       rateLimit: RateLimit.fromJson(
         rateLimitConverter.convert(response.headers),
       ),
