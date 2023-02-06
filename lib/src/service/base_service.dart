@@ -210,6 +210,7 @@ abstract class BaseService implements _Service {
     Response response,
   ) =>
       MastodonResponse(
+        headers: response.headers,
         rateLimit: RateLimit.fromJson(
           rateLimitConverter.convert(response.headers),
         ),
@@ -222,6 +223,7 @@ abstract class BaseService implements _Service {
     required DataBuilder<D> dataBuilder,
   }) =>
       MastodonResponse(
+        headers: response.headers,
         rateLimit: RateLimit.fromJson(
           rateLimitConverter.convert(response.headers),
         ),
@@ -238,6 +240,7 @@ abstract class BaseService implements _Service {
     final json = jsonDecode(response.body);
 
     return MastodonResponse(
+      headers: response.headers,
       rateLimit: RateLimit.fromJson(
         rateLimitConverter.convert(response.headers),
       ),
@@ -254,6 +257,7 @@ abstract class BaseService implements _Service {
     final json = jsonDecode(response.body);
 
     return MastodonResponse(
+      headers: response.headers,
       rateLimit: RateLimit.fromJson(
         rateLimitConverter.convert(response.headers),
       ),
