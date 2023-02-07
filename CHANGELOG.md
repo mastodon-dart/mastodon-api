@@ -1,5 +1,12 @@
 # Release Note
 
+## v0.5.1
+
+- Added `follow_requests API methods`. ([#16](https://github.com/mastodon-dart/mastodon-api/issues/16))
+  - `GET /api/v1/follow_requests`
+  - `POST /api/v1/follow_requests/:account_id/authorize`
+  - `POST /api/v1/follow_requests/:account_id/reject`
+
 ## v0.5.0
 
 - The return type of `MastodonResponse<bool>` has been modified to assign an object corresponding to each endpoint. Basically, if there is no return value for a successful POST or DELETE method, an `Empty` object is returned as `data`. It means that the request was successful if `Empty` is returned; if the request failed, an exception is thrown. ([#125](https://github.com/mastodon-dart/mastodon-api/issues/125))
