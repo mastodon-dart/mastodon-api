@@ -1284,6 +1284,85 @@ abstract class AccountsV1Service {
   Future<MastodonResponse<Empty>> destroyBlockedDomain({
     required String domainName,
   });
+
+  /// View pending follow requests.
+  ///
+  /// ## Parameters
+  ///
+  /// - [limit]: Maximum number of results to return. Defaults to 40 accounts.
+  ///            Max 80 accounts.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/follow_requests HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - follow
+  /// - read:follows
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/follow_requests/#get
+  Future<MastodonResponse<List<Account>>> lookupFollowRequests({
+    int? limit,
+  });
+
+  /// Accept follow request.
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountId]: The ID of the Account in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST /api/v1/follow_requests/:account_id/authorize HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - follow
+  /// - write:follows
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/follow_requests/#accept
+  Future<MastodonResponse<Relationship>> createFollower({
+    required String accountId,
+  });
+
+  /// Reject follow request.
+  ///
+  /// ## Parameters
+  ///
+  /// - [accountId]: The ID of the Account in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST /api/v1/follow_requests/:account_id/reject HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - follow
+  /// - write:follows
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/follow_requests/#reject
+  Future<MastodonResponse<Relationship>> destroyFollowRequest({
+    required String accountId,
+  });
 }
 
 class _AccountsV1Service extends BaseService implements AccountsV1Service {
@@ -1964,5 +2043,44 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
           UserContext.oauth2Only,
           '/api/v1/domain_blocks',
         ),
+      );
+
+  @override
+  Future<MastodonResponse<List<Account>>> lookupFollowRequests({
+    int? limit,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/follow_requests',
+          queryParameters: {
+            'limit': limit,
+          },
+        ),
+        dataBuilder: Account.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Relationship>> createFollower({
+    required String accountId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/follow_requests/$accountId/authorize',
+        ),
+        dataBuilder: Relationship.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Relationship>> destroyFollowRequest({
+    required String accountId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/follow_requests/$accountId/reject',
+        ),
+        dataBuilder: Relationship.fromJson,
       );
 }
