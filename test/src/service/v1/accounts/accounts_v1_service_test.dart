@@ -2858,4 +2858,231 @@ void main() {
       );
     });
   });
+
+  group('.lookupFollowRequests', () {
+    test('normal case', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/follow_requests',
+          'test/src/service/v1/accounts/data/lookup_follow_requests.json',
+          {
+            'limit': '40',
+          },
+        ),
+      );
+
+      final response = await accountsService.lookupFollowRequests(
+        limit: 40,
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<List<Account>>());
+    });
+
+    test('when unauthorized', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/follow_requests',
+          'test/src/service/v1/accounts/data/lookup_follow_requests.json',
+          {
+            'limit': '40',
+          },
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await accountsService.lookupFollowRequests(
+          limit: 40,
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/follow_requests',
+          'test/src/service/v1/accounts/data/lookup_follow_requests.json',
+          {
+            'limit': '40',
+          },
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await accountsService.lookupFollowRequests(
+          limit: 40,
+        ),
+      );
+    });
+  });
+
+  group('.createFollower', () {
+    test('normal case', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/follow_requests/1234/authorize',
+          'test/src/service/v1/accounts/data/create_follower.json',
+        ),
+      );
+
+      final response = await accountsService.createFollower(
+        accountId: '1234',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<Relationship>());
+    });
+
+    test('when unauthorized', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/follow_requests/1234/authorize',
+          'test/src/service/v1/accounts/data/create_follower.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await accountsService.createFollower(
+          accountId: '1234',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/follow_requests/1234/authorize',
+          'test/src/service/v1/accounts/data/create_follower.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await accountsService.createFollower(
+          accountId: '1234',
+        ),
+      );
+    });
+
+    test('when parameters are invalid', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/domain_blocks',
+          'test/src/service/v1/accounts/data/create_blocked_domain.json',
+          statusCode: 422,
+        ),
+      );
+
+      expectMastodonExceptionException(
+        () async => await accountsService.createBlockedDomain(
+          domainName: 'test.com',
+        ),
+      );
+    });
+  });
+
+  group('.destroyFollowRequest', () {
+    test('normal case', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/follow_requests/1234/reject',
+          'test/src/service/v1/accounts/data/destroy_follow_request.json',
+        ),
+      );
+
+      final response = await accountsService.destroyFollowRequest(
+        accountId: '1234',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<Relationship>());
+    });
+
+    test('when unauthorized', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/follow_requests/1234/reject',
+          'test/src/service/v1/accounts/data/destroy_follow_request.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await accountsService.destroyFollowRequest(
+          accountId: '1234',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/follow_requests/1234/reject',
+          'test/src/service/v1/accounts/data/destroy_follow_request.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await accountsService.destroyFollowRequest(
+          accountId: '1234',
+        ),
+      );
+    });
+
+    test('when parameters are invalid', () async {
+      final accountsService = AccountsV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/follow_requests/1234/reject',
+          'test/src/service/v1/accounts/data/destroy_follow_request.json',
+          statusCode: 422,
+        ),
+      );
+
+      expectMastodonExceptionException(
+        () async => await accountsService.destroyFollowRequest(
+          accountId: '1234',
+        ),
+      );
+    });
+  });
 }
