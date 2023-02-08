@@ -7,6 +7,7 @@
   - `POST /api/v1/follow_requests/:account_id/authorize`
   - `POST /api/v1/follow_requests/:account_id/reject`
 - Added `oembed API methods`. ([#51](https://github.com/mastodon-dart/mastodon-api/issues/51))
+  - `GET /api/oembed`
 
 ## v0.5.0
 
