@@ -1,0 +1,12 @@
+{
+  "type": "rich",
+  "version": "1.0",
+  "author_name": "Shinya Kato",
+  "author_url": "https://mastodon.world/@shinyakato",
+  "provider_name": "mastodon.world",
+  "provider_url": "https://mastodon.world/",
+  "cache_age": 86400,
+  "html": "\u003ciframe src=\"https://mastodon.world/@shinyakato/109804302990784885/embed\" class=\"mastodon-embed\" style=\"max-width: 100%; border: 0\" width=\"400\" allowfullscreen=\"allowfullscreen\"\u003e\u003c/iframe\u003e\u003cscript src=\"https://mastodon.world/embed.js\" async=\"async\"\u003e\u003c/script\u003e",
+  "width": 400,
+  "height": null
+}
