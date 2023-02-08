@@ -7,6 +7,7 @@ import 'core/client/client_context.dart';
 import 'core/config/retry_config.dart';
 import 'service/mastodon_v1_service.dart';
 import 'service/mastodon_v2_service.dart';
+import 'service/oembed/oembed_service.dart';
 
 abstract class MastodonApi {
   /// Returns the new instance of [MastodonApi].
@@ -28,6 +29,9 @@ abstract class MastodonApi {
 
   /// Returns the v2 service.
   MastodonV2Service get v2;
+
+  /// Returns the OEmbed service.
+  OEmbedService get oembed;
 }
 
 class _MastodonApi implements MastodonApi {
@@ -52,6 +56,14 @@ class _MastodonApi implements MastodonApi {
             timeout: timeout,
             retryConfig: retryConfig,
           ),
+        ),
+        oembed = OEmbedService(
+          instance: instance,
+          context: ClientContext(
+            bearerToken: bearerToken,
+            timeout: timeout,
+            retryConfig: retryConfig,
+          ),
         );
 
   @override
@@ -59,4 +71,7 @@ class _MastodonApi implements MastodonApi {
 
   @override
   final MastodonV2Service v2;
+
+  @override
+  final OEmbedService oembed;
 }
