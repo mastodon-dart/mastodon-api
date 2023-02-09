@@ -18,15 +18,16 @@ MockClientContext buildGetStub(
   final UserContext userContext,
   final String unencodedPath,
   final String resourcePath,
-  final Map<String, String> queryParameters, {
+  final Map<String, dynamic> queryParameters, {
   Map<String, String> headers = const {},
   int statusCode = 200,
 }) {
   final mockClientContext = MockClientContext();
+  final requestUri = Uri.https(instance, unencodedPath, queryParameters);
 
   when(mockClientContext.get(
     userContext,
-    Uri.https(instance, unencodedPath, queryParameters),
+    requestUri,
     headers: headers,
   )).thenAnswer(
     (_) async => Response(
@@ -35,7 +36,7 @@ MockClientContext buildGetStub(
       headers: {'content-type': 'application/json; charset=utf-8'},
       request: Request(
         'GET',
-        Uri(),
+        requestUri,
       ),
     ),
   );
@@ -51,10 +52,11 @@ MockClientContext buildPostStub(
   int statusCode = 200,
 }) {
   final mockClientContext = MockClientContext();
+  final requestUri = Uri.https(instance, unencodedPath, {});
 
   when(mockClientContext.post(
     userContext,
-    Uri.https(instance, unencodedPath, {}),
+    requestUri,
     headers: anyNamed('headers'),
     body: anyNamed('body'),
   )).thenAnswer(
@@ -66,7 +68,7 @@ MockClientContext buildPostStub(
       },
       request: Request(
         'POST',
-        Uri(),
+        requestUri,
       ),
     ),
   );
@@ -83,10 +85,11 @@ MockClientContext buildPostMultipartStub(
   int statusCode = 200,
 }) {
   final mockClientContext = MockClientContext();
+  final requestUri = Uri.https(instance, unencodedPath, queryParameters);
 
   when(mockClientContext.postMultipart(
     userContext,
-    Uri.https(instance, unencodedPath, queryParameters),
+    requestUri,
     files: anyNamed('files'),
   )).thenAnswer(
     (_) async => Response(
@@ -97,7 +100,7 @@ MockClientContext buildPostMultipartStub(
       },
       request: Request(
         'POST',
-        Uri(),
+        requestUri,
       ),
     ),
   );
@@ -112,10 +115,11 @@ MockClientContext buildDeleteStub(
   int statusCode = 200,
 }) {
   final mockClientContext = MockClientContext();
+  final requestUri = Uri.https(instance, unencodedPath);
 
   when(mockClientContext.delete(
     UserContext.oauth2Only,
-    Uri.https(instance, unencodedPath),
+    requestUri,
     body: anyNamed('body'),
   )).thenAnswer(
     (_) async => Response(
@@ -124,7 +128,7 @@ MockClientContext buildDeleteStub(
       headers: {'content-type': 'application/json; charset=utf-8'},
       request: Request(
         'DELETE',
-        Uri(),
+        requestUri,
       ),
     ),
   );
@@ -139,10 +143,11 @@ MockClientContext buildPutStub(
   int statusCode = 200,
 }) {
   final mockClientContext = MockClientContext();
+  final requestUri = Uri.https(instance, unencodedPath);
 
   when(mockClientContext.put(
     UserContext.oauth2Only,
-    Uri.https(instance, unencodedPath),
+    requestUri,
     headers: anyNamed('headers'),
     body: anyNamed('body'),
   )).thenAnswer(
@@ -152,7 +157,7 @@ MockClientContext buildPutStub(
       headers: {'content-type': 'application/json; charset=utf-8'},
       request: Request(
         'PUT',
-        Uri(),
+        requestUri,
       ),
     ),
   );
@@ -168,10 +173,11 @@ MockClientContext buildPatchStub(
   int statusCode = 200,
 }) {
   final mockClientContext = MockClientContext();
+  final requestUri = Uri.https(instance, unencodedPath);
 
   when(mockClientContext.patch(
     userContext,
-    Uri.https(instance, unencodedPath),
+    requestUri,
     headers: anyNamed('headers'),
     body: anyNamed('body'),
   )).thenAnswer(
@@ -181,7 +187,7 @@ MockClientContext buildPatchStub(
       headers: {'content-type': 'application/json; charset=utf-8'},
       request: Request(
         'PATCH',
-        Uri(),
+        requestUri,
       ),
     ),
   );
@@ -197,10 +203,11 @@ MockClientContext buildPatchMultipartStub(
   int statusCode = 200,
 }) {
   final mockClientContext = MockClientContext();
+  final requestUri = Uri.https(instance, unencodedPath);
 
   when(mockClientContext.patchMultipart(
     userContext,
-    Uri.https(instance, unencodedPath),
+    requestUri,
     files: anyNamed('files'),
   )).thenAnswer(
     (_) async => Response(
@@ -209,7 +216,7 @@ MockClientContext buildPatchMultipartStub(
       headers: {'content-type': 'application/json; charset=utf-8'},
       request: Request(
         'PATCH',
-        Uri(),
+        requestUri,
       ),
     ),
   );

@@ -284,7 +284,7 @@ class ServiceHelper implements Service {
     return object;
   }
 
-  Map<String, String> _convertQueryParameters(
+  Map<String, dynamic> _convertQueryParameters(
     final Map<String, dynamic> queryParameters,
   ) {
     final serializedParameters = queryParameters.map((key, value) {
@@ -301,16 +301,16 @@ class ServiceHelper implements Service {
       } else if (value is List?) {
         return MapEntry(
           key,
-          value?.toSet().join(','),
+          value?.map((e) => e.toString()).toList()
         );
       } else if (value is Serializable) {
         return MapEntry(
           key,
-          value.value,
+          value.value.toString(),
         );
       }
 
-      return MapEntry(key, value);
+      return MapEntry(key, value.toString());
     });
 
     return Map.from(_removeNullValues(serializedParameters) ?? {}).map(
@@ -322,7 +322,7 @@ class ServiceHelper implements Service {
           return MapEntry(key, value.toUtc().toIso8601String());
         }
 
-        return MapEntry(key, value.toString());
+        return MapEntry(key, value);
       },
     );
   }
