@@ -306,7 +306,7 @@ class ServiceHelper implements Service {
       } else if (value is Serializable) {
         return MapEntry(
           key,
-          value.value.toString(),
+          value.value,
         );
       }
 
