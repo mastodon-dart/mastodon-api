@@ -1313,9 +1313,11 @@ void main() {
         context: context.buildGetStub(
           'test',
           UserContext.oauth2Only,
-          '/api/v1/accounts/relationships?id[]=1&id[]=2',
+          '/api/v1/accounts/relationships',
           'test/src/service/v1/accounts/data/lookup_relationships.json',
-          {},
+          {
+            'id[]': ['1', '2'],
+          },
         ),
       );
 
@@ -1325,6 +1327,12 @@ void main() {
       expect(response, isA<MastodonResponse>());
       expect(response.rateLimit, isA<RateLimit>());
       expect(response.data, isA<List<Relationship>>());
+      expect(
+        response.request.url,
+        Uri.parse("https://test/api/v1/accounts/relationships"
+            "?id[]=1"
+            "&id[]=2"),
+      );
     });
 
     test('when unauthorized', () async {
@@ -1333,9 +1341,11 @@ void main() {
         context: context.buildGetStub(
           'test',
           UserContext.oauth2Only,
-          '/api/v1/accounts/relationships?id[]=1&id[]=2',
+          '/api/v1/accounts/relationships',
           'test/src/service/v1/accounts/data/lookup_relationships.json',
-          {},
+          {
+            'id[]': ['1', '2'],
+          },
           statusCode: 401,
         ),
       );
@@ -1352,9 +1362,11 @@ void main() {
         context: context.buildGetStub(
           'test',
           UserContext.oauth2Only,
-          '/api/v1/accounts/relationships?id[]=1&id[]=2',
+          '/api/v1/accounts/relationships',
           'test/src/service/v1/accounts/data/lookup_relationships.json',
-          {},
+          {
+            'id[]': ['1', '2'],
+          },
           statusCode: 429,
         ),
       );
@@ -1373,9 +1385,11 @@ void main() {
         context: context.buildGetStub(
           'test',
           UserContext.oauth2Only,
-          '/api/v1/accounts/familiar_followers?id[]=1&id[]=2',
+          '/api/v1/accounts/familiar_followers',
           'test/src/service/v1/accounts/data/lookup_familiar_followers.json',
-          {},
+          {
+            'id[]': ['1', '2'],
+          },
         ),
       );
 
@@ -1385,6 +1399,12 @@ void main() {
       expect(response, isA<MastodonResponse>());
       expect(response.rateLimit, isA<RateLimit>());
       expect(response.data, isA<List<FamiliarFollower>>());
+      expect(
+        response.request.url,
+        Uri.parse("https://test/api/v1/accounts/familiar_followers"
+            "?id[]=1"
+            "&id[]=2"),
+      );
     });
 
     test('when unauthorized', () async {
@@ -1393,9 +1413,11 @@ void main() {
         context: context.buildGetStub(
           'test',
           UserContext.oauth2Only,
-          '/api/v1/accounts/familiar_followers?id[]=1&id[]=2',
+          '/api/v1/accounts/familiar_followers',
           'test/src/service/v1/accounts/data/lookup_familiar_followers.json',
-          {},
+          {
+            'id[]': ['1', '2'],
+          },
           statusCode: 401,
         ),
       );
@@ -1412,9 +1434,11 @@ void main() {
         context: context.buildGetStub(
           'test',
           UserContext.oauth2Only,
-          '/api/v1/accounts/familiar_followers?id[]=1&id[]=2',
+          '/api/v1/accounts/familiar_followers',
           'test/src/service/v1/accounts/data/lookup_familiar_followers.json',
-          {},
+          {
+            'id[]': ['1', '2'],
+          },
           statusCode: 429,
         ),
       );

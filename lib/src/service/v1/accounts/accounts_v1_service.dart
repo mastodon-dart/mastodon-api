@@ -1733,7 +1733,10 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
       super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2Only,
-          '/api/v1/accounts/relationships?${accountIds.map((e) => 'id[]=$e').join('&')}',
+          '/api/v1/accounts/relationships',
+          queryParameters: {
+            'id[]': accountIds,
+          }
         ),
         dataBuilder: Relationship.fromJson,
       );
@@ -1745,7 +1748,10 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
       super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2Only,
-          '/api/v1/accounts/familiar_followers?${accountIds.map((e) => 'id[]=$e').join('&')}',
+          '/api/v1/accounts/familiar_followers',
+          queryParameters: {
+            'id[]': accountIds
+          }
         ),
         dataBuilder: FamiliarFollower.fromJson,
       );

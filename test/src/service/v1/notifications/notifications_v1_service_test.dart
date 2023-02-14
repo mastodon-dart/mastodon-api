@@ -31,8 +31,14 @@ void main() {
               'since_id': '0987',
               'min_id': '1234',
               'limit': '40',
-              'types[]': NotificationType.mention.value,
-              'exclude_types[]': NotificationType.follow.value,
+              'types[]': [
+                NotificationType.mention.value,
+                NotificationType.favourite.value
+              ],
+              'exclude_types[]': [
+                NotificationType.follow.value,
+                NotificationType.poll.value
+              ],
               'account_id': '1111',
             }),
       );
@@ -42,14 +48,27 @@ void main() {
         sinceNotificationId: '0987',
         minNotificationId: '1234',
         limit: 40,
-        types: [NotificationType.mention],
-        excludeTypes: [NotificationType.follow],
+        types: [NotificationType.mention, NotificationType.favourite],
+        excludeTypes: [NotificationType.follow, NotificationType.poll],
         accountId: '1111',
       );
 
       expect(response, isA<MastodonResponse>());
       expect(response.rateLimit, isA<RateLimit>());
       expect(response.data, isA<List<Notification>>());
+      expect(
+        response.request.url,
+        Uri.parse("https://test/api/v1/notifications"
+            "?max_id=5678"
+            "&since_id=0987"
+            "&min_id=1234"
+            "&limit=40"
+            "&types[]=${NotificationType.mention.value}"
+            "&types[]=${NotificationType.favourite.value}"
+            "&exclude_types[]=${NotificationType.follow.value}"
+            "&exclude_types[]=${NotificationType.poll.value}"
+            "&account_id=1111"),
+      );
     });
 
     test('when unauthorized', () async {
