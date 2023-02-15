@@ -1,5 +1,9 @@
 # Release Note
 
+## v0.6.0
+
+- Internal processing when searching for data from multiple IDs has been corrected. ([#136](https://github.com/mastodon-dart/mastodon-api/issues/136))
+
 ## v0.5.1
 
 - Added `follow_requests API methods`. ([#16](https://github.com/mastodon-dart/mastodon-api/issues/16))
