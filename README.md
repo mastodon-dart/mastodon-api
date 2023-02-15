@@ -506,7 +506,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="20%"><a href="https://github.com/alevinetx"><img src="https://avatars.githubusercontent.com/u/5067356?v=4?s=100" width="100px;" alt="alevinetx"/><br /><sub><b>alevinetx</b></sub></a><br /><a href="https://github.com/mastodon-dart/mastodon-api/commits?author=alevinetx" title="Code">💻</a> <a href="#question-alevinetx" title="Answering Questions">💬</a> <a href="https://github.com/mastodon-dart/mastodon-api/issues?q=author%3Aalevinetx" title="Bug reports">🐛</a></td>
     </tr>
     <tr>
-      <td align="center" valign="top" width="20%"><a href="https://github.com/Kraigo"><img src="https://avatars.githubusercontent.com/u/8700639?v=4?s=100" width="100px;" alt="Igor"/><br /><sub><b>Igor</b></sub></a><br /><a href="https://github.com/mastodon-dart/mastodon-api/commits?author=Kraigo" title="Code">💻</a> <a href="https://github.com/mastodon-dart/mastodon-api/commits?author=Kraigo" title="Tests">⚠️</a></td>
+      <td align="center" valign="top" width="20%"><a href="https://github.com/Kraigo"><img src="https://avatars.githubusercontent.com/u/8700639?v=4?s=100" width="100px;" alt="Igor"/><br /><sub><b>Igor</b></sub></a><br /><a href="https://github.com/mastodon-dart/mastodon-api/commits?author=Kraigo" title="Code">💻</a> <a href="https://github.com/mastodon-dart/mastodon-api/commits?author=Kraigo" title="Tests">⚠️</a> <a href="https://github.com/mastodon-dart/mastodon-api/commits?author=Kraigo" title="Documentation">📖</a> <a href="https://github.com/mastodon-dart/mastodon-api/issues?q=author%3AKraigo" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>
