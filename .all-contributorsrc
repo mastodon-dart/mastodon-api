@@ -75,7 +75,9 @@
       "profile": "https://github.com/Kraigo",
       "contributions": [
         "code",
-        "test"
+        "test",
+        "doc",
+        "bug"
       ]
     }
   ],
