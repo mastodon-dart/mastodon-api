@@ -6,6 +6,7 @@
 
 // 🌎 Project imports:
 import 'package:mastodon_api/src/core/client/user_context.dart';
+import 'package:mastodon_api/src/service/entities/account.dart';
 import 'package:mastodon_api/src/service/entities/announcement.dart';
 import 'package:mastodon_api/src/service/entities/blocked_domain.dart';
 import 'package:mastodon_api/src/service/entities/emoji.dart';
@@ -19,6 +20,7 @@ import 'package:mastodon_api/src/service/entities/status.dart';
 import 'package:mastodon_api/src/service/entities/tag.dart';
 import 'package:mastodon_api/src/service/entities/trends_link.dart';
 import 'package:mastodon_api/src/service/response/mastodon_response.dart';
+import 'package:mastodon_api/src/service/v1/instance/instance_account_order.dart';
 import 'package:mastodon_api/src/service/v1/instance/instance_v1_service.dart';
 // 📦 Package imports:
 import 'package:test/test.dart';
@@ -1019,6 +1021,73 @@ void main() {
 
       expectRateLimitExceededException(
         () async => await instanceService.lookupAvailableEmoji(),
+      );
+    });
+  });
+
+  group('.lookupAccounts', () {
+    test('normal case', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.anonymousOnly,
+          '/api/v1/directory',
+          'test/src/service/v1/instance/data/lookup_accounts.json',
+          {
+            'offset': '2',
+            'limit': '40',
+            'order': 'new',
+            'local': 'true',
+          },
+        ),
+      );
+
+      final response = await instanceService.lookupAccounts(
+        offset: 2,
+        limit: 40,
+        order: InstanceAccountOrder.newbie,
+        onlyLocal: true,
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<List<Account>>());
+    });
+
+    test('when unauthorized', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.anonymousOnly,
+          '/api/v1/directory',
+          'test/src/service/v1/instance/data/lookup_accounts.json',
+          {},
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await instanceService.lookupAccounts(),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final instanceService = InstanceV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.anonymousOnly,
+          '/api/v1/directory',
+          'test/src/service/v1/instance/data/lookup_accounts.json',
+          {},
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await instanceService.lookupAccounts(),
       );
     });
   });
