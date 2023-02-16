@@ -1,5 +1,10 @@
 # Release Note
 
+## v0.5.3
+
+- Supported `directory API methods`. ([#37](https://github.com/mastodon-dart/mastodon-api/issues/37))
+  - `GET /api/v1/directory`
+
 ## v0.5.2
 
 - Internal processing when searching for data from multiple IDs has been corrected. ([#136](https://github.com/mastodon-dart/mastodon-api/issues/136))
