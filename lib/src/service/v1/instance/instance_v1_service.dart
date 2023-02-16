@@ -6,6 +6,7 @@
 import '../../../core/client/client_context.dart';
 import '../../../core/client/user_context.dart';
 import '../../base_service.dart';
+import '../../entities/account.dart';
 import '../../entities/announcement.dart';
 import '../../entities/blocked_domain.dart';
 import '../../entities/emoji.dart';
@@ -18,6 +19,7 @@ import '../../entities/status.dart';
 import '../../entities/tag.dart';
 import '../../entities/trends_link.dart';
 import '../../response/mastodon_response.dart';
+import 'instance_account_order.dart';
 
 abstract class InstanceV1Service {
   /// Returns the new instance of [InstanceV1Service].
@@ -313,6 +315,38 @@ abstract class InstanceV1Service {
   ///
   /// - https://docs.joinmastodon.org/methods/custom_emojis/#get
   Future<MastodonResponse<List<Emoji>>> lookupAvailableEmoji();
+
+  /// List accounts visible in the directory.
+  ///
+  /// ## Parameters
+  ///
+  /// - [offset]: Skip the first n results.
+  ///
+  /// - [limit]: How many accounts to load. Defaults to 40 accounts.
+  ///            Max 80 accounts.
+  ///
+  /// - [order]:  Use active to sort by most recently posted statuses (default)
+  ///             or new to sort by most recently created profiles.
+  ///
+  /// - [onlyLocal]: If true, returns only local accounts.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/directory HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - Anonymous
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/directory/#get
+  Future<MastodonResponse<List<Account>>> lookupAccounts({
+    int? offset,
+    int? limit,
+    InstanceAccountOrder? order,
+    bool? onlyLocal,
+  });
 }
 
 class _InstanceV1Service extends BaseService implements InstanceV1Service {
@@ -495,5 +529,26 @@ class _InstanceV1Service extends BaseService implements InstanceV1Service {
           '/api/v1/custom_emojis',
         ),
         dataBuilder: Emoji.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<Account>>> lookupAccounts({
+    int? offset,
+    int? limit,
+    InstanceAccountOrder? order,
+    bool? onlyLocal,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.anonymousOnly,
+          '/api/v1/directory',
+          queryParameters: {
+            'offset': offset,
+            'limit': limit,
+            'order': order,
+            'local': onlyLocal,
+          },
+        ),
+        dataBuilder: Account.fromJson,
       );
 }
