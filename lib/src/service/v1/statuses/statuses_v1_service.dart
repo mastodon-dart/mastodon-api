@@ -9,7 +9,9 @@ import '../../../core/language.dart';
 import '../../../core/visibility.dart';
 import '../../base_service.dart';
 import '../../entities/account.dart';
+import '../../entities/empty.dart';
 import '../../entities/poll.dart';
+import '../../entities/scheduled_status.dart';
 import '../../entities/status.dart';
 import '../../entities/status_context.dart';
 import '../../entities/status_edit.dart';
@@ -303,7 +305,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Parameters
   ///
-  /// - [statusId]:  The ID of the Status in the database.
+  /// - [statusId]: The ID of the Status in the database.
   ///
   /// ## Endpoint Url
   ///
@@ -328,7 +330,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Parameters
   ///
-  /// - [statusId]:  The ID of the Status in the database.
+  /// - [statusId]: The ID of the Status in the database.
   ///
   /// ## Endpoint Url
   ///
@@ -353,7 +355,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Parameters
   ///
-  /// - [statusId]:  The ID of the Status in the database.
+  /// - [statusId]: The ID of the Status in the database.
   ///
   /// - [maxStatusId]: Return results older than ID.
   ///
@@ -390,7 +392,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Parameters
   ///
-  /// - [statusId]:  The ID of the Status in the database.
+  /// - [statusId]: The ID of the Status in the database.
   ///
   /// - [maxStatusId]: Return results older than ID.
   ///
@@ -427,7 +429,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Parameters
   ///
-  /// - [statusId]:  The ID of the Status in the database.
+  /// - [statusId]: The ID of the Status in the database.
   ///
   /// ## Endpoint Url
   ///
@@ -452,7 +454,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Parameters
   ///
-  /// - [statusId]:  The ID of the Status in the database.
+  /// - [statusId]: The ID of the Status in the database.
   ///
   /// ## Endpoint Url
   ///
@@ -477,7 +479,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Parameters
   ///
-  /// - [statusId]:  The ID of the Status in the database.
+  /// - [statusId]: The ID of the Status in the database.
   ///
   /// ## Endpoint Url
   ///
@@ -502,7 +504,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Parameters
   ///
-  /// - [statusId]:  The ID of the Status in the database.
+  /// - [statusId]: The ID of the Status in the database.
   ///
   /// ## Endpoint Url
   ///
@@ -527,7 +529,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Parameters
   ///
-  /// - [statusId]:  The ID of the Status in the database.
+  /// - [statusId]: The ID of the Status in the database.
   ///
   /// ## Endpoint Url
   ///
@@ -552,7 +554,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Parameters
   ///
-  /// - [statusId]:  The ID of the Status in the database.
+  /// - [statusId]: The ID of the Status in the database.
   ///
   /// ## Endpoint Url
   ///
@@ -578,7 +580,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Parameters
   ///
-  /// - [statusId]:  The ID of the Status in the database.
+  /// - [statusId]: The ID of the Status in the database.
   ///
   /// ## Endpoint Url
   ///
@@ -604,7 +606,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Parameters
   ///
-  /// - [statusId]:  The ID of the Status in the database.
+  /// - [statusId]: The ID of the Status in the database.
   ///
   /// ## Endpoint Url
   ///
@@ -629,8 +631,8 @@ abstract class StatusesV1Service {
   ///
   /// ## Parameters
   ///
-  /// - [statusId]:  The local ID of the Status in the database.
-  /// The status should be authored by the authorized account.
+  /// - [statusId]: The local ID of the Status in the database.
+  ///               The status should be authored by the authorized account.
   ///
   /// ## Endpoint Url
   ///
@@ -676,6 +678,180 @@ abstract class StatusesV1Service {
   Future<MastodonResponse<Status>> destroyPinnedStatus({
     required String statusId,
   });
+
+  /// Post a new scheduled status.
+  ///
+  /// ## Parameters
+  ///
+  /// - [text]: The text content of the status. If media_ids is provided,
+  ///           this becomes optional.
+  ///
+  /// - [spoilerText]: Text to be shown as a warning or subject before the
+  ///                  actual content. Statuses are generally collapsed behind
+  ///                  this field.
+  ///
+  /// - [inReplyToId]: ID of the status being replied to, if status is a reply.
+  ///
+  /// - [sensitive]: Mark status and attached media as sensitive?
+  ///                Defaults to false.
+  ///
+  /// - [visibility]: Sets the visibility of the posted status to
+  ///                 [Visibility.public], [Visibility.unlisted],
+  ///                 [Visibility.private], [Visibility.direct].
+  ///
+  /// - [language]: ISO 639 language code for this status.
+  ///
+  /// - [mediaIds]: Include Attachment IDs to be attached as media.
+  ///               If provided, [text] becomes optional, and poll cannot
+  ///               be used.
+  ///
+  /// - [poll]: The object of the poll to be assigned to the status.
+  ///
+  /// - [schedule]: ISO 8601 date time at which to schedule a status.
+  ///               Providing this parameter will cause ScheduledStatus to be
+  ///               returned instead of Status.
+  ///               Must be at least 5 minutes in the future.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST https://mastodon.example/api/v1/statuses HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/statuses/#create
+  Future<MastodonResponse<ScheduledStatus>> createScheduledStatus({
+    required String text,
+    required DateTime schedule,
+    String? spoilerText,
+    String? inReplyToStatusId,
+    bool? sensitive,
+    Visibility? visibility,
+    Language? language,
+    List<String>? mediaIds,
+    StatusPollParam? poll,
+  });
+
+  /// View scheduled statuses.
+  ///
+  /// ## Parameters
+  ///
+  /// - [maxStatusId]: Return results older than ID.
+  ///
+  /// - [minStatusId]: Return results immediately newer than ID.
+  ///
+  /// - [sinceStatusId]: Return results newer than ID.
+  ///
+  /// - [limit]: Maximum number of results to return.
+  ///            Defaults to 20 statuses. Max 40 statuses.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/scheduled_statuses HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/scheduled_statuses/#get
+  Future<MastodonResponse<List<ScheduledStatus>>> lookupScheduledStatuses({
+    String? maxStatusId,
+    String? minStatusId,
+    String? sinceStatusId,
+    int? limit,
+  });
+
+  /// View scheduled statuses.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]: The ID of the ScheduledStatus in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/scheduled_statuses/:id HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/scheduled_statuses/#get-one
+  Future<MastodonResponse<ScheduledStatus>> lookupScheduledStatus({
+    required String statusId,
+  });
+
+  /// Update a scheduled status’s publishing date.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]: The ID of the ScheduledStatus in the database.
+  ///
+  /// - [schedule]: ISO 8601 date time at which the status will be published.
+  ///               Must be at least 5 minutes into the future.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - PUT /api/v1/scheduled_statuses/:id HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/scheduled_statuses/#update
+  Future<MastodonResponse<ScheduledStatus>> updateScheduledStatus({
+    required String statusId,
+    required DateTime schedule,
+  });
+
+  /// Cancel a scheduled status.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]: The ID of the ScheduledStatus in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - DELETE /api/v1/scheduled_statuses/:id HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - write:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/scheduled_statuses/#cancel
+  Future<MastodonResponse<Empty>> destroyScheduledStatus({
+    required String statusId,
+  });
 }
 
 class _StatusesV1Service extends BaseService implements StatusesV1Service {
@@ -713,7 +889,7 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
               'expires_in': poll?.expiresIn.inSeconds,
               'multiple': poll?.multiple,
               'hide_totals': poll?.hideTotals,
-            }
+            },
           },
         ),
         dataBuilder: Status.fromJson,
@@ -1030,5 +1206,101 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
           '/api/v1/statuses/$statusId/unpin',
         ),
         dataBuilder: Status.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<ScheduledStatus>> createScheduledStatus({
+    required String text,
+    required DateTime schedule,
+    String? spoilerText,
+    String? inReplyToStatusId,
+    bool? sensitive,
+    Visibility? visibility,
+    Language? language,
+    List<String>? mediaIds,
+    StatusPollParam? poll,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/statuses',
+          body: {
+            'status': text,
+            'scheduled_at': schedule.toUtc().toIso8601String(),
+            'spoiler_text': spoilerText,
+            'in_reply_to_id': inReplyToStatusId,
+            'sensitive': sensitive,
+            'visibility': visibility,
+            'language': language,
+            'media_ids': mediaIds,
+            'poll': {
+              'options': poll?.options,
+              'expires_in': poll?.expiresIn.inSeconds,
+              'multiple': poll?.multiple,
+              'hide_totals': poll?.hideTotals,
+            },
+          },
+        ),
+        dataBuilder: ScheduledStatus.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<ScheduledStatus>>> lookupScheduledStatuses({
+    String? maxStatusId,
+    String? minStatusId,
+    String? sinceStatusId,
+    int? limit,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/scheduled_statuses',
+          queryParameters: {
+            'max_id': maxStatusId,
+            'min_id': minStatusId,
+            'since_id': sinceStatusId,
+            'limit': limit,
+          },
+        ),
+        dataBuilder: ScheduledStatus.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<ScheduledStatus>> lookupScheduledStatus({
+    required String statusId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/api/v1/scheduled_statuses/$statusId',
+        ),
+        dataBuilder: ScheduledStatus.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<ScheduledStatus>> updateScheduledStatus({
+    required String statusId,
+    required DateTime schedule,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.put(
+          UserContext.oauth2Only,
+          '/api/v1/scheduled_statuses/$statusId',
+          body: {
+            'scheduled_at': schedule.toUtc().toIso8601String(),
+          },
+        ),
+        dataBuilder: ScheduledStatus.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Empty>> destroyScheduledStatus({
+    required String statusId,
+  }) async =>
+      super.transformEmptyResponse(
+        await super.delete(
+          UserContext.oauth2Only,
+          '/api/v1/scheduled_statuses/$statusId',
+        ),
       );
 }
