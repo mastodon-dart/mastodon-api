@@ -6,8 +6,10 @@
 import 'package:mastodon_api/src/core/client/user_context.dart';
 import 'package:mastodon_api/src/core/exception/mastodon_exception.dart';
 import 'package:mastodon_api/src/service/entities/account.dart';
+import 'package:mastodon_api/src/service/entities/empty.dart';
 import 'package:mastodon_api/src/service/entities/poll.dart';
 import 'package:mastodon_api/src/service/entities/rate_limit.dart';
+import 'package:mastodon_api/src/service/entities/scheduled_status.dart';
 import 'package:mastodon_api/src/service/entities/status.dart';
 import 'package:mastodon_api/src/service/entities/status_context.dart';
 import 'package:mastodon_api/src/service/entities/status_edit.dart';
@@ -1107,6 +1109,339 @@ void main() {
       expectRateLimitExceededException(
         () async =>
             await statusesService.lookupEditableSource(statusId: '1234'),
+      );
+    });
+  });
+
+  group('.createScheduledStatus', () {
+    test('normal case', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/statuses',
+          'test/src/service/v1/statuses/data/create_scheduled_status.json',
+        ),
+      );
+
+      final response = await statusesService.createScheduledStatus(
+        text: 'Hello, World!',
+        schedule: DateTime(2023, 03, 01),
+        poll: StatusPollParam(
+          options: ['test1', 'test2'],
+          expiresIn: Duration(days: 10),
+        ),
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<ScheduledStatus>());
+      expect(response.data.id, '3221');
+    });
+
+    test('when unauthorized', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/statuses',
+          'test/src/service/v1/statuses/data/create_scheduled_status.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await statusesService.createScheduledStatus(
+          text: 'Hello, World!',
+          schedule: DateTime(2023, 03, 01),
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildPostStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/statuses',
+          'test/src/service/v1/statuses/data/create_scheduled_status.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await statusesService.createScheduledStatus(
+          text: 'Hello, World!',
+          schedule: DateTime(2023, 03, 01),
+        ),
+      );
+    });
+  });
+
+  group('.lookupScheduledStatus', () {
+    test('normal case', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/scheduled_statuses/1234',
+          'test/src/service/v1/statuses/data/lookup_scheduled_status.json',
+          {},
+        ),
+      );
+
+      final response = await statusesService.lookupScheduledStatus(
+        statusId: '1234',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<ScheduledStatus>());
+    });
+
+    test('when unauthorized', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/scheduled_statuses/1234',
+          'test/src/service/v1/statuses/data/lookup_scheduled_status.json',
+          statusCode: 401,
+          {},
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await statusesService.lookupScheduledStatus(
+          statusId: '1234',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/scheduled_statuses/1234',
+          'test/src/service/v1/statuses/data/lookup_scheduled_status.json',
+          statusCode: 429,
+          {},
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async =>
+            await statusesService.lookupScheduledStatus(statusId: '1234'),
+      );
+    });
+  });
+
+  group('.lookupScheduledStatuses', () {
+    test('normal case', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/scheduled_statuses',
+          'test/src/service/v1/statuses/data/lookup_scheduled_statuses.json',
+          {
+            'max_id': '1234',
+            'min_id': '5678',
+            'since_id': '1289',
+            'limit': '40',
+          },
+        ),
+      );
+
+      final response = await statusesService.lookupScheduledStatuses(
+        maxStatusId: '1234',
+        minStatusId: '5678',
+        sinceStatusId: '1289',
+        limit: 40,
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<List<ScheduledStatus>>());
+    });
+
+    test('when unauthorized', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/scheduled_statuses',
+          'test/src/service/v1/statuses/data/lookup_scheduled_statuses.json',
+          {
+            'max_id': '1234',
+            'min_id': '5678',
+            'since_id': '1289',
+            'limit': '40',
+          },
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await statusesService.lookupScheduledStatuses(
+          maxStatusId: '1234',
+          minStatusId: '5678',
+          sinceStatusId: '1289',
+          limit: 40,
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildGetStub(
+          'test',
+          UserContext.oauth2Only,
+          '/api/v1/scheduled_statuses',
+          'test/src/service/v1/statuses/data/lookup_scheduled_statuses.json',
+          {
+            'max_id': '1234',
+            'min_id': '5678',
+            'since_id': '1289',
+            'limit': '40',
+          },
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await statusesService.lookupScheduledStatuses(
+          maxStatusId: '1234',
+          minStatusId: '5678',
+          sinceStatusId: '1289',
+          limit: 40,
+        ),
+      );
+    });
+  });
+
+  group('.destroyScheduledStatus', () {
+    test('normal case', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildDeleteStub(
+          'test',
+          '/api/v1/scheduled_statuses/1234',
+          'test/src/service/v1/statuses/data/destroy_scheduled_status.json',
+        ),
+      );
+
+      final response = await statusesService.destroyScheduledStatus(
+        statusId: '1234',
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<Empty>());
+    });
+
+    test('when unauthorized', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildDeleteStub(
+          'test',
+          '/api/v1/scheduled_statuses/1234',
+          'test/src/service/v1/statuses/data/destroy_scheduled_status.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await statusesService.destroyScheduledStatus(
+          statusId: '1234',
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildDeleteStub(
+          'test',
+          '/api/v1/scheduled_statuses/1234',
+          'test/src/service/v1/statuses/data/destroy_scheduled_status.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async =>
+            await statusesService.destroyScheduledStatus(statusId: '1234'),
+      );
+    });
+  });
+
+  group('.updateScheduledStatus', () {
+    test('normal case', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildPutStub(
+          'test',
+          '/api/v1/scheduled_statuses/1234',
+          'test/src/service/v1/statuses/data/update_scheduled_status.json',
+        ),
+      );
+
+      final response = await statusesService.updateScheduledStatus(
+        statusId: '1234',
+        schedule: DateTime(2023, 3, 1),
+      );
+
+      expect(response, isA<MastodonResponse>());
+      expect(response.rateLimit, isA<RateLimit>());
+      expect(response.data, isA<ScheduledStatus>());
+    });
+
+    test('when unauthorized', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildPutStub(
+          'test',
+          '/api/v1/scheduled_statuses/1234',
+          'test/src/service/v1/statuses/data/update_scheduled_status.json',
+          statusCode: 401,
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await statusesService.updateScheduledStatus(
+          statusId: '1234',
+          schedule: DateTime(2023, 3, 1),
+        ),
+      );
+    });
+
+    test('when rate limit exceeded', () async {
+      final statusesService = StatusesV1Service(
+        instance: 'test',
+        context: context.buildPutStub(
+          'test',
+          '/api/v1/scheduled_statuses/1234',
+          'test/src/service/v1/statuses/data/update_scheduled_status.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await statusesService.updateScheduledStatus(
+          statusId: '1234',
+          schedule: DateTime(2023, 3, 1),
+        ),
       );
     });
   });
