@@ -4,6 +4,12 @@
 
 - Supported `directory API methods`. ([#37](https://github.com/mastodon-dart/mastodon-api/issues/37))
   - `GET /api/v1/directory`
+- Supported `scheduled_statuses API methods`. ([#26](https://github.com/mastodon-dart/mastodon-api/issues/26))
+  - `POST /api/v1/statuses`
+  - `GET /api/v1/scheduled_statuses`
+  - `GET /api/v1/scheduled_statuses/:id`
+  - `PUT /api/v1/scheduled_statuses/:id`
+  - `DELETE /api/v1/scheduled_statuses/:id`
 
 ## v0.5.2
 
