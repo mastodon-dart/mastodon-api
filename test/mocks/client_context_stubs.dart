@@ -81,16 +81,17 @@ MockClientContext buildPostMultipartStub(
   final UserContext userContext,
   final String unencodedPath,
   final String resourcePath, {
-  Map<String, String> queryParameters = const {},
+  Map<String, String> body = const {},
   int statusCode = 200,
 }) {
   final mockClientContext = MockClientContext();
-  final requestUri = Uri.https(instance, unencodedPath, queryParameters);
+  final requestUri = Uri.https(instance, unencodedPath);
 
   when(mockClientContext.postMultipart(
     userContext,
     requestUri,
     files: anyNamed('files'),
+    body: body,
   )).thenAnswer(
     (_) async => Response(
       await File(resourcePath).readAsString(),
@@ -200,6 +201,7 @@ MockClientContext buildPatchMultipartStub(
   final UserContext userContext,
   final String unencodedPath,
   final String resourcePath, {
+  Map<String, String> body = const {},
   int statusCode = 200,
 }) {
   final mockClientContext = MockClientContext();
@@ -209,6 +211,7 @@ MockClientContext buildPatchMultipartStub(
     userContext,
     requestUri,
     files: anyNamed('files'),
+    body: body,
   )).thenAnswer(
     (_) async => Response(
       await File(resourcePath).readAsString(),

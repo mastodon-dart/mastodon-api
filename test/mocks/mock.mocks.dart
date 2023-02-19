@@ -117,6 +117,7 @@ class MockClientContext extends _i1.Mock implements _i3.ClientContext {
     _i5.UserContext? userContext,
     Uri? uri, {
     List<_i2.MultipartFile>? files = const [],
+    required Map<String, String>? body,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -125,7 +126,10 @@ class MockClientContext extends _i1.Mock implements _i3.ClientContext {
             userContext,
             uri,
           ],
-          {#files: files},
+          {
+            #files: files,
+            #body: body,
+          },
         ),
         returnValue: _i4.Future<_i2.Response>.value(_FakeResponse_0(
           this,
@@ -135,7 +139,44 @@ class MockClientContext extends _i1.Mock implements _i3.ClientContext {
               userContext,
               uri,
             ],
-            {#files: files},
+            {
+              #files: files,
+              #body: body,
+            },
+          ),
+        )),
+      ) as _i4.Future<_i2.Response>);
+  @override
+  _i4.Future<_i2.Response> putMultipart(
+    _i5.UserContext? userContext,
+    Uri? uri, {
+    List<_i2.MultipartFile>? files = const [],
+    required Map<String, String>? body,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #putMultipart,
+          [
+            userContext,
+            uri,
+          ],
+          {
+            #files: files,
+            #body: body,
+          },
+        ),
+        returnValue: _i4.Future<_i2.Response>.value(_FakeResponse_0(
+          this,
+          Invocation.method(
+            #putMultipart,
+            [
+              userContext,
+              uri,
+            ],
+            {
+              #files: files,
+              #body: body,
+            },
           ),
         )),
       ) as _i4.Future<_i2.Response>);
@@ -239,6 +280,7 @@ class MockClientContext extends _i1.Mock implements _i3.ClientContext {
     _i5.UserContext? userContext,
     Uri? uri, {
     List<_i2.MultipartFile>? files = const [],
+    required dynamic body,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -247,7 +289,10 @@ class MockClientContext extends _i1.Mock implements _i3.ClientContext {
             userContext,
             uri,
           ],
-          {#files: files},
+          {
+            #files: files,
+            #body: body,
+          },
         ),
         returnValue: _i4.Future<_i2.Response>.value(_FakeResponse_0(
           this,
@@ -257,7 +302,10 @@ class MockClientContext extends _i1.Mock implements _i3.ClientContext {
               userContext,
               uri,
             ],
-            {#files: files},
+            {
+              #files: files,
+              #body: body,
+            },
           ),
         )),
       ) as _i4.Future<_i2.Response>);
