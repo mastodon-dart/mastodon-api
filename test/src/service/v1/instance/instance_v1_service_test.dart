@@ -764,7 +764,7 @@ void main() {
         ),
       );
 
-      expectMastodonExceptionException(
+      expectDataNotFoundExceptionDueToNotFound(
         () async => await instanceService.createMarkAnnouncementAsRead(
           announcementId: '1111',
         ),
@@ -842,7 +842,7 @@ void main() {
         ),
       );
 
-      expectMastodonExceptionException(
+      expectDataNotFoundExceptionDueToNotFound(
         () async => await instanceService.createReactionToAnnouncement(
           announcementId: '1111',
           emojiName: '❗',
@@ -921,7 +921,7 @@ void main() {
         ),
       );
 
-      expectMastodonExceptionException(
+      expectDataNotFoundExceptionDueToNotFound(
         () async => await instanceService.destroyReactionToAnnouncement(
           announcementId: '1111',
           emojiName: '❗',

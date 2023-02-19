@@ -41,6 +41,11 @@ enum HttpStatus {
   /// https://tools.ietf.org/html/rfc7231#section-6.3.5
   noContent(204, 'No Content'),
 
+  /// The HTTP 206 Partial Content success status response code indicates
+  /// that the request has succeeded and the body contains the requested
+  /// ranges of data, as described in the Range header of the request.
+  partialContent(206, 'Partial Content'),
+
   /// This response means that server could not understand
   /// the request due to invalid syntax.
   ///

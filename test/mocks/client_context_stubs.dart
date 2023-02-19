@@ -81,16 +81,17 @@ MockClientContext buildPostMultipartStub(
   final UserContext userContext,
   final String unencodedPath,
   final String resourcePath, {
-  Map<String, String> queryParameters = const {},
+  Map<String, String> body = const {},
   int statusCode = 200,
 }) {
   final mockClientContext = MockClientContext();
-  final requestUri = Uri.https(instance, unencodedPath, queryParameters);
+  final requestUri = Uri.https(instance, unencodedPath);
 
   when(mockClientContext.postMultipart(
     userContext,
     requestUri,
     files: anyNamed('files'),
+    body: body,
   )).thenAnswer(
     (_) async => Response(
       await File(resourcePath).readAsString(),
@@ -100,6 +101,39 @@ MockClientContext buildPostMultipartStub(
       },
       request: Request(
         'POST',
+        requestUri,
+      ),
+    ),
+  );
+
+  return mockClientContext;
+}
+
+MockClientContext buildPutMultipartStub(
+  final String instance,
+  final UserContext userContext,
+  final String unencodedPath,
+  final String resourcePath, {
+  Map<String, String> body = const {},
+  int statusCode = 200,
+}) {
+  final mockClientContext = MockClientContext();
+  final requestUri = Uri.https(instance, unencodedPath);
+
+  when(mockClientContext.putMultipart(
+    userContext,
+    requestUri,
+    files: anyNamed('files'),
+    body: body,
+  )).thenAnswer(
+    (_) async => Response(
+      await File(resourcePath).readAsString(),
+      statusCode,
+      headers: {
+        'content-type': 'application/json; charset=utf-8',
+      },
+      request: Request(
+        'PUT',
         requestUri,
       ),
     ),
@@ -200,6 +234,7 @@ MockClientContext buildPatchMultipartStub(
   final UserContext userContext,
   final String unencodedPath,
   final String resourcePath, {
+  Map<String, String> body = const {},
   int statusCode = 200,
 }) {
   final mockClientContext = MockClientContext();
@@ -209,6 +244,7 @@ MockClientContext buildPatchMultipartStub(
     userContext,
     requestUri,
     files: anyNamed('files'),
+    body: body,
   )).thenAnswer(
     (_) async => Response(
       await File(resourcePath).readAsString(),

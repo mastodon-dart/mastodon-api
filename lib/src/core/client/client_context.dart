@@ -49,6 +49,14 @@ abstract class ClientContext {
     UserContext userContext,
     Uri uri, {
     List<http.MultipartFile> files = const [],
+    required Map<String, String> body,
+  });
+
+  Future<http.Response> putMultipart(
+    UserContext userContext,
+    Uri uri, {
+    List<http.MultipartFile> files = const [],
+    required Map<String, String> body,
   });
 
   Future<http.Response> delete(
@@ -75,6 +83,7 @@ abstract class ClientContext {
     UserContext userContext,
     Uri uri, {
     List<http.MultipartFile> files = const [],
+    required dynamic body,
   });
 
   Future<http.StreamedResponse> getStream(
@@ -160,16 +169,34 @@ class _ClientContext implements ClientContext {
     UserContext userContext,
     Uri uri, {
     List<http.MultipartFile> files = const [],
+    required Map<String, String> body,
   }) async =>
       await _challengeWithRetryIfNecessary(
         _clientResolver.execute(userContext),
         (client) async => await client.sendMultipart(
           http.MultipartRequest('POST', uri),
           files: files,
+          body: body,
           timeout: timeout,
         ),
       );
 
+  @override
+  Future<http.Response> putMultipart(
+    UserContext userContext,
+    Uri uri, {
+    List<http.MultipartFile> files = const [],
+    required Map<String, String> body,
+  }) async =>
+      await _challengeWithRetryIfNecessary(
+        _clientResolver.execute(userContext),
+        (client) async => await client.sendMultipart(
+          http.MultipartRequest('PUT', uri),
+          files: files,
+          body: body,
+          timeout: timeout,
+        ),
+      );
   @override
   Future<http.Response> delete(
     UserContext userContext,
@@ -224,12 +251,14 @@ class _ClientContext implements ClientContext {
     UserContext userContext,
     Uri uri, {
     List<http.MultipartFile> files = const [],
+    required dynamic body,
   }) async =>
       await _challengeWithRetryIfNecessary(
         _clientResolver.execute(userContext),
         (client) async => await client.sendMultipart(
           http.MultipartRequest('PATCH', uri),
           files: files,
+          body: body,
           timeout: timeout,
         ),
       );
