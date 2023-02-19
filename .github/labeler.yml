@@ -40,6 +40,9 @@ service/statuses:
 service/timelines:
 - lib/src/service/v1/timelines/*.dart
 - lib/src/service/v2/timelines/*.dart
+service/media:
+- lib/src/service/v1/media/*.dart
+- lib/src/service/v2/media/*.dart
 
 test:
 - test/**/*.dart
