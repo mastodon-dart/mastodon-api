@@ -9,6 +9,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // 🌎 Project imports:
 import 'media_attachment_type.dart';
+import 'media_meta.dart';
 
 part 'media_attachment.freezed.dart';
 part 'media_attachment.g.dart';
@@ -31,7 +32,8 @@ class MediaAttachment with _$MediaAttachment {
     /// The location of the full-size original attachment on the remote website.
     String? remoteUrl,
 
-    // TODO: add `meta` attribute
+    /// Metadata returned by Paperclip.
+    required MediaMeta meta,
 
     /// Alternate text that describes what is in the media attachment, to be
     /// used for the visually impaired or when media attachments do not load.

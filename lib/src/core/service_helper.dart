@@ -44,7 +44,13 @@ abstract class Service {
     UserContext userContext,
     String unencodedPath, {
     List<http.MultipartFile> files = const [],
-    Map<String, dynamic> queryParameters = const {},
+    http.Response Function(http.Response response)? validate,
+  });
+
+  Future<http.Response> putMultipart(
+    UserContext userContext,
+    String unencodedPath, {
+    List<http.MultipartFile> files = const [],
     http.Response Function(http.Response response)? validate,
   });
 
@@ -169,7 +175,7 @@ class ServiceHelper implements Service {
     UserContext userContext,
     final String unencodedPath, {
     List<http.MultipartFile> files = const [],
-    Map<String, dynamic> queryParameters = const {},
+    dynamic body,
     http.Response Function(http.Response response)? validate,
   }) async {
     final response = await _context.postMultipart(
@@ -177,9 +183,34 @@ class ServiceHelper implements Service {
       Uri.https(
         _authority,
         unencodedPath,
-        _convertQueryParameters(queryParameters),
       ),
       files: files,
+      body: Map<String, String>.from(
+        _removeNullValues(body),
+      ),
+    );
+
+    return validate != null ? validate(response) : response;
+  }
+
+  @override
+  Future<http.Response> putMultipart(
+    UserContext userContext,
+    final String unencodedPath, {
+    List<http.MultipartFile> files = const [],
+    dynamic body,
+    http.Response Function(http.Response response)? validate,
+  }) async {
+    final response = await _context.putMultipart(
+      userContext,
+      Uri.https(
+        _authority,
+        unencodedPath,
+      ),
+      files: files,
+      body: Map<String, String>.from(
+        _removeNullValues(body),
+      ),
     );
 
     return validate != null ? validate(response) : response;
@@ -250,6 +281,9 @@ class ServiceHelper implements Service {
         unencodedPath,
       ),
       files: files,
+      body: Map<String, String>.from(
+        _removeNullValues(body),
+      ),
     );
 
     return validate != null ? validate(response) : response;
@@ -299,10 +333,7 @@ class ServiceHelper implements Service {
           value?.toSet().map((e) => e.name).join(','),
         );
       } else if (value is List?) {
-        return MapEntry(
-          key,
-          value?.map((e) => e.toString()).toList()
-        );
+        return MapEntry(key, value?.map((e) => e.toString()).toList());
       } else if (value is Serializable) {
         return MapEntry(
           key,

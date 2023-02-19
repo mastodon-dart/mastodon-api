@@ -19,6 +19,8 @@ _$_MediaAttachment _$$_MediaAttachmentFromJson(Map json) => $checkedCreate(
           url: $checkedConvert('url', (v) => v as String),
           previewUrl: $checkedConvert('preview_url', (v) => v as String),
           remoteUrl: $checkedConvert('remote_url', (v) => v as String?),
+          meta: $checkedConvert('meta',
+              (v) => MediaMeta.fromJson(Map<String, Object?>.from(v as Map))),
           description: $checkedConvert('description', (v) => v as String?),
           blurHash: $checkedConvert('blurhash', (v) => v as String?),
         );
@@ -38,6 +40,7 @@ Map<String, dynamic> _$$_MediaAttachmentToJson(_$_MediaAttachment instance) =>
       'url': instance.url,
       'preview_url': instance.previewUrl,
       'remote_url': instance.remoteUrl,
+      'meta': instance.meta.toJson(),
       'description': instance.description,
       'blurhash': instance.blurHash,
     };

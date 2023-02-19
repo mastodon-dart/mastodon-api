@@ -65,9 +65,11 @@ class OAuth2Client extends Client {
   Future<http.Response> sendMultipart(
     http.MultipartRequest request, {
     List<http.MultipartFile> files = const [],
+    required Map<String, String> body,
     required Duration timeout,
   }) async {
     request.files.addAll(files);
+    request.fields.addAll(body);
     request.headers.addAll({'Authorization': 'Bearer $_bearerToken'});
 
     return http.Response.fromStream(await request.send())

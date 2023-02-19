@@ -15,6 +15,7 @@ import '../core/client/stream_response.dart';
 import '../core/client/user_context.dart';
 import '../core/exception/data_not_found_exception.dart';
 import '../core/exception/mastodon_exception.dart';
+import '../core/exception/pending_exception.dart';
 import '../core/exception/rate_limit_exceeded_exception.dart';
 import '../core/exception/unauthorized_exception.dart';
 import '../core/http_method.dart';
@@ -64,6 +65,20 @@ abstract class _Service {
     UserContext userContext,
     String unencodedPath, {
     Map<String, String> body = const {},
+  });
+
+  Future<Response> postMultipart(
+    final UserContext userContext,
+    final String unencodedPath, {
+    List<MultipartFile> files = const [],
+    dynamic body,
+  });
+
+  Future<Response> putMultipart(
+    final UserContext userContext,
+    final String unencodedPath, {
+    List<MultipartFile> files = const [],
+    dynamic body,
   });
 
   Future<Response> patchMultipart(
@@ -196,15 +211,47 @@ abstract class BaseService implements _Service {
       );
 
   @override
+  Future<Response> postMultipart(
+    final UserContext userContext,
+    final String unencodedPath, {
+    List<MultipartFile> files = const [],
+    dynamic body,
+  }) async =>
+      await _helper.postMultipart(
+        userContext,
+        unencodedPath,
+        files: files,
+        body: body,
+        validate: checkResponse,
+      );
+
+  @override
+  Future<Response> putMultipart(
+    final UserContext userContext,
+    final String unencodedPath, {
+    List<MultipartFile> files = const [],
+    dynamic body,
+  }) async =>
+      await _helper.putMultipart(
+        userContext,
+        unencodedPath,
+        files: files,
+        body: body,
+        validate: checkResponse,
+      );
+
+  @override
   Future<Response> patchMultipart(
     final UserContext userContext,
     final String unencodedPath, {
     List<MultipartFile> files = const [],
+    dynamic body,
   }) async =>
       await _helper.patchMultipart(
         userContext,
         unencodedPath,
         files: files,
+        body: body,
         validate: checkResponse,
       );
 
@@ -291,24 +338,24 @@ abstract class BaseService implements _Service {
   Response checkResponse(
     final Response response,
   ) {
-    if (response.statusCode == 204) {
-      //! 204: No Content.
+    if (HttpStatus.noContent.equalsByCode(response.statusCode)) {
       return response;
     }
 
-    if (response.statusCode == 200 && response.body.isEmpty) {
+    if (HttpStatus.ok.equalsByCode(response.statusCode) &&
+        response.body.isEmpty) {
       //! No JSON in response but okay, it's succeeded.
       return response;
     }
 
-    if (response.statusCode == 401) {
+    if (HttpStatus.unauthorized.equalsByCode(response.statusCode)) {
       throw UnauthorizedException(
         'The specified access token is invalid.',
         response,
       );
     }
 
-    if (response.statusCode == 429) {
+    if (HttpStatus.tooManyRequests.equalsByCode(response.statusCode)) {
       throw RateLimitExceededException('Rate limit exceeded.', response);
     }
 
@@ -328,29 +375,33 @@ abstract class BaseService implements _Service {
     final BaseResponse response,
     final String event,
   ) {
-    if (response.statusCode == 401) {
+    if (HttpStatus.unauthorized.equalsByCode(response.statusCode)) {
       throw UnauthorizedException(
         'The specified access token is invalid.',
         response,
       );
     }
 
-    if (response.statusCode == 403) {
+    if (HttpStatus.forbidden.equalsByCode(response.statusCode)) {
       throw MastodonException(
         'Your request is forbidden.',
         response,
       );
     }
 
-    if (response.statusCode == 404) {
+    if (HttpStatus.notFound.equalsByCode(response.statusCode)) {
       throw DataNotFoundException(
         'There is no data associated with request.',
         response,
       );
     }
 
-    if (response.statusCode == 429) {
+    if (HttpStatus.tooManyRequests.equalsByCode(response.statusCode)) {
       throw RateLimitExceededException('Rate limit exceeded.', response);
+    }
+
+    if (HttpStatus.partialContent.equalsByCode(response.statusCode)) {
+      throw PendingException('Still being processed.', response);
     }
 
     tryJsonDecode(response, event);

@@ -34,6 +34,7 @@ abstract class Client {
   Future<http.Response> sendMultipart(
     http.MultipartRequest request, {
     List<http.MultipartFile> files = const [],
+    required Map<String, String> body,
     required Duration timeout,
   });
 
