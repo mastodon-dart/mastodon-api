@@ -1,6 +1,6 @@
 # Release Note
 
-## v0.5.3
+## v0.6.0
 
 - Supported `directory API methods`. ([#37](https://github.com/mastodon-dart/mastodon-api/issues/37))
   - `GET /api/v1/directory`
@@ -10,6 +10,11 @@
   - `GET /api/v1/scheduled_statuses/:id`
   - `PUT /api/v1/scheduled_statuses/:id`
   - `DELETE /api/v1/scheduled_statuses/:id`
+- Supported `media API methods`. ([#24](https://github.com/mastodon-dart/mastodon-api/issues/24))
+  - `POST /api/v2/media`
+  - `POST /api/v1/media`
+  - `GET /api/v1/media/:id`
+  - `PUT /api/v1/media/:id`
 
 ## v0.5.2
 
