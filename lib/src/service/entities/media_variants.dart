@@ -15,8 +15,11 @@ class MediaVariants with _$MediaVariants {
   const factory MediaVariants({
     required int width,
     required int height,
-    required String size,
-    required double aspect,
+    String? size,
+    double? aspect,
+    String? frameRate,
+    double? duration,
+    int? bitrate,
   }) = _MediaVariants;
 
   factory MediaVariants.fromJson(Map<String, Object?> json) =>

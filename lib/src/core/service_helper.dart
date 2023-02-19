@@ -186,7 +186,7 @@ class ServiceHelper implements Service {
       ),
       files: files,
       body: Map<String, String>.from(
-        _removeNullValues(body),
+        _removeNullValues(body) ?? {},
       ),
     );
 
@@ -209,7 +209,7 @@ class ServiceHelper implements Service {
       ),
       files: files,
       body: Map<String, String>.from(
-        _removeNullValues(body),
+        _removeNullValues(body) ?? {},
       ),
     );
 
@@ -282,7 +282,7 @@ class ServiceHelper implements Service {
       ),
       files: files,
       body: Map<String, String>.from(
-        _removeNullValues(body),
+        _removeNullValues(body) ?? {},
       ),
     );
 

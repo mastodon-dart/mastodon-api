@@ -356,7 +356,10 @@ abstract class BaseService implements _Service {
     }
 
     if (HttpStatus.tooManyRequests.equalsByCode(response.statusCode)) {
-      throw RateLimitExceededException('Rate limit exceeded.', response);
+      throw RateLimitExceededException(
+        'Rate limit exceeded.',
+        response,
+      );
     }
 
     if (400 <= response.statusCode && response.statusCode < 500) {

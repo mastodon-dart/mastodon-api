@@ -22,8 +22,11 @@ MediaVariants _$MediaVariantsFromJson(Map<String, dynamic> json) {
 mixin _$MediaVariants {
   int get width => throw _privateConstructorUsedError;
   int get height => throw _privateConstructorUsedError;
-  String get size => throw _privateConstructorUsedError;
-  double get aspect => throw _privateConstructorUsedError;
+  String? get size => throw _privateConstructorUsedError;
+  double? get aspect => throw _privateConstructorUsedError;
+  String? get frameRate => throw _privateConstructorUsedError;
+  double? get duration => throw _privateConstructorUsedError;
+  int? get bitrate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +40,14 @@ abstract class $MediaVariantsCopyWith<$Res> {
           MediaVariants value, $Res Function(MediaVariants) then) =
       _$MediaVariantsCopyWithImpl<$Res, MediaVariants>;
   @useResult
-  $Res call({int width, int height, String size, double aspect});
+  $Res call(
+      {int width,
+      int height,
+      String? size,
+      double? aspect,
+      String? frameRate,
+      double? duration,
+      int? bitrate});
 }
 
 /// @nodoc
@@ -55,8 +65,11 @@ class _$MediaVariantsCopyWithImpl<$Res, $Val extends MediaVariants>
   $Res call({
     Object? width = null,
     Object? height = null,
-    Object? size = null,
-    Object? aspect = null,
+    Object? size = freezed,
+    Object? aspect = freezed,
+    Object? frameRate = freezed,
+    Object? duration = freezed,
+    Object? bitrate = freezed,
   }) {
     return _then(_value.copyWith(
       width: null == width
@@ -67,14 +80,26 @@ class _$MediaVariantsCopyWithImpl<$Res, $Val extends MediaVariants>
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
               as int,
-      size: null == size
+      size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
-              as String,
-      aspect: null == aspect
+              as String?,
+      aspect: freezed == aspect
           ? _value.aspect
           : aspect // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
+      frameRate: freezed == frameRate
+          ? _value.frameRate
+          : frameRate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      duration: freezed == duration
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as double?,
+      bitrate: freezed == bitrate
+          ? _value.bitrate
+          : bitrate // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -87,7 +112,14 @@ abstract class _$$_MediaVariantsCopyWith<$Res>
       __$$_MediaVariantsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int width, int height, String size, double aspect});
+  $Res call(
+      {int width,
+      int height,
+      String? size,
+      double? aspect,
+      String? frameRate,
+      double? duration,
+      int? bitrate});
 }
 
 /// @nodoc
@@ -103,8 +135,11 @@ class __$$_MediaVariantsCopyWithImpl<$Res>
   $Res call({
     Object? width = null,
     Object? height = null,
-    Object? size = null,
-    Object? aspect = null,
+    Object? size = freezed,
+    Object? aspect = freezed,
+    Object? frameRate = freezed,
+    Object? duration = freezed,
+    Object? bitrate = freezed,
   }) {
     return _then(_$_MediaVariants(
       width: null == width
@@ -115,14 +150,26 @@ class __$$_MediaVariantsCopyWithImpl<$Res>
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
               as int,
-      size: null == size
+      size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
-              as String,
-      aspect: null == aspect
+              as String?,
+      aspect: freezed == aspect
           ? _value.aspect
           : aspect // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
+      frameRate: freezed == frameRate
+          ? _value.frameRate
+          : frameRate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      duration: freezed == duration
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as double?,
+      bitrate: freezed == bitrate
+          ? _value.bitrate
+          : bitrate // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -133,8 +180,11 @@ class _$_MediaVariants implements _MediaVariants {
   const _$_MediaVariants(
       {required this.width,
       required this.height,
-      required this.size,
-      required this.aspect});
+      this.size,
+      this.aspect,
+      this.frameRate,
+      this.duration,
+      this.bitrate});
 
   factory _$_MediaVariants.fromJson(Map<String, dynamic> json) =>
       _$$_MediaVariantsFromJson(json);
@@ -144,13 +194,19 @@ class _$_MediaVariants implements _MediaVariants {
   @override
   final int height;
   @override
-  final String size;
+  final String? size;
   @override
-  final double aspect;
+  final double? aspect;
+  @override
+  final String? frameRate;
+  @override
+  final double? duration;
+  @override
+  final int? bitrate;
 
   @override
   String toString() {
-    return 'MediaVariants(width: $width, height: $height, size: $size, aspect: $aspect)';
+    return 'MediaVariants(width: $width, height: $height, size: $size, aspect: $aspect, frameRate: $frameRate, duration: $duration, bitrate: $bitrate)';
   }
 
   @override
@@ -161,12 +217,18 @@ class _$_MediaVariants implements _MediaVariants {
             (identical(other.width, width) || other.width == width) &&
             (identical(other.height, height) || other.height == height) &&
             (identical(other.size, size) || other.size == size) &&
-            (identical(other.aspect, aspect) || other.aspect == aspect));
+            (identical(other.aspect, aspect) || other.aspect == aspect) &&
+            (identical(other.frameRate, frameRate) ||
+                other.frameRate == frameRate) &&
+            (identical(other.duration, duration) ||
+                other.duration == duration) &&
+            (identical(other.bitrate, bitrate) || other.bitrate == bitrate));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, width, height, size, aspect);
+  int get hashCode => Object.hash(
+      runtimeType, width, height, size, aspect, frameRate, duration, bitrate);
 
   @JsonKey(ignore: true)
   @override
@@ -186,8 +248,11 @@ abstract class _MediaVariants implements MediaVariants {
   const factory _MediaVariants(
       {required final int width,
       required final int height,
-      required final String size,
-      required final double aspect}) = _$_MediaVariants;
+      final String? size,
+      final double? aspect,
+      final String? frameRate,
+      final double? duration,
+      final int? bitrate}) = _$_MediaVariants;
 
   factory _MediaVariants.fromJson(Map<String, dynamic> json) =
       _$_MediaVariants.fromJson;
@@ -197,9 +262,15 @@ abstract class _MediaVariants implements MediaVariants {
   @override
   int get height;
   @override
-  String get size;
+  String? get size;
   @override
-  double get aspect;
+  double? get aspect;
+  @override
+  String? get frameRate;
+  @override
+  double? get duration;
+  @override
+  int? get bitrate;
   @override
   @JsonKey(ignore: true)
   _$$_MediaVariantsCopyWith<_$_MediaVariants> get copyWith =>
