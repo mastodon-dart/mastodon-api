@@ -18,7 +18,7 @@ class MediaVariants with _$MediaVariants {
     String? size,
     double? aspect,
     String? frameRate,
-    double? duration,
+    @JsonKey(name: 'duration') double? durationInSeconds,
     int? bitrate,
   }) = _MediaVariants;
 

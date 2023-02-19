@@ -18,12 +18,16 @@ _$_MediaVariants _$$_MediaVariantsFromJson(Map json) => $checkedCreate(
           size: $checkedConvert('size', (v) => v as String?),
           aspect: $checkedConvert('aspect', (v) => (v as num?)?.toDouble()),
           frameRate: $checkedConvert('frame_rate', (v) => v as String?),
-          duration: $checkedConvert('duration', (v) => (v as num?)?.toDouble()),
+          durationInSeconds:
+              $checkedConvert('duration', (v) => (v as num?)?.toDouble()),
           bitrate: $checkedConvert('bitrate', (v) => v as int?),
         );
         return val;
       },
-      fieldKeyMap: const {'frameRate': 'frame_rate'},
+      fieldKeyMap: const {
+        'frameRate': 'frame_rate',
+        'durationInSeconds': 'duration'
+      },
     );
 
 Map<String, dynamic> _$$_MediaVariantsToJson(_$_MediaVariants instance) =>
@@ -33,6 +37,6 @@ Map<String, dynamic> _$$_MediaVariantsToJson(_$_MediaVariants instance) =>
       'size': instance.size,
       'aspect': instance.aspect,
       'frame_rate': instance.frameRate,
-      'duration': instance.duration,
+      'duration': instance.durationInSeconds,
       'bitrate': instance.bitrate,
     };
