@@ -24,7 +24,7 @@ class MediaAttachment with _$MediaAttachment {
     required MediaAttachmentType type,
 
     /// The location of the original full-size attachment.
-    required String url,
+    String? url,
 
     /// The location of a scaled-down preview of the attachment.
     required String previewUrl,

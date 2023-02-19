@@ -355,6 +355,13 @@ abstract class BaseService implements _Service {
       );
     }
 
+    if (HttpStatus.notFound.equalsByCode(response.statusCode)) {
+      throw DataNotFoundException(
+        'There is no data associated with request.',
+        response,
+      );
+    }
+
     if (HttpStatus.tooManyRequests.equalsByCode(response.statusCode)) {
       throw RateLimitExceededException(
         'Rate limit exceeded.',

@@ -16,7 +16,7 @@ _$_MediaAttachment _$$_MediaAttachmentFromJson(Map json) => $checkedCreate(
           id: $checkedConvert('id', (v) => v as String),
           type: $checkedConvert(
               'type', (v) => $enumDecode(_$MediaAttachmentTypeEnumMap, v)),
-          url: $checkedConvert('url', (v) => v as String),
+          url: $checkedConvert('url', (v) => v as String?),
           previewUrl: $checkedConvert('preview_url', (v) => v as String),
           remoteUrl: $checkedConvert('remote_url', (v) => v as String?),
           meta: $checkedConvert('meta',
