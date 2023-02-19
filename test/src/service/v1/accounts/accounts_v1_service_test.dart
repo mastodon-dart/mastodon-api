@@ -2800,7 +2800,7 @@ void main() {
         ),
       );
 
-      expectMastodonExceptionException(
+      expectMastodonException(
         () async => await accountsService.createBlockedDomain(
           domainName: 'test.com',
         ),
@@ -2875,7 +2875,7 @@ void main() {
         ),
       );
 
-      expectMastodonExceptionException(
+      expectMastodonException(
         () async => await accountsService.destroyBlockedDomain(
           domainName: 'test.com',
         ),
@@ -3023,7 +3023,7 @@ void main() {
         ),
       );
 
-      expectMastodonExceptionException(
+      expectMastodonException(
         () async => await accountsService.createBlockedDomain(
           domainName: 'test.com',
         ),
@@ -3102,7 +3102,7 @@ void main() {
         ),
       );
 
-      expectMastodonExceptionException(
+      expectMastodonException(
         () async => await accountsService.destroyFollowRequest(
           accountId: '1234',
         ),

@@ -10,7 +10,7 @@ import 'package:mastodon_api/src/core/exception/unauthorized_exception.dart';
 // 📦 Package imports:
 import 'package:test/test.dart';
 
-void expectMastodonExceptionException(Function fn) {
+void expectMastodonException(Function fn) {
   expect(
     () async => await fn.call(),
     throwsA(

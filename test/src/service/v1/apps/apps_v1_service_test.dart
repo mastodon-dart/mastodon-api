@@ -233,7 +233,7 @@ void main() {
         ),
       );
 
-      expectMastodonExceptionException(
+      expectMastodonException(
         () async => await appsService.createNewConfirmationEmail(
           email: 'test',
         ),
