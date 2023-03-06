@@ -3,6 +3,7 @@
 ## v0.6.1
 
 - `RetryConfig` allows users to configure `Jitter`. Any Jitter can be set by setting the `Jitter` object to `jitter` in `RetryConfig`. ([#144](https://github.com/mastodon-dart/mastodon-api/issues/144))
+- Added links in `README`.
 
 ## v0.6.0
 

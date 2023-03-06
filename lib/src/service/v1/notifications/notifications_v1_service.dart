@@ -44,7 +44,7 @@ abstract class NotificationsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/notifications HTTP/1.1
+  /// - GET /api/v1/notifications HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -75,7 +75,7 @@ abstract class NotificationsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/notification/:id HTTP/1.1
+  /// - GET /api/v1/notification/:id HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -96,7 +96,7 @@ abstract class NotificationsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/notifications/clear HTTP/1.1
+  /// - POST /api/v1/notifications/clear HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -119,7 +119,7 @@ abstract class NotificationsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/notifications/:id/dismiss HTTP/1.1
+  /// - POST /api/v1/notifications/:id/dismiss HTTP/1.1
   ///
   /// ## Authentication Methods
   ///

@@ -60,7 +60,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/statuses HTTP/1.1
+  /// - POST /api/v1/statuses HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -224,7 +224,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/polls/:id HTTP/1.1
+  /// - GET /api/v1/polls/:id HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -250,7 +250,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/polls/:id/votes HTTP/1.1
+  /// - POST /api/v1/polls/:id/votes HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -278,7 +278,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/polls/:id/votes HTTP/1.1
+  /// - POST /api/v1/polls/:id/votes HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -309,7 +309,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/statuses/:id HTTP/1.1
+  /// - POST /api/v1/statuses/:id HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -334,7 +334,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/statuses/:id/context HTTP/1.1
+  /// - POST /api/v1/statuses/:id/context HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -367,7 +367,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/statuses/:id/reblogged_by HTTP/1.1
+  /// - GET /api/v1/statuses/:id/reblogged_by HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -404,7 +404,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/statuses/:id/favourited_by HTTP/1.1
+  /// - GET /api/v1/statuses/:id/favourited_by HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -433,7 +433,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/statuses/:id/favourite HTTP/1.1
+  /// - POST /api/v1/statuses/:id/favourite HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -458,7 +458,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/statuses/:id/unfavourite HTTP/1.1
+  /// - POST /api/v1/statuses/:id/unfavourite HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -483,7 +483,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/statuses/:id/reblog HTTP/1.1
+  /// - POST /api/v1/statuses/:id/reblog HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -508,7 +508,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/statuses/:id/unreblog HTTP/1.1
+  /// - POST /api/v1/statuses/:id/unreblog HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -533,7 +533,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/statuses/:id/bookmark HTTP/1.1
+  /// - POST /api/v1/statuses/:id/bookmark HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -558,7 +558,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/statuses/:id/unbookmark HTTP/1.1
+  /// - POST /api/v1/statuses/:id/unbookmark HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -584,7 +584,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/statuses/:id/mute HTTP/1.1
+  /// - POST /api/v1/statuses/:id/mute HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -610,7 +610,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/statuses/:id/unmute HTTP/1.1
+  /// - POST /api/v1/statuses/:id/unmute HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -636,7 +636,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/statuses/:id/pin HTTP/1.1
+  /// - POST /api/v1/statuses/:id/pin HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -662,7 +662,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/statuses/:id/unpin HTTP/1.1
+  /// - POST /api/v1/statuses/:id/unpin HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -714,7 +714,7 @@ abstract class StatusesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/statuses HTTP/1.1
+  /// - POST /api/v1/statuses HTTP/1.1
   ///
   /// ## Authentication Methods
   ///

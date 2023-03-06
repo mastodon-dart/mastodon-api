@@ -24,7 +24,7 @@ abstract class InstanceV2Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v2/instance HTTP/1.1
+  /// - GET /api/v2/instance HTTP/1.1
   ///
   /// ## Authentication Methods
   ///

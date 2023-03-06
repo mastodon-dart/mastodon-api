@@ -36,7 +36,7 @@ abstract class InstanceV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/instance HTTP/1.1
+  /// - GET /api/v1/instance HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -53,7 +53,7 @@ abstract class InstanceV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/instance/peers HTTP/1.1
+  /// - GET /api/v1/instance/peers HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -68,7 +68,7 @@ abstract class InstanceV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/instance/activity HTTP/1.1
+  /// - GET /api/v1/instance/activity HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -84,7 +84,7 @@ abstract class InstanceV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/instance/rules HTTP/1.1
+  /// - GET /api/v1/instance/rules HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -100,7 +100,7 @@ abstract class InstanceV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/instance/domain_block HTTP/1.1
+  /// - GET /api/v1/instance/domain_block HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -116,7 +116,7 @@ abstract class InstanceV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/example HTTP/1.1
+  /// - GET /api/v1/example HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -135,7 +135,7 @@ abstract class InstanceV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/trends/tags HTTP/1.1
+  /// - GET /api/v1/trends/tags HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -156,7 +156,7 @@ abstract class InstanceV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/trends/statuses HTTP/1.1
+  /// - GET /api/v1/trends/statuses HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -177,7 +177,7 @@ abstract class InstanceV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/trends/links HTTP/1.1
+  /// - GET /api/v1/trends/links HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -194,7 +194,7 @@ abstract class InstanceV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/announcements HTTP/1.1
+  /// - GET /api/v1/announcements HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -209,7 +209,7 @@ abstract class InstanceV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/announcements HTTP/1.1
+  /// - GET /api/v1/announcements HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -228,7 +228,7 @@ abstract class InstanceV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/announcements/:id/dismiss HTTP/1.1
+  /// - POST /api/v1/announcements/:id/dismiss HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -255,7 +255,7 @@ abstract class InstanceV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - PUT https://mastodon.example/api/v1/announcements/:id/reactions/:name HTTP/1.1
+  /// - PUT /api/v1/announcements/:id/reactions/:name HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -283,7 +283,7 @@ abstract class InstanceV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - DELETE https://mastodon.example/api/v1/announcements/:id/reactions/:name HTTP/1.1
+  /// - DELETE /api/v1/announcements/:id/reactions/:name HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
