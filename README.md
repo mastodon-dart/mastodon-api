@@ -276,7 +276,9 @@ Future<void> main() async {
 
 #### 1.3.4.2. v2
 
-| [GET /api/v2/suggestions](https://docs.joinmastodon.org/methods/suggestions/#v2)                                    | [lookupFollowSuggestions](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV2Service/lookupFollowSuggestions.html)                               |
+| **Endpoint**                                                                     | **Method Name**                                                                                                                          |
+| -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| [GET /api/v2/suggestions](https://docs.joinmastodon.org/methods/suggestions/#v2) | [lookupFollowSuggestions](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV2Service/lookupFollowSuggestions.html) |
 
 ### 1.3.5. Timelines Service
 
@@ -334,10 +336,12 @@ Future<void> main() async {
 
 #### 1.3.7.1. v1
 
-| [GET /api/v1/notifications](https://docs.joinmastodon.org/methods/notifications/#get)               | [lookupNotifications](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/NotificationsV1Service/lookupNotifications.html)                                                                                                  |
-| [GET /api/v1/notification/:id](https://docs.joinmastodon.org/methods/notifications/#get-one)               | [lookupNotification](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/NotificationsV1Service/lookupNotification.html)                                                                                                  |
-| [POST /api/v1/notifications/clear](https://docs.joinmastodon.org/methods/notifications/#clear)               | [destroyAllNotifications](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/NotificationsV1Service/destroyAllNotifications.html)                                                                                                  |
-| [POST /api/v1/notifications/:id/dismiss](https://docs.joinmastodon.org/methods/notifications/#dismiss)               | [destroyNotification](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/NotificationsV1Service/destroyNotification.html)                                                                                                  |
+| **Endpoint**                                                                                           | **Method Name**                                                                                                                               |
+| ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| [GET /api/v1/notifications](https://docs.joinmastodon.org/methods/notifications/#get)                  | [lookupNotifications](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/NotificationsV1Service/lookupNotifications.html)         |
+| [GET /api/v1/notification/:id](https://docs.joinmastodon.org/methods/notifications/#get-one)           | [lookupNotification](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/NotificationsV1Service/lookupNotification.html)           |
+| [POST /api/v1/notifications/clear](https://docs.joinmastodon.org/methods/notifications/#clear)         | [destroyAllNotifications](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/NotificationsV1Service/destroyAllNotifications.html) |
+| [POST /api/v1/notifications/:id/dismiss](https://docs.joinmastodon.org/methods/notifications/#dismiss) | [destroyNotification](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/NotificationsV1Service/destroyNotification.html)         |
 
 #### 1.3.7.2. v2
 
@@ -345,7 +349,9 @@ Future<void> main() async {
 
 #### 1.3.8.1. v1
 
-| [GET /api/oembed](https://docs.joinmastodon.org/methods/oembed/#get)               | [lookupOEmbedMetadata](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/OEmbedService/lookupOEmbedMetadata.html)                                                                                                  |
+| **Endpoint**                                                         | **Method Name**                                                                                                                |
+| -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| [GET /api/oembed](https://docs.joinmastodon.org/methods/oembed/#get) | [lookupOEmbedMetadata](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/OEmbedService/lookupOEmbedMetadata.html) |
 
 #### 1.3.8.2. v2
 
@@ -353,13 +359,17 @@ Future<void> main() async {
 
 #### 1.3.9.1. v1
 
-| [POST /api/v1/media](https://docs.joinmastodon.org/methods/media/#v1)               | [uploadMedia](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/MediaV1Service/uploadMedia.html)                                                                                                  |
-| [GET /api/v1/media/:id](https://docs.joinmastodon.org/methods/media/#get)               | [lookupMedia](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/MediaV1Service/lookupMedia.html)                                                                                                  |
-| [PUT /api/v1/media/:id](https://docs.joinmastodon.org/methods/media/#update)               | [updateMedia](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/MediaV1Service/updateMedia.html)                                                                                                  |
+| **Endpoint**                                                                       | **Method Name**                                                                                               |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| [POST /api/v1/media (deprecated)](https://docs.joinmastodon.org/methods/media/#v1) | [uploadMedia](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/MediaV1Service/uploadMedia.html) |
+| [GET /api/v1/media/:id](https://docs.joinmastodon.org/methods/media/#get)          | [lookupMedia](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/MediaV1Service/lookupMedia.html) |
+| [PUT /api/v1/media/:id](https://docs.joinmastodon.org/methods/media/#update)       | [updateMedia](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/MediaV1Service/updateMedia.html) |
 
 #### 1.3.9.2. v2
 
-| [POST /api/v2/media](https://docs.joinmastodon.org/methods/media/#v2)               | [uploadMedia](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/MediaV2Service/uploadMedia.html)                                                                                                  |
+| **Endpoint**                                                          | **Method Name**                                                                                               |
+| --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| [POST /api/v2/media](https://docs.joinmastodon.org/methods/media/#v2) | [uploadMedia](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/MediaV2Service/uploadMedia.html) |
 
 ## 1.4. Tips 🏄
 
