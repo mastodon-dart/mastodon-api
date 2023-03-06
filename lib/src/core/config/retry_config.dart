@@ -3,6 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // 🌎 Project imports:
+import '../client/jitter.dart';
 import '../client/retry_event.dart';
 
 /// This class represents an automatic retry configuration.
@@ -42,8 +43,9 @@ class RetryConfig {
   /// Returns the new instance of [RetryConfig].
   RetryConfig({
     required this.maxAttempts,
+    Jitter? jitter,
     this.onExecute,
-  }) {
+  }) : jitter = jitter ?? Jitter(maxInSeconds: 4) {
     if (maxAttempts < 0) {
       //! There is no use case where the number of retries is negative.
       throw ArgumentError.value(
@@ -54,44 +56,11 @@ class RetryConfig {
     }
   }
 
-  /// Returns the new instance of [RetryConfig] of regular intervals.
-  @Deprecated('Use default constructor instead. Will be removed in v0.5.0')
-  factory RetryConfig.ofRegularIntervals({
-    required int maxAttempts,
-    // ignore: avoid_unused_constructor_parameters
-    int intervalInSeconds = 2,
-    Function(RetryEvent event)? onExecute,
-  }) =>
-      RetryConfig(
-        maxAttempts: maxAttempts,
-        onExecute: onExecute,
-      );
-
-  /// Returns the new instance of [RetryConfig] of Exponential Back Off.
-  @Deprecated('Use default constructor instead. Will be removed in v0.5.0')
-  factory RetryConfig.ofExponentialBackOff({
-    required int maxAttempts,
-    Function(RetryEvent event)? onExecute,
-  }) =>
-      RetryConfig(
-        maxAttempts: maxAttempts,
-        onExecute: onExecute,
-      );
-
-  /// Returns the new instance of [RetryConfig] of Exponential Back Off
-  /// and Jitter.
-  @Deprecated('Use default constructor instead. Will be removed in v0.5.0')
-  factory RetryConfig.ofExponentialBackOffAndJitter({
-    required int maxAttempts,
-    Function(RetryEvent event)? onExecute,
-  }) =>
-      RetryConfig(
-        maxAttempts: maxAttempts,
-        onExecute: onExecute,
-      );
-
   /// Maximum number of retry attempts.
   final int maxAttempts;
+
+  /// The user defined jitter.
+  final Jitter jitter;
 
   /// A callback function to be called when the retry is executed.
   final Function(RetryEvent event)? onExecute;

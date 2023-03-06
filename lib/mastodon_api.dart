@@ -2,6 +2,7 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+export 'package:mastodon_api/src/core/client/jitter.dart';
 export 'package:mastodon_api/src/core/client/retry_event.dart';
 export 'package:mastodon_api/src/core/config/retry_config.dart';
 export 'package:mastodon_api/src/core/country.dart';

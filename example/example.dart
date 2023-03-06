@@ -15,6 +15,10 @@ Future<void> main() async {
     //! when communicating with the API.
     retryConfig: RetryConfig(
       maxAttempts: 5,
+      jitter: Jitter(
+        minInSeconds: 2,
+        maxInSeconds: 5,
+      ),
       onExecute: (event) => print(
         'Retry after ${event.intervalInSeconds} seconds...'
         '[${event.retryCount} times]',
