@@ -84,5 +84,7 @@ class _RetryPolicy implements RetryPolicy {
   int _computeExponentialBackOff(final int retryCount) =>
       math.pow(2, retryCount).toInt();
 
-  int get _jitter => _random.nextInt(4);
+  int get _jitter =>
+      _random.nextInt(_retryConfig!.jitter.maxInSeconds) +
+      _retryConfig!.jitter.minInSeconds;
 }
