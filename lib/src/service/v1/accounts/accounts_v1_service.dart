@@ -66,7 +66,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/accounts HTTP/1.1
+  /// - POST /api/v1/accounts HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -96,7 +96,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/accounts/verify_credentials HTTP/1.1
+  /// - GET /api/v1/accounts/verify_credentials HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -136,7 +136,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - PATCH https://mastodon.example/api/v1/accounts/update_credentials HTTP/1.1
+  /// - PATCH /api/v1/accounts/update_credentials HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -167,7 +167,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - PATCH https://mastodon.example/api/v1/accounts/update_credentials HTTP/1.1
+  /// - PATCH /api/v1/accounts/update_credentials HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -192,7 +192,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - PATCH https://mastodon.example/api/v1/accounts/update_credentials HTTP/1.1
+  /// - PATCH /api/v1/accounts/update_credentials HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -222,7 +222,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/accounts/:id HTTP/1.1
+  /// - GET /api/v1/accounts/:id HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -260,7 +260,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/accounts/:id/statuses HTTP/1.1
+  /// - GET /api/v1/accounts/:id/statuses HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -295,7 +295,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/accounts/:id/followers HTTP/1.1
+  /// - GET /api/v1/accounts/:id/followers HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -324,7 +324,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/accounts/:id/following HTTP/1.1
+  /// - GET /api/v1/accounts/:id/following HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -350,7 +350,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/accounts/:id/featured_tags HTTP/1.1
+  /// - GET /api/v1/accounts/:id/featured_tags HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -371,7 +371,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/accounts/:id/lists HTTP/1.1
+  /// - GET /api/v1/accounts/:id/lists HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -407,7 +407,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/accounts/:id/follow HTTP/1.1
+  /// - POST /api/v1/accounts/:id/follow HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -435,7 +435,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/accounts/:id/unfollow HTTP/1.1
+  /// - POST /api/v1/accounts/:id/unfollow HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -460,7 +460,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/accounts/:id/remove_from_followers HTTP/1.1
+  /// - POST /api/v1/accounts/:id/remove_from_followers HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -486,7 +486,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/accounts/:id/block HTTP/1.1
+  /// - POST /api/v1/accounts/:id/block HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -511,7 +511,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/accounts/:id/unblock HTTP/1.1
+  /// - POST /api/v1/accounts/:id/unblock HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -542,7 +542,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/accounts/:id/mute HTTP/1.1
+  /// - POST /api/v1/accounts/:id/mute HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -569,7 +569,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/accounts/:id/unmute HTTP/1.1
+  /// - POST /api/v1/accounts/:id/unmute HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -595,7 +595,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/accounts/:id/pin HTTP/1.1
+  /// - POST /api/v1/accounts/:id/pin HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -620,7 +620,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/accounts/:id/unpin HTTP/1.1
+  /// - POST /api/v1/accounts/:id/unpin HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -649,7 +649,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/accounts/:id/note HTTP/1.1
+  /// - POST /api/v1/accounts/:id/note HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -675,7 +675,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/accounts/relationships HTTP/1.1
+  /// - GET /api/v1/accounts/relationships HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -701,7 +701,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/accounts/familiar_followers HTTP/1.1
+  /// - GET /api/v1/accounts/familiar_followers HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -734,7 +734,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/accounts/search HTTP/1.1
+  /// - GET /api/v1/accounts/search HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -767,7 +767,7 @@ abstract class AccountsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/accounts/lookup HTTP/1.1
+  /// - GET /api/v1/accounts/lookup HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -1732,12 +1732,10 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          UserContext.oauth2Only,
-          '/api/v1/accounts/relationships',
-          queryParameters: {
-            'id[]': accountIds,
-          }
-        ),
+            UserContext.oauth2Only, '/api/v1/accounts/relationships',
+            queryParameters: {
+              'id[]': accountIds,
+            }),
         dataBuilder: Relationship.fromJson,
       );
 
@@ -1747,12 +1745,8 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          UserContext.oauth2Only,
-          '/api/v1/accounts/familiar_followers',
-          queryParameters: {
-            'id[]': accountIds
-          }
-        ),
+            UserContext.oauth2Only, '/api/v1/accounts/familiar_followers',
+            queryParameters: {'id[]': accountIds}),
         dataBuilder: FamiliarFollower.fromJson,
       );
 

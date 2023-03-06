@@ -44,7 +44,7 @@ abstract class TimelinesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/timelines/public HTTP/1.1
+  /// - GET /api/v1/timelines/public HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -90,7 +90,7 @@ abstract class TimelinesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/timelines/tag/:hashtag HTTP/1.1
+  /// - GET /api/v1/timelines/tag/:hashtag HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -129,7 +129,7 @@ abstract class TimelinesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/timelines/home HTTP/1.1
+  /// - GET /api/v1/timelines/home HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -165,7 +165,7 @@ abstract class TimelinesV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/timelines/list/:list_id HTTP/1.1
+  /// - GET /api/v1/timelines/list/:list_id HTTP/1.1
   ///
   /// ## Authentication Methods
   ///

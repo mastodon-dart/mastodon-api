@@ -53,7 +53,7 @@ abstract class SearchV2Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v2/search HTTP/1.1
+  /// - GET /api/v2/search HTTP/1.1
   ///
   /// ## Authentication Methods
   ///

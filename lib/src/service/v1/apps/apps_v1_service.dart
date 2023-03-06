@@ -40,7 +40,7 @@ abstract class AppsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/apps HTTP/1.1
+  /// - GET /api/v1/apps HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -64,7 +64,7 @@ abstract class AppsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - GET https://mastodon.example/api/v1/apps/verify_credentials HTTP/1.1
+  /// - GET /api/v1/apps/verify_credentials HTTP/1.1
   ///
   /// ## Authentication Methods
   ///
@@ -86,7 +86,7 @@ abstract class AppsV1Service {
   ///
   /// ## Endpoint Url
   ///
-  /// - POST https://mastodon.example/api/v1/emails/confirmation HTTP/1.1
+  /// - POST /api/v1/emails/confirmation HTTP/1.1
   ///
   /// ## Authentication Methods
   ///

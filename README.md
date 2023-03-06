@@ -55,6 +55,15 @@
     - [1.3.6. Statuses Service](#136-statuses-service)
       - [1.3.6.1. v1](#1361-v1)
       - [1.3.6.2. v2](#1362-v2)
+    - [1.3.7. Notifications Service](#137-notifications-service)
+      - [1.3.7.1. v1](#1371-v1)
+      - [1.3.7.2. v2](#1372-v2)
+    - [1.3.8. OEmbed Service](#138-oembed-service)
+      - [1.3.8.1. v1](#1381-v1)
+      - [1.3.8.2. v2](#1382-v2)
+    - [1.3.9. Media Service](#139-media-service)
+      - [1.3.9.1. v1](#1391-v1)
+      - [1.3.9.2. v2](#1392-v2)
   - [1.4. Tips 🏄](#14-tips-)
     - [1.4.1. Method Names](#141-method-names)
     - [1.4.2. Null Parameter at Request](#142-null-parameter-at-request)
@@ -180,6 +189,8 @@ Future<void> main() async {
 | [POST /api/v1/announcements/:id/dismiss](https://docs.joinmastodon.org/methods/announcements/#dismiss)                    | [createMarkAnnouncementAsRead](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/InstanceV1Service/createMarkAnnouncementAsRead.html)                                                                                                                                |
 | [PUT /api/v1/announcements/:id/reactions/:name](https://docs.joinmastodon.org/methods/announcements/#put-reactions)       | [createReactionToAnnouncement](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/InstanceV1Service/createReactionToAnnouncement.html)                                                                                                                                |
 | [DELETE /api/v1/announcements/:id/reactions/:name](https://docs.joinmastodon.org/methods/announcements/#delete-reactions) | [destroyReactionToAnnouncement](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/InstanceV1Service/destroyReactionToAnnouncement.html)                                                                                                                              |
+| [GET /api/v1/custom_emojis](https://docs.joinmastodon.org/methods/custom_emojis/#get)                                     | [lookupAvailableEmoji](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/InstanceV1Service/lookupAvailableEmoji.html)                                                                                                                                                |
+| [GET /api/v1/directory](https://docs.joinmastodon.org/methods/directory/#get)                                             | [lookupAccounts](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/InstanceV1Service/lookupAccounts.html)                                                                                                                                                            |
 
 #### 1.3.1.2. v2
 
@@ -256,6 +267,12 @@ Future<void> main() async {
 | [GET /api/v1/favourites](https://docs.joinmastodon.org/methods/favourites/#get)                                          | [lookupFavouritedStatuses](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/lookupFavouritedStatuses.html)                   |
 | [GET /api/v1/blocks](https://docs.joinmastodon.org/methods/blocks/#get)                                                  | [lookupBlockedAccounts](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/lookupBlockedAccounts.html)                         |
 | [GET /api/v1/bookmarks](https://docs.joinmastodon.org/methods/bookmarks/#get)                                            | [lookupBookmarkedStatuses](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/lookupBookmarkedStatuses.html)                   |
+| [GET /api/v1/domain_blocks](https://docs.joinmastodon.org/methods/domain_blocks/#get)                                    | [lookupBlockedDomains](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/lookupBlockedDomains.html)                           |
+| [POST /api/v1/domain_blocks](https://docs.joinmastodon.org/methods/domain_blocks/#block)                                 | [createBlockedDomain](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/createBlockedDomain.html)                             |
+| [DELETE /api/v1/domain_blocks](https://docs.joinmastodon.org/methods/domain_blocks/#unblock)                             | [destroyBlockedDomain](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/destroyBlockedDomain.html)                           |
+| [GET /api/v1/follow_requests](https://docs.joinmastodon.org/methods/follow_requests/#get)                                | [lookupFollowRequests](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/lookupFollowRequests.html)                           |
+| [POST /api/v1/follow_requests/:account_id/authorize](https://docs.joinmastodon.org/methods/follow_requests/#accept)      | [createFollower](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/createFollower.html)                                       |
+| [POST /api/v1/follow_requests/:account_id/reject](https://docs.joinmastodon.org/methods/follow_requests/#reject)         | [destroyFollowRequest](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/AccountsV1Service/destroyFollowRequest.html)                           |
 
 #### 1.3.4.2. v2
 
@@ -283,13 +300,66 @@ Future<void> main() async {
 
 #### 1.3.6.1. v1
 
-| **Endpoint**                                                                     | **Method Name**                                                                                                                                                                                                                     |
-| -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [POST /api/v1/statuses](https://docs.joinmastodon.org/methods/statuses/#create)  | [createStatus](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/createStatus.html)                                                                                                                  |
-| [GET /api/v1/polls/:id](https://docs.joinmastodon.org/methods/polls/#get)        | [lookupPollById](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/lookupPollById.html)                                                                                                              |
-| [POST /api/v1/polls/:id/votes](https://docs.joinmastodon.org/methods/polls/#get) | [createVote](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/createVote.html)</br>[createVotes](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/createVotes.html) |
+| **Endpoint**                                                                                              | **Method Name**                                                                                                                                                                                                                     |
+| --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [POST /api/v1/statuses](https://docs.joinmastodon.org/methods/statuses/#create)                           | [createStatus](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/createStatus.html)                                                                                                                  |
+| [GET /api/v1/polls/:id](https://docs.joinmastodon.org/methods/polls/#get)                                 | [lookupPollById](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/lookupPollById.html)                                                                                                              |
+| [POST /api/v1/polls/:id/votes](https://docs.joinmastodon.org/methods/polls/#get)                          | [createVote](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/createVote.html)</br>[createVotes](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/createVotes.html) |
+| [GET /api/v1/statuses/:id](https://docs.joinmastodon.org/methods/statuses/#get)                           | [lookupStatus](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/lookupStatus.html)                                                                                                                  |
+| [DELETE /api/v1/statuses/:id](https://docs.joinmastodon.org/methods/statuses/#delete)                     | [destroyStatus](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/destroyStatus.html)                                                                                                                |
+| [GET /api/v1/statuses/:id/context](https://docs.joinmastodon.org/methods/statuses/#context)               | [lookupStatusContext](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/lookupStatusContext.html)                                                                                                    |
+| [GET /api/v1/statuses/:id/reblogged_by](https://docs.joinmastodon.org/methods/statuses/#reblogged_by)     | [lookupRebloggedUsers](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/lookupRebloggedUsers.html)                                                                                                  |
+| [GET /api/v1/statuses/:id/favourited_by](https://docs.joinmastodon.org/methods/statuses/#favourited_by)   | [lookupFavouritedUsers](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/lookupFavouritedUsers.html)                                                                                                |
+| [POST /api/v1/statuses/:id/favourite](https://docs.joinmastodon.org/methods/statuses/#favourite)          | [createFavourite](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/createFavourite.html)                                                                                                            |
+| [POST /api/v1/statuses/:id/unfavourite](https://docs.joinmastodon.org/methods/statuses/#unfavourite)      | [destroyFavourite](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/destroyFavourite.html)                                                                                                          |
+| [POST /api/v1/statuses/:id/reblog](https://docs.joinmastodon.org/methods/statuses/#reblog)                | [createReblog](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/createReblog.html)                                                                                                                  |
+| [POST /api/v1/statuses/:id/unreblog](https://docs.joinmastodon.org/methods/statuses/#unreblog)            | [destroyReblog](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/destroyReblog.html)                                                                                                                |
+| [POST /api/v1/statuses/:id/bookmark](https://docs.joinmastodon.org/methods/statuses/#bookmark)            | [createBookmark](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/createBookmark.html)                                                                                                              |
+| [POST /api/v1/statuses/:id/unbookmark](https://docs.joinmastodon.org/methods/statuses/#unbookmark)        | [destroyBookmark](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/destroyBookmark.html)                                                                                                            |
+| [POST /api/v1/statuses/:id/mute](https://docs.joinmastodon.org/methods/statuses/#mute)                    | [createMute](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/createMute.html)                                                                                                                      |
+| [POST /api/v1/statuses/:id/unmute](https://docs.joinmastodon.org/methods/statuses/#unmute)                | [destroyMute](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/destroyMute.html)                                                                                                                    |
+| [POST /api/v1/statuses/:id/pin](https://docs.joinmastodon.org/methods/statuses/#pin)                      | [createPinnedStatus](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/createPinnedStatus.html)                                                                                                      |
+| [POST /api/v1/statuses/:id/unpin](https://docs.joinmastodon.org/methods/statuses/#unpin)                  | [destroyPinnedStatus](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/destroyPinnedStatus.html)                                                                                                    |
+| [PUT /api/v1/statuses/:id](https://docs.joinmastodon.org/methods/statuses/#edit)                          | [updateStatus](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/updateStatus.html)                                                                                                                  |
+| [GET /api/v1/statuses/:id/history](https://docs.joinmastodon.org/methods/statuses/#history)               | [lookupEditHistory](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/lookupEditHistory.html)                                                                                                        |
+| [GET /api/v1/statuses/:id/source](https://docs.joinmastodon.org/methods/statuses/#source)                 | [lookupEditableSource](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/lookupEditableSource.html)                                                                                                  |
+| [GET /api/v1/scheduled_statuses](https://docs.joinmastodon.org/methods/scheduled_statuses/#get)           | [lookupScheduledStatuses](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/lookupScheduledStatuses.html)                                                                                            |
+| [GET /api/v1/scheduled_statuses/:id](https://docs.joinmastodon.org/methods/scheduled_statuses/#get-one)   | [lookupScheduledStatus](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/lookupScheduledStatus.html)                                                                                                |
+| [PUT /api/v1/scheduled_statuses/:id](https://docs.joinmastodon.org/methods/scheduled_statuses/#update)    | [updateScheduledStatus](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/updateScheduledStatus.html)                                                                                                |
+| [DELETE /api/v1/scheduled_statuses/:id](https://docs.joinmastodon.org/methods/scheduled_statuses/#cancel) | [destroyScheduledStatus](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/StatusesV1Service/destroyScheduledStatus.html)                                                                                              |
 
 #### 1.3.6.2. v2
+
+### 1.3.7. Notifications Service
+
+#### 1.3.7.1. v1
+
+| [GET /api/v1/notifications](https://docs.joinmastodon.org/methods/notifications/#get)               | [lookupNotifications](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/NotificationsV1Service/lookupNotifications.html)                                                                                                  |
+| [GET /api/v1/notification/:id](https://docs.joinmastodon.org/methods/notifications/#get-one)               | [lookupNotification](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/NotificationsV1Service/lookupNotification.html)                                                                                                  |
+| [POST /api/v1/notifications/clear](https://docs.joinmastodon.org/methods/notifications/#clear)               | [destroyAllNotifications](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/NotificationsV1Service/destroyAllNotifications.html)                                                                                                  |
+| [POST /api/v1/notifications/:id/dismiss](https://docs.joinmastodon.org/methods/notifications/#dismiss)               | [destroyNotification](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/NotificationsV1Service/destroyNotification.html)                                                                                                  |
+
+#### 1.3.7.2. v2
+
+### 1.3.8. OEmbed Service
+
+#### 1.3.8.1. v1
+
+| [GET /api/oembed](https://docs.joinmastodon.org/methods/oembed/#get)               | [lookupOEmbedMetadata](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/OEmbedService/lookupOEmbedMetadata.html)                                                                                                  |
+
+#### 1.3.8.2. v2
+
+### 1.3.9. Media Service
+
+#### 1.3.9.1. v1
+
+| [POST /api/v1/media](https://docs.joinmastodon.org/methods/media/#v1)               | [uploadMedia](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/MediaV1Service/uploadMedia.html)                                                                                                  |
+| [GET /api/v1/media/:id](https://docs.joinmastodon.org/methods/media/#get)               | [lookupMedia](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/MediaV1Service/lookupMedia.html)                                                                                                  |
+| [PUT /api/v1/media/:id](https://docs.joinmastodon.org/methods/media/#update)               | [updateMedia](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/MediaV1Service/updateMedia.html)                                                                                                  |
+
+#### 1.3.9.2. v2
+
+| [POST /api/v2/media](https://docs.joinmastodon.org/methods/media/#v2)               | [uploadMedia](https://pub.dev/documentation/mastodon_api/latest/mastodon_api/MediaV2Service/uploadMedia.html)                                                                                                  |
 
 ## 1.4. Tips 🏄
 
