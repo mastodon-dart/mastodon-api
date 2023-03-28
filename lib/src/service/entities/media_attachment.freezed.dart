@@ -30,7 +30,7 @@ mixin _$MediaAttachment {
   String? get url => throw _privateConstructorUsedError;
 
   /// The location of a scaled-down preview of the attachment.
-  String get previewUrl => throw _privateConstructorUsedError;
+  String? get previewUrl => throw _privateConstructorUsedError;
 
   /// The location of the full-size original attachment on the remote website.
   String? get remoteUrl => throw _privateConstructorUsedError;
@@ -63,7 +63,7 @@ abstract class $MediaAttachmentCopyWith<$Res> {
       {String id,
       MediaAttachmentType type,
       String? url,
-      String previewUrl,
+      String? previewUrl,
       String? remoteUrl,
       MediaMeta meta,
       String? description,
@@ -88,7 +88,7 @@ class _$MediaAttachmentCopyWithImpl<$Res, $Val extends MediaAttachment>
     Object? id = null,
     Object? type = null,
     Object? url = freezed,
-    Object? previewUrl = null,
+    Object? previewUrl = freezed,
     Object? remoteUrl = freezed,
     Object? meta = null,
     Object? description = freezed,
@@ -107,10 +107,10 @@ class _$MediaAttachmentCopyWithImpl<$Res, $Val extends MediaAttachment>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
-      previewUrl: null == previewUrl
+      previewUrl: freezed == previewUrl
           ? _value.previewUrl
           : previewUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       remoteUrl: freezed == remoteUrl
           ? _value.remoteUrl
           : remoteUrl // ignore: cast_nullable_to_non_nullable
@@ -151,7 +151,7 @@ abstract class _$$_MediaAttachmentCopyWith<$Res>
       {String id,
       MediaAttachmentType type,
       String? url,
-      String previewUrl,
+      String? previewUrl,
       String? remoteUrl,
       MediaMeta meta,
       String? description,
@@ -175,7 +175,7 @@ class __$$_MediaAttachmentCopyWithImpl<$Res>
     Object? id = null,
     Object? type = null,
     Object? url = freezed,
-    Object? previewUrl = null,
+    Object? previewUrl = freezed,
     Object? remoteUrl = freezed,
     Object? meta = null,
     Object? description = freezed,
@@ -194,10 +194,10 @@ class __$$_MediaAttachmentCopyWithImpl<$Res>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
-      previewUrl: null == previewUrl
+      previewUrl: freezed == previewUrl
           ? _value.previewUrl
           : previewUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       remoteUrl: freezed == remoteUrl
           ? _value.remoteUrl
           : remoteUrl // ignore: cast_nullable_to_non_nullable
@@ -248,7 +248,7 @@ class _$_MediaAttachment implements _MediaAttachment {
 
   /// The location of a scaled-down preview of the attachment.
   @override
-  final String previewUrl;
+  final String? previewUrl;
 
   /// The location of the full-size original attachment on the remote website.
   @override
@@ -317,7 +317,7 @@ abstract class _MediaAttachment implements MediaAttachment {
       {required final String id,
       required final MediaAttachmentType type,
       final String? url,
-      required final String previewUrl,
+      required final String? previewUrl,
       final String? remoteUrl,
       required final MediaMeta meta,
       final String? description,
@@ -341,7 +341,7 @@ abstract class _MediaAttachment implements MediaAttachment {
   @override
 
   /// The location of a scaled-down preview of the attachment.
-  String get previewUrl;
+  String? get previewUrl;
   @override
 
   /// The location of the full-size original attachment on the remote website.

@@ -27,7 +27,7 @@ class MediaAttachment with _$MediaAttachment {
     String? url,
 
     /// The location of a scaled-down preview of the attachment.
-    required String previewUrl,
+    required String? previewUrl,
 
     /// The location of the full-size original attachment on the remote website.
     String? remoteUrl,

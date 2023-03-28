@@ -17,7 +17,7 @@ _$_MediaAttachment _$$_MediaAttachmentFromJson(Map json) => $checkedCreate(
           type: $checkedConvert(
               'type', (v) => $enumDecode(_$MediaAttachmentTypeEnumMap, v)),
           url: $checkedConvert('url', (v) => v as String?),
-          previewUrl: $checkedConvert('preview_url', (v) => v as String),
+          previewUrl: $checkedConvert('preview_url', (v) => v as String?),
           remoteUrl: $checkedConvert('remote_url', (v) => v as String?),
           meta: $checkedConvert('meta',
               (v) => MediaMeta.fromJson(Map<String, Object?>.from(v as Map))),
